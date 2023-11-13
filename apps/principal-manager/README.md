@@ -17,7 +17,7 @@ The Principal Manager is the microservice responsible for handling the authentic
 
 ### Pre-requisite
 
-* yarn
+* pnpm
 * docker
 * docker-compose
 * Postgres
@@ -55,12 +55,12 @@ to run all the services.
 
 ## Build
 ```
-yarn build
+pnpm build
 ```
 
 ## Run
 ```
-yarn start
+pnpm start
 ```
 
 ### Environment variable required
@@ -91,13 +91,13 @@ yarn start
 
 ```bash
 # unit tests
-$ yarn test
+$ pnpm test
 
 # e2e tests
-$ yarn test:e2e
+$ pnpm test:e2e
 
 # test coverage
-$ yarn test:cov
+$ pnpm test:cov
 ```
 
 ## GDPR

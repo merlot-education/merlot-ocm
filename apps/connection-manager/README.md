@@ -23,7 +23,7 @@ The service implements REST endpoints, events and calls to other services relate
 
 
 ### Pre-requisites
-* yarn
+* pnpm 
 * docker
 * docker-compose
 * postgres
@@ -103,13 +103,13 @@ to run all the services.
 
 ```bash
 # unit tests
-$ npm run test
+$ pnpm test
 
 # e2e tests
-$ npm run test:e2e
+$ pnpm test:e2e
 
 # test coverage
-$ npm run test:cov
+$ pnpm test:cov
 ```
 
 ## GDPR

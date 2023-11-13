@@ -15,7 +15,7 @@
     "dbSchema": "npx prisma db push --schema=./src/prisma/schema.prisma",
     "prismaStudio": "npx prisma studio",
     "start": "nest start",
-    "start:docker": "yarn prisma:generate && yarn dbSchema && yarn start",
+    "start:docker": "pnpm prisma:generate && pnpm dbSchema && pnpm start",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
