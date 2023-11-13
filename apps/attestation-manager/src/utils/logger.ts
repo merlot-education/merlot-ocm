@@ -1,8 +1,6 @@
 import { existsSync, mkdirSync } from 'fs';
-import { Logger } from 'winston';
+import winston, { Logger } from 'winston';
 import ecsFormat from '@elastic/ecs-winston-format';
-// import { ElasticsearchTransport } from 'winston-elasticsearch';
-import winston = require('winston');
 import { LoggerConfig } from '@common/constants';
 
 if (!existsSync(LoggerConfig.lOG_DIR)) {
