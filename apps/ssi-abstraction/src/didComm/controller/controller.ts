@@ -44,13 +44,14 @@ export class DidCommController {
   @All('/:property/:method')
   async generic(@Param() params: GenericParams, @Body() body: GenericBody) {
     logger.info(
-      `Received request ${params.property}/${params.method}, body: ${body}`,
+      `Received request ${params.property}/${params.method}, body: ${JSON.stringify(body)}`,
     );
     const { property, method } = params;
 
     const prop: any = this.agent[property];
 
-    let response = await prop[method].apply(prop, prepareInputData(body.data)); // eslint-disable-line
+    // eslint-disable-next-line prefer-spread
+    let response = await prop[method].apply(prop, prepareInputData(body.data));
 
     if (body.subMethod && body.subMethod.name) {
       const path = body.subMethod.name.split('.');

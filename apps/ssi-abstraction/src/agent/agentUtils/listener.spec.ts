@@ -1,11 +1,10 @@
-/* eslint-disable */
-
 import { subscribe } from './listener';
 
 describe('listener', () => {
   it('should subscribe agent to available events', async () => {
     const agent = {
       events: {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         on: (eventName: string, cb: () => void) => {},
       },
     };
