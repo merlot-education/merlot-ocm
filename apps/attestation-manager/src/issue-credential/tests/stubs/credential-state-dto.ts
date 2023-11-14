@@ -1,6 +1,6 @@
-import CredentialStateDto from '@issueCredential/entities/credential.state.entity';
-import credDefStub from '@src/credentialDef/tests/stubs/credDef.stub';
-import credentialDto from './credential-dto';
+import credDefStub from '../../../credentialDef/tests/stubs/credDef.stub.js';
+import CredentialStateDto from '../../entities/credential.state.entity.js';
+import credentialDto from './credential-dto.js';
 
 const credentialStateDto = (): CredentialStateDto => ({
   id: 'credential-state-id',

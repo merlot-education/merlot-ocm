@@ -1,9 +1,9 @@
-import logger from '@utils/logger';
 import { Injectable } from '@nestjs/common';
-import UserInfoDto from '@userInfo/entities/userInfo.entity';
-import UpdateUserInfoDto from '@userInfo/entities/update-unserInfo.dto';
-import UserInfoRepository from '@userInfo/repository/userInfo.respository';
-import PrismaService from '@DB/prisma.service';
+import PrismaService from '../../prisma/prisma.service.js';
+import logger from '../../utils/logger.js';
+import UpdateUserInfoDto from '../entities/update-unserInfo.dto.js';
+import UserInfoDto from '../entities/userInfo.entity.js';
+import UserInfoRepository from '../repository/userInfo.respository.js';
 
 @Injectable()
 export default class UserInfoService {

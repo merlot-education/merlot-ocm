@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import RestClientService from '@src/client/rest.client';
+import RestClientService from './rest.client.js';
 
 export interface PolicyReturnType {
   success: boolean;
-  returnData?: any; // replace with actual structure when ready
+  returnData?: unknown; // replace with actual structure when ready
 }
 
 export interface PolicyResult {
   allow: boolean;
-  data?: any;
+  data?: unknown;
 }
 
 @Injectable()
@@ -35,7 +35,7 @@ export default class TSAClientService {
         success: false,
         returnData: 'Unable to fetch policy data.',
       } as PolicyReturnType;
-    } catch (error: any) {
+    } catch (error: any /* eslint-disable-line @typescript-eslint/no-explicit-any */) {
       let returnData = 'Something went wrong!';
 
       if (error?.isAxiosError) {

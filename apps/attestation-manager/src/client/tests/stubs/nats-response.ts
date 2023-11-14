@@ -1,5 +1,5 @@
-import { ResponseType } from '@src/common/response';
-import AttestationService from '@src/issue-credential/services/service';
+import type { ResponseType } from '../../../common/response.js';
+import AttestationService from '../../../issue-credential/services/service.js';
 
 const natsAgentResponse: ResponseType = {
   statusCode: 200,

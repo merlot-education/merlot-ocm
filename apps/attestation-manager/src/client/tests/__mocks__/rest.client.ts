@@ -1,4 +1,4 @@
-import schemaAgentDto from '@src/schemas/tests/stubs/schema-from-agent-dto';
+import schemaAgentDto from '../../../schemas/tests/stubs/schema-from-agent-dto.js';
 
 const RestClientServiceMock = jest.fn().mockReturnValue({
   post: jest.fn().mockReturnValue({ agent: 'response' }),

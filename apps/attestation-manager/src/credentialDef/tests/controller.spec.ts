@@ -1,13 +1,12 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import httpMocks from 'node-mocks-http';
-
-import CredentialDefController from '@credentialDef/controller/controller';
-import CredentialDefService from '@credentialDef/services/service';
-import CredentialDefServiceMock from '@credentialDef/tests/__mocks__/service';
-import credDefStub from '@credentialDef/tests/stubs/credDef.stub';
 import { HttpStatus } from '@nestjs/common';
-import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
+import { Test, TestingModule } from '@nestjs/testing';
+import { Response } from 'express';
+import httpMocks from 'node-mocks-http';
+import CredentialDefController from '../controller/controller.js';
+import CredentialDefService from '../services/service.js';
+import CredentialDefServiceMock from './__mocks__/service.js';
+import credDefStub from './stubs/credDef.stub.js';
 
 describe('CredentialDefController', () => {
   let credentialDefController: CredentialDefController;

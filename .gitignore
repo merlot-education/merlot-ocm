@@ -19,6 +19,7 @@ node_modules/
 apps/*/node_modules
 /dist
 /apps/**/dist/
+*.tsbuildinfo
 
 # Logs
 /logs
@@ -28,7 +29,7 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-logs/log.json
+apps/**/logs/log.json
 
 # OS
 .DS_Store

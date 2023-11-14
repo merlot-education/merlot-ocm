@@ -1,6 +1,6 @@
-import credentialDto from '@issueCredential/tests/stubs/credential-dto';
-import schemaAgentDto from '@src/schemas/tests/stubs/schema-from-agent-dto';
-import credentialTypeDto from '../stubs/credential-type-dto';
+import schemaAgentDto from '../../../schemas/tests/stubs/schema-from-agent-dto.js';
+import credentialDto from '../stubs/credential-dto.js';
+import credentialTypeDto from '../stubs/credential-type-dto.js';
 
 const AttestationServiceMock = jest.fn().mockReturnValue({
   createOfferCredential: jest.fn().mockReturnValue({}),

@@ -1,12 +1,11 @@
+import { HttpStatus } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import httpMocks from 'node-mocks-http';
-import SchemasController from '@schemas/controller/controller';
-import SchemasService from '@schemas/services/service';
-import SchemasServiceMock from '@schemas/tests/__mocks__/service';
-import { Response } from 'express';
-import { HttpStatus } from '@nestjs/common';
-import SchemaDto from '../entities/schema-entity';
-import schemaDto from './stubs/schema-dto';
+import SchemasController from '../controller/controller.js';
+import SchemaDto from '../entities/schema-entity.js';
+import SchemasService from '../services/service.js';
+import SchemasServiceMock from './__mocks__/service.js';
+import schemaDto from './stubs/schema-dto.js';
 
 describe('SchemasController', () => {
   let schemasController: SchemasController;

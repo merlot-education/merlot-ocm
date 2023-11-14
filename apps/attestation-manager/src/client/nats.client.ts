@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
-import { Connection, NATSServices } from '@common/constants';
+import { Connection, NATSServices } from '../common/constants.js';
 
 @Injectable()
 export default class NatsClientService {

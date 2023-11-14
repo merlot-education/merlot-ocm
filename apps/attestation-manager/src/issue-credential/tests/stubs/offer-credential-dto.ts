@@ -1,6 +1,6 @@
-import OfferCredentialDto from '@src/issue-credential/entities/entity';
-import schemaDto from '@src/schemas/tests/stubs/schema-dto';
-import credentialDto from './credential-dto';
+import schemaDto from '../../../schemas/tests/stubs/schema-dto.js';
+import OfferCredentialDto from '../../entities/entity.js';
+import credentialDto from './credential-dto.js';
 
 const offerCredentialDto = (): OfferCredentialDto => ({
   connectionId: credentialDto().connectionId,

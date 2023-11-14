@@ -1,6 +1,6 @@
+import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom, map } from 'rxjs';
-import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export default class RestClientService {

@@ -1,13 +1,13 @@
 import fs from 'fs';
 
 describe('Logger', () => {
-  let logger: any;
+  let logger: unknown;
 
   jest.spyOn(fs, 'existsSync').mockImplementation(() => false);
   jest.spyOn(fs, 'mkdirSync').mockImplementation(() => 'mocked');
 
   beforeEach(async () => {
-    logger = await import('../logger');
+    logger = await import('../logger.js');
   });
 
   it('should call logger', async () => {

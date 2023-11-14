@@ -1,4 +1,4 @@
-import schemaDto from './schema-dto';
+import schemaDto from './schema-dto.js';
 
 const schemaAgentDto = {
   ver: '1.0',

@@ -1,40 +1,18 @@
 {
+  "extends": "../../tsconfig.json",
+
   "compilerOptions": {
-    "target": "es6",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "module": "commonjs",
-    "outDir": "./dist",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
-    "strict": true,
-    "skipLibCheck": true,
-    "baseUrl": "./",
-    "strictPropertyInitialization": false,
+    "composite": true,
+    "removeComments": false,
+    "declaration": true,
     "sourceMap": true,
-    "strictNullChecks": true,
-    "paths": {
-      "@src/*": ["src/*"],
-      "@config/*": ["config/*"],
-      "@utils/*" :["src/utils/*"],
-      "@common/*":["src/common/*"],
-      "@schemas/*":["src/schemas/*"],
-      "@credentialDef/*": ["src/credentialDef/*"],
-      "@issueCredential/*": ["src/issue-credential/*"],
-      "@userInfo/*": ["src/userInfo/*"],
-      "@health/*":["src/health/*"],
-      "@DB/*":["src/prisma/*"]
-    },
-    "types": [
-      "node",
-      "jest",
-      "express"
-    ]
+
+    "incremental": true,
+
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "rootDir": "./src"
   },
-  "include": [
-    "**/*.ts",
-    "src",
-    "config",
-  ],
-   "exclude": ["node_modules", "./dist/**/*"]
+  "include": ["src", "test"],
+  "exclude": ["node_modules", "./dist/**/*"]
 }

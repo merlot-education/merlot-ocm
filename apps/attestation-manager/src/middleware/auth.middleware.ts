@@ -1,21 +1,10 @@
 import { HttpStatus, Injectable, NestMiddleware } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import logger from '@src/utils/logger';
-import { Request, Response, NextFunction } from 'express';
-// import { ClientCredentials }  from 'simple-oauth2';
+import { NextFunction, Request, Response } from 'express';
 
 import * as jwt from 'jsonwebtoken';
-import jwksClient = require('jwks-rsa');
-
-// interface IOAuthConfig {
-//   client: {
-//     id: string,
-//     secret: string
-//   };
-//   auth: {
-//     tokenHost: string
-//   }
-// }
+import jwksClient from 'jwks-rsa';
+import logger from '../utils/logger.js';
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
@@ -41,48 +30,6 @@ export class AuthMiddleware implements NestMiddleware {
       });
       return;
     }
-
-    // ClientID     string `envconfig:"OAUTH_CLIENT_ID"`
-    // ClientSecret string `envconfig:"OAUTH_CLIENT_SECRET"`
-    // TokenURL     string `envconfig:"OAUTH_TOKEN_URL"`
-
-    // const oauthConfig = {
-    //   client: {
-    //     id: this.configService.get('auth.clientId'),
-    //     secret: this.configService.get('auth.clientSecret')
-    //   },
-    //   auth: {
-    //     tokenHost: this.configService.get('auth.tokenUrl') || 'https://api.oauth.com'
-    //   }
-    // };
-
-    // async function getAccessToken(conf: IOAuthConfig) {
-    //   const client = new ClientCredentials(conf);
-    //   let accessToken: any;
-
-    //   const tokenParams = {
-    //     scope: '<scope>',
-    //   };
-
-    //   try {
-    //     accessToken = await client.getToken(tokenParams);
-    //   } catch (error) {
-    //     logger.error('Access Token error', error.message);
-    //   }
-
-    //   return accessToken;
-    // }
-
-    // let result = getAccessToken(oauthConfig);
-
-    // if (!result) {
-    //   res.json({
-    //     status: HttpStatus.UNAUTHORIZED,
-    //     message: 'Unauthorized. Access token error.',
-    //     data: undefined,
-    //   })
-    //   return;
-    // }
 
     const getKey = (
       header: jwt.JwtHeader,

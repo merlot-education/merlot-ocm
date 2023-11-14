@@ -9,15 +9,14 @@ import {
   Res,
   Version,
 } from '@nestjs/common';
-import { Response } from 'express';
-import {ApiBody, ApiOperation, ApiTags} from '@nestjs/swagger';
-
-import logger from '@utils/logger';
-import UserInfoService from '@userInfo/services/service';
-import UserInfoDto from '@userInfo/entities/userInfo.entity';
-import { PrismaClientUnknownRequestError } from '@prisma/client/runtime';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Prisma } from '@prisma/client';
 import { isUUID } from 'class-validator';
-import { AutoAcceptCredential } from '@src/common/constants';
+import type { Response } from 'express';
+import { AutoAcceptCredential } from '../../common/constants.js';
+import logger from '../../utils/logger.js';
+import UserInfoDto from '../entities/userInfo.entity.js';
+import UserInfoService from '../services/service.js';
 
 @ApiTags('userInfo (to be deprecated)')
 @Controller('userInfo')
@@ -29,7 +28,8 @@ export default class UserInfoController {
   @Post('')
   @ApiOperation({
     summary: 'Add user information to a connection',
-    description: 'This call provides the capability to add any additional information to connection. The format of added data is just a simple json'
+    description:
+      'This call provides the capability to add any additional information to connection. The format of added data is just a simple json',
   })
   async createUserInfo(
     @Body() userInfoDto: UserInfoDto,
@@ -61,13 +61,13 @@ export default class UserInfoController {
         data: await this.userInfoService.createUserInfo(userInfoDto),
       };
       return response.send(res);
-    } catch (error: any) {
-      if (error instanceof PrismaClientUnknownRequestError) {
+    } catch (error: unknown) {
+      if (error instanceof Prisma.PrismaClientUnknownRequestError) {
         throw new InternalServerErrorException(error.message);
       } else {
         throw new HttpException(
-          error?.message || 'Internal server error',
-          error?.status || 500,
+          Reflect.get(error || {}, 'message') || 'Internal server error',
+          Reflect.get(error || {}, 'status') || 500,
         );
       }
     }

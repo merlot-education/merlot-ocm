@@ -1,10 +1,10 @@
-import schemaDto from '@schemas/tests/stubs/schema-dto';
-import credDefStub from '@src/credentialDef/tests/stubs/credDef.stub';
-import credentialDto from '@src/issue-credential/tests/stubs/credential-dto';
-import credentialTypeDto from '@src/issue-credential/tests/stubs/credential-type-dto';
+import credDefStub from '../../../credentialDef/tests/stubs/credDef.stub.js';
+import credentialDto from '../../../issue-credential/tests/stubs/credential-dto.js';
+import credentialTypeDto from '../../../issue-credential/tests/stubs/credential-type-dto.js';
+import schemaDto from '../../../schemas/tests/stubs/schema-dto.js';
 
 const PrismaServiceMock = jest.fn().mockReturnValue({
-  $transaction: jest.fn().mockImplementation((args: any) => [...args]),
+  $transaction: jest.fn().mockImplementation((args: unknown[]) => [...args]),
   schema: {
     create: jest.fn().mockReturnValue([schemaDto()]),
     update: jest.fn().mockReturnValue([schemaDto()]),
@@ -29,6 +29,7 @@ const PrismaServiceMock = jest.fn().mockReturnValue({
     update: jest.fn().mockReturnValue(credentialTypeDto()),
     create: jest.fn().mockReturnValue(credentialTypeDto()),
     findUnique: jest.fn().mockReturnValue(credentialTypeDto()),
+    findFirst: jest.fn().mockReturnValue(credentialTypeDto()),
   },
 });
 

@@ -1,22 +1,22 @@
 import { HttpModule } from '@nestjs/axios';
-import { Test, TestingModule } from '@nestjs/testing';
-import NatsClientService from '@src/client/nats.client';
-import NatsClientServiceMock from '@src/client/tests/__mocks__/nats.client';
-import PrismaService from '@src/prisma/prisma.service';
-import PrismaServiceMock from '@src/prisma/tests/__mocks__/prisma.service';
-import AttestationService from '@issueCredential/services/service';
-import { natsConnectionResponse } from '@src/client/tests/stubs/nats-response';
-import { ResponseType } from '@src/common/response';
-import { Credential, CredentialsType } from '@prisma/client';
-import RestClientService from '@src/client/rest.client';
-import RestClientServiceMock from '@src/client/tests/__mocks__/rest.client';
-import TSAClientServiceMock from '@src/client/tests/__mocks__/tsa.client';
 import { ConfigService } from '@nestjs/config';
-import CredentialDefService from '@src/credentialDef/services/service';
-import CredentialDefServiceMock from '@src/credentialDef/tests/__mocks__/service';
-import TSAClientService from '@src/client/tsa.client';
-import credentialDto from './stubs/credential-dto';
-import credentialsTypeDto from './stubs/credential-type-dto';
+import { Test, TestingModule } from '@nestjs/testing';
+import { Credential, CredentialsType } from '@prisma/client';
+import NatsClientService from '../../client/nats.client.js';
+import RestClientService from '../../client/rest.client.js';
+import NatsClientServiceMock from '../../client/tests/__mocks__/nats.client.js';
+import RestClientServiceMock from '../../client/tests/__mocks__/rest.client.js';
+import TSAClientServiceMock from '../../client/tests/__mocks__/tsa.client.js';
+import { natsConnectionResponse } from '../../client/tests/stubs/nats-response.js';
+import TSAClientService from '../../client/tsa.client.js';
+import { ResponseType } from '../../common/response.js';
+import CredentialDefService from '../../credentialDef/services/service.js';
+import CredentialDefServiceMock from '../../credentialDef/tests/__mocks__/service.js';
+import PrismaService from '../../prisma/prisma.service.js';
+import PrismaServiceMock from '../../prisma/tests/__mocks__/prisma.service.js';
+import AttestationService from '../services/service.js';
+import credentialDto from './stubs/credential-dto.js';
+import credentialsTypeDto from './stubs/credential-type-dto.js';
 
 describe('AttestationService', () => {
   let attestationService: AttestationService;
@@ -153,9 +153,8 @@ describe('AttestationService', () => {
     let attestationResponse: Credential;
 
     beforeEach(async () => {
-      attestationResponse = await attestationService.updateCredential(
-        credentialDto(),
-      );
+      attestationResponse =
+        await attestationService.updateCredential(credentialDto());
     });
 
     it('should call update() from PrismaService.credential', async () => {
@@ -269,7 +268,7 @@ describe('AttestationService', () => {
     });
 
     it('should call findUnique() from PrismaService.credentialsType', async () => {
-      expect(PrismaServiceMock().credentialsType.findUnique).toHaveBeenCalled();
+      expect(PrismaServiceMock().credentialsType.findFirst).toHaveBeenCalled();
     });
 
     it('should get principal member credentials type', async () => {
@@ -281,9 +280,8 @@ describe('AttestationService', () => {
     let attestationResponse: CredentialsType;
 
     beforeEach(async () => {
-      attestationResponse = await attestationService.createCredentialsType(
-        credentialsTypeDto(),
-      );
+      attestationResponse =
+        await attestationService.createCredentialsType(credentialsTypeDto());
     });
 
     it('should call create() from PrismaService.credentialsType', async () => {

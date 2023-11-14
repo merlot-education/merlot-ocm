@@ -3,24 +3,24 @@ import {
   Injectable,
   PreconditionFailedException,
 } from '@nestjs/common';
-import PrismaService from '@DB/prisma.service';
-import logger from '@utils/logger';
-import CredentialRepository from '@issueCredential/repository/credential.repository';
-import CredentialDto from '@issueCredential/entities/credential.entity';
-import { Credential, Prisma } from '@prisma/client';
-import NatsClientService from '@src/client/nats.client';
-import OfferCredentialDto from '@issueCredential/entities/entity';
-import GetIssueCredentialsDto from '@src/issue-credential/entities/get-issue-credentials.dto';
-import CredentialsTypeRepository from '@issueCredential/repository/credentialType.repository';
-import pagination from '@utils/pagination';
-import Utils from '@utils/common';
-import CredentialDefService from '@src/credentialDef/services/service';
-import RestClientService from '@src/client/rest.client';
 import { ConfigService } from '@nestjs/config';
-import CredentialTypeDto from '@issueCredential/entities/credentialType.entity';
-import ProposeCredentialDto from '@issueCredential/entities/propose-credential.dto';
-import TSAClientService from '@src/client/tsa.client';
-import { TSAService } from '@src/common/constants';
+import { Credential, Prisma } from '@prisma/client';
+import NatsClientService from '../../client/nats.client.js';
+import RestClientService from '../../client/rest.client.js';
+import TSAClientService from '../../client/tsa.client.js';
+import { TSAService } from '../../common/constants.js';
+import CredentialDefService from '../../credentialDef/services/service.js';
+import PrismaService from '../../prisma/prisma.service.js';
+import Utils from '../../utils/common.js';
+import logger from '../../utils/logger.js';
+import pagination from '../../utils/pagination.js';
+import CredentialDto from '../entities/credential.entity.js';
+import CredentialTypeDto from '../entities/credentialType.entity.js';
+import OfferCredentialDto from '../entities/entity.js';
+import GetIssueCredentialsDto from '../entities/get-issue-credentials.dto.js';
+import ProposeCredentialDto from '../entities/propose-credential.dto.js';
+import CredentialRepository from '../repository/credential.repository.js';
+import CredentialsTypeRepository from '../repository/credentialType.repository.js';
 
 @Injectable()
 export default class AttestationService {
@@ -274,7 +274,6 @@ export default class AttestationService {
       query.where.createdDate = { gte: createdDateStart };
     }
     if (createdDateEnd) {
-      // eslint-disable-next-line prefer-object-spread
       query.where.createdDate = Object.assign({}, query.where.createdDate, {
         lte: createdDateEnd,
       });
@@ -283,7 +282,6 @@ export default class AttestationService {
       query.where.updatedDate = { gte: updatedDateStart };
     }
     if (updatedDateEnd) {
-      // eslint-disable-next-line prefer-object-spread
       query.where.updatedDate = Object.assign({}, query.where.updatedDate, {
         lte: updatedDateEnd,
       });
@@ -292,7 +290,6 @@ export default class AttestationService {
       query.where.expirationDate = { gte: expirationDateStart };
     }
     if (expirationDateEnd) {
-      // eslint-disable-next-line prefer-object-spread
       query.where.expirationDate = Object.assign(
         {},
         query.where.expirationDate,

@@ -1,4 +1,4 @@
-import CredentialDefDto from '@credentialDef/entities/credentialDef-entity';
+import CredentialDefDto from '../../entities/credentialDef-entity.js';
 
 const credDefStub = (): CredentialDefDto =>
   ({
@@ -15,6 +15,6 @@ const credDefStub = (): CredentialDefDto =>
     updatedBy: 'cred-def-stub-updated-by-id',
     updatedDate: new Date(2022),
     tag: 'cred-def-stub-tag',
-  } as CredentialDefDto);
+  }) as CredentialDefDto;
 
 export default credDefStub;

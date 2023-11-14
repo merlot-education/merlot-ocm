@@ -1,4 +1,4 @@
-import schemaDto from '../stubs/schema-dto';
+import schemaDto from '../stubs/schema-dto.js';
 
 const SchemasServiceMock = jest.fn().mockReturnValue({
   findSchemas: jest.fn().mockReturnValue([1, [schemaDto()]]),
