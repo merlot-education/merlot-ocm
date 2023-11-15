@@ -1,8 +1,7 @@
-import { Logger } from 'winston';
+import winston, { Logger } from 'winston';
 import ecsFormat from '@elastic/ecs-winston-format';
-// import { ElasticsearchTransport } from 'winston-elasticsearch';
-import winston = require('winston');
 
+// import { ElasticsearchTransport } from 'winston-elasticsearch';
 // const esTransportOpts = {
 //   clientOpts: { node: process.env.ECSURL },
 // };
@@ -21,7 +20,8 @@ const logger: Logger = winston.createLogger({
   ],
 });
 
-logger.on('error', (error) => {
+logger.on('error', (error: Error) => {
+  // eslint-disable-next-line no-console
   console.error('Error in logger caught', error);
 });
 

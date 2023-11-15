@@ -14,7 +14,7 @@ import config from '@config/config';
         name: NATSServices.SERVICE_NAME,
         transport: Transport.NATS,
         options: {
-          servers: [config().nats.url as string],
+          servers: [config().nats.url],
         },
       },
     ]),
