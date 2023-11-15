@@ -1,15 +1,15 @@
+import { HttpService } from '@nestjs/axios';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import ResponseType from '@src/common/response';
-import NatsClientService from '@src/client/nats.client';
-import OfferMembershipCredentialDto from '@principal/entities/offerMembershipCredentialDto.entity';
+import NatsClientService from '../../client/nats.client.js';
 import {
   AttestationManagerUrl,
-  SaveUserInfo,
   ConnectionManagerUrl,
   CreateMemberConnection,
-} from '@src/common/constants';
-import MapUserInfoDTO from '@principal/entities/mapUserInfoDTO.entity';
-import { HttpService } from '@nestjs/axios';
+  SaveUserInfo,
+} from '../../common/constants.js';
+import ResponseType from '../../common/response.js';
+import MapUserInfoDTO from '../entities/mapUserInfoDTO.entity.js';
+import OfferMembershipCredentialDto from '../entities/offerMembershipCredentialDto.entity.js';
 
 @Injectable()
 export default class PrincipalService {
@@ -27,7 +27,10 @@ export default class PrincipalService {
     return response;
   }
 
-  async mapUserInfo({ userData, userInfoURL }: MapUserInfoDTO): Promise<any> {
+  async mapUserInfo({
+    userData,
+    userInfoURL,
+  }: MapUserInfoDTO): Promise<unknown> {
     try {
       let userInfo;
 
@@ -71,10 +74,10 @@ export default class PrincipalService {
         invitationUrl: connection.data.invitationUrl,
         userInfo: savedUserInfo.data,
       };
-    } catch (error) {
+    } catch (error: unknown) {
       throw new HttpException(
-        error?.message || 'Internal server error',
-        error?.status || 500,
+        Reflect.get(error || {}, 'message') || 'Internal server error',
+        Reflect.get(error || {}, 'status') || 500,
       );
     }
   }

@@ -1,5 +1,4 @@
-import PrismaService from '@DB/prisma.service';
-import { APP_FILTER } from '@nestjs/core';
+import { HttpModule } from '@nestjs/axios';
 import {
   MiddlewareConsumer,
   Module,
@@ -7,16 +6,17 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { TerminusModule } from '@nestjs/terminus';
-import validationSchema from '@config/validation';
-
-import config from '@config/config';
-import HealthController from '@health/health.controller';
-import ExceptionHandler from '@common/exception.handler';
-import PrincipalModule from '@principal/module';
+import { APP_FILTER } from '@nestjs/core';
 import { ScheduleModule } from '@nestjs/schedule';
-import { HttpModule } from '@nestjs/axios';
-import { AuthMiddleware } from './middleware/auth.middleware';
+import { TerminusModule } from '@nestjs/terminus';
+import ExceptionHandler from './common/exception.handler.js';
+import config from './config/config.js';
+import validationSchema from './config/validation.js';
+import HealthController from './health/health.controller.js';
+import { AuthMiddleware } from './middleware/auth.middleware.js';
+import PrincipalModule from './principal/module.js';
+import PrismaService from './prisma/prisma.service.js';
+import PrismaModule from './prisma/prisma.module.js';
 
 @Module({
   imports: [
@@ -27,6 +27,7 @@ import { AuthMiddleware } from './middleware/auth.middleware';
       load: [config],
       validationSchema,
     }),
+    PrismaModule,
     PrincipalModule,
     HttpModule,
   ],
@@ -36,7 +37,6 @@ import { AuthMiddleware } from './middleware/auth.middleware';
       provide: APP_FILTER,
       useClass: ExceptionHandler,
     },
-    PrismaService,
   ],
 })
 export default class AppModule implements NestModule {

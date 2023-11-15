@@ -1,12 +1,12 @@
-import { Module } from '@nestjs/common';
-import PrismaService from '@DB/prisma.service';
 import { HttpModule } from '@nestjs/axios';
+import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { NATSServices } from '@common/constants';
-import PrincipalController from '@principal/controller/controller';
-import PrincipalService from '@principal/services/service';
-import NatsClientService from '@client/nats.client';
-import config from '@config/config';
+import NatsClientService from '../client/nats.client.js';
+import { NATSServices } from '../common/constants.js';
+import config from '../config/config.js';
+import PrismaService from '../prisma/prisma.service.js';
+import PrincipalController from './controller/controller.js';
+import PrincipalService from './services/service.js';
 
 @Module({
   imports: [

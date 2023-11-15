@@ -22,7 +22,10 @@ export default class Nats {
     }
   }
 
-  public static async subscribe(subject: string, cb: (...args: any[]) => any) {
+  public static async subscribe(
+    subject: string,
+    cb: (...args: unknown[]) => unknown,
+  ) {
     if (this.nc) {
       const sub = this.nc.subscribe(subject);
       (async () => {

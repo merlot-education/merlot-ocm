@@ -7,19 +7,18 @@ export default class PrismaService
   extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {
-  constructor(private configService: ConfigService) {
-    super();
-  }
-
-  async onModuleInit() {
-    const prisma = new PrismaClient({
+  constructor(configService: ConfigService) {
+    super({
       datasources: {
         db: {
-          url: this.configService.get('DATABASE_URL'),
+          url: configService.get('DATABASE_URL'),
         },
       },
     });
-    await prisma.$connect();
+  }
+
+  async onModuleInit() {
+    await this.$connect();
   }
 
   async onModuleDestroy() {
