@@ -11,7 +11,7 @@ export function logAxiosError(err: any) {
     logger.error(err.request);
   } else {
     // Something happened in setting up the request that triggered an Error
-    logger.error('Request error: ', err.message);
+    logger.error('Request error: ', err);
   }
 }
 

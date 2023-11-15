@@ -27,15 +27,17 @@ export class ExceptionHandler implements ExceptionFilter {
     const response = ctx.getResponse();
 
     let statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-    let message = exception.message.error || exception.message || 'Something went wrong!';
+    let message =
+      exception.message.error || exception.message || 'Something went wrong!';
 
     if (exception instanceof HttpException) {
       const errorResponse = exception.getResponse();
 
       statusCode = exception.getStatus();
-      message = typeof errorResponse === 'object' && 'error' in errorResponse
-        ? errorResponse.error
-        : errorResponse || message;
+      message =
+        typeof errorResponse === 'object' && 'error' in errorResponse
+          ? errorResponse.error
+          : errorResponse || message;
     }
 
     const responseBody: ResponseType = {

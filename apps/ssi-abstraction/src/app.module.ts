@@ -6,8 +6,8 @@ import config from '@config/config';
 import validationSchema from '@config/validation';
 import HealthController from '@src/health/health.controller';
 import ExceptionHandler from '@src/globalUtils/exception.handler';
-import DidCommModule from '@didComm/module';
 import { AgentMid } from './middleware/agentMid.middleware';
+import { AgentModule } from './agent/agent.module';
 
 @Module({
   imports: [
@@ -17,7 +17,7 @@ import { AgentMid } from './middleware/agentMid.middleware';
       load: [config],
       validationSchema,
     }),
-    DidCommModule,
+    AgentModule,
   ],
   controllers: [HealthController],
   providers: [
