@@ -1,34 +1,18 @@
 {
+  "extends": "../../tsconfig.json",
+
   "compilerOptions": {
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
-    "skipLibCheck": true,
-    "strictPropertyInitialization": false,
-    "module": "commonjs",
+    "composite": true,
+    "removeComments": false,
     "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es6",
     "sourceMap": true,
+
+    "incremental": true,
+
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true,
-    "strictNullChecks": true,
-    "paths": {
-      "@src/*": ["src/*"],
-      "@config/*":["config/*"],
-      "@utils/*" :["src/utils/*"],
-      "@common/*":["src/common/*"],
-      "@connections/*":["src/connections/*"],
-      "@health/*":["src/health/*"],
-      "@DB/*":["src/prisma/*"]
-    }
+    "rootDir": "./src"
   },
-  "include": [
-    "**/*.ts",
-    "src",
-    "config",
-  ],
+  "include": ["src"],
   "exclude": ["node_modules", "./dist/**/*"]
 }

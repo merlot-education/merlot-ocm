@@ -1,5 +1,6 @@
 import { IsString, IsNotEmpty, IsDate, IsBoolean } from 'class-validator';
-import InvitationDTO from './InvitationDto.entity';
+
+import InvitationDTO from './InvitationDto.entity.js';
 
 export default class ConnectionDto {
   @IsString()

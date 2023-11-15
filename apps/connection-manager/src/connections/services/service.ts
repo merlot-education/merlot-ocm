@@ -1,15 +1,17 @@
+import type ConnectionCreateInvitationDto from '../entities/connectionCreateInvitationDto.entity.js';
+import type ConnectionSubscriptionEndpointDto from '../entities/connectionSubscribeEndPoint.entity.js';
+import type ConnectionDto from '../entities/entity.js';
+import type { Connection, Prisma } from '@prisma/client';
+
 import { Injectable } from '@nestjs/common';
-import ConnectionDto from '@connections/entities/entity';
-import ConnectionRepository from '@connections/repository/connection.repository';
-import PrismaService from '@DB/prisma.service';
-import ConnectionCreateInvitationDto from '@connections/entities/connectionCreateInvitationDto.entity';
-import { Connection, Prisma } from '@prisma/client';
-import NatsClientService from '@src/client/nats.client';
-import pagination from '@utils/pagination';
-import logger from '@src/utils/logger';
-import ConnectionSubscriptionEndpointDto from '@connections/entities/connectionSubscribeEndPoint.entity';
-import RestClientService from '@src/client/rest.client';
 import { ConfigService } from '@nestjs/config';
+
+import NatsClientService from '../../client/nats.client.js';
+import RestClientService from '../../client/rest.client.js';
+import PrismaService from '../../prisma/prisma.service.js';
+import logger from '../../utils/logger.js';
+import pagination from '../../utils/pagination.js';
+import ConnectionRepository from '../repository/connection.repository.js';
 
 @Injectable()
 export default class ConnectionsService {
@@ -74,8 +76,8 @@ export default class ConnectionsService {
           theirDid,
         );
       return response;
-    } catch (error) {
-      logger.error(error.toString());
+    } catch (error: unknown) {
+      logger.error(String(error));
       return error;
     }
   }
@@ -87,8 +89,8 @@ export default class ConnectionsService {
           connectionId,
         );
       return response;
-    } catch (error) {
-      logger.error(error.toString());
+    } catch (error: unknown) {
+      logger.error(String(error));
       return error;
     }
   }
@@ -135,11 +137,13 @@ export default class ConnectionsService {
     if (connectionId) {
       return this.connectionRepository.findByConnectionId(connectionId);
     }
+
     if (participantDid) {
       return this.connectionRepository.findByConnectionByParticipantDID(
         participantDid,
       );
     }
+
     if (status) {
       const statuses: string[] = status.split(',');
       query.where = { status: { in: statuses } };
@@ -174,9 +178,8 @@ export default class ConnectionsService {
       let connectionDetails: Connection | null = null;
 
       if (connectionId) {
-        connectionDetails = await this.connectionRepository.findByConnectionId(
-          connectionId,
-        );
+        connectionDetails =
+          await this.connectionRepository.findByConnectionId(connectionId);
       }
 
       if (did && !connectionDetails) {

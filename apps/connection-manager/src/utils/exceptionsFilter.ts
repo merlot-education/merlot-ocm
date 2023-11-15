@@ -1,13 +1,8 @@
-import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-  HttpException,
-  HttpStatus,
-  Logger,
-} from '@nestjs/common';
+import type { ArgumentsHost, ExceptionFilter } from '@nestjs/common';
+import type { Request } from 'express';
+
+import { Catch, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
-import { Request } from 'express';
 import { Prisma } from '@prisma/client';
 
 const { PrismaClientKnownRequestError, PrismaClientValidationError } = Prisma;
@@ -16,6 +11,7 @@ const { PrismaClientKnownRequestError, PrismaClientValidationError } = Prisma;
 export default class AllExceptionsFilter implements ExceptionFilter {
   constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   catch(exception: any, host: ArgumentsHost): void {
     const { httpAdapter } = this.httpAdapterHost;
 
@@ -71,7 +67,7 @@ export default class AllExceptionsFilter implements ExceptionFilter {
     Logger.error(
       'Exception Filter :',
       message,
-      (exception as any).stack,
+      (exception as Error).stack,
       `${request.method} ${request.url}`,
     );
 

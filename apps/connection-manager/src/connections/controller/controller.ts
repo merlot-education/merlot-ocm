@@ -1,3 +1,8 @@
+import type ResponseType from '../../common/response.js';
+import type ConnectionStateDto from '../entities/connectionStateDto.entity.js';
+import type ConnectionSubscriptionEndpointDto from '../entities/connectionSubscribeEndPoint.entity.js';
+import type ConnectionDto from '../entities/entity.js';
+
 import {
   Body,
   Controller,
@@ -9,8 +14,7 @@ import {
   Res,
   Version,
 } from '@nestjs/common';
-import ResponseType from '@common/response';
-import ConnectionDto from '@connections/entities/entity';
+import { MessagePattern } from '@nestjs/microservices';
 import {
   ApiBody,
   ApiExcludeEndpoint,
@@ -19,19 +23,17 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import ConnectionsService from '@connections/services/service';
-import ConnectionStateDto from '@connections/entities/connectionStateDto.entity';
-import ConnectionCreateInvitationDto from '@connections/entities/connectionCreateInvitationDto.entity';
 import { Response } from 'express';
-import logger from '@src/utils/logger';
-import { MessagePattern } from '@nestjs/microservices';
+
 import {
   Abstraction,
   NATSServices,
   RECEIVED_CONNECTION_ALIAS,
-} from '@src/common/constants';
-import ConnectionSubscriptionEndpointDto from '../entities/connectionSubscribeEndPoint.entity';
-import AcceptConnectionInvitationBody from '../entities/AcceptConnectionInvitationBody';
+} from '../../common/constants.js';
+import logger from '../../utils/logger.js';
+import AcceptConnectionInvitationBody from '../entities/AcceptConnectionInvitationBody.js';
+import ConnectionCreateInvitationDto from '../entities/connectionCreateInvitationDto.entity.js';
+import ConnectionsService from '../services/service.js';
 
 @ApiTags('Connections')
 @Controller()
@@ -129,7 +131,8 @@ export default class ConnectionsController {
   @Post('invitation-url')
   @ApiOperation({
     summary: 'Create new connection invitation',
-    description: 'This call provides the capability to create new connection invitation by providing alias parameter for taht connection in the body of request. Alias can be one of value: trust/subscriber/trust. This call returns  an object contains three fields. invitationUrl, invitationUrlShort, invitation object and connection object. You can use invitationUrlShort or invitationUrl to create QR code which can be scanned by PCM. It\'s better to use invitationUrlShort because long string of invitationUrl replaced with short id and QR code can be displayed properly'
+    description:
+      "This call provides the capability to create new connection invitation by providing alias parameter for taht connection in the body of request. Alias can be one of value: trust/subscriber/trust. This call returns  an object contains three fields. invitationUrl, invitationUrlShort, invitation object and connection object. You can use invitationUrlShort or invitationUrl to create QR code which can be scanned by PCM. It's better to use invitationUrlShort because long string of invitationUrl replaced with short id and QR code can be displayed properly",
   })
   @ApiResponse({
     status: HttpStatus.OK,
@@ -250,7 +253,7 @@ export default class ConnectionsController {
   @ApiQuery({ name: 'alias', required: true })
   async createConnectionInvitation(
     @Body() connectionCreate: ConnectionCreateInvitationDto,
-    @Query() query,
+    @Query() query: { alias: string },
     @Res() response: Response,
   ) {
     logger.info(JSON.stringify(query));
@@ -298,10 +301,13 @@ export default class ConnectionsController {
   @Get('url/:id')
   @ApiOperation({
     summary: 'Get full url from short url id',
-    description: 'Get full url from short url id'
+    description: 'Get full url from short url id',
   })
   @ApiExcludeEndpoint()
-  async redirectToConnectionUrl(@Param() params, @Res() response: Response) {
+  async redirectToConnectionUrl(
+    @Param() params: { id: string },
+    @Res() response: Response,
+  ) {
     const result = await this.connectionsService.findConnectionByShortUrlId(
       params.id,
     );
@@ -318,7 +324,8 @@ export default class ConnectionsController {
   @Get('connection-information')
   @ApiOperation({
     summary: 'Fetch connection information by id or did',
-    description: 'This call provides the capability to get information about connection by connectionId or did. This call returns issued credentials and requested proof to that connection'
+    description:
+      'This call provides the capability to get information about connection by connectionId or did. This call returns issued credentials and requested proof to that connection',
   })
   @ApiQuery({ name: 'connectionId', required: false })
   @ApiQuery({ name: 'did', required: false })
@@ -393,7 +400,7 @@ export default class ConnectionsController {
     },
   })
   async getConnectionInformationRequest(
-    @Query() query,
+    @Query() query: { connectionId: string; did: string },
     @Res() response: Response,
   ) {
     let res: ResponseType;
@@ -436,7 +443,8 @@ export default class ConnectionsController {
   @Get('connections')
   @ApiOperation({
     summary: 'Fetch list of connections',
-    description: 'This call provides the capability to search connections by using pagination and filter parameters. This call returns a list of connections and overall count of records. This endpoint supports followinng query filter parameters: participantDID, status, pageSize, page'
+    description:
+      'This call provides the capability to search connections by using pagination and filter parameters. This call returns a list of connections and overall count of records. This endpoint supports followinng query filter parameters: participantDID, status, pageSize, page',
   })
   @ApiQuery({ name: 'page', required: false })
   @ApiQuery({ name: 'pageSize', required: false })
@@ -494,8 +502,14 @@ export default class ConnectionsController {
     },
   })
   async getConnectionLists(
-    @Param() params,
-    @Query() query,
+    @Param() params: { connectionId: string },
+    @Query()
+    query: {
+      participantDID?: string;
+      pageSize?: string;
+      page?: string;
+      status?: string;
+    },
     @Res() response: Response,
   ) {
     let res: ResponseType;
@@ -504,7 +518,7 @@ export default class ConnectionsController {
       query.pageSize ? parseInt(query.pageSize, 10) : 10,
       query.page ? parseInt(query.page, 10) : 0,
       query.status ? query.status : false,
-      params?.connectionId ? params.connectionId : null,
+      params?.connectionId ? params.connectionId : undefined,
       query.participantDID,
     );
 
@@ -539,12 +553,12 @@ export default class ConnectionsController {
     return response.json(res);
   }
 
-
   @Version(['1'])
   @Get('connections/:connectionId')
   @ApiOperation({
     summary: 'Fetch connection by id',
-    description: 'This call provides the capability to get connection data by providing connectionId. The connection data is the same which is returned from /v1/connections endpoint and contains generic information about connection like connectionId, status, dids and so on.'
+    description:
+      'This call provides the capability to get connection data by providing connectionId. The connection data is the same which is returned from /v1/connections endpoint and contains generic information about connection like connectionId, status, dids and so on.',
   })
   @ApiResponse({
     status: HttpStatus.OK,
@@ -598,14 +612,10 @@ export default class ConnectionsController {
     },
   })
   async getConnection(
-    @Param() params,
+    @Param() params: { connectionId: string },
     @Res() response: Response,
   ) {
-    return this.getConnectionLists(
-      params,
-      {},
-      response
-    );
+    return this.getConnectionLists(params, {}, response);
   }
 
   @MessagePattern({
@@ -636,7 +646,8 @@ export default class ConnectionsController {
   @Post('accept-connection-invitation')
   @ApiOperation({
     summary: 'Accept connection invitation',
-    description: 'This call provides the capability to receive connection invitation as invitee by invitationUrl and create connection. If auto accepting is enabled via either the config passed in the function or the global agent config, a connection request message will be send.'
+    description:
+      'This call provides the capability to receive connection invitation as invitee by invitationUrl and create connection. If auto accepting is enabled via either the config passed in the function or the global agent config, a connection request message will be send.',
   })
   @ApiResponse({
     status: HttpStatus.ACCEPTED,
