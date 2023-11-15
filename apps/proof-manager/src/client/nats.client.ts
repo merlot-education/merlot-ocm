@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
-import { ATTESTATION, Connection, NATSServices } from '@common/constants';
-import PresentationSubscriptionEndpointDto from '@presentationProof/entities/presentationSubscribeEndPoint.entity';
+import { ATTESTATION, Connection, NATSServices } from '../common/constants.js';
+import PresentationSubscriptionEndpointDto from '../presentationProof/entities/presentationSubscribeEndPoint.entity.js';
 
 @Injectable()
 export default class NatsClientService {

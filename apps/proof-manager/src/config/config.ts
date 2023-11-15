@@ -1,3 +1,7 @@
+import { fileURLToPath } from 'node:url';
+
+const parentDirectory = fileURLToPath(new URL('..', import.meta.url));
+
 const config = () => ({
   PORT: Number(process.env.PORT),
   APP_URL: process.env.PROOF_MANAGER_URL,
@@ -19,7 +23,7 @@ const config = () => ({
     port: 5432,
     synchronize: false,
     logging: false,
-    entities: [`${__dirname}/../**/**.model{.ts,.js}`],
+    entities: [`${parentDirectory}/../**/**.model{.ts,.js}`],
   },
   ECSURL: process.env.ECSURL,
   ACCEPT_PRESENTATION_CONFIG: process.env.ACCEPT_PRESENTATION_CONFIG,

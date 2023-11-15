@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
-import InvitationDTO from '@src/presentationProof/entities/get-proof-request.dto';
+import GetProofRequest from './get-proof-request.dto.js';
 
 export default class SendProofRequest {
   @ApiProperty({ example: 'comments' })
@@ -22,7 +22,7 @@ export default class SendProofRequest {
   presentationMessage?: string;
 
   @IsString()
-  invitation?: InvitationDTO;
+  invitation?: GetProofRequest;
 
   @ApiProperty({
     example: [
