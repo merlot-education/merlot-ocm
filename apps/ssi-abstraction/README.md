@@ -26,7 +26,7 @@ with the default exposed ports:
 
 Dependencies:
 ```bash
-$ yarn
+$ pnpm install 
 ```
 
 * **If docker is not installed, [Install docker](https://docs.docker.com/engine/install/)**.
@@ -85,13 +85,13 @@ $ docker-compose up --build
 
 ```bash
 # unit tests
-$ yarn test
+$ pnpm test
 
 # e2e tests
-$ yarn test:e2e
+$ pnpm test:e2e
 
 # test coverage
-$ yarn test:cov
+$ pnpm test:cov
 ```
 
 

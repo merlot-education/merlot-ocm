@@ -29,7 +29,7 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-apps/**/logs/log.json
+**/logs/log.json
 
 # OS
 .DS_Store

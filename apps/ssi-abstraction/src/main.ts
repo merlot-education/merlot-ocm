@@ -18,16 +18,19 @@ async function bootstrap() {
 
   await app.startAllMicroservices();
 
+  const afjPort = configService.get('afjExtPort') || 3001;
+  const servicePort = configService.get('PORT') || 3000;
+
   const afjExtConfig = {
-    port: configService.get('afjExtPort') || 3001,
+    port: afjPort,
   };
+
   await startServer(agent, afjExtConfig);
 
-  logger.info(
-    `Listening AFJ ext on Port:${configService.get('afjExtPort')}` || 3001,
-  );
-  await app.listen(configService.get('PORT') || 3000, () => {
-    logger.info(`Listening on Port:${configService.get('PORT')}` || 3000);
+  logger.info(`Listening AFJ ext on Port: ${afjPort}`);
+
+  await app.listen(servicePort, () => {
+    logger.info(`Listening on Port: ${servicePort}`);
   });
 }
 bootstrap();

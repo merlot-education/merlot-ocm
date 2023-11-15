@@ -53,18 +53,16 @@ const agentFactory = {
     }
 
     const indyLedgers: LedgerInfo[] = ledgerIds.map((id: LedgerIds) => {
-      const ledgerId: LedgerIds = id;
-
-      if (!LEDGER_GENESIS?.[ledgerId]) {
+      if (!LEDGER_GENESIS?.[id]) {
         throw new Error(
-          `No pool transaction genesis provided for ledger ${ledgerId}`,
+          `No pool transaction genesis provided for ledger ${id}`,
         );
       }
 
       const ledger: LedgerInfo = {
-        id: `${ledgerId}_Genesis`,
-        indyNamespace: `${ledgerNamespaces[ledgerId]}`,
-        genesisTransactions: LEDGER_GENESIS?.[ledgerId],
+        id: `${id}_Genesis`,
+        indyNamespace: `${ledgerNamespaces[id]}`,
+        genesisTransactions: LEDGER_GENESIS?.[id],
         isProduction: false,
       };
 
@@ -95,7 +93,7 @@ const agentFactory = {
     agent.registerOutboundTransport(new HttpOutboundTransport());
 
     await agent.initialize();
-    await subscribe(agent, natsClient);
+    subscribe(agent, natsClient);
 
     if (agent.isInitialized) {
       ledgerIds.map(async (id: LedgerIds) => {
@@ -160,7 +158,7 @@ const agentFactory = {
         name: NATSServices.SERVICE_NAME,
         transport: Transport.NATS,
         options: {
-          servers: [config().nats.url as string],
+          servers: [config().nats.url],
         },
       },
     ]),

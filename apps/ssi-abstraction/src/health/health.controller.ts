@@ -1,5 +1,4 @@
 import { Controller, Get, HttpStatus } from '@nestjs/common';
-import { ResponseType } from '@common/response';
 
 @Controller('health')
 export class HealthController {
@@ -14,7 +13,7 @@ export class HealthController {
     return {
       statusCode: HttpStatus.OK,
       message: `${new Date()}`,
-    } as ResponseType;
+    };
   }
 }
 

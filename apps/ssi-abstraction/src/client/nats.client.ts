@@ -19,9 +19,11 @@ export class NatsClientService {
     logger.info(
       `Publish nats event: ${NATSServices.SERVICE_NAME}/${eventName}`,
     );
+
     const event = {
       endpoint: `${NATSServices.SERVICE_NAME}/${eventName}`,
     };
+
     this.client.emit(event, data);
   }
 }

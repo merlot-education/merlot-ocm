@@ -1,7 +1,6 @@
 import { Injectable, NestMiddleware, HttpStatus } from '@nestjs/common';
 import { Request, NextFunction, Response } from 'express';
 import { checkAll } from '../didComm/utils/whitelist';
-import { ResponseType } from '../common/response';
 
 /**
  * Middleware that checks validity of provided params and body
@@ -9,7 +8,7 @@ import { ResponseType } from '../common/response';
  */
 @Injectable()
 export class AgentMid implements NestMiddleware {
-  // eslint-disable-next-line
+  // eslint-disable-next-line class-methods-use-this
   use(req: Request, res: Response, next: NextFunction) {
     const [, prop, method] = req.url.split('/');
     if (prop === 'info') {
@@ -22,7 +21,7 @@ export class AgentMid implements NestMiddleware {
       res.send({
         statusCode: HttpStatus.BAD_REQUEST,
         error: whiteListErrors.messages,
-      } as ResponseType);
+      });
       res.end();
       return;
     }
@@ -31,7 +30,7 @@ export class AgentMid implements NestMiddleware {
       res.send({
         statusCode: HttpStatus.BAD_REQUEST,
         message: 'subMethod.name has to be specified',
-      } as ResponseType);
+      });
       res.end();
       return;
     }

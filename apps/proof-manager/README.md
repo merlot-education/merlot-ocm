@@ -16,7 +16,7 @@ The Proof Manager, is the microservice responsible for handling the features rel
 
 ### Pre-requisite
 
-* yarn
+* pnpm
 * docker
 * docker-compose
 * Postgres
@@ -56,12 +56,12 @@ to run all the services.
 
 ## Build
 ```
-yarn build
+pnpm build
 ```
 
 ## Run
 ```
-yarn start
+pnpm start
 ```
 
 ### Environment Variables Required
@@ -96,13 +96,13 @@ yarn start
 
 ```bash
 # unit tests
-$ npm run test
+$ pnpm test
 
 # e2e tests
-$ npm run test:e2e
+$ pnpm test:e2e
 
 # test coverage
-$ npm run test:cov
+$ pnpm test:cov
 ```
 
 
