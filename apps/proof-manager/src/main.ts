@@ -3,9 +3,9 @@ import { ConfigService } from '@nestjs/config';
 import { VersioningType } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
-import logger from '@utils/logger';
-import AppModule from '@src/app.module';
-import AllExceptionsFilter from '@utils/exceptionsFilter';
+import AppModule from './app.module.js';
+import AllExceptionsFilter from './utils/exceptionsFilter.js';
+import logger from './utils/logger.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

@@ -1,13 +1,13 @@
-import { Module } from '@nestjs/common';
-import PrismaService from '@DB/prisma.service';
 import { HttpModule } from '@nestjs/axios';
+import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { NATSServices } from '@common/constants';
-import PresentationProofsService from '@presentationProof/services/service';
-import PresentationProofsController from '@presentationProof/controller/controller';
-import NatsClientService from '@src/client/nats.client';
-import RestClientService from '@src/client/rest.client';
-import config from '@config/config';
+import NatsClientService from '../client/nats.client.js';
+import RestClientService from '../client/rest.client.js';
+import { NATSServices } from '../common/constants.js';
+import config from '../config/config.js';
+import PrismaService from '../prisma/prisma.service.js';
+import PresentationProofsController from './controller/controller.js';
+import PresentationProofsService from './services/service.js';
 
 @Module({
   imports: [

@@ -1,4 +1,4 @@
-import * as Joi from 'joi';
+import Joi from 'joi';
 
 const validationSchema = Joi.object({
   AGENT_URL: Joi.string().required(),

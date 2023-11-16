@@ -1,19 +1,19 @@
-import { Injectable } from '@nestjs/common';
-import PresentationProofRepository from '@presentationProof/repository/presentationProof.respository';
-import PrismaService from '@DB/prisma.service';
-import SendProofRequest from '@presentationProof/entities/send-proof-request.dto';
-import GetPresentProofsDto from '@src/presentationProof/entities/get-present-proofs.dto';
-import { lastValueFrom, map } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
-import NatsClientService from '@src/client/nats.client';
-import { Prisma } from '@prisma/client';
-import GetProofRequest from '@presentationProof/entities/get-proof-request.dto';
-import pagination from '@src/utils/pagination';
-import PresentationSubscriptionEndpointDto from '@presentationProof/entities/presentationSubscribeEndPoint.entity';
-import MembershipCredentialDto from '@presentationProof/entities/membership-credential.dto';
-import RestClientService from '@src/client/rest.client';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import logger from '@src/utils/logger';
+import { Prisma } from '@prisma/client';
+import { lastValueFrom, map } from 'rxjs';
+import NatsClientService from '../../client/nats.client.js';
+import RestClientService from '../../client/rest.client.js';
+import PrismaService from '../../prisma/prisma.service.js';
+import logger from '../../utils/logger.js';
+import pagination from '../../utils/pagination.js';
+import GetPresentProofsDto from '../entities/get-present-proofs.dto.js';
+import GetProofRequest from '../entities/get-proof-request.dto.js';
+import MembershipCredentialDto from '../entities/membership-credential.dto.js';
+import PresentationSubscriptionEndpointDto from '../entities/presentationSubscribeEndPoint.entity.js';
+import SendProofRequest from '../entities/send-proof-request.dto.js';
+import PresentationProofRepository from '../repository/presentationProof.respository.js';
 
 @Injectable()
 export default class PresentationProofsService {
@@ -210,13 +210,16 @@ export default class PresentationProofsService {
       };
 
       if (attribute.schemaId) {
-        requestedAttributes[key].restrictions[0] = requestedAttributes[key].restrictions[0] || {};
+        requestedAttributes[key].restrictions[0] =
+          requestedAttributes[key].restrictions[0] || {};
         requestedAttributes[key].restrictions[0].schema_id = attribute.schemaId;
       }
 
       if (attribute.credentialDefId) {
-        requestedAttributes[key].restrictions[0] = requestedAttributes[key].restrictions[0] || {};
-        requestedAttributes[key].restrictions[0].cred_def_id = attribute.credentialDefId;
+        requestedAttributes[key].restrictions[0] =
+          requestedAttributes[key].restrictions[0] || {};
+        requestedAttributes[key].restrictions[0].cred_def_id =
+          attribute.credentialDefId;
       }
 
       if (attribute.attributeName) {
