@@ -1,7 +1,7 @@
 import { Agent } from '@aries-framework/core';
-import logger from '@src/globalUtils/logger';
-import { NatsClientService } from '@src/client/nats.client';
-import { listenerConfig } from './listenerConfig';
+import logger from '../../globalUtils/logger.js';
+import { NatsClientService } from '../../client/nats.client.js';
+import { listenerConfig } from './listenerConfig.js';
 
 /**
  * Subscribes to events on nats

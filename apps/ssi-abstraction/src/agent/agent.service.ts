@@ -16,8 +16,6 @@ import {
 import { agentDependencies, HttpInboundTransport } from '@aries-framework/node';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { NatsClientService } from '@src/client/nats.client';
-import logger from '@src/globalUtils/logger';
 import { AnonCredsRsModule } from '@aries-framework/anoncreds-rs';
 import { anoncreds } from '@hyperledger/anoncreds-nodejs';
 import { AnonCredsModule } from '@aries-framework/anoncreds';
@@ -31,14 +29,16 @@ import {
   IndyVdrPoolConfig,
   IndyVdrSovDidResolver,
 } from '@aries-framework/indy-vdr';
-import { subscribe } from './utils/listener';
+import { subscribe } from './utils/listener.js';
 import {
   LedgerIds,
   ledgerNamespaces,
   LEDGER_GENESIS,
-} from './utils/ledgerConfig';
-import { AgentLogger } from './utils/logger';
-import { registerPublicDids } from './ledger/register';
+} from './utils/ledgerConfig.js';
+import { AgentLogger } from './utils/logger.js';
+import { registerPublicDids } from './ledger/register.js';
+import { NatsClientService } from '../client/nats.client.js';
+import logger from '../globalUtils/logger.js';
 
 @Injectable()
 export class AgentService {

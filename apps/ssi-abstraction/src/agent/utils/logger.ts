@@ -1,6 +1,5 @@
-/* eslint-disable class-methods-use-this */
 import { BaseLogger, LogLevel } from '@aries-framework/core';
-import logger from '@src/globalUtils/logger';
+import logger from '../../globalUtils/logger.js';
 
 export class AgentLogger extends BaseLogger {
   public test(message: string, data?: Record<string, any> | undefined): void {

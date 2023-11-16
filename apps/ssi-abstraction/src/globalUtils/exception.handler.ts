@@ -6,7 +6,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
-import { ResponseType } from '@common/response';
+import { ResponseType } from '../common/response.js';
 
 @Catch()
 export class ExceptionHandler implements ExceptionFilter {

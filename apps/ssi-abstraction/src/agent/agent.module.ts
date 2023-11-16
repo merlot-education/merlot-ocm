@@ -1,11 +1,11 @@
-import config from '@config/config';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { NatsClientService } from '@src/client/nats.client';
-import { NATSServices } from '@src/common/constants';
-import { AgentController } from './agent.controller';
-import { AgentService } from './agent.service';
+import config from '../config/config.js';
+import { NatsClientService } from '../client/nats.client.js';
+import { NATSServices } from '../common/constants.js';
+import { AgentController } from './agent.controller.js';
+import { AgentService } from './agent.service.js';
 
 @Module({
   imports: [

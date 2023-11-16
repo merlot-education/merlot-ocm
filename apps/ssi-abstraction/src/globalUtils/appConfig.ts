@@ -1,7 +1,7 @@
 import { VersioningType, INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
-import logger from './logger';
+import logger from './logger.js';
 
 /**
  * Microservice and versioning configuration of the service

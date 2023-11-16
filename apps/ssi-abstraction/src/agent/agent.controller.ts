@@ -1,5 +1,5 @@
 import { Controller, Get, HttpStatus } from '@nestjs/common';
-import { AgentService } from './agent.service';
+import { AgentService } from './agent.service.js';
 
 @Controller('agent')
 export class AgentController {

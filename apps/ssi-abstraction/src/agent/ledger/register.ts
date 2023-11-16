@@ -1,7 +1,7 @@
-import logger from '@src/globalUtils/logger';
+import logger from '../../globalUtils/logger.js';
 import axios from 'axios';
-import { logAxiosError } from '../utils/helperFunctions';
-import { LedgerIds, ledgerNamespaces, NYM_URL } from '../utils/ledgerConfig';
+import { logAxiosError } from '../utils/helperFunctions.js';
+import { LedgerIds, ledgerNamespaces, NYM_URL } from '../utils/ledgerConfig.js';
 
 type RegisterPublicDidOptions = {
   alias: string;
@@ -43,7 +43,7 @@ export const registerPublicDids = async ({
       };
 
       // eslint-disable-next-line no-await-in-loop
-      const res = await axios.post<RegisterPublicDidResponse>(
+      const res = await new axios.Axios().post<RegisterPublicDidResponse>(
         ledgerRegisterUrl,
         body,
       );

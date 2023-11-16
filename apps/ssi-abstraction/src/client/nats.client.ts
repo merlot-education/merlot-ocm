@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { NATSServices } from '@common/constants';
-import logger from '@globalUtils/logger';
+import { NATSServices } from '../common/constants.js';
+import logger from '../globalUtils/logger.js';
 
 @Injectable()
 export class NatsClientService {

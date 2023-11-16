@@ -1,4 +1,4 @@
-import logger from '@src/globalUtils/logger';
+import logger from '../../globalUtils/logger.js';
 
 export function logAxiosError(err: any) {
   if (err.response) {

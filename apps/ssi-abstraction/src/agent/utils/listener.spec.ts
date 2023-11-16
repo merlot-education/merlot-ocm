@@ -1,4 +1,4 @@
-import { subscribe } from './listener';
+import { subscribe } from './listener.js';
 
 describe('listener', () => {
   it('should subscribe agent to available events', async () => {
