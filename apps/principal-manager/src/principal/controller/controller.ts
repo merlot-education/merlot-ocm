@@ -1,4 +1,3 @@
-import ResponseType from '@common/response';
 import {
   BadRequestException,
   Body,
@@ -10,15 +9,15 @@ import {
   Res,
   Version, // Post, Version, Body, Res, Req,
 } from '@nestjs/common';
-import { Response, Request } from 'express';
-import { isURL } from 'class-validator';
-
-import PrincipalService from '@principal/services/service';
-import logger from '@src/utils/logger';
 import { MessagePattern } from '@nestjs/microservices';
-import { NATSServices } from '@common/constants';
-import OfferMembershipCredentialDto from '@principal/entities/offerMembershipCredentialDto.entity';
-import MapUserInfoDTO from '@principal/entities/mapUserInfoDTO.entity';
+import { isURL } from 'class-validator';
+import type { Request, Response } from 'express';
+import { NATSServices } from '../../common/constants.js';
+import type ResponseType from '../../common/response.js';
+import logger from '../../utils/logger.js';
+import MapUserInfoDTO from '../entities/mapUserInfoDTO.entity.js';
+import OfferMembershipCredentialDto from '../entities/offerMembershipCredentialDto.entity.js';
+import PrincipalService from '../services/service.js';
 
 @Controller()
 export default class PrincipalController {
@@ -75,10 +74,10 @@ export default class PrincipalController {
       };
 
       return response.send(res);
-    } catch (error) {
+    } catch (error: unknown) {
       throw new HttpException(
-        error?.message || 'Internal server error',
-        error?.status || 500,
+        Reflect.get(error || {}, 'message') || 'Internal server error',
+        Reflect.get(error || {}, 'status') || 500,
       );
     }
   }

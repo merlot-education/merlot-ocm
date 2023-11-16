@@ -1,10 +1,10 @@
-import { NestFactory } from '@nestjs/core';
-import { ConfigService } from '@nestjs/config';
 import { VersioningType } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { Transport, MicroserviceOptions } from '@nestjs/microservices';
-import AppModule from './app.module';
-import logger from './utils/logger';
+import AppModule from './app.module.js';
+import logger from './utils/logger.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

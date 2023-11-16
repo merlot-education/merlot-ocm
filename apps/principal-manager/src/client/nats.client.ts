@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+import { ResponseType } from 'openid-client';
 import { lastValueFrom } from 'rxjs';
-import { Attestation, NATSServices } from '@common/constants';
-import ResponseType from '@common/response';
-import OfferMembershipCredentialDto from '@principal/entities/offerMembershipCredentialDto.entity';
-import logger from '@src/utils/logger';
+import { Attestation, NATSServices } from '../common/constants.js';
+import OfferMembershipCredentialDto from '../principal/entities/offerMembershipCredentialDto.entity.js';
+import logger from '../utils/logger.js';
 
 @Injectable()
 export default class NatsClientService {

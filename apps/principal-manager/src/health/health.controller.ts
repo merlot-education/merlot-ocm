@@ -1,6 +1,5 @@
 import { Controller, Get, Version, HttpStatus } from '@nestjs/common';
-
-import ResponseType from '@common/response';
+import type ResponseType from '../common/response.js';
 
 @Controller('health')
 export default class HealthController {

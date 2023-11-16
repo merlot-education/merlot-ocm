@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export type UserData = {
-  [key: string]: any;
+  [key: string]: unknown;
 };
 export default class MapUserInfoDTO {
   @ApiProperty()

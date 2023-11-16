@@ -1,33 +1,18 @@
 {
+  "extends": "../../tsconfig.json",
+
   "compilerOptions": {
-    "module": "commonjs",
+    "composite": true,
+    "removeComments": false,
     "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "target": "es6",
     "sourceMap": true,
+
+    "incremental": true,
+
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true,
-    "strictNullChecks": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@src/*":["src/*"],
-      "@client/*":["src/client/*"],
-      "@config/*":["config/*"],
-      "@utils/*" :["src/utils/*"],
-      "@common/*":["src/common/*"],
-      "@principal/*":["src/principal/*"],
-      "@health/*":["src/health/*"],
-      "@DB/*":["src/prisma/*"]
-    }
+    "rootDir": "./src"
   },
-  "include": [
-    "**/*.ts",
-    "src",
-    "config",
-  ],
+  "include": ["src"],
   "exclude": ["node_modules", "./dist/**/*"]
 }
