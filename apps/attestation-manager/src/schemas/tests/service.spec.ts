@@ -1,16 +1,16 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import SchemasService from '@schemas/services/service';
-import PrismaService from '@DB/prisma.service';
 import { HttpModule } from '@nestjs/axios';
-import NatsClientService from '@src/client/nats.client';
-import { Schema } from '@prisma/client';
-import { ResponseType } from '@src/common/response';
-import PrismaServiceMock from '@src/prisma/tests/__mocks__/prisma.service';
-import NatsClientServiceMock from '@src/client/tests/__mocks__/nats.client';
-import RestClientService from '@src/client/rest.client';
-import RestClientServiceMock from '@src/client/tests/__mocks__/rest.client';
 import { ConfigService } from '@nestjs/config';
-import schemaDto from './stubs/schema-dto';
+import { Test, TestingModule } from '@nestjs/testing';
+import { Schema } from 'joi';
+import NatsClientService from '../../client/nats.client.js';
+import RestClientService from '../../client/rest.client.js';
+import NatsClientServiceMock from '../../client/tests/__mocks__/nats.client.js';
+import RestClientServiceMock from '../../client/tests/__mocks__/rest.client.js';
+import { ResponseType } from '../../common/response.js';
+import PrismaService from '../../prisma/prisma.service.js';
+import PrismaServiceMock from '../../prisma/tests/__mocks__/prisma.service.js';
+import SchemasService from '../services/service.js';
+import schemaDto from './stubs/schema-dto.js';
 
 describe('SchemasService', () => {
   let schemasService: SchemasService;
@@ -123,9 +123,8 @@ describe('SchemasService', () => {
     let schemasResponse: Array<number | Schema[]>;
 
     beforeEach(async () => {
-      schemasResponse = await schemasService.checkSchemasByNameAndVersion(
-        schemaDto(),
-      );
+      schemasResponse =
+        await schemasService.checkSchemasByNameAndVersion(schemaDto());
     });
 
     it('should call findMany() from PrismaService.schema', async () => {

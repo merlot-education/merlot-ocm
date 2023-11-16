@@ -1,4 +1,4 @@
-import credDefStub from '@src/credentialDef/tests/stubs/credDef.stub';
+import credDefStub from '../stubs/credDef.stub.js';
 
 const CredentialDefServiceMock = jest.fn().mockReturnValue({
   createCredDef: jest.fn().mockReturnValue(credDefStub()),

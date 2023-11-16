@@ -10,21 +10,21 @@ import {
   Res,
   Version,
 } from '@nestjs/common';
-import { Response } from 'express';
-import logger from '@utils/logger';
-import CredentialDefService from '@src/credentialDef/services/service';
-import { ResponseType } from '@src/common/response';
-import CredentialDefDto from '@src/credentialDef/entities/credentialDef-entity';
 import {
   ApiBody,
+  ApiOperation,
   ApiParam,
   ApiQuery,
-  ApiOperation,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { PrismaClientUnknownRequestError } from '@prisma/client/runtime';
-import CredentialDefLedgerDto from '@src/credentialDef/entities/credentialDefLedger-entity';
+import { Prisma } from '@prisma/client';
+import type { Response } from 'express';
+import { ResponseType } from '../../common/response.js';
+import logger from '../../utils/logger.js';
+import CredentialDefDto from '../entities/credentialDef-entity.js';
+import CredentialDefLedgerDto from '../entities/credentialDefLedger-entity.js';
+import CredentialDefService from '../services/service.js';
 
 @ApiTags('Credential Definitions')
 @Controller('credentialDef')
@@ -38,7 +38,8 @@ export default class CredentialDefController {
   @Get('')
   @ApiOperation({
     summary: 'Fetch a list of credential definitions',
-    description: 'This call provides the capability to search created credential definitions by using pagination and filter parameter (schemaID) to select credential definitions. This call returns a list of credential definitions and overall count of records. Using a credential definition from that list you can issue credential so some connection'
+    description:
+      'This call provides the capability to search created credential definitions by using pagination and filter parameter (schemaID) to select credential definitions. This call returns a list of credential definitions and overall count of records. Using a credential definition from that list you can issue credential so some connection',
   })
   @ApiResponse({
     status: HttpStatus.OK,
@@ -157,9 +158,11 @@ export default class CredentialDefController {
         };
       }
       return response.send(res);
-    } catch (error: any) {
-      logger.error(error && error.message);
-      throw new InternalServerErrorException(`Error: ${error.message}`);
+    } catch (error: unknown) {
+      logger.error(error instanceof Error && error.message);
+      throw new InternalServerErrorException(
+        `Error: ${error instanceof Error ? error.message : error}`,
+      );
     }
   }
 
@@ -168,7 +171,8 @@ export default class CredentialDefController {
   @Get('/:id')
   @ApiOperation({
     summary: 'Fetch credential definition by id',
-    description: 'This call provides the capability to get credential definition data by providing id of credential definition. The credential definition data is the same which is returned from /v1/connections endpoint and contains generic information about credential definition like schemaID, name, credDefId, isAutoIssue, isRevokable, expiryHours, createdBy, createdDate, updatedBy, updatedDate'
+    description:
+      'This call provides the capability to get credential definition data by providing id of credential definition. The credential definition data is the same which is returned from /v1/connections endpoint and contains generic information about credential definition like schemaID, name, credDefId, isAutoIssue, isRevokable, expiryHours, createdBy, createdDate, updatedBy, updatedDate',
   })
   @ApiResponse({
     status: HttpStatus.OK,
@@ -266,7 +270,7 @@ export default class CredentialDefController {
       }
       return response.send(res);
     } catch (error) {
-      if (error instanceof PrismaClientUnknownRequestError) {
+      if (error instanceof Prisma.PrismaClientUnknownRequestError) {
         throw new InternalServerErrorException(error.message);
       } else {
         throw new InternalServerErrorException(error);
@@ -279,7 +283,8 @@ export default class CredentialDefController {
   @Post('')
   @ApiOperation({
     summary: 'Create a new credential definition',
-    description: 'This call provides the capability to create new credential definition by providing schema id, name, createdBy, auto-issue and other information required by this method. This call returns an object contains information abut this credential definition (type CredentialDefDto). You can use this credential definition to issue credentials to some connection'
+    description:
+      'This call provides the capability to create new credential definition by providing schema id, name, createdBy, auto-issue and other information required by this method. This call returns an object contains information abut this credential definition (type CredentialDefDto). You can use this credential definition to issue credentials to some connection',
   })
   @ApiResponse({
     status: HttpStatus.CREATED,
@@ -462,7 +467,7 @@ export default class CredentialDefController {
       }
       return response.send(res);
     } catch (error) {
-      if (error instanceof PrismaClientUnknownRequestError) {
+      if (error instanceof Prisma.PrismaClientUnknownRequestError) {
         throw new InternalServerErrorException(error.message);
       } else {
         throw new InternalServerErrorException(error);

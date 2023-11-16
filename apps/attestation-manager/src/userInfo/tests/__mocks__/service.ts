@@ -1,4 +1,4 @@
-import userInfo from '@userInfo/tests/stubs/user-info-dto.stub';
+import userInfo from '../stubs/user-info-dto.stub.js';
 
 const UserInfoServiceMock = jest.fn().mockReturnValue({
   createUserInfo: jest.fn().mockReturnValue(userInfo),

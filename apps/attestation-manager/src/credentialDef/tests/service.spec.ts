@@ -1,17 +1,17 @@
-import CredentialDefService from '@credentialDef/services/service';
 import { HttpModule } from '@nestjs/axios';
+import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { CredentialDef } from '@prisma/client';
-import NatsClientService from '@src/client/nats.client';
-import NatsClientServiceMock from '@src/client/tests/__mocks__/nats.client';
-import PrismaService from '@src/prisma/prisma.service';
-import PrismaServiceMock from '@src/prisma/tests/__mocks__/prisma.service';
-import RestClientService from '@src/client/rest.client';
-import RestClientServiceMock from '@src/client/tests/__mocks__/rest.client';
-import { ConfigService } from '@nestjs/config';
-import SchemasService from '@src/schemas/services/service';
-import SchemasServiceMock from '@src/schemas/tests/__mocks__/service';
-import credDefStub from './stubs/credDef.stub';
+import NatsClientService from '../../client/nats.client.js';
+import RestClientService from '../../client/rest.client.js';
+import NatsClientServiceMock from '../../client/tests/__mocks__/nats.client.js';
+import RestClientServiceMock from '../../client/tests/__mocks__/rest.client.js';
+import PrismaService from '../../prisma/prisma.service.js';
+import PrismaServiceMock from '../../prisma/tests/__mocks__/prisma.service.js';
+import SchemasService from '../../schemas/services/service.js';
+import SchemasServiceMock from '../../schemas/tests/__mocks__/service.js';
+import CredentialDefService from '../services/service.js';
+import credDefStub from './stubs/credDef.stub.js';
 
 describe('CredentialDefService', () => {
   let credDefService: CredentialDefService;
@@ -136,9 +136,8 @@ describe('CredentialDefService', () => {
     let credDefResponse: Array<number | CredentialDef[]>;
 
     beforeEach(async () => {
-      credDefResponse = await credDefService.checkCredDefByNameAndSchemaID(
-        credDefStub(),
-      );
+      credDefResponse =
+        await credDefService.checkCredDefByNameAndSchemaID(credDefStub());
     });
 
     it('should call findMany() from PrismaService.credentialDef', async () => {

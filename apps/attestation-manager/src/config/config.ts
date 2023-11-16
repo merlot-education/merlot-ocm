@@ -1,3 +1,7 @@
+import { fileURLToPath } from 'node:url';
+
+const parentDirectory = fileURLToPath(new URL('..', import.meta.url));
+
 const config = () => ({
   PORT: Number(process.env.PORT),
   nats: {
@@ -17,10 +21,11 @@ const config = () => ({
     port: 5432,
     synchronize: false,
     logging: false,
-    entities: [`${__dirname}/../**/**.model{.ts,.js}`],
+    entities: [`${parentDirectory}/**/**.model{.ts,.js}`],
   },
   ECSURL: process.env.ECSURL,
-  ACCEPT_MEMBERSHIP_CREDENTIALS_CONFIG: process.env.ACCEPT_MEMBERSHIP_CREDENTIALS_CONFIG,
+  ACCEPT_MEMBERSHIP_CREDENTIALS_CONFIG:
+    process.env.ACCEPT_MEMBERSHIP_CREDENTIALS_CONFIG,
   TSA_URL: process.env.TSA_URL,
 });
 export default config;

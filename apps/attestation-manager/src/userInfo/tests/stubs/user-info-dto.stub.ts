@@ -1,13 +1,15 @@
-import credentialDto from '@issueCredential/tests/stubs/credential-dto';
-import offerCredentialDto from '@issueCredential/tests/stubs/offer-credential-dto';
-import schemaDto from '@schemas/tests/stubs/schema-dto';
-import UserInfoDto from '@userInfo/entities/userInfo.entity';
+import credentialDto from '../../../issue-credential/tests/stubs/credential-dto.js';
+import offerCredentialDto from '../../../issue-credential/tests/stubs/offer-credential-dto.js';
+import schemaDto from '../../../schemas/tests/stubs/schema-dto.js';
+import UserInfoDto from '../../entities/userInfo.entity.js';
 
 const userInfo = (): UserInfoDto => ({
   autoAcceptCredential: offerCredentialDto().autoAcceptCredential,
   connectionId: credentialDto().connectionId,
   userInfo: {
-    ...schemaDto().attributes.map((attr) => ({ [attr]: attr })),
+    ...schemaDto().attributes.map((attr: string | symbol | number) => ({
+      [attr]: attr,
+    })),
   },
 });
 

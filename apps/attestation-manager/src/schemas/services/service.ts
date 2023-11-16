@@ -1,13 +1,13 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import SchemaDto from '@src/schemas/entities/schema-entity';
-import SchemaRepository from '@src/schemas/repository/schema.respository';
-import CredentialTypeRepository from '@src/issue-credential/repository/credentialType.repository';
-import PrismaService from '@DB/prisma.service';
-import NatsClientService from '@src/client/nats.client';
-import { Prisma } from '@prisma/client';
-import pagination from '@utils/pagination';
-import RestClientService from '@src/client/rest.client';
 import { ConfigService } from '@nestjs/config';
+import { Prisma } from '@prisma/client';
+import NatsClientService from '../../client/nats.client.js';
+import RestClientService from '../../client/rest.client.js';
+import PrismaService from '../../prisma/prisma.service.js';
+import pagination from '../../utils/pagination.js';
+import SchemaDto from '../entities/schema-entity.js';
+import SchemaRepository from '../repository/schema.respository.js';
+import CredentialTypeRepository from '../../issue-credential/repository/credentialType.repository.js';
 
 @Injectable()
 export default class SchemasService {

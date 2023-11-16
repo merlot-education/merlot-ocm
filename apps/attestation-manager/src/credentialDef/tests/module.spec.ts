@@ -1,14 +1,14 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import PrismaService from '@DB/prisma.service';
 import { HttpModule } from '@nestjs/axios';
-import NatsClientService from '@src/client/nats.client';
-import PrismaServiceMock from '@src/prisma/tests/__mocks__/prisma.service';
-import NatsClientServiceMock from '@src/client/tests/__mocks__/nats.client';
-import RestClientService from '@src/client/rest.client';
-import RestClientServiceMock from '@src/client/tests/__mocks__/rest.client';
-import CredentialDefModule from '../module';
-import CredentialDefService from '../services/service';
-import CredentialDefServiceMock from './__mocks__/service';
+import { Test, TestingModule } from '@nestjs/testing';
+import NatsClientService from '../../client/nats.client.js';
+import RestClientService from '../../client/rest.client.js';
+import NatsClientServiceMock from '../../client/tests/__mocks__/nats.client.js';
+import RestClientServiceMock from '../../client/tests/__mocks__/rest.client.js';
+import PrismaService from '../../prisma/prisma.service.js';
+import PrismaServiceMock from '../../prisma/tests/__mocks__/prisma.service.js';
+import CredentialDefModule from '../module.js';
+import CredentialDefService from '../services/service.js';
+import CredentialDefServiceMock from './__mocks__/service.js';
 
 describe('CredentialDefModule', () => {
   let credentialDefModule: CredentialDefModule;

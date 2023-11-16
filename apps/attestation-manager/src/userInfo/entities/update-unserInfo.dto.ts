@@ -1,5 +1,5 @@
 type UserInfo = {
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 export default class UpdateUserInfoDto {

@@ -19,6 +19,7 @@ node_modules/
 apps/*/node_modules
 /dist
 /apps/**/dist/
+*.tsbuildinfo
 
 # Logs
 /logs

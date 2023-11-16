@@ -1,7 +1,7 @@
 import {
   natsAgentResponse,
   natsConnectionResponse,
-} from '../stubs/nats-response';
+} from '../stubs/nats-response.js';
 
 const NatsClientServiceMock = jest.fn().mockReturnValue({
   getAgentByParticipantId: jest.fn().mockReturnValue(natsAgentResponse),

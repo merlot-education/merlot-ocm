@@ -1,16 +1,16 @@
-import logger from '@utils/logger';
 import { Injectable } from '@nestjs/common';
-import CredentialDefDto from '@src/credentialDef/entities/credentialDef-entity';
-import CredentialDefRepository from '@src/credentialDef/repository/credentialDef.respository';
-import PrismaService from '@DB/prisma.service';
-import CredentialDefLedgerDto from '@src/credentialDef/entities/credentialDefLedger-entity';
-import { Prisma } from '@prisma/client';
-import pagination from '@utils/pagination';
-import RestClientService from '@src/client/rest.client';
 import { ConfigService } from '@nestjs/config';
-import SchemasService from '@schemas/services/service';
-import SchemaDto from '@src/schemas/entities/schema-entity';
-import CredentialTypeRepository from '@src/issue-credential/repository/credentialType.repository';
+import { Prisma } from '@prisma/client';
+import RestClientService from '../../client/rest.client.js';
+import PrismaService from '../../prisma/prisma.service.js';
+import SchemaDto from '../../schemas/entities/schema-entity.js';
+import SchemasService from '../../schemas/services/service.js';
+import logger from '../../utils/logger.js';
+import pagination from '../../utils/pagination.js';
+import CredentialDefDto from '../entities/credentialDef-entity.js';
+import CredentialDefLedgerDto from '../entities/credentialDefLedger-entity.js';
+import CredentialDefRepository from '../repository/credentialDef.respository.js';
+import CredentialTypeRepository from '../../issue-credential/repository/credentialType.repository.js';
 
 @Injectable()
 export default class CredentialDefService {

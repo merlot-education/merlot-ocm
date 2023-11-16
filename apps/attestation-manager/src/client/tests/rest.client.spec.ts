@@ -1,7 +1,7 @@
 import { HttpModule, HttpService } from '@nestjs/axios';
 import { Test, TestingModule } from '@nestjs/testing';
-import HttpServiceMock from '@src/tests/__mocks__/http-service';
-import RestClientService from '../rest.client';
+import HttpServiceMock from '../../tests/__mocks__/http-service.js';
+import RestClientService from '../rest.client.js';
 
 describe('RestClientService', () => {
   let restClient: RestClientService;

@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsEnum } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
 
 type UserInfo = {
-  [key: string]: any;
+  [key: string]: unknown;
 };
 export default class UserInfoDto {
   @IsString()

@@ -1,4 +1,4 @@
-import SchemaDto from '@src/schemas/entities/schema-entity';
+import SchemaDto from '../../entities/schema-entity.js';
 
 const schemaDto = (): SchemaDto => ({
   id: 'schema-db-id',

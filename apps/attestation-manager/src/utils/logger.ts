@@ -1,25 +1,9 @@
-import { existsSync, mkdirSync } from 'fs';
+import { ecsFormat } from '@elastic/ecs-winston-format';
+import { mkdirSync } from 'fs';
 import winston, { Logger } from 'winston';
-import ecsFormat from '@elastic/ecs-winston-format';
-import { LoggerConfig } from '@common/constants';
+import { LoggerConfig } from '../common/constants.js';
 
-if (!existsSync(LoggerConfig.lOG_DIR)) {
-  mkdirSync(LoggerConfig.lOG_DIR);
-}
-
-// const esTransportOpts = {
-//   clientOpts: { node: process.env.ECSURL },
-// };
-
-// const esTransportOpts = {
-//   clientOpts: { node: 'http://localhost:9200' },
-// };
-
-// const esTransport = new ElasticsearchTransport(esTransportOpts);
-
-// esTransport.on('error', (error: any) => {
-//   console.error('Error in logger caught', error);
-// });
+mkdirSync(LoggerConfig.lOG_DIR, { recursive: true });
 
 const logger: Logger = winston.createLogger({
   format: ecsFormat({ convertReqRes: true }),
