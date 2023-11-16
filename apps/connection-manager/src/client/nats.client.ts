@@ -1,15 +1,15 @@
-import logger from '@src/utils/logger';
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
 import {
+  Attestation,
   NATSServices,
   Principal,
-  Attestation,
   ProofManager,
-} from '@common/constants';
-import ResponseType from '@common/response';
-import ConnectionSubscriptionEndpointDto from '@connections/entities/connectionSubscribeEndPoint.entity';
+} from '../common/constants.js';
+import type ResponseType from '../common/response.js';
+import type ConnectionSubscriptionEndpointDto from '../connections/entities/connectionSubscribeEndPoint.entity.js';
+import logger from '../utils/logger.js';
 
 @Injectable()
 export default class NatsClientService {

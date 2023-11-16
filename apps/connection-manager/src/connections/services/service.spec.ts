@@ -1,19 +1,24 @@
+import type ConnectionDto from '../entities/entity.js';
+import type { TestingModule } from '@nestjs/testing';
+
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { Test, TestingModule } from '@nestjs/testing';
-import NatsClientService from '@src/client/nats.client';
-import { NATSServices } from '@common/constants';
-import PrismaService from '@DB/prisma.service';
-import ConnectionsService from '@connections/services/service';
-import RestClientService from '@src/client/rest.client';
-import ConnectionDto from '@connections/entities/entity';
+import { Test } from '@nestjs/testing';
+
+import NatsClientService from '../../client/nats.client.js';
+import RestClientService from '../../client/rest.client.js';
+import { NATSServices } from '../../common/constants.js';
+import PrismaService from '../../prisma/prisma.service.js';
+
+import ConnectionsService from './service.js';
 
 describe('ConnectionsService', () => {
   let service: ConnectionsService;
   let prismaService: PrismaService;
   let restClientService: RestClientService;
   let natsClient: NatsClientService;
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
@@ -45,7 +50,7 @@ describe('ConnectionsService', () => {
   });
 
   describe('find Connection function', () => {
-    it('find connection by connection Id ', async () => {
+    it('find connection by connection Id', async () => {
       const repositoryResult: any = {
         id: '1a7f0b09-b20e-4971-b9b1-7adde7256bbc',
         connectionId: '7b821264-2ae3-4459-b45f-19fa975d91f7',
@@ -71,16 +76,19 @@ describe('ConnectionsService', () => {
         updatedDate: '2022-04-18T11:05:10.004Z',
         isActive: true,
       };
+
       jest
         .spyOn(prismaService.connection, 'findUnique')
         .mockResolvedValueOnce(repositoryResult);
+
       const res: any = await service.findConnections(
-        '',
-        -1,
+        NaN,
         -1,
         false,
+        '',
         '7b821264-2ae3-4459-b45f-19fa975d91f7',
       );
+
       expect(res).toStrictEqual(result);
     });
 
@@ -110,14 +118,15 @@ describe('ConnectionsService', () => {
         updatedDate: '2022-04-18T11:05:10.004Z',
         isActive: true,
       };
+
       jest
         .spyOn(prismaService.connection, 'findUnique')
         .mockResolvedValueOnce(repositoryResult);
+
       const res: any = await service.findConnections(
+        NaN,
+        -1,
         '',
-        -1,
-        -1,
-        false,
         '',
         'SU1SHqQiDcc6gDvqH8wwYF',
       );
@@ -209,23 +218,18 @@ describe('ConnectionsService', () => {
           },
         ],
       ];
+
       jest
         .spyOn(prismaService, '$transaction')
         .mockResolvedValueOnce(repositoryResult);
-      const res: any = await service.findConnections(
-        '13f412e2-2749-462a-a10a-54f25e326641',
-        -1,
-        -1,
-        false,
-        '',
-        '',
-      );
+
+      const res: any = await service.findConnections(NaN, -1, '', '', '');
 
       expect(res).toStrictEqual(result);
     });
 
     it('find connections by participant Id and status', async () => {
-      const repositoryResult: any = [
+      const repositoryResult = [
         3,
         [
           {
@@ -267,7 +271,7 @@ describe('ConnectionsService', () => {
         ],
       ];
 
-      const result: any = [
+      const result = [
         3,
         [
           {
@@ -308,17 +312,19 @@ describe('ConnectionsService', () => {
           },
         ],
       ];
+
       jest
         .spyOn(prismaService, '$transaction')
         .mockResolvedValueOnce(repositoryResult);
 
-      const res: any = await service.findConnections(
-        '13f412e2-2749-462a-a10a-54f25e326641',
+      const res = await service.findConnections(
         -1,
         -1,
         'trusted,complete,responded,invited',
-        '',
+        undefined,
+        '13f412e2-2749-462a-a10a-54f25e326641',
       );
+
       expect(res).toStrictEqual(result);
     });
   });
@@ -387,6 +393,7 @@ describe('ConnectionsService', () => {
           multiUseInvitation: false,
         },
       };
+
       const agent: any = {
         status: 200,
         message: 'Agent Data',
@@ -394,17 +401,22 @@ describe('ConnectionsService', () => {
           service_endpoint: 'agent URL',
         },
       };
+
       const result = serviceResult;
+
       jest
         .spyOn(natsClient, 'getAgentByParticipantId')
         .mockResolvedValueOnce(agent);
+
       jest
         .spyOn(restClientService, 'post')
         .mockResolvedValueOnce(serviceResult);
+
       const res = await service.createInvitationURL(
         { autoAcceptConnection: true, alias: 'member' },
         'participantId',
       );
+
       expect(res).toStrictEqual(result);
     });
   });
@@ -418,6 +430,7 @@ describe('ConnectionsService', () => {
         theirDid: 'Ax9xMqE89F9LStfGnTpDzg',
         theirLabel: 'sagar@getnada.com',
       };
+
       const agent: any = {
         status: 200,
         message: 'Agent Data',
@@ -425,6 +438,7 @@ describe('ConnectionsService', () => {
           service_endpoint: 'agent URL',
         },
       };
+
       const repositoryResult: any = {
         id: '52d499e0-f76a-4b25-9c2a-f357bf6b73be',
         connectionId: '7b821264-2ae3-4459-b45f-19fa975d91f7',
@@ -439,12 +453,15 @@ describe('ConnectionsService', () => {
       };
 
       const result = repositoryResult;
+
       jest.spyOn(natsClient, 'getAgentByURL').mockResolvedValueOnce(agent);
+
       jest
         .spyOn(prismaService.connection, 'create')
         .mockResolvedValueOnce(repositoryResult);
 
       const res = await service.createConnections(connectionObj);
+
       expect(res).toStrictEqual(result);
     });
   });

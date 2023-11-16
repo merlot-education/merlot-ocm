@@ -1,4 +1,4 @@
-import pagination from './pagination';
+import pagination from './pagination.js';
 
 describe('Check if the module is working', () => {
   it('should be defined', () => {
@@ -6,7 +6,7 @@ describe('Check if the module is working', () => {
   });
 
   it('should be return default value', () => {
-    const result = { skip: 0, take: 10 };
+    const result = { skip: 0, take: 1000 };
     expect(pagination(0, 0)).toStrictEqual(result);
   });
 

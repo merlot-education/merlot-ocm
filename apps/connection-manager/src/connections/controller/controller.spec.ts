@@ -1,16 +1,18 @@
-import { HttpStatus } from '@nestjs/common';
-import { Test, TestingModule } from '@nestjs/testing';
-import { ConfigModule } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
-import NatsClientService from '@src/client/nats.client';
+import { HttpStatus } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { NATSServices } from '@src/common/constants';
-import httpMocks = require('node-mocks-http');
-import RestClientService from '@src/client/rest.client';
-import ConnectionsController from '@src/connections/controller/controller';
-import ConnectionsService from '../services/service';
-import PrismaService from '../../prisma/prisma.service';
-import ConnectionStateDto from '../entities/connectionStateDto.entity';
+import type { TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
+import httpMocks from 'node-mocks-http';
+import NatsClientService from '../../client/nats.client.js';
+import RestClientService from '../../client/rest.client.js';
+import { NATSServices } from '../../common/constants.js';
+import PrismaService from '../../prisma/prisma.service.js';
+import type ConnectionStateDto from '../entities/connectionStateDto.entity.js';
+import ConnectionsService from '../services/service.js';
+
+import ConnectionsController from './controller.js';
 
 describe('ConnectionsController', () => {
   let connectionController: ConnectionsController;
@@ -87,16 +89,18 @@ describe('ConnectionsController', () => {
       };
 
       const response = httpMocks.createResponse();
+
       jest
         .spyOn(connectionService, 'findConnections')
         .mockResolvedValueOnce(serviceResult);
+
       const res: any = await connectionController.getConnection(
         param,
-        query,
         response,
       );
-      // eslint-disable-next-line no-underscore-dangle
+
       const resData = res._getData();
+
       expect(res.statusCode).toBe(HttpStatus.OK);
       expect(JSON.parse(resData).data).toStrictEqual(result);
     });
@@ -124,16 +128,14 @@ describe('ConnectionsController', () => {
       ];
 
       const response = httpMocks.createResponse();
+
       jest
         .spyOn(connectionService, 'findConnections')
         .mockResolvedValueOnce(serviceResult);
-      const res: any = await connectionController.getConnection(
-        param,
-        query,
-        response,
-      );
-      // eslint-disable-next-line no-underscore-dangle
+
+      const res = await connectionController.getConnection(param, response);
       const resData = res._getData();
+
       expect(res.statusCode).toBe(HttpStatus.BAD_REQUEST);
       expect(JSON.parse(resData).message).toStrictEqual(
         'Participant ID/ connection ID / participant DID must be provided',
@@ -191,7 +193,7 @@ describe('ConnectionsController', () => {
       expect(JSON.parse(resData)).toStrictEqual(result);
     });
 
-    it('Not fount if data is not present against connection id  ', async () => {
+    it('Not fount if data is not present against connection id', async () => {
       const param = {
         connectionId: '7b821264-2ae3-4459-b45f-19fa975d91f7',
       };
@@ -285,66 +287,6 @@ describe('ConnectionsController', () => {
   });
 
   describe('Connection webhook calls', () => {
-    it('Create connection webhook call', async () => {
-      const webHook: ConnectionStateDto = {
-        _tags: {},
-        metadata: {},
-        id: '7edc871d-9fa3-4f30-8763-59c80bf346f5',
-        createdAt: '2022-04-21T10:52:27.151Z',
-        did: 'DD8Aue5tuohjBaCLM9GMU7',
-        didDoc: {
-          '@context': 'https://w3id.org/did/v1',
-          publicKey: [
-            [
-              {
-                id: 'C1buxAXWiisjFpVVyUGM5D#1',
-                controller: 'C1buxAXWiisjFpVVyUGM5D',
-                type: 'Ed25519VerificationKey2018',
-                publicKeyBase58: '714U4GdQqyeqhCANgJmTrGqUPg4QTGuEhJcEGYAvEH1Y',
-              },
-            ],
-          ],
-          service: [
-            {
-              id: 'C1buxAXWiisjFpVVyUGM5D#IndyAgentService',
-              serviceEndpoint: 'http://localhost:4011',
-              type: 'IndyAgent',
-              priority: 0,
-              recipientKeys: ['714U4GdQqyeqhCANgJmTrGqUPg4QTGuEhJcEGYAvEH1Y'],
-              routingKeys: [],
-            },
-          ],
-          authentication: [[Object]],
-          id: 'DD8Aue5tuohjBaCLM9GMU7',
-        },
-        theirDid: '',
-        theirLabel: '',
-        verkey: '7exBgFhenY8hqBwBF56D8sp6akLstqXxS1MUUCpDErvX',
-        state: 'invited',
-        role: 'inviter',
-        alias: 'member',
-        invitation: {
-          '@type': 'https://didcomm.org/connections/1.0/invitation',
-          '@id': '8578735f-eef8-4748-b791-ba2f8f7002e2',
-          label: 'State_University',
-          recipientKeys: ['7exBgFhenY8hqBwBF56D8sp6akLstqXxS1MUUCpDErvX'],
-          serviceEndpoint: 'http://localhost:4017',
-          routingKeys: [],
-        },
-        multiUseInvitation: false,
-      };
-      const serviceResult: any = {};
-      jest
-        .spyOn(connectionService, 'createConnections')
-        .mockResolvedValueOnce(serviceResult);
-      const res: any = await connectionController.createConnection({
-        body: webHook,
-      });
-
-      expect(res.statusCode).toBe(HttpStatus.CREATED);
-      // expect(JSON.parse(resData).data).toStrictEqual(result);
-    });
-
     it('Create connection webhook call', async () => {
       const webHook: ConnectionStateDto = {
         _tags: {},
@@ -608,7 +550,7 @@ describe('ConnectionsController', () => {
         multiUseInvitation: false,
       };
 
-      const restConnection: any = {
+      const restConnection = {
         id: '29701e41-60e8-4fca-8504-ea3bcefa6486',
         connectionId: '72534911-9be0-4e3f-8539-2a8a09e4e409',
         participantId: '662dc769-a4de-4c95-934c-f6dab8cf432c',
@@ -620,7 +562,8 @@ describe('ConnectionsController', () => {
         updatedDate: '2022-04-15T11:36:58.560Z',
         isActive: true,
       };
-      const serviceResult: any = {};
+      const serviceResult = {};
+
       jest
         .spyOn(connectionService, 'updateStatusByConnectionId')
         .mockResolvedValueOnce(serviceResult);
@@ -628,7 +571,7 @@ describe('ConnectionsController', () => {
       jest
         .spyOn(connectionService, 'getConnectionByID')
         .mockResolvedValueOnce(restConnection);
-      const res: any = await connectionController.createConnection({
+      const res = await connectionController.createConnection({
         body: webHook,
       });
 
@@ -637,7 +580,7 @@ describe('ConnectionsController', () => {
     });
   });
 
-  describe('Get invitation URL ', () => {
+  describe('Get invitation URL', () => {
     it('Get Member invitation URL', async () => {
       const body = {
         autoAcceptConnection: true,

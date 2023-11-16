@@ -1,11 +1,12 @@
-import { HttpAdapterHost, NestFactory } from '@nestjs/core';
-import { ConfigService } from '@nestjs/config';
 import { VersioningType } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
+import type { MicroserviceOptions } from '@nestjs/microservices';
+import { Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { Transport, MicroserviceOptions } from '@nestjs/microservices';
-import AllExceptionsFilter from '@utils/exceptionsFilter';
-import AppModule from './app.module';
-import logger from './utils/logger';
+import AppModule from './app.module.js';
+import AllExceptionsFilter from './utils/exceptionsFilter.js';
+import logger from './utils/logger.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -28,7 +29,7 @@ async function bootstrap() {
     .setTitle('Gaia-x Connection Manager API')
     .setDescription('API documentation for GAIA-X Connection Manager')
     .setVersion('1.0')
-    .addServer(`localhost:${configService.get('PORT')}`)
+    .addServer(`http://localhost:${configService.get('PORT')}`)
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);

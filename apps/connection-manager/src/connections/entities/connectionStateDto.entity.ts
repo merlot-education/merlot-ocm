@@ -1,15 +1,16 @@
-import { IsString, IsNotEmpty } from 'class-validator';
-import InvitationDTO from './InvitationDto.entity';
+import { IsBooleanString, IsNotEmpty, IsString } from 'class-validator';
+
+import InvitationDTO from './InvitationDto.entity.js';
 
 export default class ConnectionStateDto {
   @IsString()
-  ['_tags']?: any;
+  _tags?: string;
 
   @IsString()
-  metadata?: any;
+  metadata?: string;
 
   @IsString()
-  didDoc?: any;
+  didDoc?: string;
 
   @IsString()
   verkey?: string;
@@ -45,5 +46,6 @@ export default class ConnectionStateDto {
   @IsString()
   alias: string;
 
+  @IsBooleanString()
   multiUseInvitation?: boolean;
 }
