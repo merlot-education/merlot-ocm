@@ -1,0 +1,21 @@
+# Ignore everything
+*
+
+# Except these files
+!*.ts
+!*.d.ts
+
+# .. also in subdirectories
+!*/
+
+# ... in these directories
+!apps/**/src/*
+
+# Explicitly ignore these locations
+node_modules
+apps/**/dist
+compose
+documentation
+
+# Ignore ssi-abstraction for now
+apps/ssi-abstraction
