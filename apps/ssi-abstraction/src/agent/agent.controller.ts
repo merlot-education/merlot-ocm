@@ -1,18 +1,15 @@
-import { Controller, Get, HttpStatus } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
+import { MessagePattern } from '@nestjs/microservices';
 import { AgentService } from './agent.service.js';
 
 @Controller('agent')
 export class AgentController {
   public constructor(private agent: AgentService) {}
 
-  @Get('info')
-  async getWalletInfo() {
+  @MessagePattern('info.publicDid')
+  async publicDid() {
     return {
-      statusCode: HttpStatus.OK,
-      message: 'Success',
-      data: 'SHOULD_BE_PUBLIC_DID',
+      id: 'test',
     };
   }
 }
-
-export default AgentController;

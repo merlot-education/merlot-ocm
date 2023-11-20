@@ -52,7 +52,7 @@ export const registerPublicDids = async ({
       }
     } catch (err) {
       // if did is already registered on IdUnion it will catch 500, but it's ok
-      logAxiosError(err);
+      if (err instanceof axios.AxiosError) logAxiosError(err);
     }
   }
   return responses;

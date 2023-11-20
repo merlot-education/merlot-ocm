@@ -52,9 +52,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "data"
-        ]
+        "required": ["data"]
       },
       "Service": {
         "properties": {
@@ -69,11 +67,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "id",
-          "serviceEndpoint",
-          "type"
-        ]
+        "required": ["id", "serviceEndpoint", "type"]
       },
       "DidCommService": {
         "properties": {
@@ -107,12 +101,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "recipientKeys",
-          "id",
-          "serviceEndpoint",
-          "type"
-        ]
+        "required": ["recipientKeys", "id", "serviceEndpoint", "type"]
       },
       "ServiceDecorator": {
         "properties": {
@@ -133,10 +122,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "recipientKeys",
-          "serviceEndpoint"
-        ]
+        "required": ["recipientKeys", "serviceEndpoint"]
       },
       "BaseMessage": {
         "properties": {
@@ -150,10 +136,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "id",
-          "type"
-        ]
+        "required": ["id", "type"]
       },
       "ThreadDecorator": {
         "properties": {
@@ -243,11 +226,7 @@
       "TransportDecorator": {
         "properties": {
           "returnRoute": {
-            "enum": [
-              "none",
-              "all",
-              "thread"
-            ],
+            "enum": ["none", "all", "thread"],
             "type": "string"
           },
           "returnRouteThread": {
@@ -272,10 +251,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "id",
-          "type"
-        ]
+        "required": ["id", "type"]
       },
       "L10nDecoratorExtension": {
         "properties": {
@@ -295,10 +271,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "id",
-          "type"
-        ]
+        "required": ["id", "type"]
       },
       "TransportDecoratorExtension": {
         "properties": {
@@ -321,10 +294,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "id",
-          "type"
-        ]
+        "required": ["id", "type"]
       },
       "TimingDecoratorExtension": {
         "properties": {
@@ -350,10 +320,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "id",
-          "type"
-        ]
+        "required": ["id", "type"]
       },
       "AckDecoratorExtension": {
         "properties": {
@@ -382,10 +349,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "id",
-          "type"
-        ]
+        "required": ["id", "type"]
       },
       "AttachmentDecoratorExtension": {
         "properties": {
@@ -421,10 +385,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "id",
-          "type"
-        ]
+        "required": ["id", "type"]
       },
       "ServiceDecoratorExtension": {
         "properties": {
@@ -463,46 +424,27 @@
           }
         },
         "type": "object",
-        "required": [
-          "id",
-          "type"
-        ]
+        "required": ["id", "type"]
       },
       "ProblemReportMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/notification/1.0/problem-report"
-            ],
+            "enum": ["https://didcomm.org/notification/1.0/problem-report"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "problemItems": {},
           "whoRetries": {
-            "enum": [
-              "YOU",
-              "ME",
-              "BOTH",
-              "NONE"
-            ],
+            "enum": ["YOU", "ME", "BOTH", "NONE"],
             "type": "string"
           },
           "fixHint": {},
           "where": {
-            "enum": [
-              "CLOUD",
-              "EDGE",
-              "WIRE",
-              "AGENCY"
-            ],
+            "enum": ["CLOUD", "EDGE", "WIRE", "AGENCY"],
             "type": "string"
           },
           "impact": {
-            "enum": [
-              "MESSAGE",
-              "THREAD",
-              "CONNECTION"
-            ],
+            "enum": ["MESSAGE", "THREAD", "CONNECTION"],
             "type": "string"
           },
           "noticedTime": {
@@ -545,10 +487,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "id"
-        ]
+        "required": ["type", "id"]
       },
       "BatchMessageMessage": {
         "properties": {
@@ -561,18 +500,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "id",
-          "message"
-        ]
+        "required": ["id", "message"]
       },
       "BatchMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/messagepickup/1.0/batch"
-            ],
+            "enum": ["https://didcomm.org/messagepickup/1.0/batch"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "messages": {
@@ -613,19 +547,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "messages",
-          "id"
-        ]
+        "required": ["type", "messages", "id"]
       },
       "BatchPickupMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/messagepickup/1.0/batch-pickup"
-            ],
+            "enum": ["https://didcomm.org/messagepickup/1.0/batch-pickup"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "batchSize": {
@@ -662,19 +590,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "batchSize",
-          "id"
-        ]
+        "required": ["type", "batchSize", "id"]
       },
       "ForwardMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/routing/1.0/forward"
-            ],
+            "enum": ["https://didcomm.org/routing/1.0/forward"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "to": {
@@ -714,12 +636,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "to",
-          "message",
-          "id"
-        ]
+        "required": ["type", "to", "message", "id"]
       },
       "KeylistUpdate": {
         "properties": {
@@ -727,18 +644,12 @@
             "type": "string"
           },
           "action": {
-            "enum": [
-              "add",
-              "remove"
-            ],
+            "enum": ["add", "remove"],
             "type": "string"
           }
         },
         "type": "object",
-        "required": [
-          "recipientKey",
-          "action"
-        ]
+        "required": ["recipientKey", "action"]
       },
       "KeylistUpdateMessage": {
         "properties": {
@@ -787,11 +698,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "updates",
-          "id"
-        ]
+        "required": ["type", "updates", "id"]
       },
       "KeylistUpdated": {
         "properties": {
@@ -799,28 +706,16 @@
             "type": "string"
           },
           "action": {
-            "enum": [
-              "add",
-              "remove"
-            ],
+            "enum": ["add", "remove"],
             "type": "string"
           },
           "result": {
-            "enum": [
-              "client_error",
-              "server_error",
-              "no_change",
-              "success"
-            ],
+            "enum": ["client_error", "server_error", "no_change", "success"],
             "type": "string"
           }
         },
         "type": "object",
-        "required": [
-          "recipientKey",
-          "action",
-          "result"
-        ]
+        "required": ["recipientKey", "action", "result"]
       },
       "KeylistUpdateResponseMessage": {
         "properties": {
@@ -869,11 +764,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "updated",
-          "id"
-        ]
+        "required": ["type", "updated", "id"]
       },
       "MediationGrantMessage": {
         "properties": {
@@ -924,12 +815,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "routingKeys",
-          "endpoint",
-          "id"
-        ]
+        "required": ["type", "routingKeys", "endpoint", "id"]
       },
       "MediationDenyMessage": {
         "properties": {
@@ -971,10 +857,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "id"
-        ]
+        "required": ["type", "id"]
       },
       "MediationRequestMessage": {
         "properties": {
@@ -1028,11 +911,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "sentTime",
-          "id"
-        ]
+        "required": ["type", "sentTime", "id"]
       },
       "PublicKey": {
         "properties": {
@@ -1047,19 +926,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "id",
-          "controller",
-          "type"
-        ]
+        "required": ["id", "controller", "type"]
       },
       "Ed25119Sig2018": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "Ed25519VerificationKey2018"
-            ]
+            "enum": ["Ed25519VerificationKey2018"]
           },
           "value": {
             "type": "string"
@@ -1072,20 +945,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "value",
-          "id",
-          "controller"
-        ]
+        "required": ["type", "value", "id", "controller"]
       },
       "EddsaSaSigSecp256k1": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "Secp256k1VerificationKey2018"
-            ]
+            "enum": ["Secp256k1VerificationKey2018"]
           },
           "value": {
             "type": "string"
@@ -1098,20 +964,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "value",
-          "id",
-          "controller"
-        ]
+        "required": ["type", "value", "id", "controller"]
       },
       "RsaSig2018": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "RsaVerificationKey2018"
-            ]
+            "enum": ["RsaVerificationKey2018"]
           },
           "value": {
             "type": "string"
@@ -1124,12 +983,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "value",
-          "id",
-          "controller"
-        ]
+        "required": ["type", "value", "id", "controller"]
       },
       "EmbeddedAuthentication": {
         "properties": {
@@ -1140,9 +994,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "publicKey"
-        ]
+        "required": ["publicKey"]
       },
       "ReferencedAuthentication": {
         "properties": {
@@ -1151,9 +1003,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type"
-        ]
+        "required": ["type"]
       },
       "IndyAgentService": {
         "properties": {
@@ -1181,20 +1031,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "recipientKeys",
-          "id",
-          "serviceEndpoint",
-          "type"
-        ]
+        "required": ["recipientKeys", "id", "serviceEndpoint", "type"]
       },
       "DidDoc": {
         "properties": {
           "context": {
             "type": "string",
-            "enum": [
-              "https://w3id.org/did/v1"
-            ]
+            "enum": ["https://w3id.org/did/v1"]
           },
           "id": {
             "type": "string"
@@ -1216,13 +1059,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "context",
-          "id",
-          "publicKey",
-          "service",
-          "authentication"
-        ]
+        "required": ["context", "id", "publicKey", "service", "authentication"]
       },
       "Connection": {
         "properties": {
@@ -1234,17 +1071,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "did"
-        ]
+        "required": ["did"]
       },
       "ConnectionInvitationMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/connections/1.0/invitation"
-            ],
+            "enum": ["https://didcomm.org/connections/1.0/invitation"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "label": {
@@ -1304,19 +1137,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "label",
-          "id"
-        ]
+        "required": ["type", "label", "id"]
       },
       "ConnectionRequestMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/connections/1.0/request"
-            ],
+            "enum": ["https://didcomm.org/connections/1.0/request"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "label": {
@@ -1360,12 +1187,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "label",
-          "connection",
-          "id"
-        ]
+        "required": ["type", "label", "connection", "id"]
       },
       "SignatureDecorator": {
         "properties": {
@@ -1384,20 +1206,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "signatureType",
-          "signatureData",
-          "signer",
-          "signature"
-        ]
+        "required": ["signatureType", "signatureData", "signer", "signature"]
       },
       "ConnectionResponseMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/connections/1.0/response"
-            ],
+            "enum": ["https://didcomm.org/connections/1.0/response"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "connectionSig": {
@@ -1434,19 +1249,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "connectionSig",
-          "id"
-        ]
+        "required": ["type", "connectionSig", "id"]
       },
       "TrustPingMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/trust_ping/1.0/ping"
-            ],
+            "enum": ["https://didcomm.org/trust_ping/1.0/ping"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "comment": {
@@ -1486,19 +1295,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "responseRequested",
-          "id"
-        ]
+        "required": ["type", "responseRequested", "id"]
       },
       "TrustPingResponseMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/trust_ping/1.0/ping_response"
-            ],
+            "enum": ["https://didcomm.org/trust_ping/1.0/ping_response"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "comment": {
@@ -1535,18 +1338,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "id"
-        ]
+        "required": ["type", "id"]
       },
       "ConnectionProblemReportMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/connection/1.0/problem-report"
-            ],
+            "enum": ["https://didcomm.org/connection/1.0/problem-report"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "id": {
@@ -1580,30 +1378,16 @@
           },
           "problemItems": {},
           "whoRetries": {
-            "enum": [
-              "YOU",
-              "ME",
-              "BOTH",
-              "NONE"
-            ],
+            "enum": ["YOU", "ME", "BOTH", "NONE"],
             "type": "string"
           },
           "fixHint": {},
           "where": {
-            "enum": [
-              "CLOUD",
-              "EDGE",
-              "WIRE",
-              "AGENCY"
-            ],
+            "enum": ["CLOUD", "EDGE", "WIRE", "AGENCY"],
             "type": "string"
           },
           "impact": {
-            "enum": [
-              "MESSAGE",
-              "THREAD",
-              "CONNECTION"
-            ],
+            "enum": ["MESSAGE", "THREAD", "CONNECTION"],
             "type": "string"
           },
           "noticedTime": {
@@ -1617,26 +1401,17 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "id"
-        ]
+        "required": ["type", "id"]
       },
       "AckMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/notification/1.0/ack"
-            ],
+            "enum": ["https://didcomm.org/notification/1.0/ack"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "status": {
-            "enum": [
-              "OK",
-              "FAIL",
-              "PENDING"
-            ],
+            "enum": ["OK", "FAIL", "PENDING"],
             "type": "string"
           },
           "id": {
@@ -1670,19 +1445,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "status",
-          "id"
-        ]
+        "required": ["type", "status", "id"]
       },
       "BasicMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/basicmessage/1.0/message"
-            ],
+            "enum": ["https://didcomm.org/basicmessage/1.0/message"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "sentTime": {
@@ -1731,12 +1500,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "sentTime",
-          "content",
-          "id"
-        ]
+        "required": ["type", "sentTime", "content", "id"]
       },
       "CredentialPreviewAttribute": {
         "properties": {
@@ -1751,10 +1515,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "name",
-          "value"
-        ]
+        "required": ["name", "value"]
       },
       "CredentialPreview": {
         "properties": {
@@ -1772,18 +1533,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "attributes"
-        ]
+        "required": ["type", "attributes"]
       },
       "CredentialAckMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/issue-credential/1.0/ack"
-            ],
+            "enum": ["https://didcomm.org/issue-credential/1.0/ack"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "id": {
@@ -1816,20 +1572,12 @@
             "$ref": "#/components/schemas/ServiceDecorator"
           },
           "status": {
-            "enum": [
-              "OK",
-              "FAIL",
-              "PENDING"
-            ],
+            "enum": ["OK", "FAIL", "PENDING"],
             "type": "string"
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "id",
-          "status"
-        ]
+        "required": ["type", "id", "status"]
       },
       "RequestCredentialMessage": {
         "properties": {
@@ -1880,11 +1628,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "requestAttachments",
-          "id"
-        ]
+        "required": ["type", "requestAttachments", "id"]
       },
       "IssueCredentialMessage": {
         "properties": {
@@ -1935,11 +1679,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "credentialAttachments",
-          "id"
-        ]
+        "required": ["type", "credentialAttachments", "id"]
       },
       "OfferCredentialMessage": {
         "properties": {
@@ -1993,12 +1733,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "credentialPreview",
-          "offerAttachments",
-          "id"
-        ]
+        "required": ["type", "credentialPreview", "offerAttachments", "id"]
       },
       "ProposeCredentialMessage": {
         "properties": {
@@ -2064,18 +1799,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "id"
-        ]
+        "required": ["type", "id"]
       },
       "CredentialProblemReportMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/issue-credential/1.0/problem-report"
-            ],
+            "enum": ["https://didcomm.org/issue-credential/1.0/problem-report"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "id": {
@@ -2109,30 +1839,16 @@
           },
           "problemItems": {},
           "whoRetries": {
-            "enum": [
-              "YOU",
-              "ME",
-              "BOTH",
-              "NONE"
-            ],
+            "enum": ["YOU", "ME", "BOTH", "NONE"],
             "type": "string"
           },
           "fixHint": {},
           "where": {
-            "enum": [
-              "CLOUD",
-              "EDGE",
-              "WIRE",
-              "AGENCY"
-            ],
+            "enum": ["CLOUD", "EDGE", "WIRE", "AGENCY"],
             "type": "string"
           },
           "impact": {
-            "enum": [
-              "MESSAGE",
-              "THREAD",
-              "CONNECTION"
-            ],
+            "enum": ["MESSAGE", "THREAD", "CONNECTION"],
             "type": "string"
           },
           "noticedTime": {
@@ -2146,10 +1862,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "id"
-        ]
+        "required": ["type", "id"]
       },
       "DiscloseProtocol": {
         "properties": {
@@ -2164,17 +1877,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "protocolId"
-        ]
+        "required": ["protocolId"]
       },
       "DiscloseMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/discover-features/1.0/disclose"
-            ],
+            "enum": ["https://didcomm.org/discover-features/1.0/disclose"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "protocols": {
@@ -2214,19 +1923,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "protocols",
-          "id"
-        ]
+        "required": ["type", "protocols", "id"]
       },
       "QueryMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/discover-features/1.0/query"
-            ],
+            "enum": ["https://didcomm.org/discover-features/1.0/query"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "query": {
@@ -2266,11 +1969,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "query",
-          "id"
-        ]
+        "required": ["type", "query", "id"]
       },
       "PresentationPreviewAttribute": {
         "properties": {
@@ -2298,12 +1997,7 @@
             "type": "string"
           },
           "predicate": {
-            "enum": [
-              "<",
-              "<=",
-              ">",
-              ">="
-            ],
+            "enum": ["<", "<=", ">", ">="],
             "type": "string"
           },
           "threshold": {
@@ -2311,12 +2005,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "name",
-          "credentialDefinitionId",
-          "predicate",
-          "threshold"
-        ]
+        "required": ["name", "credentialDefinitionId", "predicate", "threshold"]
       },
       "PresentationPreview": {
         "properties": {
@@ -2340,11 +2029,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "attributes",
-          "predicates"
-        ]
+        "required": ["type", "attributes", "predicates"]
       },
       "ProposePresentationMessage": {
         "properties": {
@@ -2392,11 +2077,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "presentationProposal",
-          "id"
-        ]
+        "required": ["type", "presentationProposal", "id"]
       },
       "AttributeValue": {
         "properties": {
@@ -2408,10 +2089,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "name",
-          "value"
-        ]
+        "required": ["name", "value"]
       },
       "AttributeFilter": {
         "properties": {
@@ -2455,10 +2133,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "schemaId",
-          "credentialDefinitionId"
-        ]
+        "required": ["schemaId", "credentialDefinitionId"]
       },
       "ProofAttribute": {
         "properties": {
@@ -2473,11 +2148,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "subProofIndex",
-          "raw",
-          "encoded"
-        ]
+        "required": ["subProofIndex", "raw", "encoded"]
       },
       "RequestedProof": {
         "properties": {
@@ -2495,10 +2166,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "revealedAttributes",
-          "selfAttestedAttributes"
-        ]
+        "required": ["revealedAttributes", "selfAttestedAttributes"]
       },
       "PartialProof": {
         "properties": {
@@ -2513,10 +2181,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "identifiers",
-          "requestedProof"
-        ]
+        "required": ["identifiers", "requestedProof"]
       },
       "IndyCredentialInfo": {
         "properties": {
@@ -2571,9 +2236,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "credentialInfo"
-        ]
+        "required": ["credentialInfo"]
       },
       "ProofAttributeInfo": {
         "properties": {
@@ -2605,12 +2268,7 @@
             "type": "string"
           },
           "predicateType": {
-            "enum": [
-              "<",
-              "<=",
-              ">",
-              ">="
-            ],
+            "enum": ["<", "<=", ">", ">="],
             "type": "string"
           },
           "predicateValue": {
@@ -2627,11 +2285,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "name",
-          "predicateType",
-          "predicateValue"
-        ]
+        "required": ["name", "predicateType", "predicateValue"]
       },
       "ProofRequest": {
         "properties": {
@@ -2663,10 +2317,7 @@
           },
           "ver": {
             "type": "string",
-            "enum": [
-              "1.0",
-              "2.0"
-            ]
+            "enum": ["1.0", "2.0"]
           }
         },
         "type": "object",
@@ -2690,10 +2341,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "credentialId",
-          "revealed"
-        ]
+        "required": ["credentialId", "revealed"]
       },
       "RequestedPredicate": {
         "properties": {
@@ -2705,9 +2353,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "credentialId"
-        ]
+        "required": ["credentialId"]
       },
       "RequestedCredentials": {
         "properties": {
@@ -2725,10 +2371,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "requestedAttributes",
-          "requestedPredicates"
-        ]
+        "required": ["requestedAttributes", "requestedPredicates"]
       },
       "RequestPresentationMessage": {
         "properties": {
@@ -2779,19 +2422,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "requestPresentationAttachments",
-          "id"
-        ]
+        "required": ["type", "requestPresentationAttachments", "id"]
       },
       "PresentationMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/present-proof/1.0/presentation"
-            ],
+            "enum": ["https://didcomm.org/present-proof/1.0/presentation"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "comment": {
@@ -2834,19 +2471,13 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "presentationAttachments",
-          "id"
-        ]
+        "required": ["type", "presentationAttachments", "id"]
       },
       "PresentationAckMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/present-proof/1.0/ack"
-            ],
+            "enum": ["https://didcomm.org/present-proof/1.0/ack"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "id": {
@@ -2879,28 +2510,18 @@
             "$ref": "#/components/schemas/ServiceDecorator"
           },
           "status": {
-            "enum": [
-              "OK",
-              "FAIL",
-              "PENDING"
-            ],
+            "enum": ["OK", "FAIL", "PENDING"],
             "type": "string"
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "id",
-          "status"
-        ]
+        "required": ["type", "id", "status"]
       },
       "PresentationProblemReportMessage": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "https://didcomm.org/present-proof/1.0/problem-report"
-            ],
+            "enum": ["https://didcomm.org/present-proof/1.0/problem-report"],
             "pattern": "(.*?)([a-zA-Z0-9._-]+)\\/(\\d[^/]*)\\/([a-zA-Z0-9._-]+)$"
           },
           "id": {
@@ -2934,30 +2555,16 @@
           },
           "problemItems": {},
           "whoRetries": {
-            "enum": [
-              "YOU",
-              "ME",
-              "BOTH",
-              "NONE"
-            ],
+            "enum": ["YOU", "ME", "BOTH", "NONE"],
             "type": "string"
           },
           "fixHint": {},
           "where": {
-            "enum": [
-              "CLOUD",
-              "EDGE",
-              "WIRE",
-              "AGENCY"
-            ],
+            "enum": ["CLOUD", "EDGE", "WIRE", "AGENCY"],
             "type": "string"
           },
           "impact": {
-            "enum": [
-              "MESSAGE",
-              "THREAD",
-              "CONNECTION"
-            ],
+            "enum": ["MESSAGE", "THREAD", "CONNECTION"],
             "type": "string"
           },
           "noticedTime": {
@@ -2971,10 +2578,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "type",
-          "id"
-        ]
+        "required": ["type", "id"]
       },
       "BasicMessageRequest": {
         "properties": {
@@ -2983,9 +2587,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "content"
-        ]
+        "required": ["content"]
       },
       "InvitationConfigRequest": {
         "properties": {
@@ -3029,9 +2631,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "invitationUrl"
-        ]
+        "required": ["invitationUrl"]
       },
       "InvitationRequest": {
         "properties": {
@@ -3054,9 +2654,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "label"
-        ]
+        "required": ["label"]
       },
       "ReceiveInvitationRequest": {
         "properties": {
@@ -3080,9 +2678,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "invitation"
-        ]
+        "required": ["invitation"]
       },
       "AcceptCredentialProposalRequest": {
         "properties": {
@@ -3093,11 +2689,7 @@
             "type": "string"
           },
           "autoAcceptCredential": {
-            "enum": [
-              "always",
-              "contentApproved",
-              "never"
-            ],
+            "enum": ["always", "contentApproved", "never"],
             "type": "string"
           }
         },
@@ -3110,9 +2702,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "attributeName"
-        ]
+        "required": ["attributeName"]
       },
       "CredentialOfferTemp": {
         "properties": {
@@ -3127,11 +2717,7 @@
             "$ref": "#/components/schemas/CredentialPreview"
           },
           "autoAcceptCredential": {
-            "enum": [
-              "always",
-              "contentApproved",
-              "never"
-            ],
+            "enum": ["always", "contentApproved", "never"],
             "type": "string"
           },
           "attachments": {
@@ -3142,10 +2728,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "credentialDefinitionId",
-          "preview"
-        ]
+        "required": ["credentialDefinitionId", "preview"]
       },
       "CredentialOfferRequest": {
         "properties": {
@@ -3163,11 +2746,7 @@
             "$ref": "#/components/schemas/CredentialPreview"
           },
           "autoAcceptCredential": {
-            "enum": [
-              "always",
-              "contentApproved",
-              "never"
-            ],
+            "enum": ["always", "contentApproved", "never"],
             "type": "string"
           },
           "attachments": {
@@ -3178,11 +2757,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "connectionId",
-          "credentialDefinitionId",
-          "preview"
-        ]
+        "required": ["connectionId", "credentialDefinitionId", "preview"]
       },
       "CredentialProposalRequest": {
         "properties": {
@@ -3224,19 +2799,12 @@
           "attachments": {},
           "linkedAttachments": {},
           "autoAcceptCredential": {
-            "enum": [
-              "always",
-              "contentApproved",
-              "never"
-            ],
+            "enum": ["always", "contentApproved", "never"],
             "type": "string"
           }
         },
         "type": "object",
-        "required": [
-          "connectionId",
-          "credentialProposal"
-        ]
+        "required": ["connectionId", "credentialProposal"]
       },
       "CredentialDefinitionRequest": {
         "properties": {
@@ -3252,11 +2820,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "tag",
-          "supportRevocation",
-          "schemaId"
-        ]
+        "required": ["tag", "supportRevocation", "schemaId"]
       },
       "SchemaTemplate": {
         "properties": {
@@ -3273,11 +2837,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "name",
-          "version",
-          "attributes"
-        ]
+        "required": ["name", "version", "attributes"]
       },
       "AcceptProofProposalRequest": {
         "properties": {
@@ -3308,18 +2868,12 @@
             "type": "string"
           },
           "autoAcceptProof": {
-            "enum": [
-              "always",
-              "contentApproved",
-              "never"
-            ],
+            "enum": ["always", "contentApproved", "never"],
             "type": "string"
           }
         },
         "type": "object",
-        "required": [
-          "proofRequest"
-        ]
+        "required": ["proofRequest"]
       },
       "ProofPresentationRequest": {
         "properties": {
@@ -3333,19 +2887,12 @@
             "type": "string"
           },
           "autoAcceptProof": {
-            "enum": [
-              "always",
-              "contentApproved",
-              "never"
-            ],
+            "enum": ["always", "contentApproved", "never"],
             "type": "string"
           }
         },
         "type": "object",
-        "required": [
-          "connectionId",
-          "proofRequest"
-        ]
+        "required": ["connectionId", "proofRequest"]
       },
       "ProofProposalRequest": {
         "properties": {
@@ -3365,11 +2912,7 @@
             "type": "array"
           },
           "autoAcceptProof": {
-            "enum": [
-              "always",
-              "contentApproved",
-              "never"
-            ],
+            "enum": ["always", "contentApproved", "never"],
             "type": "string"
           },
           "comment": {
@@ -3377,11 +2920,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "connectionId",
-          "attributes",
-          "predicates"
-        ]
+        "required": ["connectionId", "attributes", "predicates"]
       }
     }
   },
@@ -3404,9 +2943,7 @@
           }
         },
         "summary": "Get agent info",
-        "tags": [
-          "Agent"
-        ]
+        "tags": ["Agent"]
       }
     },
     "/basic-messages/{connectionId}": {
@@ -3431,9 +2968,7 @@
           }
         },
         "summary": "Get basic messages",
-        "tags": [
-          "Basic Message"
-        ]
+        "tags": ["Basic Message"]
       },
       "post": {
         "operationId": "BasicMessageController.sendMessage",
@@ -3467,9 +3002,7 @@
           }
         },
         "summary": "Send message",
-        "tags": [
-          "Basic Message"
-        ]
+        "tags": ["Basic Message"]
       }
     },
     "/connections/{connectionId}": {
@@ -3494,9 +3027,7 @@
           }
         },
         "summary": "Get connection by id",
-        "tags": [
-          "Connection"
-        ]
+        "tags": ["Connection"]
       },
       "delete": {
         "operationId": "ConnectionController.deleteConnection",
@@ -3519,9 +3050,7 @@
           }
         },
         "summary": "Delete connection",
-        "tags": [
-          "Connection"
-        ]
+        "tags": ["Connection"]
       }
     },
     "/connections/": {
@@ -3536,9 +3065,7 @@
           }
         },
         "summary": "Get all connections",
-        "tags": [
-          "Connection"
-        ]
+        "tags": ["Connection"]
       }
     },
     "/connections/create-invitation": {
@@ -3564,9 +3091,7 @@
           }
         },
         "summary": "Create invitation",
-        "tags": [
-          "Connection"
-        ]
+        "tags": ["Connection"]
       }
     },
     "/connections/receive-invitation": {
@@ -3592,9 +3117,7 @@
           }
         },
         "summary": "Receive invitation",
-        "tags": [
-          "Connection"
-        ]
+        "tags": ["Connection"]
       }
     },
     "/connections/receive-invitation-url": {
@@ -3620,9 +3143,7 @@
           }
         },
         "summary": "Receive invitation by url",
-        "tags": [
-          "Connection"
-        ]
+        "tags": ["Connection"]
       }
     },
     "/connections/{connectionId}/accept-invitation": {
@@ -3647,9 +3168,7 @@
           }
         },
         "summary": "Accept invitation",
-        "tags": [
-          "Connection"
-        ]
+        "tags": ["Connection"]
       }
     },
     "/connections/{connectionId}/accept-request": {
@@ -3674,9 +3193,7 @@
           }
         },
         "summary": "Accept request",
-        "tags": [
-          "Connection"
-        ]
+        "tags": ["Connection"]
       }
     },
     "/connections/{connectionId}/accept-response": {
@@ -3701,9 +3218,7 @@
           }
         },
         "summary": "Accept response",
-        "tags": [
-          "Connection"
-        ]
+        "tags": ["Connection"]
       }
     },
     "/credentials/{credentialId}": {
@@ -3728,9 +3243,7 @@
           }
         },
         "summary": "Get credential by id",
-        "tags": [
-          "Credential"
-        ]
+        "tags": ["Credential"]
       },
       "delete": {
         "operationId": "CredentialController.deleteCredential",
@@ -3753,9 +3266,7 @@
           }
         },
         "summary": "Delete credential",
-        "tags": [
-          "Credential"
-        ]
+        "tags": ["Credential"]
       }
     },
     "/credentials/": {
@@ -3770,9 +3281,7 @@
           }
         },
         "summary": "Get all credentials",
-        "tags": [
-          "Credential"
-        ]
+        "tags": ["Credential"]
       }
     },
     "/credentials/propose-credential": {
@@ -3798,9 +3307,7 @@
           }
         },
         "summary": "Propose credential",
-        "tags": [
-          "Credential"
-        ]
+        "tags": ["Credential"]
       }
     },
     "/credentials/{credentialId}/accept-proposal": {
@@ -3836,9 +3343,7 @@
           }
         },
         "summary": "Accept proposal",
-        "tags": [
-          "Credential"
-        ]
+        "tags": ["Credential"]
       }
     },
     "/credentials/offer-outofband-credential": {
@@ -3864,9 +3369,7 @@
           }
         },
         "summary": "Offer credential out of band",
-        "tags": [
-          "Credential"
-        ]
+        "tags": ["Credential"]
       }
     },
     "/credentials/offer-credential": {
@@ -3892,9 +3395,7 @@
           }
         },
         "summary": "Offer credential",
-        "tags": [
-          "Credential"
-        ]
+        "tags": ["Credential"]
       }
     },
     "/credentials/{credentialId}/accept-offer": {
@@ -3919,9 +3420,7 @@
           }
         },
         "summary": "Accept offer",
-        "tags": [
-          "Credential"
-        ]
+        "tags": ["Credential"]
       }
     },
     "/credentials/{credentialId}/accept-request": {
@@ -3946,9 +3445,7 @@
           }
         },
         "summary": "Accept request",
-        "tags": [
-          "Credential"
-        ]
+        "tags": ["Credential"]
       }
     },
     "/credentials/{credentialId}/accept-credential": {
@@ -3973,9 +3470,7 @@
           }
         },
         "summary": "Accept credential",
-        "tags": [
-          "Credential"
-        ]
+        "tags": ["Credential"]
       }
     },
     "/credential-definitions/{credentialDefinitionId}": {
@@ -4000,9 +3495,7 @@
           }
         },
         "summary": "Get credential definition by id",
-        "tags": [
-          "Credential Definition"
-        ]
+        "tags": ["Credential Definition"]
       }
     },
     "/credential-definitions/": {
@@ -4028,9 +3521,7 @@
           }
         },
         "summary": "Create credential definition",
-        "tags": [
-          "Credential Definition"
-        ]
+        "tags": ["Credential Definition"]
       }
     },
     "/schemas/{schemaId}": {
@@ -4055,9 +3546,7 @@
           }
         },
         "summary": "Get schema by id",
-        "tags": [
-          "Schema"
-        ]
+        "tags": ["Schema"]
       }
     },
     "/schemas/": {
@@ -4083,9 +3572,7 @@
           }
         },
         "summary": "Create schema",
-        "tags": [
-          "Schema"
-        ]
+        "tags": ["Schema"]
       }
     },
     "/proofs/{proofRecordId}": {
@@ -4110,9 +3597,7 @@
           }
         },
         "summary": "Get proof by id",
-        "tags": [
-          "Proof"
-        ]
+        "tags": ["Proof"]
       },
       "delete": {
         "operationId": "ProofController.deleteProof",
@@ -4135,9 +3620,7 @@
           }
         },
         "summary": "Delete proof",
-        "tags": [
-          "Proof"
-        ]
+        "tags": ["Proof"]
       }
     },
     "/proofs/": {
@@ -4162,9 +3645,7 @@
           }
         },
         "summary": "Get all proofs",
-        "tags": [
-          "Proof"
-        ]
+        "tags": ["Proof"]
       }
     },
     "/proofs/propose-proof": {
@@ -4190,9 +3671,7 @@
           }
         },
         "summary": "Propose proof",
-        "tags": [
-          "Proof"
-        ]
+        "tags": ["Proof"]
       }
     },
     "/proofs/{proofRecordId}/accept-proposal": {
@@ -4228,9 +3707,7 @@
           }
         },
         "summary": "Accept proposal",
-        "tags": [
-          "Proof"
-        ]
+        "tags": ["Proof"]
       }
     },
     "/proofs/request-outofband-proof": {
@@ -4256,9 +3733,7 @@
           }
         },
         "summary": "Request proof out of band",
-        "tags": [
-          "Proof"
-        ]
+        "tags": ["Proof"]
       }
     },
     "/proofs/request-proof": {
@@ -4284,9 +3759,7 @@
           }
         },
         "summary": "Request proof",
-        "tags": [
-          "Proof"
-        ]
+        "tags": ["Proof"]
       }
     },
     "/proofs/{proofRecordId}/accept-request": {
@@ -4322,9 +3795,7 @@
           }
         },
         "summary": "Accept request",
-        "tags": [
-          "Proof"
-        ]
+        "tags": ["Proof"]
       }
     },
     "/proofs/{proofRecordId}/accept-presentation": {
@@ -4349,9 +3820,7 @@
           }
         },
         "summary": "Accept presentation",
-        "tags": [
-          "Proof"
-        ]
+        "tags": ["Proof"]
       }
     }
   }

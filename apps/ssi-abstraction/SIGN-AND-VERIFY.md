@@ -1,8 +1,9 @@
-
 ## Signing and verification interface is accessible on SSI Abstraction
 
 ### METHOD: POST
+
 **type: "buffer" is necessary to know internally what transformation needs to be done**
+
 ```
 :3009/v1/agent/wallet/sign
 
@@ -18,7 +19,9 @@ body : {
 
 
 ```
+
 ### Returns
+
 ```
 {
   statusCode: Number,
@@ -31,18 +34,18 @@ body : {
 and
 <hr/>
 
-
 ### METHOD: POST
+
 ```
 :3009/v1/agent/wallet/verify
 
 body : {
   data: [
-    signerVerkey: string, 
+    signerVerkey: string,
     {
       type: "buffer",
       dataBase64: base64 string   //// This is the data to be verified
-    }, 
+    },
     {
       type: "buffer",
       dataBase64: base64 string  //// This is the signature
@@ -50,7 +53,9 @@ body : {
   ]
 }
 ```
+
 ### Returns
+
 ```
 {
   statusCode: Number,
@@ -58,10 +63,6 @@ body : {
   data: boolean // returns validity of signature on the data
 }
 ```
-
-
-
-
 
 ## Get Agent Info endpoint (did, verkey) on SSI Abstraction
 
@@ -72,6 +73,7 @@ body : {
 ```
 
 ### Returns
+
 ```
 {
     "statusCode": 200,

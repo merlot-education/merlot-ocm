@@ -1,6 +1,7 @@
 process.env.PORT = 3009;
 process.env.AFJ_EXT_PORT = 3010;
-process.env.DATABASE_URL = 'postgresql://postgres:postgres@localhost:5432/postgres?schema=agent';
+process.env.DATABASE_URL =
+  'postgresql://postgres:postgres@localhost:5432/postgres?schema=agent';
 process.env.NATS_URL = 'nats://localhost:4222';
 process.env.ECSURL = 'http://localhost:9200/';
 process.env.AGENT_HOST = 'http://localhost';
