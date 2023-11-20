@@ -291,8 +291,7 @@ export default class PresentationProofsService {
       index < sendProofRequest.attributes.length;
       index += 1
     ) {
-      const attributeElement: any =
-        sendProofRequest.attributes[index].attributeName;
+      const attributeElement = sendProofRequest.attributes[index].attributeName;
       const attributeReferent = `additionalProp${index + 1}`;
       const keys = Object.keys(requestedAttributes);
       if (keys.length > 0) {

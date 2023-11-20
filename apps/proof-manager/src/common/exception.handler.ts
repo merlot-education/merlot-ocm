@@ -12,7 +12,7 @@ import type ResponseType from './response.js';
 export default class ExceptionHandler implements ExceptionFilter {
   constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
-  catch(exception: any, host: ArgumentsHost): void {
+  catch(exception: unknown, host: ArgumentsHost): void {
     // In certain situations `httpAdapter` might not be available in the
     // constructor method, thus we should resolve it here.
     const { httpAdapter } = this.httpAdapterHost;
@@ -25,7 +25,7 @@ export default class ExceptionHandler implements ExceptionFilter {
       exception.message.error || exception.message || 'Something went wrong!';
 
     if (exception instanceof HttpException) {
-      const errorResponse: any = exception.getResponse();
+      const errorResponse: string | object = exception.getResponse();
 
       statusCode = exception.getStatus();
       message = errorResponse.error || message;

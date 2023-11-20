@@ -18,6 +18,7 @@ describe('AppController (e2e)', () => {
 
   afterEach(() => app.close());
 
+  // eslint-disable-next-line jest/expect-expect
   it('/health (GET)', () =>
     request(app.getHttpServer()).get('/health').expect(200));
 });

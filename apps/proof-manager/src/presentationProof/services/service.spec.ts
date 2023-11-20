@@ -96,7 +96,7 @@ describe.skip('ConnectionsService', () => {
         threadId: '34881067-b9fc-49a4-814d-dee4668b4f90',
       };
       jest
-        .spyOn(natsClient, 'getAgentByParticipantId')
+        .spyOn(natsClient, 'getConnectionById')
         .mockResolvedValueOnce(getAgentDetails);
 
       jest.spyOn(restClient, 'get').mockResolvedValueOnce(result);
@@ -314,7 +314,7 @@ describe.skip('ConnectionsService', () => {
         .mockResolvedValueOnce(natsConnectionIdResponce);
 
       jest
-        .spyOn(natsClient, 'getAgentByParticipantId')
+        .spyOn(natsClient, 'getConnectionById')
         .mockResolvedValueOnce(getAgentDetails);
 
       jest.spyOn(restClient, 'post').mockResolvedValueOnce(result);
@@ -331,12 +331,12 @@ describe.skip('ConnectionsService', () => {
         comment: 'Gaia-x Test',
         attributes: [
           {
-            attribute_name: 'email',
+            attributeName: 'email',
             value: '',
             condition: '',
           },
           {
-            attribute_name: 'issuerDID',
+            attributeName: 'issuerDID',
             value: '',
             condition: '',
           },
@@ -387,7 +387,7 @@ describe.skip('ConnectionsService', () => {
       };
 
       jest
-        .spyOn(natsClient, 'getAgentByParticipantId')
+        .spyOn(natsClient, 'getConnectionById')
         .mockResolvedValueOnce(getAgentDetails);
 
       jest.spyOn(restClient, 'post').mockResolvedValueOnce(result);
@@ -404,14 +404,10 @@ describe.skip('ConnectionsService', () => {
       const serviceDto: MembershipCredentialDto = {
         attributes: [
           {
-            attribute_name: 'email',
-            value: '',
-            condition: '',
+            attributeName: 'email',
           },
           {
-            attribute_name: 'issuerDID',
-            value: '',
-            condition: '',
+            attributeName: 'issuerDID',
           },
         ],
         connectionId: '',
@@ -458,7 +454,7 @@ describe.skip('ConnectionsService', () => {
       };
 
       jest
-        .spyOn(natsClient, 'getAgentByParticipantId')
+        .spyOn(natsClient, 'getConnectionById')
         .mockResolvedValueOnce(getAgentDetails);
 
       jest.spyOn(restClient, 'post').mockResolvedValueOnce(result);

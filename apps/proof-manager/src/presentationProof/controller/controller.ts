@@ -285,7 +285,7 @@ export default class PresentationProofsController {
             data.requested_proof.revealed_attr_groups[revealedAttrGroupsKey]
               .sub_proof_index;
 
-          const presentationData: any = {
+          const presentationData: (typeof resData)['presentations'][number] = {
             schemaId: data.identifiers[subIndex].schema_id,
             credDefId: data.identifiers[subIndex].cred_def_id,
             revRegId: data.identifiers[subIndex].rev_reg_id,
