@@ -12,9 +12,13 @@
     "lint": "eslint --fix",
     "lint:all": "npm run lint -- .",
     "format": "prettier --write",
-    "format:all": "npm run format -- ."
+    "format:all": "npm run format -- .",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.4.2",
+    "@commitlint/config-conventional": "^18.4.2",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
     "eslint": "^8.54.0",
@@ -23,6 +27,8 @@
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-workspaces": "^0.9.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.1.0",
     "prettier": "^3.1.0"
   }
 }
