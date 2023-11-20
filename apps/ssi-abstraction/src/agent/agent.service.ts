@@ -168,9 +168,7 @@ export class AgentService {
       seed: publicDidSeed,
     });
 
-    // eslint-disable-next-line no-restricted-syntax
     for (const publicDidResponse of registeredPublicDidResponses) {
-      // eslint-disable-next-line no-await-in-loop
       await this.agent.dids.import({
         overwrite: true,
         did: publicDidResponse.did,

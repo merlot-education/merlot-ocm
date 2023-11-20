@@ -22,8 +22,6 @@ interface Config {
     autoAcceptConnection: boolean;
     autoAcceptCredential: AutoAcceptCredential;
     idUnionKey: string;
-    basicUser: string;
-    basicPass: string;
   };
 }
 
@@ -49,8 +47,6 @@ const config = (): Config => ({
     autoAcceptCredential: process.env
       .AGENT_AUTO_ACCEPT_CREDENTIAL as AutoAcceptCredential,
     idUnionKey: process.env.AGENT_ID_UNION_KEY || '',
-    basicUser: process.env.BASIC_USER!,
-    basicPass: process.env.BASIC_PASS!,
   },
 });
 

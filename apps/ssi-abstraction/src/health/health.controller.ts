@@ -7,7 +7,6 @@ export class HealthController {
    *
    * @returns - OK (200) if app is running
    */
-  // eslint-disable-next-line class-methods-use-this
   @Get()
   getHealth() {
     return {

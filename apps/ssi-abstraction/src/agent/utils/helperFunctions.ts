@@ -1,6 +1,7 @@
+import { AxiosError } from 'axios';
 import logger from '../../globalUtils/logger.js';
 
-export function logAxiosError(err: any) {
+export function logAxiosError(err: AxiosError) {
   if (err.response) {
     logger.error('Request made and server responded: ');
     logger.error(`Data: ${err.response.data}`);

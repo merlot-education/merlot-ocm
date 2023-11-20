@@ -7,7 +7,6 @@ import { Request, NextFunction, Response } from 'express';
  */
 @Injectable()
 export class AgentMid implements NestMiddleware {
-  // eslint-disable-next-line class-methods-use-this
   use(req: Request, res: Response, next: NextFunction) {
     const [, prop] = req.url.split('/');
     if (prop === 'info') {

@@ -5,7 +5,6 @@ import { AgentService } from './agent.service.js';
 export class AgentController {
   public constructor(private agent: AgentService) {}
 
-  // eslint-disable-next-line class-methods-use-this
   @Get('info')
   async getWalletInfo() {
     return {

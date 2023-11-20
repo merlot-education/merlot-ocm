@@ -27,12 +27,8 @@ export const registerPublicDids = async ({
   seed,
 }: RegisterPublicDidOptions): Promise<Array<RegisterPublicDidResponse>> => {
   const responses: Array<RegisterPublicDidResponse> = [];
-  // eslint-disable-next-line no-restricted-syntax
   for (const ledgerId of ledgerIds) {
     try {
-      // TODO: why does this fail?
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       const ledgerRegisterUrl = NYM_URL[ledgerId];
       const ledgerNamespace = ledgerNamespaces[ledgerId];
 
@@ -42,7 +38,6 @@ export const registerPublicDids = async ({
         seed,
       };
 
-      // eslint-disable-next-line no-await-in-loop
       const res = await new axios.Axios().post<RegisterPublicDidResponse>(
         ledgerRegisterUrl,
         body,

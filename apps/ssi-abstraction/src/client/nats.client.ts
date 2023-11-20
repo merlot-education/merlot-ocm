@@ -15,7 +15,7 @@ export class NatsClientService {
    * @param eventName - the event name
    * @param data - the data to be passed as payload of the event
    */
-  publish(eventName: string, data: any) {
+  publish<D = unknown>(eventName: string, data: D) {
     logger.info(
       `Publish nats event: ${NATSServices.SERVICE_NAME}/${eventName}`,
     );
