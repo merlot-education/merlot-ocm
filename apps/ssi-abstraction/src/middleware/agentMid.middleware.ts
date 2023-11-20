@@ -36,5 +36,3 @@ export class AgentMid implements NestMiddleware {
     next();
   }
 }
-
-export default { AgentMid };

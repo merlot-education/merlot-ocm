@@ -31,7 +31,3 @@ export const ledgerNamespaces = {
   BCOVRIN_TEST: 'bcovrin:test',
   GREEN_LIGHT: 'bcovrin:greenlight',
 };
-
-export default {
-  LEDGER_GENESIS,
-};

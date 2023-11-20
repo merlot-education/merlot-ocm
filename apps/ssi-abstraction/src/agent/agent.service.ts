@@ -29,7 +29,6 @@ import {
   IndyVdrPoolConfig,
   IndyVdrSovDidResolver,
 } from '@aries-framework/indy-vdr';
-import { subscribe } from './utils/listener.js';
 import {
   LedgerIds,
   ledgerNamespaces,
@@ -37,8 +36,7 @@ import {
 } from './utils/ledgerConfig.js';
 import { AgentLogger } from './utils/logger.js';
 import { registerPublicDids } from './ledger/register.js';
-import { NatsClientService } from '../client/nats.client.js';
-import logger from '../globalUtils/logger.js';
+import { logger } from '../globalUtils/logger.js';
 
 export type AppAgent = Agent<AgentService['modules']>;
 
@@ -188,5 +186,3 @@ export class AgentService {
     await this.agent.shutdown();
   }
 }
-
-export default AgentService;

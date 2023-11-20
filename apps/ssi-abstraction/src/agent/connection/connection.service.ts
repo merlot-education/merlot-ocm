@@ -1,6 +1,6 @@
 import { ConnectionRecord } from '@aries-framework/core';
 import { Injectable } from '@nestjs/common';
-import AgentService, { AppAgent } from '../agent.service.js';
+import { AgentService, AppAgent } from '../agent.service.js';
 
 @Injectable()
 export class ConnectionService {

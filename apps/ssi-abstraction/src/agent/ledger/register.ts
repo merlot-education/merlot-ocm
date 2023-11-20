@@ -1,4 +1,4 @@
-import logger from '../../globalUtils/logger.js';
+import { logger } from '../../globalUtils/logger.js';
 import axios from 'axios';
 import { logAxiosError } from '../utils/helperFunctions.js';
 import { LedgerIds, ledgerNamespaces, NYM_URL } from '../utils/ledgerConfig.js';
@@ -57,5 +57,3 @@ export const registerPublicDids = async ({
   }
   return responses;
 };
-
-export default registerPublicDids;
