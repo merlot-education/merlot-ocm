@@ -1,15 +1,16 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
+
 import { Connection, NATSServices } from '../common/constants.js';
 
 @Injectable()
 export default class NatsClientService {
-  constructor(
+  public constructor(
     @Inject(NATSServices.SERVICE_NAME) private natsClient: ClientProxy,
   ) {}
 
-  getConnectionById(connectionId: string) {
+  public getConnectionById(connectionId: string) {
     const pattern = {
       endpoint: `${Connection.NATS_ENDPOINT}/${Connection.GET_CONNECTION_BY_ID}`,
     };
@@ -17,7 +18,7 @@ export default class NatsClientService {
     return lastValueFrom(this.natsClient.send(pattern, payload));
   }
 
-  connectionTrusted(connectionId: string) {
+  public connectionTrusted(connectionId: string) {
     const pattern = {
       endpoint: `${Connection.NATS_ENDPOINT}/${Connection.MAKE_CONNECTION_TRUSTED}`,
     };
@@ -25,7 +26,7 @@ export default class NatsClientService {
     return lastValueFrom(this.natsClient.send(pattern, payload));
   }
 
-  getReceivedConnections() {
+  public getReceivedConnections() {
     const pattern = {
       endpoint: `${Connection.NATS_ENDPOINT}/${Connection.GET_RECEIVED_CONNECTIONS}`,
     };

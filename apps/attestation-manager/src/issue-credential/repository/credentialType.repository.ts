@@ -1,16 +1,20 @@
+import type { Prisma } from '@prisma/client';
+
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+
 import PrismaService from '../../prisma/prisma.service.js';
 
 @Injectable()
 export default class CredentialsTypeRepository {
-  constructor(private readonly prismaService: PrismaService) {}
+  public constructor(private readonly prismaService: PrismaService) {}
 
-  async createCredentialsType(data: Prisma.CredentialsTypeCreateInput) {
+  public async createCredentialsType(data: Prisma.CredentialsTypeCreateInput) {
     return this.prismaService.credentialsType.create({ data });
   }
 
-  async createOrUpdateCredentialsType(data: Prisma.CredentialsTypeCreateInput) {
+  public async createOrUpdateCredentialsType(
+    data: Prisma.CredentialsTypeCreateInput,
+  ) {
     const credentialType = await this.prismaService.credentialsType.findFirst({
       where: {
         type: {
@@ -50,7 +54,7 @@ export default class CredentialsTypeRepository {
     });
   }
 
-  async findUniqueCredentialsType(data: { type: string }) {
+  public async findUniqueCredentialsType(data: { type: string }) {
     return this.prismaService.credentialsType.findFirst({
       where: {
         type: {
@@ -62,7 +66,7 @@ export default class CredentialsTypeRepository {
   }
 
   // TODO check
-  async updateCredentialsType(params: {
+  public async updateCredentialsType(params: {
     where: Prisma.CredentialsTypeWhereUniqueInput;
     data: Prisma.CredentialsTypeUpdateInput;
   }) {
@@ -73,7 +77,7 @@ export default class CredentialsTypeRepository {
     });
   }
 
-  async findCredentialsType(params: {
+  public async findCredentialsType(params: {
     skip?: number;
     take?: number;
     cursor?: Prisma.CredentialsTypeWhereUniqueInput;

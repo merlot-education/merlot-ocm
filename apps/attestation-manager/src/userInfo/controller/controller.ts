@@ -12,7 +12,8 @@ import {
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
 import { isUUID } from 'class-validator';
-import type { Response } from 'express';
+import { Response } from 'express';
+
 import { AutoAcceptCredential } from '../../common/constants.js';
 import logger from '../../utils/logger.js';
 import UserInfoDto from '../entities/userInfo.entity.js';
@@ -21,7 +22,7 @@ import UserInfoService from '../services/service.js';
 @ApiTags('userInfo (to be deprecated)')
 @Controller('userInfo')
 export default class UserInfoController {
-  constructor(private readonly userInfoService: UserInfoService) {}
+  public constructor(private readonly userInfoService: UserInfoService) {}
 
   @Version(['1'])
   @ApiBody({ type: UserInfoDto })
@@ -31,7 +32,7 @@ export default class UserInfoController {
     description:
       'This call provides the capability to add any additional information to connection. The format of added data is just a simple json',
   })
-  async createUserInfo(
+  public async createUserInfo(
     @Body() userInfoDto: UserInfoDto,
     @Res() response: Response,
   ) {

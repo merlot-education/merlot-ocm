@@ -1,5 +1,8 @@
+import type { TestingModule } from '@nestjs/testing';
+
 import { ConfigService } from '@nestjs/config';
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
+
 import PrismaService from '../prisma.service.js';
 
 describe('PrismaService', () => {
@@ -18,7 +21,7 @@ describe('PrismaService', () => {
   });
 
   describe('onModuleInit()', () => {
-    let res: any;
+    let res: unknown;
 
     beforeEach(async () => {
       res = await prismaService.onModuleInit();
@@ -30,7 +33,7 @@ describe('PrismaService', () => {
   });
 
   describe('onModuleDestroy()', () => {
-    let res: any;
+    let res: unknown;
 
     beforeEach(async () => {
       res = await prismaService.onModuleDestroy();

@@ -1,5 +1,6 @@
+import type CredentialTypeDto from '../../entities/credentialType.entity.js';
+
 import schemaDto from '../../../schemas/tests/stubs/schema-dto.js';
-import CredentialTypeDto from '../../entities/credentialType.entity.js';
 
 const credentialsTypeDto = (): CredentialTypeDto => ({
   id: 'credential-type-id',

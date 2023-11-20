@@ -1,16 +1,18 @@
+import type SchemaDto from '../../schemas/entities/schema-entity.js';
+import type CredentialDefDto from '../entities/credentialDef-entity.js';
+import type CredentialDefLedgerDto from '../entities/credentialDefLedger-entity.js';
+import type { Prisma } from '@prisma/client';
+
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Prisma } from '@prisma/client';
+
 import RestClientService from '../../client/rest.client.js';
+import CredentialTypeRepository from '../../issue-credential/repository/credentialType.repository.js';
 import PrismaService from '../../prisma/prisma.service.js';
-import SchemaDto from '../../schemas/entities/schema-entity.js';
 import SchemasService from '../../schemas/services/service.js';
 import logger from '../../utils/logger.js';
 import pagination from '../../utils/pagination.js';
-import CredentialDefDto from '../entities/credentialDef-entity.js';
-import CredentialDefLedgerDto from '../entities/credentialDefLedger-entity.js';
 import CredentialDefRepository from '../repository/credentialDef.respository.js';
-import CredentialTypeRepository from '../../issue-credential/repository/credentialType.repository.js';
 
 @Injectable()
 export default class CredentialDefService {
@@ -18,7 +20,7 @@ export default class CredentialDefService {
 
   private credentialTypeRepository: CredentialTypeRepository;
 
-  constructor(
+  public constructor(
     private readonly prismaService: PrismaService,
     private readonly restClient: RestClientService,
     private readonly configService: ConfigService,
@@ -33,7 +35,7 @@ export default class CredentialDefService {
     );
   }
 
-  async createCredDef(credentialDefDtoPar: CredentialDefDto) {
+  public async createCredDef(credentialDefDtoPar: CredentialDefDto) {
     const credentialDefDto: CredentialDefDto = credentialDefDtoPar;
     const schema = await this.schemaService.findBySchemaId(
       credentialDefDto.schemaID,
@@ -73,7 +75,11 @@ export default class CredentialDefService {
     return this.credentialDefRepository.createCredDef(credentialDefDto);
   }
 
-  async findCredentialDef(pageSize: number, page: number, getSchemaID: string) {
+  public async findCredentialDef(
+    pageSize: number,
+    page: number,
+    getSchemaID: string,
+  ) {
     let query: {
       skip?: number;
       take?: number;
@@ -90,7 +96,7 @@ export default class CredentialDefService {
     return this.credentialDefRepository.findCredentialDef(query);
   }
 
-  async findCredentialDefBySchemaIdAndCredDefId(data: {
+  public async findCredentialDefBySchemaIdAndCredDefId(data: {
     schemaID: string;
     credDefId: string;
   }) {
@@ -99,7 +105,7 @@ export default class CredentialDefService {
     });
   }
 
-  async findCredentialDefBySchemaIdDesc(data: { schemaID: string }) {
+  public async findCredentialDefBySchemaIdDesc(data: { schemaID: string }) {
     return this.credentialDefRepository.findCredentialDef({
       where: data,
       orderBy: {
@@ -108,13 +114,13 @@ export default class CredentialDefService {
     });
   }
 
-  async findCredentialDefById(id: string) {
+  public async findCredentialDefById(id: string) {
     return this.credentialDefRepository.findCredentialDef({
       where: { credDefId: id },
     });
   }
 
-  async checkCredDefByNameAndSchemaID(createSchema: CredentialDefDto) {
+  public async checkCredDefByNameAndSchemaID(createSchema: CredentialDefDto) {
     return this.credentialDefRepository.findCredentialDef({
       where: {
         schemaID: {
@@ -127,7 +133,7 @@ export default class CredentialDefService {
     });
   }
 
-  async createCredDefOnLedger(credentialDefDto: CredentialDefLedgerDto) {
+  public async createCredDefOnLedger(credentialDefDto: CredentialDefLedgerDto) {
     const agentUrl = this.configService.get('agent.AGENT_URL');
     return this.restClient.post(
       `${agentUrl}/credential-definitions/`,

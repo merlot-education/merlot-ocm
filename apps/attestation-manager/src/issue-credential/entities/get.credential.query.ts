@@ -2,44 +2,44 @@ import { IsBoolean, IsString, IsDateString } from 'class-validator';
 
 export default class GetCredentialQuery {
   @IsString()
-  page?: string;
+  public page?: string;
 
   @IsString()
-  pageSize?: string;
+  public pageSize?: string;
 
   @IsString()
-  threadId?: string;
+  public threadId?: string;
 
   @IsBoolean()
-  isReceived?: boolean | string;
+  public isReceived?: boolean | string;
 
   @IsString()
-  state?: string;
+  public state?: string;
 
   @IsString()
-  credDefId?: string;
+  public credDefId?: string;
 
   @IsDateString()
-  createdDateStart?: string;
+  public createdDateStart?: string;
 
   @IsDateString()
-  createdDateEnd?: string;
+  public createdDateEnd?: string;
 
   @IsDateString()
-  updatedDateStart?: string;
+  public updatedDateStart?: string;
 
   @IsDateString()
-  updatedDateEnd?: string;
+  public updatedDateEnd?: string;
 
   @IsDateString()
-  expirationDateStart?: string;
+  public expirationDateStart?: string;
 
   @IsDateString()
-  expirationDateEnd?: string;
+  public expirationDateEnd?: string;
 
   @IsString()
-  connectionId?: string;
+  public connectionId?: string;
 
   @IsString()
-  principalDid?: string;
+  public principalDid?: string;
 }

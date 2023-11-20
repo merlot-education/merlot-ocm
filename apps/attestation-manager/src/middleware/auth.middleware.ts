@@ -1,14 +1,16 @@
-import { HttpStatus, Injectable, NestMiddleware } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { NextFunction, Request, Response } from 'express';
+import type { NestMiddleware } from '@nestjs/common';
+import type { NextFunction, Request, Response } from 'express';
 
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import * as jwt from 'jsonwebtoken';
 import jwksClient from 'jwks-rsa';
+
 import logger from '../utils/logger.js';
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
-  constructor(private readonly configService: ConfigService) {}
+  public constructor(private readonly configService: ConfigService) {}
 
   /* eslint-disable */
   async use(req: Request, res: Response, next: NextFunction) {

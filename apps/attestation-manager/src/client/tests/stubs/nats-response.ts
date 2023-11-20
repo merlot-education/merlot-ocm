@@ -1,4 +1,5 @@
 import type { ResponseType } from '../../../common/response.js';
+
 import AttestationService from '../../../issue-credential/services/service.js';
 
 const natsAgentResponse: ResponseType = {

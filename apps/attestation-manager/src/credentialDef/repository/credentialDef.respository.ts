@@ -1,12 +1,14 @@
+import type { Prisma } from '@prisma/client';
+
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+
 import PrismaService from '../../prisma/prisma.service.js';
 
 @Injectable()
 export default class CredentialDefRepository {
-  constructor(private readonly prismaService: PrismaService) {}
+  public constructor(private readonly prismaService: PrismaService) {}
 
-  async createCredDef(data: Prisma.CredentialDefCreateInput) {
+  public async createCredDef(data: Prisma.CredentialDefCreateInput) {
     const credDef = await this.prismaService.credentialDef.create({
       data,
     });
@@ -27,7 +29,7 @@ export default class CredentialDefRepository {
     return credDef;
   }
 
-  async findCredentialDef(params: {
+  public async findCredentialDef(params: {
     skip?: number;
     take?: number;
     cursor?: Prisma.CredentialDefWhereUniqueInput;
@@ -49,7 +51,7 @@ export default class CredentialDefRepository {
     ]);
   }
 
-  async findUniqueCredentialDef(params: {
+  public async findUniqueCredentialDef(params: {
     where: Prisma.CredentialDefWhereUniqueInput;
   }) {
     const { where } = params;

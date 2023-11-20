@@ -1,9 +1,13 @@
+import type SchemaDto from '../entities/schema-entity.js';
+import type { TestingModule } from '@nestjs/testing';
+
 import { HttpStatus } from '@nestjs/common';
-import { Test, TestingModule } from '@nestjs/testing';
-import httpMocks from 'node-mocks-http';
+import { Test } from '@nestjs/testing';
+import { createResponse } from 'node-mocks-http';
+
 import SchemasController from '../controller/controller.js';
-import SchemaDto from '../entities/schema-entity.js';
 import SchemasService from '../services/service.js';
+
 import SchemasServiceMock from './__mocks__/service.js';
 import schemaDto from './stubs/schema-dto.js';
 
@@ -32,13 +36,13 @@ describe('SchemasController', () => {
   });
 
   describe('findSchemas()', () => {
-    let schemasResponse: Response<string, Record<string, any>>;
+    let schemasResponse: Response<string, Record<string, unknown>>;
     let query: SchemaDto;
-    let response: Response<string, Record<string, any>>;
+    let response: Response<string, Record<string, unknown>>;
 
     beforeEach(async () => {
       query = schemaDto();
-      response = httpMocks.createResponse();
+      response = createResponse();
 
       schemasResponse = await schemasController.findSchemas(query, response);
     });
@@ -62,13 +66,13 @@ describe('SchemasController', () => {
   });
 
   describe('findSchemasById()', () => {
-    let schemasResponse: Response<string, Record<string, any>>;
+    let schemasResponse: Response<string, Record<string, unknown>>;
     let id: string;
-    let response: Response<string, Record<string, any>>;
+    let response: Response<string, Record<string, unknown>>;
 
     beforeEach(async () => {
       id = schemaDto().schemaID || '';
-      response = httpMocks.createResponse();
+      response = createResponse();
 
       schemasResponse = await schemasController.findSchemasById(id, response);
     });
@@ -87,13 +91,13 @@ describe('SchemasController', () => {
   });
 
   describe('createSchema()', () => {
-    let schemasResponse: Response<string, Record<string, any>>;
+    let schemasResponse: Response<string, Record<string, unknown>>;
     let createSchema: SchemaDto;
-    let response: Response<string, Record<string, any>>;
+    let response: Response<string, Record<string, unknown>>;
 
     beforeEach(async () => {
       createSchema = schemaDto();
-      response = httpMocks.createResponse();
+      response = createResponse();
 
       schemasResponse = await schemasController.createSchema(
         createSchema,

@@ -1,5 +1,6 @@
+import type CredentialDto from '../../entities/credential.entity.js';
+
 import credDefStub from '../../../credentialDef/tests/stubs/credDef.stub.js';
-import CredentialDto from '../../entities/credential.entity.js';
 import AttestationService from '../../services/service.js';
 
 const credentialDto = (): CredentialDto => ({

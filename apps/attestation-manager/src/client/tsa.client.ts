@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+
 import RestClientService from './rest.client.js';
 
 export interface PolicyReturnType {
@@ -13,9 +14,9 @@ export interface PolicyResult {
 
 @Injectable()
 export default class TSAClientService {
-  constructor(private readonly restClient: RestClientService) {}
+  public constructor(private readonly restClient: RestClientService) {}
 
-  async getPolicy(policyUrl: string) {
+  public async getPolicy(policyUrl: string) {
     try {
       const policyResponse: PolicyResult = await this.restClient.get(policyUrl);
 

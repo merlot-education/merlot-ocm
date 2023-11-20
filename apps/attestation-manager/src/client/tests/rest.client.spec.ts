@@ -1,5 +1,8 @@
+import type { TestingModule } from '@nestjs/testing';
+
 import { HttpModule, HttpService } from '@nestjs/axios';
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
+
 import HttpServiceMock from '../../tests/__mocks__/http-service.js';
 import RestClientService from '../rest.client.js';
 
@@ -25,7 +28,7 @@ describe('RestClientService', () => {
   });
 
   describe('post()', () => {
-    let restClientResponse: any;
+    let restClientResponse: unknown;
 
     beforeEach(async () => {
       restClientResponse = await restClient.post('test_url', {});

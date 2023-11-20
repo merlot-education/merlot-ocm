@@ -1,12 +1,14 @@
+import type { Prisma } from '@prisma/client';
+
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+
 import PrismaService from '../../prisma/prisma.service.js';
 
 @Injectable()
 export default class CredentialRepository {
-  constructor(private readonly prismaService: PrismaService) {}
+  public constructor(private readonly prismaService: PrismaService) {}
 
-  async createCredential(data: Prisma.CredentialCreateInput) {
+  public async createCredential(data: Prisma.CredentialCreateInput) {
     const credential = await this.prismaService.credential.create({ data });
 
     const credDef = await this.prismaService.credentialDef.findFirst({
@@ -33,7 +35,7 @@ export default class CredentialRepository {
     return credential;
   }
 
-  async findUniqueCredential(params: {
+  public async findUniqueCredential(params: {
     where: Prisma.CredentialWhereUniqueInput;
   }) {
     const { where } = params;
@@ -42,7 +44,7 @@ export default class CredentialRepository {
     });
   }
 
-  async updateCredential(params: {
+  public async updateCredential(params: {
     where: Prisma.CredentialWhereUniqueInput;
     data: Prisma.CredentialUpdateInput;
   }) {
@@ -53,7 +55,7 @@ export default class CredentialRepository {
     });
   }
 
-  async findCredential(params: {
+  public async findCredential(params: {
     skip?: number;
     take?: number;
     cursor?: Prisma.CredentialWhereUniqueInput;
@@ -78,7 +80,9 @@ export default class CredentialRepository {
     ]);
   }
 
-  async deleteCredential(params: { where: Prisma.CredentialWhereUniqueInput }) {
+  public async deleteCredential(params: {
+    where: Prisma.CredentialWhereUniqueInput;
+  }) {
     const { where } = params;
 
     return this.prismaService.credential.delete({

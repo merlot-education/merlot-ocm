@@ -2,11 +2,11 @@ import { IsString, IsBoolean } from 'class-validator';
 
 export default class CredentialDefLedgerDto {
   @IsString()
-  schemaId: string;
+  public schemaId: string;
 
   @IsBoolean()
-  supportRevocation?: boolean;
+  public supportRevocation?: boolean;
 
   @IsString()
-  tag?: string;
+  public tag?: string;
 }

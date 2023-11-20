@@ -1,7 +1,11 @@
+import type { ResponseType } from '../../common/response.js';
+import type { TestingModule } from '@nestjs/testing';
+import type { Credential, CredentialsType } from '@prisma/client';
+
 import { HttpModule } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
-import { Test, TestingModule } from '@nestjs/testing';
-import { Credential, CredentialsType } from '@prisma/client';
+import { Test } from '@nestjs/testing';
+
 import NatsClientService from '../../client/nats.client.js';
 import RestClientService from '../../client/rest.client.js';
 import NatsClientServiceMock from '../../client/tests/__mocks__/nats.client.js';
@@ -9,12 +13,12 @@ import RestClientServiceMock from '../../client/tests/__mocks__/rest.client.js';
 import TSAClientServiceMock from '../../client/tests/__mocks__/tsa.client.js';
 import { natsConnectionResponse } from '../../client/tests/stubs/nats-response.js';
 import TSAClientService from '../../client/tsa.client.js';
-import { ResponseType } from '../../common/response.js';
 import CredentialDefService from '../../credentialDef/services/service.js';
 import CredentialDefServiceMock from '../../credentialDef/tests/__mocks__/service.js';
 import PrismaService from '../../prisma/prisma.service.js';
 import PrismaServiceMock from '../../prisma/tests/__mocks__/prisma.service.js';
 import AttestationService from '../services/service.js';
+
 import credentialDto from './stubs/credential-dto.js';
 import credentialsTypeDto from './stubs/credential-type-dto.js';
 

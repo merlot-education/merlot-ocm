@@ -3,11 +3,11 @@ type UserInfo = {
 };
 
 export default class UpdateUserInfoDto {
-  connectionId: string;
+  public connectionId: string;
 
-  status: string;
+  public status: string;
 
-  credentialDefinitionId: string;
+  public credentialDefinitionId: string;
 
-  userInfo: UserInfo;
+  public userInfo: UserInfo;
 }

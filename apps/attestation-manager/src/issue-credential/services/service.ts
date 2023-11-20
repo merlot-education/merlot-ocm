@@ -1,10 +1,17 @@
+import type CredentialDto from '../entities/credential.entity.js';
+import type CredentialTypeDto from '../entities/credentialType.entity.js';
+import type OfferCredentialDto from '../entities/entity.js';
+import type GetIssueCredentialsDto from '../entities/get-issue-credentials.dto.js';
+import type ProposeCredentialDto from '../entities/propose-credential.dto.js';
+import type { Credential, Prisma } from '@prisma/client';
+
 import {
   BadRequestException,
   Injectable,
   PreconditionFailedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Credential, Prisma } from '@prisma/client';
+
 import NatsClientService from '../../client/nats.client.js';
 import RestClientService from '../../client/rest.client.js';
 import TSAClientService from '../../client/tsa.client.js';
@@ -14,11 +21,6 @@ import PrismaService from '../../prisma/prisma.service.js';
 import Utils from '../../utils/common.js';
 import logger from '../../utils/logger.js';
 import pagination from '../../utils/pagination.js';
-import CredentialDto from '../entities/credential.entity.js';
-import CredentialTypeDto from '../entities/credentialType.entity.js';
-import OfferCredentialDto from '../entities/entity.js';
-import GetIssueCredentialsDto from '../entities/get-issue-credentials.dto.js';
-import ProposeCredentialDto from '../entities/propose-credential.dto.js';
 import CredentialRepository from '../repository/credential.repository.js';
 import CredentialsTypeRepository from '../repository/credentialType.repository.js';
 
@@ -28,7 +30,7 @@ export default class AttestationService {
 
   private credentialRepositoryType: CredentialsTypeRepository;
 
-  constructor(
+  public constructor(
     private readonly credDefService: CredentialDefService,
     private readonly prismaService: PrismaService,
     private readonly restClient: RestClientService,
@@ -42,7 +44,7 @@ export default class AttestationService {
     );
   }
 
-  static readonly status = {
+  public static readonly status = {
     OFFER_SENT: 'offer-sent',
     PROPOSAL_SENT: 'proposal-sent',
     REQUEST_RECEIVED: 'request-received',
@@ -50,13 +52,14 @@ export default class AttestationService {
     OFFER_RECEIVED: 'offer-received',
   };
 
-  static readonly principalMemberCredential = 'principalMemberCredential';
+  public static readonly principalMemberCredential =
+    'principalMemberCredential';
 
-  static readonly connectionStatus = {
+  public static readonly connectionStatus = {
     TRUSTED: 'trusted',
   };
 
-  async createOfferCredential(
+  public async createOfferCredential(
     credentialRequest: OfferCredentialDto,
     isTrustedConnectionRequired = false,
   ) {
@@ -138,7 +141,7 @@ export default class AttestationService {
     }
   }
 
-  async proposeCredential(connectionCreate: ProposeCredentialDto) {
+  public async proposeCredential(connectionCreate: ProposeCredentialDto) {
     const agentUrl = this.configService.get('agent.AGENT_URL');
     const connectionCreateObj = { ...connectionCreate };
     try {
@@ -154,7 +157,7 @@ export default class AttestationService {
     }
   }
 
-  async acceptRequestCredential(credentialId: string) {
+  public async acceptRequestCredential(credentialId: string) {
     const agentUrl = this.configService.get('agent.AGENT_URL');
 
     const responseData = await this.restClient.post(
@@ -165,7 +168,7 @@ export default class AttestationService {
     return responseData;
   }
 
-  async acceptProposeCredential(credentialId: string) {
+  public async acceptProposeCredential(credentialId: string) {
     const agentUrl = this.configService.get('agent.AGENT_URL');
     const responseData = await this.restClient.post(
       `${agentUrl}/credentials/${credentialId}/accept-proposal`,
@@ -175,7 +178,7 @@ export default class AttestationService {
     return responseData;
   }
 
-  async acceptCredentialOffer(credentialId: string) {
+  public async acceptCredentialOffer(credentialId: string) {
     const agentUrl = this.configService.get('agent.AGENT_URL');
     const responseData = await this.restClient.post(
       `${agentUrl}/credentials/${credentialId}/accept-offer`,
@@ -185,7 +188,7 @@ export default class AttestationService {
     return responseData;
   }
 
-  async acceptCredential(credentialId: string) {
+  public async acceptCredential(credentialId: string) {
     const agentUrl = this.configService.get('agent.AGENT_URL');
     const responseData = await this.restClient.post(
       `${agentUrl}/credentials/${credentialId}/accept-credential`,
@@ -195,7 +198,7 @@ export default class AttestationService {
     return responseData;
   }
 
-  async createCredential(credential: CredentialDto) {
+  public async createCredential(credential: CredentialDto) {
     const connection = await this.getConnectionByID(credential.connectionId);
 
     const credDef = await this.findCredDef(credential.credDefId);
@@ -213,12 +216,12 @@ export default class AttestationService {
     });
   }
 
-  async getConnectionByID(connectionID: string) {
+  public async getConnectionByID(connectionID: string) {
     const connection = await this.natsClient.getConnectionById(connectionID);
     return connection;
   }
 
-  async updateCredential(credential: CredentialDto) {
+  public async updateCredential(credential: CredentialDto) {
     return this.credentialRepository.updateCredential({
       where: { credentialId: credential.credentialId },
       data: {
@@ -228,17 +231,17 @@ export default class AttestationService {
     });
   }
 
-  findCredentialById(credentialId: string) {
+  public findCredentialById(credentialId: string) {
     const where: Prisma.CredentialWhereUniqueInput = { credentialId };
     return this.credentialRepository.findUniqueCredential({ where });
   }
 
-  findCredentialByThreadId(threadId: string) {
+  public findCredentialByThreadId(threadId: string) {
     const where: Prisma.CredentialWhereUniqueInput = { threadId };
     return this.credentialRepository.findUniqueCredential({ where });
   }
 
-  async findCredential(
+  public async findCredential(
     pageSize: number,
     page: number,
     isReceived: boolean,
@@ -326,7 +329,7 @@ export default class AttestationService {
     return this.credentialRepository.findCredential(query);
   }
 
-  async issueMemberCredentials(data: {
+  public async issueMemberCredentials(data: {
     status: string;
     connectionId: string;
     theirLabel: string;
@@ -361,11 +364,11 @@ export default class AttestationService {
     return result;
   }
 
-  getPrincipalMemberShipCredentials(data: { type: string }) {
+  public getPrincipalMemberShipCredentials(data: { type: string }) {
     return this.credentialRepositoryType.findUniqueCredentialsType(data);
   }
 
-  async getSchemaAndAttributesBySchemaIDFromLedger(schemaID: string) {
+  public async getSchemaAndAttributesBySchemaIDFromLedger(schemaID: string) {
     const agentUrl = this.configService.get('agent.AGENT_URL');
     const responseData = await this.restClient.get(
       `${agentUrl}/schemas/${schemaID}`,
@@ -378,7 +381,7 @@ export default class AttestationService {
     return responseData;
   }
 
-  updateSchemaByType(type: string, body: { schemaId: string }) {
+  public updateSchemaByType(type: string, body: { schemaId: string }) {
     return this.credentialRepositoryType.updateCredentialsType({
       where: {
         type,
@@ -389,7 +392,7 @@ export default class AttestationService {
     });
   }
 
-  async getIssueCredentials(data: GetIssueCredentialsDto) {
+  public async getIssueCredentials(data: GetIssueCredentialsDto) {
     return this.credentialRepository.findCredential({
       where: {
         connectionId: data.connectionId,
@@ -397,7 +400,7 @@ export default class AttestationService {
     });
   }
 
-  async getCredentialInformation(credentialId: string) {
+  public async getCredentialInformation(credentialId: string) {
     const agentUrl = this.configService.get('agent.AGENT_URL');
     const responseData = await this.restClient.get(
       `${agentUrl}/credentials/${credentialId}`,
@@ -410,7 +413,7 @@ export default class AttestationService {
     return responseData;
   }
 
-  async deleteCredential(credentialId: string) {
+  public async deleteCredential(credentialId: string) {
     const agentUrl = this.configService.get('agent.AGENT_URL');
     const responseData = await this.restClient.delete(
       `${agentUrl}/credentials/${credentialId}`,
@@ -425,18 +428,18 @@ export default class AttestationService {
     return responseData;
   }
 
-  createCredentialsType(credentialType: CredentialTypeDto) {
+  public createCredentialsType(credentialType: CredentialTypeDto) {
     return this.credentialRepositoryType.createCredentialsType({
       type: credentialType.type,
       schemaId: credentialType.schemaId,
     });
   }
 
-  connectionTrusted(connectionId: string) {
+  public connectionTrusted(connectionId: string) {
     return this.natsClient.connectionTrusted(connectionId);
   }
 
-  async findCredDef(credentialDefinitionId: string) {
+  public async findCredDef(credentialDefinitionId: string) {
     const credDefRes = await this.credDefService.findCredentialDefById(
       credentialDefinitionId,
     );
@@ -451,7 +454,7 @@ export default class AttestationService {
     return credDefRes[1][0];
   }
 
-  async findReceivedCredentials() {
+  public async findReceivedCredentials() {
     try {
       let result: Credential[] = [];
       const receivedConnections =
