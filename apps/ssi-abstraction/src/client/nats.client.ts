@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { NATSServices } from '@common/constants';
-import logger from '@globalUtils/logger';
+import { NATSServices } from '../common/constants.js';
+import logger from '../globalUtils/logger.js';
 
 @Injectable()
 export class NatsClientService {
@@ -15,7 +15,7 @@ export class NatsClientService {
    * @param eventName - the event name
    * @param data - the data to be passed as payload of the event
    */
-  publish(eventName: string, data: any) {
+  publish<D = unknown>(eventName: string, data: D) {
     logger.info(
       `Publish nats event: ${NATSServices.SERVICE_NAME}/${eventName}`,
     );

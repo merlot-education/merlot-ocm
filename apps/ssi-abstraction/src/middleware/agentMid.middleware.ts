@@ -1,6 +1,5 @@
 import { Injectable, NestMiddleware, HttpStatus } from '@nestjs/common';
 import { Request, NextFunction, Response } from 'express';
-import { checkAll } from '../didComm/utils/whitelist';
 
 /**
  * Middleware that checks validity of provided params and body
@@ -8,23 +7,22 @@ import { checkAll } from '../didComm/utils/whitelist';
  */
 @Injectable()
 export class AgentMid implements NestMiddleware {
-  // eslint-disable-next-line class-methods-use-this
   use(req: Request, res: Response, next: NextFunction) {
-    const [, prop, method] = req.url.split('/');
+    const [, prop] = req.url.split('/');
     if (prop === 'info') {
       next();
       return;
     }
 
-    const whiteListErrors = checkAll(prop, method, req.body);
-    if (whiteListErrors && !whiteListErrors.success) {
-      res.send({
-        statusCode: HttpStatus.BAD_REQUEST,
-        error: whiteListErrors.messages,
-      });
-      res.end();
-      return;
-    }
+    // const whiteListErrors = checkAll(prop, method, req.body);
+    // if (whiteListErrors && !whiteListErrors.success) {
+    //   res.send({
+    //     statusCode: HttpStatus.BAD_REQUEST,
+    //     error: whiteListErrors.messages,
+    //   });
+    //   res.end();
+    //   return;
+    // }
 
     if (req.body.subMethod && !req.body.subMethod.name) {
       res.send({

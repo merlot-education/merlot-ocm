@@ -1,10 +1,9 @@
-import { subscribe } from './listener';
+import { subscribe } from './listener.js';
 
 describe('listener', () => {
   it('should subscribe agent to available events', async () => {
     const agent = {
       events: {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         on: (eventName: string, cb: () => void) => {},
       },
     };
@@ -21,7 +20,6 @@ describe('listener', () => {
       .mockImplementation((eventName: string, cb: () => void) => {
         lastCb = cb;
       });
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     subscribe(agent, natsClient);
     expect(spy).toHaveBeenCalled();

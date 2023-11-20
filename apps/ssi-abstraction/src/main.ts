@@ -1,33 +1,22 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
-import { startServer } from '@aries-framework/rest';
-import AppModule from '@src/app.module';
-import { AGENT } from '@agent/module';
-import logger from './globalUtils/logger';
-import swaggerSetup from './globalUtils/swagger';
-import appConf from './globalUtils/appConfig';
+
+import AppModule from './app.module.js';
+import logger from './globalUtils/logger.js';
+import swaggerSetup from './globalUtils/swagger.js';
+import appConf from './globalUtils/appConfig.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const agent = await app.resolve(AGENT);
   const configService = app.get(ConfigService);
 
-  appConf(app, configService);
+  await appConf(app, configService);
 
   swaggerSetup(app);
 
   await app.startAllMicroservices();
 
-  const afjPort = configService.get('afjExtPort') || 3001;
-  const servicePort = configService.get('PORT') || 3000;
-
-  const afjExtConfig = {
-    port: afjPort,
-  };
-
-  await startServer(agent, afjExtConfig);
-
-  logger.info(`Listening AFJ ext on Port: ${afjPort}`);
+  const servicePort = configService.get<number>('port') || 3000;
 
   await app.listen(servicePort, () => {
     logger.info(`Listening on Port: ${servicePort}`);

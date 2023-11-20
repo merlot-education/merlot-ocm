@@ -3,7 +3,6 @@ import Joi from 'joi';
 const validationSchema = Joi.object({
   NATS_URL: Joi.string().required(),
   PORT: Joi.number().required(),
-  AFJ_EXT_PORT: Joi.number().required(),
 
   AGENT_NAME: Joi.string().required(),
   AGENT_WALLET_ID: Joi.string().required(),

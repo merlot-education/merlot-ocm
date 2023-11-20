@@ -1,5 +1,3 @@
-import config from '@config/config';
-
 export const LEDGER_GENESIS = {
   ID_UNION: `{"reqSignature":{},"txn":{"data":{"data":{"alias":"MainIncubator","blskey":"14MPfxHnRvCL5dnbpD3SjxekAGnKyjkmifDFLnMJAvHcvEAarDLWX6KawhubPujSmmUMqRmQfPQzBambrdUqBGgHDryDS6Aj8BioWRwZkyTcH1zzkVQ7vZjE5S6ri5epkiS1VkVX42Z22z4cohdHVuKTgeQB5mjAwi55xNeRxpxhrNb","blskey_pop":"QoqRe3vMPr5Bt1qHDstYewWkxb5VEdugnvumLCWpkZAeUpdqjjaSTSKKJtT7U7aCe8CmShGSdCZFWs9hcpmMSGfMnmon7R99UTJj4jEr48smyxo1UpBcgooznc8N8USkZ8hSec3bRbN9y6NppuaFzfgt1WmJ3cdFi9L1Wbj1fNs5CK","client_ip":"35.207.81.15","client_port":"9702","node_ip":"35.207.81.15","node_port":"9701","services":["VALIDATOR"]},"dest":"EQ2oCtWpMdUCzKgQ2hvbyQ2i6VyJuQF9LcpHRfiah6rW"},"metadata":{"from":"2MZYuPv2Km7Q1eD4GCsSb6"},"type":"0"},"txnMetadata":{"seqNo":1,"txnId":"0a35c047f19448f12a0c2961d8e3085140b8149d87291acbdaf56ed956900d48"},"ver":"1"}
   {"reqSignature":{},"txn":{"data":{"data":{"alias":"tubzecm","blskey":"3Zpdx6LMWPdybnQKPq62S3TaWUhwypr7RV2BBFkeFigjKuue7KJ7rh5w1gZY9qgugww9vZnpURLSjBuTonJpfyfN5nn2ofwFQQa3viiT77hhFf6kQqoMH53f66ZfBNWU2LzphQikXsma9zjZWALMtMsNWx7ftNZ8yzMrZpf1X6VqYX5","blskey_pop":"RbPQSMsV8iuxNXVFNEUPvb6k1wQe1rxaXroMMkpHTstiiJfCApER38jW79Ew1yrnt5ndz7wJeDRU7CkLNzJ6pEZaRYjLzhZL2shRgyaGqnMqkxvD1ewxNMSz7cSgBSChwUgLBxsms5iDyshwAM5dx8B1GayMyATcFxAdgCRiDv3EHm","client_ip":"141.23.35.186","client_port":"9702","node_ip":"141.23.35.186","node_port":"9701","services":["VALIDATOR"]},"dest":"Ddqm5GATTcEb5hrgMBbVL8w6R6mtTHjUpdpyCeWg3pVS"},"metadata":{"from":"JhyMn8Nn3xy2zsXjPaPu3B"},"type":"0"},"txnMetadata":{"seqNo":2,"txnId":"e2f9efff1bfef015098ae299a665154fa39a898a5071d0af03c7f2311fe8577f"},"ver":"1"}
@@ -20,27 +18,18 @@ export const LEDGER_GENESIS = {
   {"reqSignature":{},"txn":{"data":{"data":{"alias":"Node4","blskey":"2zN3bHM1m4rLz54MJHYSwvqzPchYp8jkHswveCLAEJVcX6Mm1wHQD1SkPYMzUDTZvWvhuE6VNAkK3KxVeEmsanSmvjVkReDeBEMxeDaayjcZjFGPydyey1qxBHmTvAnBKoPydvuTAqx5f7YNNRAdeLmUi99gERUU7TD8KfAa6MpQ9bw","blskey_pop":"RPLagxaR5xdimFzwmzYnz4ZhWtYQEj8iR5ZU53T2gitPCyCHQneUn2Huc4oeLd2B2HzkGnjAff4hWTJT6C7qHYB1Mv2wU5iHHGFWkhnTX9WsEAbunJCV2qcaXScKj4tTfvdDKfLiVuU2av6hbsMztirRze7LvYBkRHV3tGwyCptsrP","client_ip":"138.197.161.221","client_port":9708,"node_ip":"138.197.161.221","node_port":9707,"services":["VALIDATOR"]},"dest":"4PS3EDQ3dW1tci1Bp6543CfuuebjFrg36kLAUcskGfaA"},"metadata":{"from":"TWwCRQRZ2ZHMJFn9TzLp7W"},"type":"0"},"txnMetadata":{"seqNo":4,"txnId":"aa5e817d7cc626170eca175822029339a444eb0ee8f0bd20d3b0b76e566fb008"},"ver":"1"}`,
 };
 
-const { idUnionKey } = config().agent;
 export const NYM_URL = {
-  ID_UNION: `https://endorser.idunion.org/api/dids?apiKey=${idUnionKey}`,
+  ID_UNION: 'https://idu.cloudcompass.ca/register',
   BCOVRIN_TEST: 'http://test.bcovrin.vonx.io/register',
   GREEN_LIGHT: 'http://greenlight.bcovrin.vonx.io/register',
-};
+} as const;
 
 export type LedgerIds = keyof typeof LEDGER_GENESIS;
 
 export const ledgerNamespaces = {
-  ID_UNION: 'idunion',
-  BCOVRIN_TEST: 'sovrin:test',
-  GREEN_LIGHT: 'sovrin',
-};
-
-export type LedgerInfo = {
-  id: string;
-  indyNamespace: string;
-  genesisTransactions?: string;
-  genesisPath?: any;
-  isProduction: boolean;
+  ID_UNION: 'idunion:test',
+  BCOVRIN_TEST: 'bcovrin:test',
+  GREEN_LIGHT: 'bcovrin:greenlight',
 };
 
 export default {
