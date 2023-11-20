@@ -19,8 +19,6 @@
     "start:docker": "pnpm prisma:generate && pnpm dbSchema && pnpm start",
     "lint": "eslint .",
     "lint:fix": "pnpm lint --fix",
-    "format": "prettier --write",
-    "format:all": "npm run format -- .",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",

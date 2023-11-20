@@ -17,7 +17,7 @@ node_modules
 # compiled output
 node_modules/
 apps/*/node_modules
-/dist
+dist
 /apps/**/dist/
 *.tsbuildinfo
 

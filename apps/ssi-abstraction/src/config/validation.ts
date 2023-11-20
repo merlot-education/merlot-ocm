@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const validationSchema = Joi.object({
+export const validationSchema = Joi.object({
   NATS_URL: Joi.string().required(),
   PORT: Joi.number().required(),
 
@@ -15,5 +15,3 @@ const validationSchema = Joi.object({
   AGENT_AUTO_ACCEPT_CREDENTIAL: Joi.string().required(),
   AGENT_ID_UNION_KEY: Joi.string(),
 });
-
-export default validationSchema;

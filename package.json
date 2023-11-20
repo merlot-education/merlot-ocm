@@ -9,6 +9,8 @@
     "principal:build": "pnpm -F principal-manager build",
     "proof:build": "pnpm -F proof-manager build",
     "ssi:build": "pnpm -F ssi-abstraction build",
-    "lint": "pnpm -r lint"
+    "lint": "pnpm -r lint",
+    "prettier": "prettier --ignore-path .gitignore '**/*.+(js|json|ts|md|yml|yaml)'",
+    "format": "pnpm prettier --write"
   }
 }

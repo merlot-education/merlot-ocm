@@ -29,7 +29,6 @@ import {
   IndyVdrPoolConfig,
   IndyVdrSovDidResolver,
 } from '@aries-framework/indy-vdr';
-import { subscribe } from './utils/listener.js';
 import {
   LedgerIds,
   ledgerNamespaces,
@@ -37,23 +36,18 @@ import {
 } from './utils/ledgerConfig.js';
 import { AgentLogger } from './utils/logger.js';
 import { registerPublicDids } from './ledger/register.js';
-import { NatsClientService } from '../client/nats.client.js';
-import logger from '../globalUtils/logger.js';
+import { logger } from '../globalUtils/logger.js';
+
+export type AppAgent = Agent<AgentService['modules']>;
 
 @Injectable()
 export class AgentService {
-  private agent: Agent<this['modules']>;
+  public agent: AppAgent;
 
   private configService: ConfigService;
 
-  private natsClient: NatsClientService;
-
-  public constructor(
-    configService: ConfigService,
-    natsClient: NatsClientService,
-  ) {
+  public constructor(configService: ConfigService) {
     this.configService = configService;
-    this.natsClient = natsClient;
 
     const peerPort = this.configService.get('agent.peerPort');
 
@@ -185,7 +179,6 @@ export class AgentService {
   public async onModuleInit() {
     await this.agent.initialize();
     await this.registerPublicDid();
-    subscribe(this.agent, this.natsClient);
     logger.info('Agent initialized');
   }
 
@@ -193,5 +186,3 @@ export class AgentService {
     await this.agent.shutdown();
   }
 }
-
-export default AgentService;

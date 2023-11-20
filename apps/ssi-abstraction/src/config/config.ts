@@ -25,7 +25,7 @@ interface Config {
   };
 }
 
-const config = (): Config => ({
+export const config = (): Config => ({
   agentHost: process.env.AGENT_HOST || '',
   port: Number(process.env.PORT),
   jwtSecret: process.env.JWT_SECRET || '',
@@ -49,5 +49,3 @@ const config = (): Config => ({
     idUnionKey: process.env.AGENT_ID_UNION_KEY || '',
   },
 });
-
-export default config;

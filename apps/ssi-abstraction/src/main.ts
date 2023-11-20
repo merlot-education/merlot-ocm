@@ -1,25 +1,20 @@
 import { NestFactory } from '@nestjs/core';
-import { ConfigService } from '@nestjs/config';
-
-import AppModule from './app.module.js';
-import logger from './globalUtils/logger.js';
-import swaggerSetup from './globalUtils/swagger.js';
-import appConf from './globalUtils/appConfig.js';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { AppModule } from './app.module.js';
+import { config } from './config/config.js';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const configService = app.get(ConfigService);
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+    AppModule,
+    {
+      transport: Transport.NATS,
+      options: {
+        servers: [config().nats.url],
+      },
+    },
+  );
 
-  await appConf(app, configService);
-
-  swaggerSetup(app);
-
-  await app.startAllMicroservices();
-
-  const servicePort = configService.get<number>('port') || 3000;
-
-  await app.listen(servicePort, () => {
-    logger.info(`Listening on Port: ${servicePort}`);
-  });
+  await app.listen();
 }
+
 bootstrap();

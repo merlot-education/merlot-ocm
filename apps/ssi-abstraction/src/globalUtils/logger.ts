@@ -1,7 +1,7 @@
 import winston, { Logger } from 'winston';
 import ecsFormat from '@elastic/ecs-winston-format';
 
-const logger: Logger = winston.createLogger({
+export const logger: Logger = winston.createLogger({
   format: ecsFormat({ convertReqRes: true }),
   transports: [new winston.transports.Console()],
 });
@@ -9,5 +9,3 @@ const logger: Logger = winston.createLogger({
 logger.on('error', (error: Error) => {
   console.error('Error in logger caught', error);
 });
-
-export default logger;

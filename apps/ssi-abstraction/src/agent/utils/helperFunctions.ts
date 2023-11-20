@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import logger from '../../globalUtils/logger.js';
+import { logger } from '../../globalUtils/logger.js';
 
 export function logAxiosError(err: AxiosError) {
   if (err.response) {
@@ -15,7 +15,3 @@ export function logAxiosError(err: AxiosError) {
     logger.error('Request error: ', err);
   }
 }
-
-export default {
-  logAxiosError,
-};
