@@ -10,7 +10,10 @@
     "proof:build": "pnpm -F proof-manager build",
     "ssi:build": "pnpm -F ssi-abstraction build",
     "lint": "pnpm -r lint",
-    "prettier": "prettier --ignore-path .gitignore '**/*.+(js|json|ts|md|yml|yaml)'",
-    "format": "pnpm prettier --write"
+    "format": "prettier --write",
+    "format:all": "npm run format -- ."
+  },
+  "devDependencies": {
+    "prettier": "^3.1.0"
   }
 }

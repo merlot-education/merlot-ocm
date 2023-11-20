@@ -10,8 +10,13 @@
 !*/
 
 # ... in these ones
-!src/*
+!apps/**/src/*
 
 # Explicitly ignore these locations
 node_modules
-dist
+apps/**/dist
+compose
+documentation
+
+# Ignore ssi-abstraction for now
+apps/ssi-abstraction
