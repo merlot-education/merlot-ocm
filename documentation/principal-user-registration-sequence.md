@@ -9,7 +9,7 @@ participant OCM Admin
 participant OCM Connection Manager
 participant OCM Principal Manager
 participant OCM Attestation Manager
- 
+
  par
   User Device->>Playstore/Appstore: Downloads PCM App
   PCM User ->> PCM App: Enters email

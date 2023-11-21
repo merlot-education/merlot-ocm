@@ -20,14 +20,18 @@ import { HookContext as FeathersHookContext } from '@feathersjs/feathers';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const app: Application = express(feathers());
-export type HookContext<T = any> = { app: Application } & FeathersHookContext<T>;
+export type HookContext<T = any> = {
+  app: Application;
+} & FeathersHookContext<T>;
 
 // Load app configuration
 app.configure(configuration());
 // Enable security, CORS, compression, favicon and body parsing
-app.use(helmet({
-  contentSecurityPolicy: false
-}));
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  }),
+);
 app.use(cors());
 app.use(compress());
 app.use(express.json());

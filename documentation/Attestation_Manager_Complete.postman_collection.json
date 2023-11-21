@@ -1,619 +1,528 @@
 {
-	"info": {
-		"_postman_id": "fb7eaa5c-4a0e-4fcc-8c75-c71b76716709",
-		"name": "Attestation Manager Complete",
-		"description": "Attestation Manager is the collection of apis which are used used to create schema and credential definition, offer verifiable credentials and issue them, get list of schemas and credential definition by different filters.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17714957"
-	},
-	"item": [
-		{
-			"name": "Autoissue-PCM-VC",
-			"item": [
-				{
-					"name": "Create-pcm-schema",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const res = pm.response.json()\r",
-									"\r",
-									"if(res.statusCode == 201){\r",
-									"    pm.environment.set(\"pcm-schema-id\", res.data.schemaID);\r",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"principal_schema_01-07-22\",\r\n    \"version\": \"01.07.22\",\r\n    \"attributes\": [\r\n        \"email\",\r\n        \"issuerDID\",\r\n        \"subjectDID\",\r\n        \"federationName\",\r\n        \"employeeID\",\r\n        \"federationID\",\r\n        \"firstName\",\r\n        \"lastName\",\r\n        \"address\"\r\n    ],\r\n    \"createdBy\": \"acceptsAnyStrings\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{att_man_baseURL}}/v1/schemas",
-							"host": [
-								"{{att_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"schemas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create-pcm-cred-def",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const res = pm.response.json()\r",
-									"\r",
-									"if(res.statusCode == 201){\r",
-									"    pm.environment.set(\"pcm-vc-cred-def-id\", res.data.credDefId);\r",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"principal_member-010722-01\",\r\n  \"isRevokable\": false,\r\n  \"isAutoIssue\": false,\r\n  \"schemaID\": \"{{pcm-schema-id}}\",\r\n  \"createdBy\": \"acceptsAnyString\",\r\n  \"expiryHours\" : \"-1\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{att_man_baseURL}}/v1/credentialDef",
-							"host": [
-								"{{att_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"credentialDef"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Post-credentialType-for-autoissue",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"type\": \"principalMemberCredential\",\n  \"schemaId\": \"{{pcm-schema-id}}\"\n}"
-						},
-						"url": {
-							"raw": "{{att_man_baseURL}}/v1/credentialType",
-							"host": [
-								"{{att_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"credentialType"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update-credDefId-Type",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"schemaId\": \"{{pcm-schema-id}}\"\n}"
-						},
-						"url": {
-							"raw": "{{att_man_baseURL}}/v1/updateSchemaIdByType?type=principalMemberCredential",
-							"host": [
-								"{{att_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"updateSchemaIdByType"
-							],
-							"query": [
-								{
-									"key": "type",
-									"value": "principalMemberCredential"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Offer-pcm-cred-def-MANUALLY-temp",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const res = pm.response.json()\r",
-									"\r",
-									"if(res.statusCode == 201){\r",
-									"    pm.environment.set(\"cred-offer-id\", res.data.id);\r",
-									"}\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const arr = JSON.parse(pm.environment.get(\"schema_attr\"))\r",
-									"for (let i = 0; i < arr.length; i++) {\r",
-									"    pm.globals.set(\"array\"+[i], arr[i]);\r",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"connectionId\": \"{{conn-id}}\",\r\n    \"credentialDefinitionId\": \"{{pcm-vc-cred-def-id}}\",\r\n    \"comment\": \"Created\",\r\n    \"attributes\": [\r\n        {\r\n            \"name\": \"email\",\r\n            \"value\": \"alena@vomoto.com\"\r\n        },\r\n        {\r\n            \"name\": \"issuerDID\",\r\n            \"value\": \"H1XnVZzx83suh2x71jnFJt\"\r\n        },\r\n        {\r\n            \"name\": \"subjectDID\",\r\n            \"value\": \"H1XnVZzx83suh2x71jnFJt\"\r\n        }\r\n    ],\r\n    \"autoAcceptCredential\": \"never\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{att_man_baseURL}}/v1/create-offer-credential/",
-							"host": [
-								"{{att_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"create-offer-credential",
-								""
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Get-all-schemas",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{att_man_baseURL}}/v1/schemas?pageSize=20&page",
-					"host": [
-						"{{att_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"schemas"
-					],
-					"query": [
-						{
-							"key": "pageSize",
-							"value": "20"
-						},
-						{
-							"key": "page",
-							"value": null
-						}
-					]
-				},
-				"description": "#### **Description** **:**\n\nThis request fetches all the the schemas created by the requesting participant.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| pageSize | no | `pageSize`  <br>Should be provided in query parameter. It filters the list and sets the page size. |\n| page | no | `page`  <br>Should be provided in query parameter. It filters the list and sets the page to land on. |"
-			},
-			"response": []
-		},
-		{
-			"name": "Get-schema-by-id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{att_man_baseURL}}/v1/schemas/{{pcm-schema-id}}",
-					"host": [
-						"{{att_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"schemas",
-						"{{pcm-schema-id}}"
-					]
-				},
-				"description": "#### **Description** **:**\n\nThis request is used to fetch schema for the provided schema id in URL."
-			},
-			"response": []
-		},
-		{
-			"name": "Create-schemas",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json()\r",
-							"\r",
-							"if(res.statusCode == 201){\r",
-							"    pm.environment.set(\"schema-id\", res.data.schemaID);\r",
-							"}"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"pizza_sandwich_280622-01\",\r\n  \"version\": \"28.06.22\",\r\n  \"attributes\": {{schema_attr}},\r\n  \"createdBy\": \"2344789247389\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{att_man_baseURL}}/v1/schemas",
-					"host": [
-						"{{att_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"schemas"
-					]
-				},
-				"description": "#### **Description** **:**\n\nIt is used to create the schema.\n\n> The schema is a template which defines the schema name, version and the attributes and is used to define the credential definition.\n\n#### **Body Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| name | required | `\"shema_name\"`  <br>should be provided in \"STRING\" format |\n| version | required | `\"X.X.X\"`  <br>should be provided as \"SemVer\"(\"1.2.3\") in \"STRING\" format. |\n| attributes | required | `[\"attr_1\",\"attr_2\"......\"attr_n\"]`  <br>attributes are the key against which the values will be issued in credential. attributes in the \"STRING\" array. |\n| created_by | required | `\"OCM_DID\"`  <br>created_by accepts the Organization Credential Manager's DID. |"
-			},
-			"response": []
-		},
-		{
-			"name": "Create-cred-def",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json()\r",
-							"\r",
-							"if(res.statusCode == 201){\r",
-							"    pm.environment.set(\"cred-def-id\", res.data.credDefId);\r",
-							"}"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Enrollment_credDef-010722\",\r\n  \"isRevokable\": false,\r\n  \"isAutoIssue\": false,\r\n  \"schemaID\": \"{{schema-id}}\",\r\n  \"createdBy\": \"acceptsAnyString\",\r\n  \"expiryHours\" : \"24\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{att_man_baseURL}}/v1/credentialDef",
-					"host": [
-						"{{att_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"credentialDef"
-					]
-				},
-				"description": "#### **Description** **:**\n\nIt is used to create the Credential Definition.\n\n> A credential definition is a particular issuer's template based on an existing schema to issue credentials from.\n\n#### **Body Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| name | required | `\"Cred_Def_name\"`  <br>should be provided in \"STRING\" format |\n| is_revokable | required | `true` or `false`  <br>should be provided boolean. |\n| is_auto_issue | required | `true` or `false`  <br>should be provided boolean. |\n| schemaID | required | `\"schema_name\"`Should be valid existing schema and should be provided as \"STRING\" |\n| created_by | required | `\"OCM_DID\"`  <br>created_by accepts the Organization Credential Manager's DID. |\n| expiry | required | `\"number of hours\"`  <br>expiry provides the time for which the verifiable credential will stay active in the wallet. |"
-			},
-			"response": []
-		},
-		{
-			"name": "Offer-cred-def",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json()\r",
-							"\r",
-							"if(res.statusCode == 201){\r",
-							"    pm.environment.set(\"cred-offer-id\", res.data.id);\r",
-							"}\r",
-							"\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"const arr = JSON.parse(pm.environment.get(\"schema_attr\"))\r",
-							"for (let i = 0; i < arr.length; i++) {\r",
-							"    pm.globals.set(\"array\"+[i], arr[i]);\r",
-							"}"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"connectionId\": \"{{conn-id}}\",\r\n    \"credentialDefinitionId\": \"{{cred-def-id}}\",\r\n    \"comment\": \"Created\",\r\n    \"attributes\": [\r\n        {\r\n            \"name\": \"{{array0}}\",\r\n            \"value\": \"test_fname_3\"\r\n        },\r\n        {\r\n            \"name\": \"{{array1}}\",\r\n            \"value\": \"test_lname_3\"\r\n        },\r\n        {\r\n            \"name\": \"{{array2}}\",\r\n            \"value\": \"test_gender_3\"\r\n        }\r\n    ],\r\n    \"autoAcceptCredential\": \"never\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{att_man_baseURL}}/v1/create-offer-credential/",
-					"host": [
-						"{{att_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"create-offer-credential",
-						""
-					]
-				},
-				"description": "#### **Description** **:**\n\nA message sent by the Issuer to the potential Holder, describing the credential they intend to offer.\n\n> In Hyperledger Indy, this message is required, because it forces the Issuer to make a cryptographic commitment to the set of fields in the final credential and thus prevents Issuers from inserting spurious data.\n\n#### **Body Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| connectionId | required | `\"`connectionId`\"`  <br>should be provided in \"STRING\" format. It the peer to peer connection id for two aeries agent. |\n| credentialDefinitionId | required | `\"cred_def_id\"`  <br>should be provided in \"STRING\" format. It is the derived when the Credential Definition is created. |\n| attributes | required | `[{ \"name\" : \"attr_name\", \"value\" : \"attr_value\" }]`  <br>should be provided JSON array. |"
-			},
-			"response": []
-		},
-		{
-			"name": "Accept-request-issue-cred",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{att_man_baseURL}}/v1/accept-request?credentialId={{cred-offer-id}}",
-					"host": [
-						"{{att_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"accept-request"
-					],
-					"query": [
-						{
-							"key": "credentialId",
-							"value": "{{cred-offer-id}}"
-						}
-					]
-				},
-				"description": "#### **Description** **:**\n\nIt is used to accept the acknowledgement received from another Aries agent for the issuance for Verifiable Credential and send Verifiable Credential.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| credentialId | required | `\"credential_offer_id\"`  <br>should be provided in \"STRING\" format. It is derived from offer_credential_definition request. |"
-			},
-			"response": []
-		},
-		{
-			"name": "Get-credentials",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{att_man_baseURL}}/v1/credential/",
-					"host": [
-						"{{att_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"credential",
-						""
-					],
-					"query": [
-						{
-							"key": "state",
-							"value": "",
-							"disabled": true
-						},
-						{
-							"key": "pageSize",
-							"value": "",
-							"disabled": true
-						},
-						{
-							"key": "page",
-							"value": "",
-							"disabled": true
-						},
-						{
-							"key": "isReceived",
-							"value": "true",
-							"disabled": true
-						},
-						{
-							"key": "threadId",
-							"value": "33e5ea8e-ec08-4144-aac3-d173ab0e58b8",
-							"disabled": true
-						}
-					]
-				},
-				"description": "#### **Description** **:**\n\nThis request fetches the created credentials.\n\n> It uses pagination to provide the particular number of records filtered as per the input given.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| state | no | `state`  <br>should be provided in query parameter. It filters the connections list according the provided state value. |\n| pageSize | no | `pageSize`  <br>Should be provided in query parameter. It filters the list and sets the page size. |\n| page | no | `page`  <br>Should be provided in query parameter. It filters the list and sets the page to land on. |"
-			},
-			"response": []
-		},
-		{
-			"name": "Get-cred-by-id",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{att_man_baseURL}}/v1/credentialDef/{{cred-def-id}}",
-					"host": [
-						"{{att_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"credentialDef",
-						"{{cred-def-id}}"
-					]
-				},
-				"description": "#### **Description** **:**\n\nThis request is used to fetch credential definitions for the provided cred_def_id in URL."
-			},
-			"response": []
-		},
-		{
-			"name": "Get-cred-by-schema-id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{att_man_baseURL}}/v1/credentialDef?schemaID={{schema-id}}",
-					"host": [
-						"{{att_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"credentialDef"
-					],
-					"query": [
-						{
-							"key": "schemaID",
-							"value": "{{schema-id}}"
-						}
-					]
-				},
-				"description": "#### **Description** **:**\n\nThis request fetches the created credentials against provided schema_id.\n\n> It uses pagination to provide the particular number of records filtered as per the input given.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| schemaID | no | `\"schema_name\"`Should be valid existing schema and should be provided as \"STRING\" |"
-			},
-			"response": []
-		},
-		{
-			"name": "Get-Dids-For-Schema",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{att_man_baseURL}}/v1/schemas/get-dids-for-schema/{{pcm-schema-id}}",
-					"host": [
-						"{{att_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"schemas",
-						"get-dids-for-schema",
-						"{{pcm-schema-id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "map-user-info",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json();\r",
-							"\r",
-							"\t\r",
-							"let template = `\r",
-							"<html>\r",
-							"    <body> \r",
-							"        <br>\r",
-							"        <div style=\"text-align:center;\">\r",
-							"            <img src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=+{{data.invitationUrl}}'></img>\r",
-							"        </div>\r",
-							"    </body>\r",
-							"</html>`;\r",
-							"pm.visualizer.set(template, res);\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"userInfoURL\": \"https://retoolapi.dev/MJrw6e/userinfo/10\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{princi_man_baseURL}}/v1/map-user-info",
-					"host": [
-						"{{princi_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"map-user-info"
-					]
-				},
-				"description": "#### **Description** **:**\n\nIt is used to accept the acknowledgement received from another Aries agent for the issuance for Verifiable Credential and send Verifiable Credential.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| credentialId | required | `\"credential_offer_id\"`  <br>should be provided in \"STRING\" format. It is derived from offer_credential_definition request. |"
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "fb7eaa5c-4a0e-4fcc-8c75-c71b76716709",
+    "name": "Attestation Manager Complete",
+    "description": "Attestation Manager is the collection of apis which are used used to create schema and credential definition, offer verifiable credentials and issue them, get list of schemas and credential definition by different filters.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17714957"
+  },
+  "item": [
+    {
+      "name": "Autoissue-PCM-VC",
+      "item": [
+        {
+          "name": "Create-pcm-schema",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json()\r",
+                  "\r",
+                  "if(res.statusCode == 201){\r",
+                  "    pm.environment.set(\"pcm-schema-id\", res.data.schemaID);\r",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"principal_schema_01-07-22\",\r\n    \"version\": \"01.07.22\",\r\n    \"attributes\": [\r\n        \"email\",\r\n        \"issuerDID\",\r\n        \"subjectDID\",\r\n        \"federationName\",\r\n        \"employeeID\",\r\n        \"federationID\",\r\n        \"firstName\",\r\n        \"lastName\",\r\n        \"address\"\r\n    ],\r\n    \"createdBy\": \"acceptsAnyStrings\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{att_man_baseURL}}/v1/schemas",
+              "host": ["{{att_man_baseURL}}"],
+              "path": ["v1", "schemas"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create-pcm-cred-def",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json()\r",
+                  "\r",
+                  "if(res.statusCode == 201){\r",
+                  "    pm.environment.set(\"pcm-vc-cred-def-id\", res.data.credDefId);\r",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"principal_member-010722-01\",\r\n  \"isRevokable\": false,\r\n  \"isAutoIssue\": false,\r\n  \"schemaID\": \"{{pcm-schema-id}}\",\r\n  \"createdBy\": \"acceptsAnyString\",\r\n  \"expiryHours\" : \"-1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{att_man_baseURL}}/v1/credentialDef",
+              "host": ["{{att_man_baseURL}}"],
+              "path": ["v1", "credentialDef"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post-credentialType-for-autoissue",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"principalMemberCredential\",\n  \"schemaId\": \"{{pcm-schema-id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{att_man_baseURL}}/v1/credentialType",
+              "host": ["{{att_man_baseURL}}"],
+              "path": ["v1", "credentialType"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update-credDefId-Type",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"schemaId\": \"{{pcm-schema-id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{att_man_baseURL}}/v1/updateSchemaIdByType?type=principalMemberCredential",
+              "host": ["{{att_man_baseURL}}"],
+              "path": ["v1", "updateSchemaIdByType"],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "principalMemberCredential"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Offer-pcm-cred-def-MANUALLY-temp",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json()\r",
+                  "\r",
+                  "if(res.statusCode == 201){\r",
+                  "    pm.environment.set(\"cred-offer-id\", res.data.id);\r",
+                  "}\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const arr = JSON.parse(pm.environment.get(\"schema_attr\"))\r",
+                  "for (let i = 0; i < arr.length; i++) {\r",
+                  "    pm.globals.set(\"array\"+[i], arr[i]);\r",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"connectionId\": \"{{conn-id}}\",\r\n    \"credentialDefinitionId\": \"{{pcm-vc-cred-def-id}}\",\r\n    \"comment\": \"Created\",\r\n    \"attributes\": [\r\n        {\r\n            \"name\": \"email\",\r\n            \"value\": \"alena@vomoto.com\"\r\n        },\r\n        {\r\n            \"name\": \"issuerDID\",\r\n            \"value\": \"H1XnVZzx83suh2x71jnFJt\"\r\n        },\r\n        {\r\n            \"name\": \"subjectDID\",\r\n            \"value\": \"H1XnVZzx83suh2x71jnFJt\"\r\n        }\r\n    ],\r\n    \"autoAcceptCredential\": \"never\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{att_man_baseURL}}/v1/create-offer-credential/",
+              "host": ["{{att_man_baseURL}}"],
+              "path": ["v1", "create-offer-credential", ""]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Get-all-schemas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{att_man_baseURL}}/v1/schemas?pageSize=20&page",
+          "host": ["{{att_man_baseURL}}"],
+          "path": ["v1", "schemas"],
+          "query": [
+            {
+              "key": "pageSize",
+              "value": "20"
+            },
+            {
+              "key": "page",
+              "value": null
+            }
+          ]
+        },
+        "description": "#### **Description** **:**\n\nThis request fetches all the the schemas created by the requesting participant.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| pageSize | no | `pageSize`  <br>Should be provided in query parameter. It filters the list and sets the page size. |\n| page | no | `page`  <br>Should be provided in query parameter. It filters the list and sets the page to land on. |"
+      },
+      "response": []
+    },
+    {
+      "name": "Get-schema-by-id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{att_man_baseURL}}/v1/schemas/{{pcm-schema-id}}",
+          "host": ["{{att_man_baseURL}}"],
+          "path": ["v1", "schemas", "{{pcm-schema-id}}"]
+        },
+        "description": "#### **Description** **:**\n\nThis request is used to fetch schema for the provided schema id in URL."
+      },
+      "response": []
+    },
+    {
+      "name": "Create-schemas",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json()\r",
+              "\r",
+              "if(res.statusCode == 201){\r",
+              "    pm.environment.set(\"schema-id\", res.data.schemaID);\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"pizza_sandwich_280622-01\",\r\n  \"version\": \"28.06.22\",\r\n  \"attributes\": {{schema_attr}},\r\n  \"createdBy\": \"2344789247389\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{att_man_baseURL}}/v1/schemas",
+          "host": ["{{att_man_baseURL}}"],
+          "path": ["v1", "schemas"]
+        },
+        "description": "#### **Description** **:**\n\nIt is used to create the schema.\n\n> The schema is a template which defines the schema name, version and the attributes and is used to define the credential definition.\n\n#### **Body Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| name | required | `\"shema_name\"`  <br>should be provided in \"STRING\" format |\n| version | required | `\"X.X.X\"`  <br>should be provided as \"SemVer\"(\"1.2.3\") in \"STRING\" format. |\n| attributes | required | `[\"attr_1\",\"attr_2\"......\"attr_n\"]`  <br>attributes are the key against which the values will be issued in credential. attributes in the \"STRING\" array. |\n| created_by | required | `\"OCM_DID\"`  <br>created_by accepts the Organization Credential Manager's DID. |"
+      },
+      "response": []
+    },
+    {
+      "name": "Create-cred-def",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json()\r",
+              "\r",
+              "if(res.statusCode == 201){\r",
+              "    pm.environment.set(\"cred-def-id\", res.data.credDefId);\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Enrollment_credDef-010722\",\r\n  \"isRevokable\": false,\r\n  \"isAutoIssue\": false,\r\n  \"schemaID\": \"{{schema-id}}\",\r\n  \"createdBy\": \"acceptsAnyString\",\r\n  \"expiryHours\" : \"24\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{att_man_baseURL}}/v1/credentialDef",
+          "host": ["{{att_man_baseURL}}"],
+          "path": ["v1", "credentialDef"]
+        },
+        "description": "#### **Description** **:**\n\nIt is used to create the Credential Definition.\n\n> A credential definition is a particular issuer's template based on an existing schema to issue credentials from.\n\n#### **Body Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| name | required | `\"Cred_Def_name\"`  <br>should be provided in \"STRING\" format |\n| is_revokable | required | `true` or `false`  <br>should be provided boolean. |\n| is_auto_issue | required | `true` or `false`  <br>should be provided boolean. |\n| schemaID | required | `\"schema_name\"`Should be valid existing schema and should be provided as \"STRING\" |\n| created_by | required | `\"OCM_DID\"`  <br>created_by accepts the Organization Credential Manager's DID. |\n| expiry | required | `\"number of hours\"`  <br>expiry provides the time for which the verifiable credential will stay active in the wallet. |"
+      },
+      "response": []
+    },
+    {
+      "name": "Offer-cred-def",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json()\r",
+              "\r",
+              "if(res.statusCode == 201){\r",
+              "    pm.environment.set(\"cred-offer-id\", res.data.id);\r",
+              "}\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const arr = JSON.parse(pm.environment.get(\"schema_attr\"))\r",
+              "for (let i = 0; i < arr.length; i++) {\r",
+              "    pm.globals.set(\"array\"+[i], arr[i]);\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"connectionId\": \"{{conn-id}}\",\r\n    \"credentialDefinitionId\": \"{{cred-def-id}}\",\r\n    \"comment\": \"Created\",\r\n    \"attributes\": [\r\n        {\r\n            \"name\": \"{{array0}}\",\r\n            \"value\": \"test_fname_3\"\r\n        },\r\n        {\r\n            \"name\": \"{{array1}}\",\r\n            \"value\": \"test_lname_3\"\r\n        },\r\n        {\r\n            \"name\": \"{{array2}}\",\r\n            \"value\": \"test_gender_3\"\r\n        }\r\n    ],\r\n    \"autoAcceptCredential\": \"never\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{att_man_baseURL}}/v1/create-offer-credential/",
+          "host": ["{{att_man_baseURL}}"],
+          "path": ["v1", "create-offer-credential", ""]
+        },
+        "description": "#### **Description** **:**\n\nA message sent by the Issuer to the potential Holder, describing the credential they intend to offer.\n\n> In Hyperledger Indy, this message is required, because it forces the Issuer to make a cryptographic commitment to the set of fields in the final credential and thus prevents Issuers from inserting spurious data.\n\n#### **Body Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| connectionId | required | `\"`connectionId`\"`  <br>should be provided in \"STRING\" format. It the peer to peer connection id for two aeries agent. |\n| credentialDefinitionId | required | `\"cred_def_id\"`  <br>should be provided in \"STRING\" format. It is the derived when the Credential Definition is created. |\n| attributes | required | `[{ \"name\" : \"attr_name\", \"value\" : \"attr_value\" }]`  <br>should be provided JSON array. |"
+      },
+      "response": []
+    },
+    {
+      "name": "Accept-request-issue-cred",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{att_man_baseURL}}/v1/accept-request?credentialId={{cred-offer-id}}",
+          "host": ["{{att_man_baseURL}}"],
+          "path": ["v1", "accept-request"],
+          "query": [
+            {
+              "key": "credentialId",
+              "value": "{{cred-offer-id}}"
+            }
+          ]
+        },
+        "description": "#### **Description** **:**\n\nIt is used to accept the acknowledgement received from another Aries agent for the issuance for Verifiable Credential and send Verifiable Credential.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| credentialId | required | `\"credential_offer_id\"`  <br>should be provided in \"STRING\" format. It is derived from offer_credential_definition request. |"
+      },
+      "response": []
+    },
+    {
+      "name": "Get-credentials",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{att_man_baseURL}}/v1/credential/",
+          "host": ["{{att_man_baseURL}}"],
+          "path": ["v1", "credential", ""],
+          "query": [
+            {
+              "key": "state",
+              "value": "",
+              "disabled": true
+            },
+            {
+              "key": "pageSize",
+              "value": "",
+              "disabled": true
+            },
+            {
+              "key": "page",
+              "value": "",
+              "disabled": true
+            },
+            {
+              "key": "isReceived",
+              "value": "true",
+              "disabled": true
+            },
+            {
+              "key": "threadId",
+              "value": "33e5ea8e-ec08-4144-aac3-d173ab0e58b8",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "#### **Description** **:**\n\nThis request fetches the created credentials.\n\n> It uses pagination to provide the particular number of records filtered as per the input given.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| state | no | `state`  <br>should be provided in query parameter. It filters the connections list according the provided state value. |\n| pageSize | no | `pageSize`  <br>Should be provided in query parameter. It filters the list and sets the page size. |\n| page | no | `page`  <br>Should be provided in query parameter. It filters the list and sets the page to land on. |"
+      },
+      "response": []
+    },
+    {
+      "name": "Get-cred-by-id",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{att_man_baseURL}}/v1/credentialDef/{{cred-def-id}}",
+          "host": ["{{att_man_baseURL}}"],
+          "path": ["v1", "credentialDef", "{{cred-def-id}}"]
+        },
+        "description": "#### **Description** **:**\n\nThis request is used to fetch credential definitions for the provided cred_def_id in URL."
+      },
+      "response": []
+    },
+    {
+      "name": "Get-cred-by-schema-id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{att_man_baseURL}}/v1/credentialDef?schemaID={{schema-id}}",
+          "host": ["{{att_man_baseURL}}"],
+          "path": ["v1", "credentialDef"],
+          "query": [
+            {
+              "key": "schemaID",
+              "value": "{{schema-id}}"
+            }
+          ]
+        },
+        "description": "#### **Description** **:**\n\nThis request fetches the created credentials against provided schema_id.\n\n> It uses pagination to provide the particular number of records filtered as per the input given.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| schemaID | no | `\"schema_name\"`Should be valid existing schema and should be provided as \"STRING\" |"
+      },
+      "response": []
+    },
+    {
+      "name": "Get-Dids-For-Schema",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{att_man_baseURL}}/v1/schemas/get-dids-for-schema/{{pcm-schema-id}}",
+          "host": ["{{att_man_baseURL}}"],
+          "path": ["v1", "schemas", "get-dids-for-schema", "{{pcm-schema-id}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "map-user-info",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json();\r",
+              "\r",
+              "\t\r",
+              "let template = `\r",
+              "<html>\r",
+              "    <body> \r",
+              "        <br>\r",
+              "        <div style=\"text-align:center;\">\r",
+              "            <img src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=+{{data.invitationUrl}}'></img>\r",
+              "        </div>\r",
+              "    </body>\r",
+              "</html>`;\r",
+              "pm.visualizer.set(template, res);\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"userInfoURL\": \"https://retoolapi.dev/MJrw6e/userinfo/10\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{princi_man_baseURL}}/v1/map-user-info",
+          "host": ["{{princi_man_baseURL}}"],
+          "path": ["v1", "map-user-info"]
+        },
+        "description": "#### **Description** **:**\n\nIt is used to accept the acknowledgement received from another Aries agent for the issuance for Verifiable Credential and send Verifiable Credential.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| credentialId | required | `\"credential_offer_id\"`  <br>should be provided in \"STRING\" format. It is derived from offer_credential_definition request. |"
+      },
+      "response": []
+    }
+  ]
 }

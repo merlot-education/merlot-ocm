@@ -3,4 +3,4 @@ appVersion: v1.0.4-rc
 description: proof-manager deployment
 name: proof-manager
 version: 1.0.4
-icon: "https://www.vereign.com/wp-content/themes/vereign2020/images/vereign-logo.svg"
+icon: 'https://www.vereign.com/wp-content/themes/vereign2020/images/vereign-logo.svg'

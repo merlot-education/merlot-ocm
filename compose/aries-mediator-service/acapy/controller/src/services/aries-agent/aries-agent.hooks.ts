@@ -28,7 +28,7 @@ export default {
       async (context: HookContext): Promise<HookContext> => {
         console.error(
           `Error in ${context.path} calling ${context.method}  method`,
-          context.error
+          context.error,
         );
         return context;
       },

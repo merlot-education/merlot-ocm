@@ -16,5 +16,5 @@ export enum ConnectionState {
 
 export enum ConnectionServiceAction {
   Accept_Connection_Request = 'Accept-Request',
-  Send_Connection_Ping = 'Send-Ping'
+  Send_Connection_Ping = 'Send-Ping',
 }

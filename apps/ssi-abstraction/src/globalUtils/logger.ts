@@ -1,5 +1,5 @@
 import winston, { Logger } from 'winston';
-import ecsFormat from '@elastic/ecs-winston-format';
+import { ecsFormat } from '@elastic/ecs-winston-format';
 
 export const logger: Logger = winston.createLogger({
   format: ecsFormat({ convertReqRes: true }),
