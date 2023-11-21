@@ -2,10 +2,10 @@ FROM node:20-alpine3.16 AS builder
 
 WORKDIR /usr/src/app
 
-RUN yarn global add @nestjs/cli
+RUN yarn global add @nestjs/cli@^8.0.0
 
-COPY package.json ./
-COPY yarn.lock ./
+# wildcard for yarn.lock for not failing build if missing
+COPY package.json yarn.lock* ./
 
 # --prod works if @types/node is in deps (not devDeps)
 RUN yarn --frozen-lockfile --prod

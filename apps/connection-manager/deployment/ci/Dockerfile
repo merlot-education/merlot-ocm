@@ -4,8 +4,8 @@ WORKDIR /usr/src/app
 
 RUN yarn global add @nestjs/cli
 
-COPY package.json ./
-COPY yarn.lock ./
+# wildcard for yarn.lock for not failing build if missing
+COPY package.json yarn.lock* ./
 
 # --prod works if @types/node is in deps (not devDeps)
 RUN yarn --frozen-lockfile --prod

@@ -29,7 +29,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain '1.58.0'
 
 RUN git clone https://github.com/hyperledger/indy-sdk
 
@@ -50,8 +50,8 @@ WORKDIR /usr/src/app
 
 RUN yarn global add @nestjs/cli@8.2.4
 
-COPY package.json ./
-COPY yarn.lock ./
+# wildcard for yarn.lock for not failing build if missing
+COPY package.json yarn.lock* ./
 
 # --prod works if @types/node is in deps (not devDeps)
 RUN yarn --frozen-lockfile --prod
