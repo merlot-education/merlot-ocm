@@ -8,7 +8,7 @@ export class HealthController {
    * @returns - OK (200) if app is running
    */
   @Get()
-  getHealth() {
+  public getHealth() {
     return {
       statusCode: HttpStatus.OK,
       message: `${new Date()}`,

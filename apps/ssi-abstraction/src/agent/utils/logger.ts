@@ -1,4 +1,5 @@
 import { BaseLogger, LogLevel } from '@aries-framework/core';
+
 import { logger } from '../../globalUtils/logger.js';
 
 export class AgentLogger extends BaseLogger {

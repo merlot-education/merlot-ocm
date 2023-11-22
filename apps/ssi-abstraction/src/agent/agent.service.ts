@@ -1,10 +1,19 @@
+import type {
+  LedgerIds} from './utils/ledgerConfig.js';
+import type {
+  InitConfig} from '@aries-framework/core';
+import type {
+  IndyVdrPoolConfig} from '@aries-framework/indy-vdr';
+
+import { AnonCredsModule } from '@aries-framework/anoncreds';
+import { AnonCredsRsModule } from '@aries-framework/anoncreds-rs';
+import { AskarModule } from '@aries-framework/askar';
 import {
   Agent,
   ConnectionsModule,
   CredentialsModule,
   DidsModule,
   HttpOutboundTransport,
-  InitConfig,
   KeyDidRegistrar,
   KeyDidResolver,
   KeyType,
@@ -13,30 +22,28 @@ import {
   PeerDidResolver,
   TypedArrayEncoder,
 } from '@aries-framework/core';
-import { agentDependencies, HttpInboundTransport } from '@aries-framework/node';
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { AnonCredsRsModule } from '@aries-framework/anoncreds-rs';
-import { anoncreds } from '@hyperledger/anoncreds-nodejs';
-import { AnonCredsModule } from '@aries-framework/anoncreds';
-import { ariesAskar } from '@hyperledger/aries-askar-nodejs';
-import { AskarModule } from '@aries-framework/askar';
-import { indyVdr } from '@hyperledger/indy-vdr-nodejs';
 import {
   IndyVdrAnonCredsRegistry,
   IndyVdrIndyDidResolver,
   IndyVdrModule,
-  IndyVdrPoolConfig,
   IndyVdrSovDidResolver,
 } from '@aries-framework/indy-vdr';
+import { agentDependencies, HttpInboundTransport } from '@aries-framework/node';
+import { anoncreds } from '@hyperledger/anoncreds-nodejs';
+import { ariesAskar } from '@hyperledger/aries-askar-nodejs';
+import { indyVdr } from '@hyperledger/indy-vdr-nodejs';
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+
+import { logger } from '../globalUtils/logger.js';
+
+import { registerPublicDids } from './ledger/register.js';
 import {
-  LedgerIds,
   ledgerNamespaces,
   LEDGER_GENESIS,
 } from './utils/ledgerConfig.js';
 import { AgentLogger } from './utils/logger.js';
-import { registerPublicDids } from './ledger/register.js';
-import { logger } from '../globalUtils/logger.js';
+
 
 export type AppAgent = Agent<AgentService['modules']>;
 

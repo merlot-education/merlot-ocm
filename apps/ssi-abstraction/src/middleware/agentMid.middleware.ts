@@ -1,5 +1,7 @@
-import { Injectable, NestMiddleware, HttpStatus } from '@nestjs/common';
-import { Request, NextFunction, Response } from 'express';
+import type { NestMiddleware} from '@nestjs/common';
+import type { Request, NextFunction, Response } from 'express';
+
+import { Injectable, HttpStatus } from '@nestjs/common';
 
 /**
  * Middleware that checks validity of provided params and body
@@ -7,22 +9,12 @@ import { Request, NextFunction, Response } from 'express';
  */
 @Injectable()
 export class AgentMid implements NestMiddleware {
-  use(req: Request, res: Response, next: NextFunction) {
+  public use(req: Request, res: Response, next: NextFunction) {
     const [, prop] = req.url.split('/');
     if (prop === 'info') {
       next();
       return;
     }
-
-    // const whiteListErrors = checkAll(prop, method, req.body);
-    // if (whiteListErrors && !whiteListErrors.success) {
-    //   res.send({
-    //     statusCode: HttpStatus.BAD_REQUEST,
-    //     error: whiteListErrors.messages,
-    //   });
-    //   res.end();
-    //   return;
-    // }
 
     if (req.body.subMethod && !req.body.subMethod.name) {
       res.send({
