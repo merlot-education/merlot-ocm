@@ -9,8 +9,7 @@ services:
     init: true
     ports:
       - "3003:3003"
-    env_file:
-      ./env/connection-manager.env
+    env_file: ./env/connection-manager.env
     depends_on:
       - db
       - nats
@@ -24,8 +23,7 @@ services:
     init: true
     ports:
       - "3005:3005"
-    env_file:
-      ./env/attestation-manager.env
+    env_file: ./env/attestation-manager.env
     depends_on:
       - db
       - nats
@@ -39,8 +37,7 @@ services:
     init: true
     ports:
       - "3007:3007"
-    env_file:
-      ./env/proof-manager.env
+    env_file: ./env/proof-manager.env
     depends_on:
       - db
       - nats
@@ -56,8 +53,7 @@ services:
       - "3009:3009"
       - "3010:3010"
       - "4000:4000"
-    env_file:
-      ./env/ssi-abstraction.env
+    env_file: ./env/ssi-abstraction.env
     depends_on:
       - db
       - nats
@@ -69,7 +65,7 @@ services:
     ports:
       - 5432:5432
     healthcheck:
-      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root"]
       timeout: 45s
       interval: 10s
       retries: 10

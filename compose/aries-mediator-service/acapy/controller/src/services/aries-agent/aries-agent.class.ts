@@ -38,26 +38,30 @@ export class AriesAgent {
       case ServiceType.Connection:
         if (data.action === ConnectionServiceAction.Accept_Connection_Request) {
           return this.acceptConnectionRequest(data.data.connection_id);
-        } else if (data.action === ConnectionServiceAction.Send_Connection_Ping) {
+        } else if (
+          data.action === ConnectionServiceAction.Send_Connection_Ping
+        ) {
           return this.sendConnectionPing(data.data.connection_id);
         }
       default:
         return new NotImplemented(
-          `The operation ${data.service}/${data.action} is not supported`
+          `The operation ${data.service}/${data.action} is not supported`,
         );
     }
   }
 
-  private async acceptConnectionRequest(connection_id: string): Promise<boolean> {
+  private async acceptConnectionRequest(
+    connection_id: string,
+  ): Promise<boolean> {
     try {
       const url = `${this.acaPyUtils.getAdminUrl()}/connections/${connection_id}/accept-request`;
       logger.debug(
-        `Accept connection request for connection with id ${connection_id}`
+        `Accept connection request for connection with id ${connection_id}`,
       );
       const response = await Axios.post(
         url,
         {},
-        this.acaPyUtils.getRequestConfig()
+        this.acaPyUtils.getRequestConfig(),
       );
       return response.status === 200 ? true : false;
     } catch (e) {
@@ -65,23 +69,21 @@ export class AriesAgent {
       throw new AriesAgentError(
         error.response?.statusText || error.message,
         error.response?.status,
-        error.response?.data
+        error.response?.data,
       );
     }
   }
 
   private async sendConnectionPing(connection_id: string): Promise<boolean> {
     try {
-      logger.debug(
-        `Ping connection with id ${connection_id}`
-      );
+      logger.debug(`Ping connection with id ${connection_id}`);
 
       const url = `${this.acaPyUtils.getAdminUrl()}/connections/${connection_id}/send-ping`;
 
       const response = await Axios.post(
         url,
         {},
-        this.acaPyUtils.getRequestConfig()
+        this.acaPyUtils.getRequestConfig(),
       );
       return response.status === 200 ? true : false;
     } catch (e) {
@@ -89,7 +91,7 @@ export class AriesAgent {
       throw new AriesAgentError(
         error.response?.statusText || error.message,
         error.response?.status,
-        error.response?.data
+        error.response?.data,
       );
     }
   }

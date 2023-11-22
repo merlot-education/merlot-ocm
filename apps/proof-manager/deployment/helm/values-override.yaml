@@ -1,33 +1,33 @@
 image:
-    repository: registry.gitlab.com/gaia-x/data-infrastructure-federation-services/ocm
-    # -- Image name
-    name: proof-manager
+  repository: registry.gitlab.com/gaia-x/data-infrastructure-federation-services/ocm
+  # -- Image name
+  name: proof-manager
 proofManager:
-    database:
-        host: vereign-database1-postgres.gxfs-vereign
-        user: ENC[AES256_GCM,data:q5NhZmWp8Xo=,iv:1Fvhv+sMhPHIAqAb20ebf9W31KWUnFSCHB6YFEweZrc=,tag:TmVXG72ctypICUzuQjXI7w==,type:str]
-        password: ENC[AES256_GCM,data:7yYeSGu4A+kS/dzt4cqDF0ugQZVTBVwX0wS6SnInO0x5mFhuEIEoZA6posVXMXtxFOpMCK0/XK6DRiUkOmaH1A==,iv:h2AUH2bqWPT79gBqiOdrVTX7Jg32vnOcILyWxBLN0mk=,tag:JpVkcxLryfnww3t2yi32WA==,type:str]
-        db: vereign-database1-postgres
+  database:
+    host: vereign-database1-postgres.gxfs-vereign
+    user: ENC[AES256_GCM,data:q5NhZmWp8Xo=,iv:1Fvhv+sMhPHIAqAb20ebf9W31KWUnFSCHB6YFEweZrc=,tag:TmVXG72ctypICUzuQjXI7w==,type:str]
+    password: ENC[AES256_GCM,data:7yYeSGu4A+kS/dzt4cqDF0ugQZVTBVwX0wS6SnInO0x5mFhuEIEoZA6posVXMXtxFOpMCK0/XK6DRiUkOmaH1A==,iv:h2AUH2bqWPT79gBqiOdrVTX7Jg32vnOcILyWxBLN0mk=,tag:JpVkcxLryfnww3t2yi32WA==,type:str]
+    db: vereign-database1-postgres
 ingress:
-    frontendDomain: ocm.gxfs.dev
-    frontendTlsSecretName: wildcard-gxfs-dev
+  frontendDomain: ocm.gxfs.dev
+  frontendTlsSecretName: wildcard-gxfs-dev
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1nrk70nevtmrcgzjunsed43ar6dk3e06qt7tryqqprj9axv4e0djqa0n0cg
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlYzFzaHpjL3M2SlVsaXcy
-            QXFuay9BWC8yWE9tSzhFUmpHYlRtdG1sbndZCldmNGV4SVJBUTJ0T0RKR3h2MU9P
-            bG5HNWZmQTB5UzZlSElTRnRJNlF0NFkKLS0tIEJKQVZmSVQ4aThMSDFoMURvL25L
-            bUZrbUpoK3R1VXZGb1htM0MzWlJPdHcKxU1fcH+Lg8bJgkyL0u/DwFuiRtQfipqH
-            d5ktsg3YUtmDEko9a3IwA+EPbrg0bHlojEYMuUlLmcJtOV20FzQDrA==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-08-04T11:11:23Z"
-    mac: ENC[AES256_GCM,data:RB2WXSa5CG1o2boDuJj9zSRSLa/9jzM3UDp9bu8vWy4wBs7W4LvtxUyyee7O/+Au9/xNtv/tjK56mpYRQViClGSkydrYjtILaAJ1wEFtANy2CyPs8xrqNb1jKrBhWGj1+5N5GH8OkPQ4gu/udavnyNIRALjhNE1aklhk4Oqv3h0=,iv:1Ykz7eiuRQNwv7r7HQZmJPAaAJBBJUKdjykLzzynxCk=,tag:ts4IHFLSFUabI3983qM9zQ==,type:str]
-    pgp: []
-    encrypted_regex: ^(password|user)$
-    version: 3.7.3
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1nrk70nevtmrcgzjunsed43ar6dk3e06qt7tryqqprj9axv4e0djqa0n0cg
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlYzFzaHpjL3M2SlVsaXcy
+        QXFuay9BWC8yWE9tSzhFUmpHYlRtdG1sbndZCldmNGV4SVJBUTJ0T0RKR3h2MU9P
+        bG5HNWZmQTB5UzZlSElTRnRJNlF0NFkKLS0tIEJKQVZmSVQ4aThMSDFoMURvL25L
+        bUZrbUpoK3R1VXZGb1htM0MzWlJPdHcKxU1fcH+Lg8bJgkyL0u/DwFuiRtQfipqH
+        d5ktsg3YUtmDEko9a3IwA+EPbrg0bHlojEYMuUlLmcJtOV20FzQDrA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: '2022-08-04T11:11:23Z'
+  mac: ENC[AES256_GCM,data:RB2WXSa5CG1o2boDuJj9zSRSLa/9jzM3UDp9bu8vWy4wBs7W4LvtxUyyee7O/+Au9/xNtv/tjK56mpYRQViClGSkydrYjtILaAJ1wEFtANy2CyPs8xrqNb1jKrBhWGj1+5N5GH8OkPQ4gu/udavnyNIRALjhNE1aklhk4Oqv3h0=,iv:1Ykz7eiuRQNwv7r7HQZmJPAaAJBBJUKdjykLzzynxCk=,tag:ts4IHFLSFUabI3983qM9zQ==,type:str]
+  pgp: []
+  encrypted_regex: ^(password|user)$
+  version: 3.7.3

@@ -1,4 +1,4 @@
-import type { Logger} from 'winston';
+import type { Logger } from 'winston';
 
 import { ecsFormat } from '@elastic/ecs-winston-format';
 import { createLogger, transports } from 'winston';

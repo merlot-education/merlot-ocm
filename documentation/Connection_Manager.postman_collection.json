@@ -1,507 +1,457 @@
 {
-	"info": {
-		"_postman_id": "2409bab2-cd0d-4956-8f46-bb9919b46ae7",
-		"name": "Connection Manager",
-		"description": "StartFragment\n\nThe Connection Manager is a collection of requests which can be used to create the connection invitation URL, to get all connections and their information.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17714957"
-	},
-	"item": [
-		{
-			"name": "Create-Invitation-URL",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json();\r",
-							"\r",
-							"if (res.statusCode == 200) {\r",
-							"\tpm.environment.set(\"conn-id\", res.data.connection.id);\r",
-							"\r",
-							"\tlet template = `\r",
-							"    <html>\r",
-							"        <body> \r",
-							"            <div>Scan the QR code below for connetion with id {{data.connection.id}}</div>\r",
-							"            <br>\r",
-							"            <div style=\"text-align:center;\">\r",
-							"                <img src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=+{{data.invitationUrl}}'></img>\r",
-							"            </div>\r",
-							"        </body>\r",
-							"    </html>`;\r",
-							"\tpm.visualizer.set(template, res);\r",
-							"}"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{Con_man_baseURL}}/v1/invitation-url?alias=member",
-					"host": [
-						"{{Con_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"invitation-url"
-					],
-					"query": [
-						{
-							"key": "alias",
-							"value": "member"
-						},
-						{
-							"key": "alias",
-							"value": "subscriber",
-							"disabled": true
-						}
-					]
-				},
-				"description": "#### **Description** **:**\n\nIt is used to create the connection invitation URL to establish the peer to peer connection between two aeries agents or the participant user and the principal user.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| alias | required | \"member\" or \"subscriber\" |\n\n> for this request, the request parameter needs to be provided as \"alias\" which is required and only accepts \"member\" or \"subscriber\".\n> \n> **\"member\" as alias** : the connection invitation is created for the member.\n> \n> **\"subscriber\" as alias** : the connection invitation is created for the subscriber.\n\n> **Connecting as a member :**\n> \n> A member is someone who is enrolling for first time in GaiaX ecosystem. The principal user will receive membership credential once connected as member and the connection will move to \"trusted\" state.\n\n> **Connecting as subscriber :**\n> \n> A subscriber is someone who is already connected with some participant in GaiaX ecosystem and is willing to connect (subscribe) with some other participants in ecosystem. The principal user need to present proof against membership credential. The proof presentation will be requested upon successful connection.\n> \n> And once the proof is presented successfully, the connection will move to \"trusted\" state.\n\n  \n\n#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| **Key** | **Description** |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → invitationUrl` | It returns the invitation URL to receive connection on principal end. |\n| `data → invitation` | It returns the invitation object to receive connection on principal end. |\n| `data → connection` | It returns connection object which contains the information about the connection. |\n| `data → connection → id` | It returns the connection unique identifier. |\n| `data → connection → createdAt` | It returns the created date and time. |\n| `data → connection → did` | It returns the connection DID. |\n| `data → connection → state` | It returns the connection state. |\n| `data → connection → role` | It returns the agent role. |\n| `data → connection → alias` | It returns the alias which we set at time of creating or receiving the connection. |\n| `data → connection → multiUseInvitation` | It returns the boolean which indicates whether the connection is multi-use or not. |"
-			},
-			"response": [
-				{
-					"name": "Create-Invitation-URL",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{Con_man_baseURL}}/v1/invitation-url?alias=member",
-							"host": [
-								"{{Con_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"invitation-url"
-							],
-							"query": [
-								{
-									"key": "alias",
-									"value": "member"
-								},
-								{
-									"key": "alias",
-									"value": "subscriber",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "date",
-							"value": "Wed, 15 Jun 2022 09:18:04 GMT"
-						},
-						{
-							"key": "content-type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "content-length",
-							"value": "1989"
-						},
-						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "access-control-allow-origin",
-							"value": "*"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"7c5-cp94PvE2DNowIosoNk1tOsH7jDY\""
-						},
-						{
-							"key": "strict-transport-security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connection created successfully\",\n    \"data\": {\n        \"invitationUrl\": \"https://gaiax.vereign.com:443/ocm/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiJkOTMzOTk5Mi02ZjZmLTQxYzEtYjQ0Yy1lMjNkMjUwMGMzNWIiLCJsYWJlbCI6InNzaS1hYnN0cmFjdGlvbi1hZ2VudCIsInJlY2lwaWVudEtleXMiOlsiREFnNEhrNzkyRXh6SFpRNjhHdktoY3ZrQzVYV3VqUHdiRlpmaWhTVlQyOFUiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cHM6Ly9nYWlheC52ZXJlaWduLmNvbTo0NDMvb2NtL2RpZGNvbW0iLCJyb3V0aW5nS2V5cyI6W119\",\n        \"invitation\": {\n            \"@type\": \"https://didcomm.org/connections/1.0/invitation\",\n            \"@id\": \"d9339992-6f6f-41c1-b44c-e23d2500c35b\",\n            \"label\": \"ssi-abstraction-agent\",\n            \"recipientKeys\": [\n                \"DAg4Hk792ExzHZQ68GvKhcvkC5XWujPwbFZfihSVT28U\"\n            ],\n            \"serviceEndpoint\": \"https://gaiax.vereign.com:443/ocm/didcomm\",\n            \"routingKeys\": []\n        },\n        \"connection\": {\n            \"_tags\": {},\n            \"metadata\": {},\n            \"id\": \"ffc4cd40-ae18-42f7-87c2-fe4d45b6e300\",\n            \"createdAt\": \"2022-06-15T09:18:04.978Z\",\n            \"did\": \"PKjWC17JFYBPLAjdeaZoaK\",\n            \"didDoc\": {\n                \"@context\": \"https://w3id.org/did/v1\",\n                \"publicKey\": [\n                    {\n                        \"id\": \"PKjWC17JFYBPLAjdeaZoaK#1\",\n                        \"controller\": \"PKjWC17JFYBPLAjdeaZoaK\",\n                        \"type\": \"Ed25519VerificationKey2018\",\n                        \"publicKeyBase58\": \"DAg4Hk792ExzHZQ68GvKhcvkC5XWujPwbFZfihSVT28U\"\n                    }\n                ],\n                \"service\": [\n                    {\n                        \"id\": \"PKjWC17JFYBPLAjdeaZoaK#IndyAgentService\",\n                        \"serviceEndpoint\": \"https://gaiax.vereign.com:443/ocm/didcomm\",\n                        \"type\": \"IndyAgent\",\n                        \"priority\": 0,\n                        \"recipientKeys\": [\n                            \"DAg4Hk792ExzHZQ68GvKhcvkC5XWujPwbFZfihSVT28U\"\n                        ],\n                        \"routingKeys\": []\n                    }\n                ],\n                \"authentication\": [\n                    {\n                        \"publicKey\": \"PKjWC17JFYBPLAjdeaZoaK#1\",\n                        \"type\": \"Ed25519SignatureAuthentication2018\"\n                    }\n                ],\n                \"id\": \"PKjWC17JFYBPLAjdeaZoaK\"\n            },\n            \"verkey\": \"DAg4Hk792ExzHZQ68GvKhcvkC5XWujPwbFZfihSVT28U\",\n            \"state\": \"invited\",\n            \"role\": \"inviter\",\n            \"alias\": \"member\",\n            \"invitation\": {\n                \"@type\": \"https://didcomm.org/connections/1.0/invitation\",\n                \"@id\": \"d9339992-6f6f-41c1-b44c-e23d2500c35b\",\n                \"label\": \"ssi-abstraction-agent\",\n                \"recipientKeys\": [\n                    \"DAg4Hk792ExzHZQ68GvKhcvkC5XWujPwbFZfihSVT28U\"\n                ],\n                \"serviceEndpoint\": \"https://gaiax.vereign.com:443/ocm/didcomm\",\n                \"routingKeys\": []\n            },\n            \"multiUseInvitation\": false\n        }\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Get-Connection-by-ConnectionID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json();\r",
-							"\r",
-							"let template = `\r",
-							"    <html>\r",
-							"        <body> \r",
-							"            <div style=\"text-align:center; color:green; text-transform: capitalize;\">\r",
-							"                <h2>{{data.records.status}}</h2>\r",
-							"            </div>\r",
-							"        </body>\r",
-							"    </html>`;\r",
-							"pm.visualizer.set(template, res);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{Con_man_baseURL}}/v1/connections/{{conn-id}}",
-					"host": [
-						"{{Con_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"connections",
-						"{{conn-id}}"
-					]
-				},
-				"description": "#### **Description** **:**\n\nThis request is used to fetch connection information for the connection id provided in URL.\n\n> It also provides state of the connection established.\n\n  \n  \n\n#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| **Key** | **Description** |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → records → id` | It returns the unique identifier for connection table. |\n| `data → records → connectionId` | It returns the connection unique identifier. |\n| `data → records → participantDid` | It returns the participant DID. |\n| `data → records → theirDid` | It returns the principal DID. |\n| `data → records → theirLabel` | It returns the email of the principal. |\n| `data → records → createdDate` | It returns the created date. |\n| `data → records → updatedDate` | It returns the updated date. |\n| `data → records → isActive` | It returns the boolean value which indicates record is active. |"
-			},
-			"response": [
-				{
-					"name": "Get-Connection-by-ConnectionID",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{Con_man_baseURL}}/v1/connections/{{conn-id}}",
-							"host": [
-								"{{Con_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"connections",
-								"{{conn-id}}"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "date",
-							"value": "Wed, 15 Jun 2022 09:25:00 GMT"
-						},
-						{
-							"key": "content-type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "content-length",
-							"value": "411"
-						},
-						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "access-control-allow-origin",
-							"value": "*"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"19b-TySvMVsRlQAW5a6BNN0k6i1Lo50\""
-						},
-						{
-							"key": "strict-transport-security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connections fetch successfully\",\n    \"data\": {\n        \"records\": {\n            \"id\": \"0f8a7f07-f064-45af-ae0a-a98c5b721d04\",\n            \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n            \"status\": \"trusted\",\n            \"participantDid\": \"R5LHJTmiuP8PRtH74SVHXb\",\n            \"theirDid\": \"XpaT7i3hYHHHSMrw1rY3EB\",\n            \"theirLabel\": \"test_corp@vomoto.com\",\n            \"createdDate\": \"2022-06-15T09:24:15.248Z\",\n            \"updatedDate\": \"2022-06-15T09:24:56.988Z\",\n            \"isActive\": true\n        }\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Get-Connections",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json();\r",
-							"\r",
-							"let template = `\r",
-							"    <html>\r",
-							"        <body> \r",
-							"            <div style=\"text-align:center; color:green; text-transform: capitalize;\">\r",
-							"                <h2>{{data.records.status}}</h2>\r",
-							"            </div>\r",
-							"        </body>\r",
-							"    </html>`;\r",
-							"pm.visualizer.set(template, res);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{Con_man_baseURL}}/v1/connections",
-					"host": [
-						"{{Con_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"connections"
-					],
-					"query": [
-						{
-							"key": "participantDID",
-							"value": "Jv5JtLcLuEeByKazGBtfSC",
-							"disabled": true
-						},
-						{
-							"key": "status",
-							"value": "trusted",
-							"disabled": true
-						},
-						{
-							"key": "pageSize",
-							"value": "5",
-							"disabled": true
-						},
-						{
-							"key": "page",
-							"value": "2",
-							"disabled": true
-						}
-					]
-				},
-				"description": "#### **Description** **:**\n\nThis request fetches the connection information against the provided participantDID otherwise all the connections are fetched.\n\n> It uses pagination to provide the particular number of records filtered as per the input given.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| participantDID | required | `participantDID`  <br>should be provided in query parameter. |\n| status | no | `status`  <br>should be provided in query parameter. It filters the connections list according the provided status value. |\n| pageSize | no | `pageSize`  <br>Should be provided in query parameter. It filters the list and sets the page size. |\n| page | no | `page`  <br>Should be provided in query parameter. It filters the list and sets the page to land on. |\n\n  \n\n#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| **Key** | **Description** |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → count` | It returns the total number of records available in the table for matching query. |\n| `data → records → id` | It returns the unique identifier for connection table. |\n| `data → records → connectionId` | It returns the connection unique identifier. |\n| `data → records → participantDid` | It returns the participant DID. |\n| `data → records → theirDid` | It returns the principal DID. |\n| `data → records → theirLabel` | It returns the email of the principal. |\n| `data → records → createdDate` | It returns the created date. |\n| `data → records → updatedDate` | It returns the updated date. |\n| `data → records → isActive` | It returns the boolean value which indicates record is active. |"
-			},
-			"response": [
-				{
-					"name": "Get-Connections",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{Con_man_baseURL}}/v1/connections",
-							"host": [
-								"{{Con_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"connections"
-							],
-							"query": [
-								{
-									"key": "participantDID",
-									"value": "3zrMzUB6fur6snh5u4eiaQ",
-									"disabled": true
-								},
-								{
-									"key": "status",
-									"value": "",
-									"disabled": true
-								},
-								{
-									"key": "pageSize",
-									"value": "",
-									"disabled": true
-								},
-								{
-									"key": "page",
-									"value": "",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "date",
-							"value": "Wed, 15 Jun 2022 09:25:28 GMT"
-						},
-						{
-							"key": "content-type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "content-length",
-							"value": "3180"
-						},
-						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "access-control-allow-origin",
-							"value": "*"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"c6c-VFB0g130QAnHpy+JUr0Gx7WAWmM\""
-						},
-						{
-							"key": "strict-transport-security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connections fetch successfully\",\n    \"data\": {\n        \"count\": 111,\n        \"records\": [\n            {\n                \"id\": \"02f41110-18b7-4d1f-89d4-b418cf2d603a\",\n                \"connectionId\": \"24402e32-234b-453f-a4cf-9f3e94ed85ab\",\n                \"status\": \"complete\",\n                \"participantDid\": \"BbiM3ypCFV49iqwVKnQ3Pt\",\n                \"theirDid\": \"6XYGkoJanFdNfQCF7yy8rx\",\n                \"theirLabel\": \"emilie@vomoto.com\",\n                \"createdDate\": \"2022-06-09T14:53:40.457Z\",\n                \"updatedDate\": \"2022-06-09T14:54:40.301Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"049ec6ed-8645-465b-8f3a-fdd438aed36b\",\n                \"connectionId\": \"fd96855b-c979-4125-95ba-d2535e63dfe6\",\n                \"status\": \"invited\",\n                \"participantDid\": \"Jv5JtLcLuEeByKazGBtfSC\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2022-06-08T13:26:16.708Z\",\n                \"updatedDate\": \"2022-06-08T13:26:16.708Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"092b1789-2522-44e1-9de7-de00c8e4e601\",\n                \"connectionId\": \"719ddbe9-7dce-43df-b4be-4714bcca20a7\",\n                \"status\": \"complete\",\n                \"participantDid\": \"9DJSEsZpu6Neh2zypBGJoA\",\n                \"theirDid\": \"SMrr5oVvxW1xWCfetQdYUn\",\n                \"theirLabel\": \"rangoon@vomoto.com\",\n                \"createdDate\": \"2022-06-08T14:40:13.868Z\",\n                \"updatedDate\": \"2022-06-08T14:40:23.967Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"0af9b87d-50ad-4faa-ad97-4ba1ea74af73\",\n                \"connectionId\": \"2b092454-05e6-4687-85e7-61c9ec4be97c\",\n                \"status\": \"invited\",\n                \"participantDid\": \"2j7hMxDhLwR6ya8Ptz5ewv\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2022-06-06T12:09:07.844Z\",\n                \"updatedDate\": \"2022-06-06T12:09:07.844Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"0b1eb233-0fdc-43ba-887e-01ca49f0984a\",\n                \"connectionId\": \"1279a5c1-c7f1-4abe-bece-816f5e710050\",\n                \"status\": \"invited\",\n                \"participantDid\": \"4WZPvgYQoiiyKEwePV2th1\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2022-06-07T12:39:18.101Z\",\n                \"updatedDate\": \"2022-06-07T12:39:18.101Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"0b369941-5648-4475-aff3-4b12f6d8f3c2\",\n                \"connectionId\": \"48afe258-dc0a-4c8b-a0f1-4b346e20f13c\",\n                \"status\": \"invited\",\n                \"participantDid\": \"NdDAdo5Kg2RvKCNZp62ehS\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2022-06-08T14:14:37.972Z\",\n                \"updatedDate\": \"2022-06-08T14:14:37.972Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"0e6c6705-9b8f-4cdb-a5ea-ab7651512e6a\",\n                \"connectionId\": \"e0eb278f-3283-419c-95ae-85ed0b4007de\",\n                \"status\": \"responded\",\n                \"participantDid\": \"P7jc1nckvYDu4aVxGQeS1z\",\n                \"theirDid\": \"NEfdsLk7xnxCui4RbNJj5S\",\n                \"theirLabel\": \"alena@vomoto.com\",\n                \"createdDate\": \"2022-06-09T13:44:50.029Z\",\n                \"updatedDate\": \"2022-06-09T13:45:01.246Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"0ea21690-9127-47cf-aad6-5c55721dbae2\",\n                \"connectionId\": \"9050c647-2931-4fdb-8f65-007c79f0bd33\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"TaojhXfMbbKgoiE8FjMDUG\",\n                \"theirDid\": \"JmQBgTUpfu8A7egsv1ib4s\",\n                \"theirLabel\": \"sam\",\n                \"createdDate\": \"2022-06-14T10:35:42.300Z\",\n                \"updatedDate\": \"2022-06-14T10:43:59.067Z\",\n                \"isActive\": true\n            },\n            {\n                \"id\": \"0f8a7f07-f064-45af-ae0a-a98c5b721d04\",\n                \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"R5LHJTmiuP8PRtH74SVHXb\",\n                \"theirDid\": \"XpaT7i3hYHHHSMrw1rY3EB\",\n                \"theirLabel\": \"test_corp@vomoto.com\",\n                \"createdDate\": \"2022-06-15T09:24:15.248Z\",\n                \"updatedDate\": \"2022-06-15T09:24:56.988Z\",\n                \"isActive\": true\n            },\n            {\n                \"id\": \"12870002-9220-4e3b-810f-369ef4351e51\",\n                \"connectionId\": \"c559ed17-cbce-4992-8d36-4ffb3550988b\",\n                \"status\": \"invited\",\n                \"participantDid\": \"AeB43tLJgwCLPR3CsjwcSU\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2022-06-06T11:42:52.186Z\",\n                \"updatedDate\": \"2022-06-06T11:42:52.186Z\",\n                \"isActive\": false\n            }\n        ]\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Accept-Connection",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"invitationUrl\": \"http://3.111.77.38:4021?c_i=eyJAdHlwZSI6ImRpZDpzb3Y6QnpDYnNOWWhNcmpIaXFaRFRVQVNIZztzcGVjL2Nvbm5lY3Rpb25zLzEuMC9pbnZpdGF0aW9uIiwiQGlkIjoiNTY0ZTM3NzQtZGViNy00ZTU2LWEyNTUtZWE3MmUyOWFlZmY4IiwibGFiZWwiOiJkZW1vNyIsInJlY2lwaWVudEtleXMiOlsiSHhVeVl4N1pIQnQ4ZHBCbk1MOVA4d0NqSm1jTmFFVGUzR2EzQjdHZ3l4VWoiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cDovLzMuMTExLjc3LjM4OjQwMjEiLCJyb3V0aW5nS2V5cyI6W119\",\r\n  \"autoAcceptConnection\": true\r\n}\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://3.111.77.38:3003/v1/accept-connection-invitation",
-					"protocol": "http",
-					"host": [
-						"3",
-						"111",
-						"77",
-						"38"
-					],
-					"port": "3003",
-					"path": [
-						"v1",
-						"accept-connection-invitation"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get-Connection-Information",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{Con_man_baseURL}}/v1/connection-information?connectionId={{conn-id}}",
-					"host": [
-						"{{Con_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"connection-information"
-					],
-					"query": [
-						{
-							"key": "did",
-							"value": "MJys9zJZ1m2S6dFccFJQJs",
-							"disabled": true
-						},
-						{
-							"key": "connectionId",
-							"value": "{{conn-id}}"
-						}
-					]
-				},
-				"description": "#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| **Key** | **Description** |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → records → issueCredentials` | It returns the array of issued credentials against connection id. |\n| `data → records → issueCredentials → id` | It returns the unique identifier for issued credentials record in table. |\n| `data → records → issueCredentials → credentialId` | It returns the unique identifier for issued credentials. |\n| `data → records → issueCredentials → state` | It returns the state of the issued credentials. |\n| `data → records → issueCredentials → principalDid` | It returns the principal DID. |\n| `data → records → issueCredentials → connectionId` | It returns the connection ID. |\n| `data → records → issueCredentials → createdDate` | It returns the created date. |\n| `data → records → issueCredentials → updatedDate` | It returns the updated date. |\n| `data → records → issueCredentials → expirationDate` | It returns the expiration date of issued credentials. |\n| `data → records → presenProofs` | It returns the list of proofs presentation. |\n| `data → records → presenProofs → id` | It returns the unique identifier for proofs record in table. |\n| `data → records → presenProofs → presentation_id` | It returns the unique identifier for proof presentation. |\n| `data → records → presenProofs → connectionId` | It returns the connection ID. |\n| `data → records → presenProofs → credential_def_id` | It returns the credential def id. |\n| `data → records → presenProofs → schemaId` | It returns the schema id. |\n| `data → records → presenProofs → their_did` | It returns the principal DID. |\n| `data → records → presenProofs → status` | It returns the status of proof presentation. |\n| `data → records → presenProofs → created_date` | It returns the created date. |\n| `data → records → presenProofs → updated_date` | It returns the updated date. |"
-			},
-			"response": [
-				{
-					"name": "Get-Connection-Information",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{Con_man_baseURL}}/v1/connection-information?did&connectionId={{conn-id}}",
-							"host": [
-								"{{Con_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"connection-information"
-							],
-							"query": [
-								{
-									"key": "did",
-									"value": null
-								},
-								{
-									"key": "connectionId",
-									"value": "{{conn-id}}"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "date",
-							"value": "Wed, 15 Jun 2022 09:28:39 GMT"
-						},
-						{
-							"key": "content-type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "content-length",
-							"value": "1320"
-						},
-						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "access-control-allow-origin",
-							"value": "*"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"528-EZqt2BArtofGni3d7fvQseXpEg8\""
-						},
-						{
-							"key": "strict-transport-security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connection information fetch successfully\",\n    \"data\": {\n        \"records\": {\n            \"issueCredentials\": [\n                {\n                    \"id\": \"8bf0c9bf-c008-4324-b462-74ce2d0948ad\",\n                    \"credentialId\": \"1b7e0718-0eb0-4899-89b9-3fd04b95b148\",\n                    \"credDefId\": \"7KuDTpQh3GJ7Gp6kErpWvM:3:CL:322876:test_test_cred-def_140622-07\",\n                    \"state\": \"done\",\n                    \"principalDid\": \"XpaT7i3hYHHHSMrw1rY3EB\",\n                    \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n                    \"createdDate\": \"2022-06-15T09:25:59.053Z\",\n                    \"updatedDate\": \"2022-06-15T09:26:57.810Z\",\n                    \"expirationDate\": \"2022-07-15T09:25:59.052Z\"\n                },\n                {\n                    \"id\": \"04d6d4c9-0230-4441-a1de-9aec69ed2ff2\",\n                    \"credentialId\": \"12b0640c-99f7-4413-a27c-5b34b0ecfb0a\",\n                    \"credDefId\": \"7KuDTpQh3GJ7Gp6kErpWvM:3:CL:321508:princi_cred_def130622\",\n                    \"state\": \"done\",\n                    \"principalDid\": \"XpaT7i3hYHHHSMrw1rY3EB\",\n                    \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n                    \"createdDate\": \"2022-06-15T09:24:27.429Z\",\n                    \"updatedDate\": \"2022-06-15T09:24:56.976Z\",\n                    \"expirationDate\": \"2022-12-12T09:24:27.339Z\"\n                }\n            ],\n            \"presenProofs\": [\n                {\n                    \"id\": \"48b2b61d-a5d9-4c1d-a745-ed5cd018c5bd\",\n                    \"presentation_id\": \"07f27a99-4ff2-4d3c-82f9-0f49cd6d8203\",\n                    \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n                    \"credential_def_id\": \"\",\n                    \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-07:14.06.2207\",\n                    \"their_did\": \"\",\n                    \"status\": \"done\",\n                    \"created_date\": \"2022-06-15T09:27:07.302Z\",\n                    \"updated_date\": \"2022-06-15T09:27:26.804Z\"\n                }\n            ]\n        }\n    }\n}"
-				}
-			]
-		}
-	]
+  "info": {
+    "_postman_id": "2409bab2-cd0d-4956-8f46-bb9919b46ae7",
+    "name": "Connection Manager",
+    "description": "StartFragment\n\nThe Connection Manager is a collection of requests which can be used to create the connection invitation URL, to get all connections and their information.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17714957"
+  },
+  "item": [
+    {
+      "name": "Create-Invitation-URL",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json();\r",
+              "\r",
+              "if (res.statusCode == 200) {\r",
+              "\tpm.environment.set(\"conn-id\", res.data.connection.id);\r",
+              "\r",
+              "\tlet template = `\r",
+              "    <html>\r",
+              "        <body> \r",
+              "            <div>Scan the QR code below for connetion with id {{data.connection.id}}</div>\r",
+              "            <br>\r",
+              "            <div style=\"text-align:center;\">\r",
+              "                <img src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=+{{data.invitationUrl}}'></img>\r",
+              "            </div>\r",
+              "        </body>\r",
+              "    </html>`;\r",
+              "\tpm.visualizer.set(template, res);\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{Con_man_baseURL}}/v1/invitation-url?alias=member",
+          "host": ["{{Con_man_baseURL}}"],
+          "path": ["v1", "invitation-url"],
+          "query": [
+            {
+              "key": "alias",
+              "value": "member"
+            },
+            {
+              "key": "alias",
+              "value": "subscriber",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "#### **Description** **:**\n\nIt is used to create the connection invitation URL to establish the peer to peer connection between two aeries agents or the participant user and the principal user.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| alias | required | \"member\" or \"subscriber\" |\n\n> for this request, the request parameter needs to be provided as \"alias\" which is required and only accepts \"member\" or \"subscriber\".\n> \n> **\"member\" as alias** : the connection invitation is created for the member.\n> \n> **\"subscriber\" as alias** : the connection invitation is created for the subscriber.\n\n> **Connecting as a member :**\n> \n> A member is someone who is enrolling for first time in GaiaX ecosystem. The principal user will receive membership credential once connected as member and the connection will move to \"trusted\" state.\n\n> **Connecting as subscriber :**\n> \n> A subscriber is someone who is already connected with some participant in GaiaX ecosystem and is willing to connect (subscribe) with some other participants in ecosystem. The principal user need to present proof against membership credential. The proof presentation will be requested upon successful connection.\n> \n> And once the proof is presented successfully, the connection will move to \"trusted\" state.\n\n  \n\n#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| **Key** | **Description** |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → invitationUrl` | It returns the invitation URL to receive connection on principal end. |\n| `data → invitation` | It returns the invitation object to receive connection on principal end. |\n| `data → connection` | It returns connection object which contains the information about the connection. |\n| `data → connection → id` | It returns the connection unique identifier. |\n| `data → connection → createdAt` | It returns the created date and time. |\n| `data → connection → did` | It returns the connection DID. |\n| `data → connection → state` | It returns the connection state. |\n| `data → connection → role` | It returns the agent role. |\n| `data → connection → alias` | It returns the alias which we set at time of creating or receiving the connection. |\n| `data → connection → multiUseInvitation` | It returns the boolean which indicates whether the connection is multi-use or not. |"
+      },
+      "response": [
+        {
+          "name": "Create-Invitation-URL",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Con_man_baseURL}}/v1/invitation-url?alias=member",
+              "host": ["{{Con_man_baseURL}}"],
+              "path": ["v1", "invitation-url"],
+              "query": [
+                {
+                  "key": "alias",
+                  "value": "member"
+                },
+                {
+                  "key": "alias",
+                  "value": "subscriber",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Wed, 15 Jun 2022 09:18:04 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "content-length",
+              "value": "1989"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"7c5-cp94PvE2DNowIosoNk1tOsH7jDY\""
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connection created successfully\",\n    \"data\": {\n        \"invitationUrl\": \"https://gaiax.vereign.com:443/ocm/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiJkOTMzOTk5Mi02ZjZmLTQxYzEtYjQ0Yy1lMjNkMjUwMGMzNWIiLCJsYWJlbCI6InNzaS1hYnN0cmFjdGlvbi1hZ2VudCIsInJlY2lwaWVudEtleXMiOlsiREFnNEhrNzkyRXh6SFpRNjhHdktoY3ZrQzVYV3VqUHdiRlpmaWhTVlQyOFUiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cHM6Ly9nYWlheC52ZXJlaWduLmNvbTo0NDMvb2NtL2RpZGNvbW0iLCJyb3V0aW5nS2V5cyI6W119\",\n        \"invitation\": {\n            \"@type\": \"https://didcomm.org/connections/1.0/invitation\",\n            \"@id\": \"d9339992-6f6f-41c1-b44c-e23d2500c35b\",\n            \"label\": \"ssi-abstraction-agent\",\n            \"recipientKeys\": [\n                \"DAg4Hk792ExzHZQ68GvKhcvkC5XWujPwbFZfihSVT28U\"\n            ],\n            \"serviceEndpoint\": \"https://gaiax.vereign.com:443/ocm/didcomm\",\n            \"routingKeys\": []\n        },\n        \"connection\": {\n            \"_tags\": {},\n            \"metadata\": {},\n            \"id\": \"ffc4cd40-ae18-42f7-87c2-fe4d45b6e300\",\n            \"createdAt\": \"2022-06-15T09:18:04.978Z\",\n            \"did\": \"PKjWC17JFYBPLAjdeaZoaK\",\n            \"didDoc\": {\n                \"@context\": \"https://w3id.org/did/v1\",\n                \"publicKey\": [\n                    {\n                        \"id\": \"PKjWC17JFYBPLAjdeaZoaK#1\",\n                        \"controller\": \"PKjWC17JFYBPLAjdeaZoaK\",\n                        \"type\": \"Ed25519VerificationKey2018\",\n                        \"publicKeyBase58\": \"DAg4Hk792ExzHZQ68GvKhcvkC5XWujPwbFZfihSVT28U\"\n                    }\n                ],\n                \"service\": [\n                    {\n                        \"id\": \"PKjWC17JFYBPLAjdeaZoaK#IndyAgentService\",\n                        \"serviceEndpoint\": \"https://gaiax.vereign.com:443/ocm/didcomm\",\n                        \"type\": \"IndyAgent\",\n                        \"priority\": 0,\n                        \"recipientKeys\": [\n                            \"DAg4Hk792ExzHZQ68GvKhcvkC5XWujPwbFZfihSVT28U\"\n                        ],\n                        \"routingKeys\": []\n                    }\n                ],\n                \"authentication\": [\n                    {\n                        \"publicKey\": \"PKjWC17JFYBPLAjdeaZoaK#1\",\n                        \"type\": \"Ed25519SignatureAuthentication2018\"\n                    }\n                ],\n                \"id\": \"PKjWC17JFYBPLAjdeaZoaK\"\n            },\n            \"verkey\": \"DAg4Hk792ExzHZQ68GvKhcvkC5XWujPwbFZfihSVT28U\",\n            \"state\": \"invited\",\n            \"role\": \"inviter\",\n            \"alias\": \"member\",\n            \"invitation\": {\n                \"@type\": \"https://didcomm.org/connections/1.0/invitation\",\n                \"@id\": \"d9339992-6f6f-41c1-b44c-e23d2500c35b\",\n                \"label\": \"ssi-abstraction-agent\",\n                \"recipientKeys\": [\n                    \"DAg4Hk792ExzHZQ68GvKhcvkC5XWujPwbFZfihSVT28U\"\n                ],\n                \"serviceEndpoint\": \"https://gaiax.vereign.com:443/ocm/didcomm\",\n                \"routingKeys\": []\n            },\n            \"multiUseInvitation\": false\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get-Connection-by-ConnectionID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json();\r",
+              "\r",
+              "let template = `\r",
+              "    <html>\r",
+              "        <body> \r",
+              "            <div style=\"text-align:center; color:green; text-transform: capitalize;\">\r",
+              "                <h2>{{data.records.status}}</h2>\r",
+              "            </div>\r",
+              "        </body>\r",
+              "    </html>`;\r",
+              "pm.visualizer.set(template, res);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{Con_man_baseURL}}/v1/connections/{{conn-id}}",
+          "host": ["{{Con_man_baseURL}}"],
+          "path": ["v1", "connections", "{{conn-id}}"]
+        },
+        "description": "#### **Description** **:**\n\nThis request is used to fetch connection information for the connection id provided in URL.\n\n> It also provides state of the connection established.\n\n  \n  \n\n#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| **Key** | **Description** |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → records → id` | It returns the unique identifier for connection table. |\n| `data → records → connectionId` | It returns the connection unique identifier. |\n| `data → records → participantDid` | It returns the participant DID. |\n| `data → records → theirDid` | It returns the principal DID. |\n| `data → records → theirLabel` | It returns the email of the principal. |\n| `data → records → createdDate` | It returns the created date. |\n| `data → records → updatedDate` | It returns the updated date. |\n| `data → records → isActive` | It returns the boolean value which indicates record is active. |"
+      },
+      "response": [
+        {
+          "name": "Get-Connection-by-ConnectionID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Con_man_baseURL}}/v1/connections/{{conn-id}}",
+              "host": ["{{Con_man_baseURL}}"],
+              "path": ["v1", "connections", "{{conn-id}}"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Wed, 15 Jun 2022 09:25:00 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "content-length",
+              "value": "411"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"19b-TySvMVsRlQAW5a6BNN0k6i1Lo50\""
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connections fetch successfully\",\n    \"data\": {\n        \"records\": {\n            \"id\": \"0f8a7f07-f064-45af-ae0a-a98c5b721d04\",\n            \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n            \"status\": \"trusted\",\n            \"participantDid\": \"R5LHJTmiuP8PRtH74SVHXb\",\n            \"theirDid\": \"XpaT7i3hYHHHSMrw1rY3EB\",\n            \"theirLabel\": \"test_corp@vomoto.com\",\n            \"createdDate\": \"2022-06-15T09:24:15.248Z\",\n            \"updatedDate\": \"2022-06-15T09:24:56.988Z\",\n            \"isActive\": true\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get-Connections",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json();\r",
+              "\r",
+              "let template = `\r",
+              "    <html>\r",
+              "        <body> \r",
+              "            <div style=\"text-align:center; color:green; text-transform: capitalize;\">\r",
+              "                <h2>{{data.records.status}}</h2>\r",
+              "            </div>\r",
+              "        </body>\r",
+              "    </html>`;\r",
+              "pm.visualizer.set(template, res);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{Con_man_baseURL}}/v1/connections",
+          "host": ["{{Con_man_baseURL}}"],
+          "path": ["v1", "connections"],
+          "query": [
+            {
+              "key": "participantDID",
+              "value": "Jv5JtLcLuEeByKazGBtfSC",
+              "disabled": true
+            },
+            {
+              "key": "status",
+              "value": "trusted",
+              "disabled": true
+            },
+            {
+              "key": "pageSize",
+              "value": "5",
+              "disabled": true
+            },
+            {
+              "key": "page",
+              "value": "2",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "#### **Description** **:**\n\nThis request fetches the connection information against the provided participantDID otherwise all the connections are fetched.\n\n> It uses pagination to provide the particular number of records filtered as per the input given.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| participantDID | required | `participantDID`  <br>should be provided in query parameter. |\n| status | no | `status`  <br>should be provided in query parameter. It filters the connections list according the provided status value. |\n| pageSize | no | `pageSize`  <br>Should be provided in query parameter. It filters the list and sets the page size. |\n| page | no | `page`  <br>Should be provided in query parameter. It filters the list and sets the page to land on. |\n\n  \n\n#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| **Key** | **Description** |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → count` | It returns the total number of records available in the table for matching query. |\n| `data → records → id` | It returns the unique identifier for connection table. |\n| `data → records → connectionId` | It returns the connection unique identifier. |\n| `data → records → participantDid` | It returns the participant DID. |\n| `data → records → theirDid` | It returns the principal DID. |\n| `data → records → theirLabel` | It returns the email of the principal. |\n| `data → records → createdDate` | It returns the created date. |\n| `data → records → updatedDate` | It returns the updated date. |\n| `data → records → isActive` | It returns the boolean value which indicates record is active. |"
+      },
+      "response": [
+        {
+          "name": "Get-Connections",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Con_man_baseURL}}/v1/connections",
+              "host": ["{{Con_man_baseURL}}"],
+              "path": ["v1", "connections"],
+              "query": [
+                {
+                  "key": "participantDID",
+                  "value": "3zrMzUB6fur6snh5u4eiaQ",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "pageSize",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Wed, 15 Jun 2022 09:25:28 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "content-length",
+              "value": "3180"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"c6c-VFB0g130QAnHpy+JUr0Gx7WAWmM\""
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connections fetch successfully\",\n    \"data\": {\n        \"count\": 111,\n        \"records\": [\n            {\n                \"id\": \"02f41110-18b7-4d1f-89d4-b418cf2d603a\",\n                \"connectionId\": \"24402e32-234b-453f-a4cf-9f3e94ed85ab\",\n                \"status\": \"complete\",\n                \"participantDid\": \"BbiM3ypCFV49iqwVKnQ3Pt\",\n                \"theirDid\": \"6XYGkoJanFdNfQCF7yy8rx\",\n                \"theirLabel\": \"emilie@vomoto.com\",\n                \"createdDate\": \"2022-06-09T14:53:40.457Z\",\n                \"updatedDate\": \"2022-06-09T14:54:40.301Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"049ec6ed-8645-465b-8f3a-fdd438aed36b\",\n                \"connectionId\": \"fd96855b-c979-4125-95ba-d2535e63dfe6\",\n                \"status\": \"invited\",\n                \"participantDid\": \"Jv5JtLcLuEeByKazGBtfSC\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2022-06-08T13:26:16.708Z\",\n                \"updatedDate\": \"2022-06-08T13:26:16.708Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"092b1789-2522-44e1-9de7-de00c8e4e601\",\n                \"connectionId\": \"719ddbe9-7dce-43df-b4be-4714bcca20a7\",\n                \"status\": \"complete\",\n                \"participantDid\": \"9DJSEsZpu6Neh2zypBGJoA\",\n                \"theirDid\": \"SMrr5oVvxW1xWCfetQdYUn\",\n                \"theirLabel\": \"rangoon@vomoto.com\",\n                \"createdDate\": \"2022-06-08T14:40:13.868Z\",\n                \"updatedDate\": \"2022-06-08T14:40:23.967Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"0af9b87d-50ad-4faa-ad97-4ba1ea74af73\",\n                \"connectionId\": \"2b092454-05e6-4687-85e7-61c9ec4be97c\",\n                \"status\": \"invited\",\n                \"participantDid\": \"2j7hMxDhLwR6ya8Ptz5ewv\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2022-06-06T12:09:07.844Z\",\n                \"updatedDate\": \"2022-06-06T12:09:07.844Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"0b1eb233-0fdc-43ba-887e-01ca49f0984a\",\n                \"connectionId\": \"1279a5c1-c7f1-4abe-bece-816f5e710050\",\n                \"status\": \"invited\",\n                \"participantDid\": \"4WZPvgYQoiiyKEwePV2th1\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2022-06-07T12:39:18.101Z\",\n                \"updatedDate\": \"2022-06-07T12:39:18.101Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"0b369941-5648-4475-aff3-4b12f6d8f3c2\",\n                \"connectionId\": \"48afe258-dc0a-4c8b-a0f1-4b346e20f13c\",\n                \"status\": \"invited\",\n                \"participantDid\": \"NdDAdo5Kg2RvKCNZp62ehS\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2022-06-08T14:14:37.972Z\",\n                \"updatedDate\": \"2022-06-08T14:14:37.972Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"0e6c6705-9b8f-4cdb-a5ea-ab7651512e6a\",\n                \"connectionId\": \"e0eb278f-3283-419c-95ae-85ed0b4007de\",\n                \"status\": \"responded\",\n                \"participantDid\": \"P7jc1nckvYDu4aVxGQeS1z\",\n                \"theirDid\": \"NEfdsLk7xnxCui4RbNJj5S\",\n                \"theirLabel\": \"alena@vomoto.com\",\n                \"createdDate\": \"2022-06-09T13:44:50.029Z\",\n                \"updatedDate\": \"2022-06-09T13:45:01.246Z\",\n                \"isActive\": false\n            },\n            {\n                \"id\": \"0ea21690-9127-47cf-aad6-5c55721dbae2\",\n                \"connectionId\": \"9050c647-2931-4fdb-8f65-007c79f0bd33\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"TaojhXfMbbKgoiE8FjMDUG\",\n                \"theirDid\": \"JmQBgTUpfu8A7egsv1ib4s\",\n                \"theirLabel\": \"sam\",\n                \"createdDate\": \"2022-06-14T10:35:42.300Z\",\n                \"updatedDate\": \"2022-06-14T10:43:59.067Z\",\n                \"isActive\": true\n            },\n            {\n                \"id\": \"0f8a7f07-f064-45af-ae0a-a98c5b721d04\",\n                \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"R5LHJTmiuP8PRtH74SVHXb\",\n                \"theirDid\": \"XpaT7i3hYHHHSMrw1rY3EB\",\n                \"theirLabel\": \"test_corp@vomoto.com\",\n                \"createdDate\": \"2022-06-15T09:24:15.248Z\",\n                \"updatedDate\": \"2022-06-15T09:24:56.988Z\",\n                \"isActive\": true\n            },\n            {\n                \"id\": \"12870002-9220-4e3b-810f-369ef4351e51\",\n                \"connectionId\": \"c559ed17-cbce-4992-8d36-4ffb3550988b\",\n                \"status\": \"invited\",\n                \"participantDid\": \"AeB43tLJgwCLPR3CsjwcSU\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2022-06-06T11:42:52.186Z\",\n                \"updatedDate\": \"2022-06-06T11:42:52.186Z\",\n                \"isActive\": false\n            }\n        ]\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Accept-Connection",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"invitationUrl\": \"http://3.111.77.38:4021?c_i=eyJAdHlwZSI6ImRpZDpzb3Y6QnpDYnNOWWhNcmpIaXFaRFRVQVNIZztzcGVjL2Nvbm5lY3Rpb25zLzEuMC9pbnZpdGF0aW9uIiwiQGlkIjoiNTY0ZTM3NzQtZGViNy00ZTU2LWEyNTUtZWE3MmUyOWFlZmY4IiwibGFiZWwiOiJkZW1vNyIsInJlY2lwaWVudEtleXMiOlsiSHhVeVl4N1pIQnQ4ZHBCbk1MOVA4d0NqSm1jTmFFVGUzR2EzQjdHZ3l4VWoiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cDovLzMuMTExLjc3LjM4OjQwMjEiLCJyb3V0aW5nS2V5cyI6W119\",\r\n  \"autoAcceptConnection\": true\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://3.111.77.38:3003/v1/accept-connection-invitation",
+          "protocol": "http",
+          "host": ["3", "111", "77", "38"],
+          "port": "3003",
+          "path": ["v1", "accept-connection-invitation"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get-Connection-Information",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{Con_man_baseURL}}/v1/connection-information?connectionId={{conn-id}}",
+          "host": ["{{Con_man_baseURL}}"],
+          "path": ["v1", "connection-information"],
+          "query": [
+            {
+              "key": "did",
+              "value": "MJys9zJZ1m2S6dFccFJQJs",
+              "disabled": true
+            },
+            {
+              "key": "connectionId",
+              "value": "{{conn-id}}"
+            }
+          ]
+        },
+        "description": "#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| **Key** | **Description** |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → records → issueCredentials` | It returns the array of issued credentials against connection id. |\n| `data → records → issueCredentials → id` | It returns the unique identifier for issued credentials record in table. |\n| `data → records → issueCredentials → credentialId` | It returns the unique identifier for issued credentials. |\n| `data → records → issueCredentials → state` | It returns the state of the issued credentials. |\n| `data → records → issueCredentials → principalDid` | It returns the principal DID. |\n| `data → records → issueCredentials → connectionId` | It returns the connection ID. |\n| `data → records → issueCredentials → createdDate` | It returns the created date. |\n| `data → records → issueCredentials → updatedDate` | It returns the updated date. |\n| `data → records → issueCredentials → expirationDate` | It returns the expiration date of issued credentials. |\n| `data → records → presenProofs` | It returns the list of proofs presentation. |\n| `data → records → presenProofs → id` | It returns the unique identifier for proofs record in table. |\n| `data → records → presenProofs → presentation_id` | It returns the unique identifier for proof presentation. |\n| `data → records → presenProofs → connectionId` | It returns the connection ID. |\n| `data → records → presenProofs → credential_def_id` | It returns the credential def id. |\n| `data → records → presenProofs → schemaId` | It returns the schema id. |\n| `data → records → presenProofs → their_did` | It returns the principal DID. |\n| `data → records → presenProofs → status` | It returns the status of proof presentation. |\n| `data → records → presenProofs → created_date` | It returns the created date. |\n| `data → records → presenProofs → updated_date` | It returns the updated date. |"
+      },
+      "response": [
+        {
+          "name": "Get-Connection-Information",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Con_man_baseURL}}/v1/connection-information?did&connectionId={{conn-id}}",
+              "host": ["{{Con_man_baseURL}}"],
+              "path": ["v1", "connection-information"],
+              "query": [
+                {
+                  "key": "did",
+                  "value": null
+                },
+                {
+                  "key": "connectionId",
+                  "value": "{{conn-id}}"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Wed, 15 Jun 2022 09:28:39 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "content-length",
+              "value": "1320"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"528-EZqt2BArtofGni3d7fvQseXpEg8\""
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connection information fetch successfully\",\n    \"data\": {\n        \"records\": {\n            \"issueCredentials\": [\n                {\n                    \"id\": \"8bf0c9bf-c008-4324-b462-74ce2d0948ad\",\n                    \"credentialId\": \"1b7e0718-0eb0-4899-89b9-3fd04b95b148\",\n                    \"credDefId\": \"7KuDTpQh3GJ7Gp6kErpWvM:3:CL:322876:test_test_cred-def_140622-07\",\n                    \"state\": \"done\",\n                    \"principalDid\": \"XpaT7i3hYHHHSMrw1rY3EB\",\n                    \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n                    \"createdDate\": \"2022-06-15T09:25:59.053Z\",\n                    \"updatedDate\": \"2022-06-15T09:26:57.810Z\",\n                    \"expirationDate\": \"2022-07-15T09:25:59.052Z\"\n                },\n                {\n                    \"id\": \"04d6d4c9-0230-4441-a1de-9aec69ed2ff2\",\n                    \"credentialId\": \"12b0640c-99f7-4413-a27c-5b34b0ecfb0a\",\n                    \"credDefId\": \"7KuDTpQh3GJ7Gp6kErpWvM:3:CL:321508:princi_cred_def130622\",\n                    \"state\": \"done\",\n                    \"principalDid\": \"XpaT7i3hYHHHSMrw1rY3EB\",\n                    \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n                    \"createdDate\": \"2022-06-15T09:24:27.429Z\",\n                    \"updatedDate\": \"2022-06-15T09:24:56.976Z\",\n                    \"expirationDate\": \"2022-12-12T09:24:27.339Z\"\n                }\n            ],\n            \"presenProofs\": [\n                {\n                    \"id\": \"48b2b61d-a5d9-4c1d-a745-ed5cd018c5bd\",\n                    \"presentation_id\": \"07f27a99-4ff2-4d3c-82f9-0f49cd6d8203\",\n                    \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n                    \"credential_def_id\": \"\",\n                    \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-07:14.06.2207\",\n                    \"their_did\": \"\",\n                    \"status\": \"done\",\n                    \"created_date\": \"2022-06-15T09:27:07.302Z\",\n                    \"updated_date\": \"2022-06-15T09:27:26.804Z\"\n                }\n            ]\n        }\n    }\n}"
+        }
+      ]
+    }
+  ]
 }

@@ -16,7 +16,7 @@ export class AcaPyUtils {
     if (!this.instance) {
       if (!app) {
         throw new UndefinedAppError(
-          'Error creating a new instance of [AcaPyUtils]: no app was provided'
+          'Error creating a new instance of [AcaPyUtils]: no app was provided',
         );
       }
       this.instance = new AcaPyUtils(app);

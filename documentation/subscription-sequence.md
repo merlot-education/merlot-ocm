@@ -6,7 +6,7 @@ participant OCM Connection Manager
 participant OCM Connection Manager Db
 participant OCM Principal Manager
 participant OCM Proof Manager
- 
+
   par
   OCM Admin ->> OCM Connection Manager: Uses invitationURL(), to generate new Invitation URL with parameter 'alias = subscriber'
   OCM Admin ->> OCM Admin: Converts URL to QR, and displays

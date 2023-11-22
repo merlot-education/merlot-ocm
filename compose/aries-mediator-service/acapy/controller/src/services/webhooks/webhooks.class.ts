@@ -5,7 +5,7 @@ import {
   ConnectionState,
   ConnectionServiceAction,
   ServiceType,
-  WebhookTopic
+  WebhookTopic,
 } from '../../models/enums';
 import { AriesAgentData } from '../aries-agent/aries-agent.class';
 
@@ -30,7 +30,7 @@ export class Webhooks implements Partial<ServiceMethods<Data>> {
   async create(data: Data, params?: Params): Promise<any> {
     const topic = params?.route?.topic;
     const state = data?.state;
-    console.log("Received webhook:", topic, state);
+    console.log('Received webhook:', topic, state);
     switch (topic) {
       case WebhookTopic.Connections:
         if (state === ConnectionState.Request) {

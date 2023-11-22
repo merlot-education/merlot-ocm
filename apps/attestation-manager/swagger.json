@@ -142,9 +142,7 @@
             }
           }
         },
-        "tags": [
-          "Schemas"
-        ]
+        "tags": ["Schemas"]
       },
       "post": {
         "operationId": "SchemasController_createSchema",
@@ -251,9 +249,7 @@
             }
           }
         },
-        "tags": [
-          "Schemas"
-        ]
+        "tags": ["Schemas"]
       }
     },
     "/v1/schemas/{id}": {
@@ -348,9 +344,7 @@
             }
           }
         },
-        "tags": [
-          "Schemas"
-        ]
+        "tags": ["Schemas"]
       }
     },
     "/v1/schemas/get-dids-for-schema/{id}": {
@@ -383,9 +377,7 @@
                         "total_credential_defs": 1,
                         "principalDids": [
                           {
-                            "loremIpsumCredDef": [
-                              "1234did"
-                            ]
+                            "loremIpsumCredDef": ["1234did"]
                           }
                         ]
                       }
@@ -429,9 +421,7 @@
             }
           }
         },
-        "tags": [
-          "Schemas"
-        ]
+        "tags": ["Schemas"]
       }
     },
     "/v1/create-offer-credential": {
@@ -569,9 +559,7 @@
             }
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       }
     },
     "/v1/create-propose-credential": {
@@ -692,9 +680,7 @@
             }
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       }
     },
     "/v1/accept-request/{credentialId}": {
@@ -708,9 +694,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       }
     },
     "/v1/accept-proposal/{credentialId}": {
@@ -724,9 +708,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       }
     },
     "/v1/accept-offer/{credentialId}": {
@@ -740,9 +722,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       }
     },
     "/v1/accept-credential/{credentialId}": {
@@ -756,9 +736,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       }
     },
     "/v1/credential-info/{id}": {
@@ -799,9 +777,7 @@
             }
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       }
     },
     "/v1/delete-credential/{id}": {
@@ -844,9 +820,7 @@
             }
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       }
     },
     "/v1/credential": {
@@ -1008,9 +982,7 @@
             }
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       }
     },
     "/v1/credential/{id}": {
@@ -1082,9 +1054,7 @@
             }
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       }
     },
     "/v1/updateSchemaIdByType": {
@@ -1166,9 +1136,7 @@
             }
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       }
     },
     "/v1/credentialType": {
@@ -1227,9 +1195,7 @@
             }
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       },
       "get": {
         "operationId": "AttestationController_getCredentialTypeAttributes",
@@ -1304,9 +1270,7 @@
             }
           }
         },
-        "tags": [
-          "Credentials"
-        ]
+        "tags": ["Credentials"]
       }
     },
     "/v1/credentialDef": {
@@ -1416,9 +1380,7 @@
             }
           }
         },
-        "tags": [
-          "Credential Definitions"
-        ]
+        "tags": ["Credential Definitions"]
       },
       "post": {
         "operationId": "CredentialDefController_createCredentialDef",
@@ -1515,9 +1477,7 @@
             }
           }
         },
-        "tags": [
-          "Credential Definitions"
-        ]
+        "tags": ["Credential Definitions"]
       }
     },
     "/v1/credentialDef/{id}": {
@@ -1605,9 +1565,7 @@
             }
           }
         },
-        "tags": [
-          "Credential Definitions"
-        ]
+        "tags": ["Credential Definitions"]
       }
     },
     "/v1/userInfo": {
@@ -1631,9 +1589,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "userInfo (to be deprecated)"
-        ]
+        "tags": ["userInfo (to be deprecated)"]
       }
     }
   },
@@ -1669,12 +1625,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "createdBy",
-          "version",
-          "attributes"
-        ]
+        "required": ["name", "createdBy", "version", "attributes"]
       },
       "CredentialPreviewAttributes": {
         "type": "object",
@@ -1686,10 +1637,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "value"
-        ]
+        "required": ["name", "value"]
       },
       "OfferCredentialDto": {
         "type": "object",
@@ -1755,9 +1703,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "schemaId"
-        ]
+        "required": ["schemaId"]
       },
       "CredentialTypeDto": {
         "type": "object",
@@ -1769,10 +1715,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "type",
-          "schemaId"
-        ]
+        "required": ["type", "schemaId"]
       },
       "CredentialDefDto": {
         "type": "object",
@@ -1822,11 +1765,7 @@
             "properties": {}
           }
         },
-        "required": [
-          "connectionId",
-          "autoAcceptCredential",
-          "userInfo"
-        ]
+        "required": ["connectionId", "autoAcceptCredential", "userInfo"]
       }
     }
   }
