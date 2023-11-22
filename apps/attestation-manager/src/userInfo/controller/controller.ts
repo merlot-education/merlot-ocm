@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { Response } from 'express';
+
 import {
   BadRequestException,
   Body,
@@ -12,7 +15,6 @@ import {
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
 import { isUUID } from 'class-validator';
-import { Response } from 'express';
 
 import { AutoAcceptCredential } from '../../common/constants.js';
 import logger from '../../utils/logger.js';

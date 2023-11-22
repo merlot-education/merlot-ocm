@@ -1,6 +1,8 @@
 import type { ResponseType } from '../../common/response.js';
 import type CredentialDto from '../entities/credential.entity.js';
 import type CredentialStateDto from '../entities/credential.state.entity.js';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { Response } from 'express';
 
 import {
   BadRequestException,
@@ -30,7 +32,6 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
-import { Response } from 'express';
 
 import {
   Abstraction,

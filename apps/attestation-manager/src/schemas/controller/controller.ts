@@ -1,4 +1,6 @@
 import type { ResponseType } from '../../common/response.js';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { Response } from 'express';
 
 import {
   Body,
@@ -21,7 +23,6 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
-import { Response } from 'express';
 
 import { VersionRegex } from '../../common/constants.js';
 import logger from '../../utils/logger.js';

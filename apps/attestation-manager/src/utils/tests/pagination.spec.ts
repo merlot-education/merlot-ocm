@@ -1,4 +1,4 @@
-import pagination from '../pagination';
+import pagination from '../pagination.js';
 
 describe('Pagination', () => {
   let pageSize: number;

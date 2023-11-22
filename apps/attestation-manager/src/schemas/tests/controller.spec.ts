@@ -1,5 +1,6 @@
 import type SchemaDto from '../entities/schema-entity.js';
 import type { TestingModule } from '@nestjs/testing';
+import type { Response } from 'express';
 
 import { HttpStatus } from '@nestjs/common';
 import { Test } from '@nestjs/testing';

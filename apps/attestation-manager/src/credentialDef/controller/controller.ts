@@ -1,5 +1,7 @@
 import type { ResponseType } from '../../common/response.js';
 import type CredentialDefLedgerDto from '../entities/credentialDefLedger-entity.js';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { Response } from 'express';
 
 import {
   Body,
@@ -22,7 +24,6 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
-import { Response } from 'express';
 
 import logger from '../../utils/logger.js';
 import CredentialDefDto from '../entities/credentialDef-entity.js';
