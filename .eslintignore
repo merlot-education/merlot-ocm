@@ -16,6 +16,3 @@ node_modules
 apps/**/dist
 compose
 documentation
-
-# Ignore ssi-abstraction for now
-apps/ssi-abstraction
