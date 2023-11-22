@@ -1,7 +1,10 @@
+import type { INestApplication } from '@nestjs/common';
+import type { TestingModule } from '@nestjs/testing';
+
 import { afterEach, beforeEach, describe, it } from '@jest/globals';
-import { INestApplication } from '@nestjs/common';
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
 import request from 'supertest';
+
 import AppModule from '../src/app.module.js';
 
 describe('AppController (e2e)', () => {
@@ -18,7 +21,6 @@ describe('AppController (e2e)', () => {
 
   afterEach(() => app.close());
 
-  // eslint-disable-next-line jest/expect-expect
   it('/health (GET)', () =>
     request(app.getHttpServer()).get('/health').expect(200));
 });

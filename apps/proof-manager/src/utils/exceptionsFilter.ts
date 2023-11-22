@@ -1,20 +1,15 @@
-import {
-  ArgumentsHost,
-  Catch,
-  ExceptionFilter,
-  HttpException,
-  HttpStatus,
-  Logger,
-} from '@nestjs/common';
+import type { ArgumentsHost, ExceptionFilter } from '@nestjs/common';
+import type { Request } from 'express';
+
+import { Catch, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 import { Prisma } from '@prisma/client';
-import { Request } from 'express';
 
 @Catch()
 export default class AllExceptionsFilter implements ExceptionFilter {
-  constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
+  public constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
-  catch(
+  public catch(
     exception:
       | HttpException
       | Prisma.PrismaClientKnownRequestError

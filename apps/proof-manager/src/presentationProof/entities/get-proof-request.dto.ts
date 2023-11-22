@@ -2,13 +2,13 @@ import { IsString } from 'class-validator';
 
 export default class GetProofRequest {
   @IsString()
-  state: string;
+  public state: string;
 
   @IsString()
-  id: string;
+  public id: string;
 
   @IsString()
-  connectionId: string;
+  public connectionId: string;
 
-  isVerified?: boolean;
+  public isVerified?: boolean;
 }

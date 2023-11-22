@@ -1,18 +1,20 @@
+import type { Prisma } from '@prisma/client';
+
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+
 import PrismaService from '../../prisma/prisma.service.js';
 
 @Injectable()
 export default class PresentationProofRepository {
-  constructor(private readonly prismaService: PrismaService) {}
+  public constructor(private readonly prismaService: PrismaService) {}
 
-  async createPresentationProof(data: Prisma.ProofCreateInput) {
+  public async createPresentationProof(data: Prisma.ProofCreateInput) {
     return this.prismaService.proof.create({
       data,
     });
   }
 
-  async updatePresentationStatus(params: {
+  public async updatePresentationStatus(params: {
     where: Prisma.ProofWhereUniqueInput;
     data: Prisma.ProofUpdateInput;
   }) {
@@ -23,7 +25,7 @@ export default class PresentationProofRepository {
     });
   }
 
-  async findProofPresentation(params: {
+  public async findProofPresentation(params: {
     skip?: number;
     take?: number;
     cursor?: Prisma.ProofWhereUniqueInput;
@@ -45,13 +47,13 @@ export default class PresentationProofRepository {
     ]);
   }
 
-  async deleteProofRequest(proofRecordId: string) {
+  public async deleteProofRequest(proofRecordId: string) {
     return this.prismaService.proof.delete({
       where: { proofRecordId },
     });
   }
 
-  async createShortUrl(originalUrl: string) {
+  public async createShortUrl(originalUrl: string) {
     return this.prismaService.shortUrl.create({
       data: {
         originalUrl,
@@ -59,7 +61,7 @@ export default class PresentationProofRepository {
     });
   }
 
-  async getShortUrl(id: string) {
+  public async getShortUrl(id: string) {
     return this.prismaService.shortUrl.findUnique({
       where: {
         id,

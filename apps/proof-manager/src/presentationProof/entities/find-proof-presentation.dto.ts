@@ -1,39 +1,39 @@
-import { IsNumber, IsString, IsDateString } from 'class-validator';
+import { IsDateString, IsNumber, IsString } from 'class-validator';
 
 export default class FindProofPresentationDto {
   @IsNumber()
-  page: string;
+  public page: string;
 
   @IsNumber()
-  pageSize: string;
+  public pageSize: string;
 
   @IsString()
-  proofRecordId: string;
+  public proofRecordId: string;
 
   @IsString()
-  connectionId: string;
+  public connectionId: string;
 
   @IsString()
-  credentialDefId: string;
+  public credentialDefId: string;
 
   @IsString()
-  schemaId: string;
+  public schemaId: string;
 
   @IsString()
-  theirDid: string;
+  public theirDid: string;
 
   @IsString()
-  status: string;
+  public status: string;
 
   @IsDateString()
-  createdDateStart: string;
+  public createdDateStart: string;
 
   @IsDateString()
-  createdDateEnd: string;
+  public createdDateEnd: string;
 
   @IsDateString()
-  updatedDateStart: string;
+  public updatedDateStart: string;
 
   @IsDateString()
-  updatedDateEnd: string;
+  public updatedDateEnd: string;
 }

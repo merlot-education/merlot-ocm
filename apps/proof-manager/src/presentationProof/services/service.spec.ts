@@ -1,13 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type MembershipCredentialDto from '../entities/membership-credential.dto.js';
+import type SendProofRequest from '../entities/send-proof-request.dto.js';
+import type { TestingModule } from '@nestjs/testing';
+
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
+
 import NatsClientService from '../../client/nats.client.js';
 import RestClientService from '../../client/rest.client.js';
 import { NATSServices } from '../../common/constants.js';
 import PrismaService from '../../prisma/prisma.service.js';
-import MembershipCredentialDto from '../entities/membership-credential.dto.js';
-import SendProofRequest from '../entities/send-proof-request.dto.js';
+
 import PresentationProofsService from './service.js';
 
 describe.skip('ConnectionsService', () => {

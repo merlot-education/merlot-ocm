@@ -1,3 +1,10 @@
+import type ResponseType from '../../common/response.js';
+import type GetProofRequest from '../entities/get-proof-request.dto.js';
+import type MembershipCredentialDto from '../entities/membership-credential.dto.js';
+import type PresentationSubscriptionEndpointDto from '../entities/presentationSubscribeEndPoint.entity.js';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { Response } from 'express';
+
 import {
   Body,
   Controller,
@@ -18,23 +25,19 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import type { Response } from 'express';
 import { Base64 } from 'js-base64';
+
 import {
   ATTESTATION,
   Abstraction,
   NATSServices,
   States,
 } from '../../common/constants.js';
-import ResponseType from '../../common/response.js';
 import logger from '../../utils/logger.js';
 import AcceptPresentationDto from '../entities/accept-presentation.dto.js';
 import AcceptProofRequestDto from '../entities/accept-proof-request.dto.js';
 import FindProofPresentationDto from '../entities/find-proof-presentation.dto.js';
 import GetPresentProofsDto from '../entities/get-present-proofs.dto.js';
-import GetProofRequest from '../entities/get-proof-request.dto.js';
-import MembershipCredentialDto from '../entities/membership-credential.dto.js';
-import PresentationSubscriptionEndpointDto from '../entities/presentationSubscribeEndPoint.entity.js';
 import SendProofRequestBody from '../entities/send-proof-request-body.dto.js';
 import SendProofRequest from '../entities/send-proof-request.dto.js';
 import PresentationProofsService from '../services/service.js';
@@ -42,7 +45,7 @@ import PresentationProofsService from '../services/service.js';
 @ApiTags('Proofs')
 @Controller()
 export default class PresentationProofsController {
-  constructor(
+  public constructor(
     private readonly presentationProofsService: PresentationProofsService,
     private configService: ConfigService,
   ) {}
@@ -116,7 +119,7 @@ export default class PresentationProofsController {
       },
     },
   })
-  async findProofPresentation(
+  public async findProofPresentation(
     @Query() query: FindProofPresentationDto,
     @Res() response: Response,
   ) {
@@ -230,7 +233,7 @@ export default class PresentationProofsController {
       },
     },
   })
-  async findProofByProofRecordId(
+  public async findProofByProofRecordId(
     @Query() query: AcceptPresentationDto,
     @Res() response: Response,
   ) {
@@ -347,7 +350,7 @@ export default class PresentationProofsController {
   @MessagePattern({
     endpoint: `${NATSServices.SERVICE_NAME}/sendMembershipProofRequest`,
   })
-  async sendPrincipalCredentialPresentationRequest(data: {
+  public async sendPrincipalCredentialPresentationRequest(data: {
     connectionId: string;
   }) {
     let res: ResponseType;
@@ -412,7 +415,9 @@ export default class PresentationProofsController {
   @EventPattern({
     endpoint: `${Abstraction.NATS_ENDPOINT}/${Abstraction.PROOF_STATE_CHANGED}`,
   })
-  async webhookGetProofPresentation(body: { proofRecord: GetProofRequest }) {
+  public async webhookGetProofPresentation(body: {
+    proofRecord: GetProofRequest;
+  }) {
     const getProofRequest = body.proofRecord;
     let res: ResponseType;
     let getProofRequestDTO: GetProofRequest;
@@ -546,7 +551,7 @@ export default class PresentationProofsController {
       },
     },
   })
-  async sendPresentationRequest(
+  public async sendPresentationRequest(
     @Body() sendProofRequest: SendProofRequest,
     @Res() response: Response,
   ) {
@@ -684,7 +689,7 @@ export default class PresentationProofsController {
       },
     },
   })
-  async sendOutOfBandPresentationRequest(
+  public async sendOutOfBandPresentationRequest(
     @Body() sendProofRequestBody: SendProofRequestBody,
     @Res() response: Response,
   ) {
@@ -840,7 +845,7 @@ export default class PresentationProofsController {
       },
     },
   })
-  async outOfBandProof(
+  public async outOfBandProof(
     @Query() query: { type: string },
     @Res() response: Response,
   ) {
@@ -977,7 +982,7 @@ export default class PresentationProofsController {
       },
     },
   })
-  async acceptPresentation(
+  public async acceptPresentation(
     @Param() params: AcceptPresentationDto,
     @Res() response: Response,
   ) {
@@ -1108,7 +1113,7 @@ export default class PresentationProofsController {
       },
     },
   })
-  async acceptProofRequest(
+  public async acceptProofRequest(
     @Param() params: AcceptProofRequestDto,
     @Res() response: Response,
   ) {
@@ -1195,7 +1200,7 @@ export default class PresentationProofsController {
       },
     },
   })
-  async deleteProofRequest(
+  public async deleteProofRequest(
     @Param() params: AcceptProofRequestDto,
     @Res() response: Response,
   ) {
@@ -1326,7 +1331,7 @@ export default class PresentationProofsController {
       },
     },
   })
-  async declineProofRequest(
+  public async declineProofRequest(
     @Param() params: AcceptProofRequestDto,
     @Res() response: Response,
   ) {
@@ -1447,7 +1452,7 @@ export default class PresentationProofsController {
       },
     },
   })
-  async getAllProofRequest(
+  public async getAllProofRequest(
     @Query() query: { threadId: string },
     @Res() response: Response,
   ) {
@@ -1464,7 +1469,7 @@ export default class PresentationProofsController {
   @MessagePattern({
     endpoint: `${NATSServices.SERVICE_NAME}/getPresentProofs`,
   })
-  async getPresentProofs(data: GetPresentProofsDto) {
+  public async getPresentProofs(data: GetPresentProofsDto) {
     return this.presentationProofsService.getPresentProofs(data);
   }
 
@@ -1474,7 +1479,7 @@ export default class PresentationProofsController {
     summary: 'Get full url from short url id',
     description: 'Get full url from short url id',
   })
-  async redirectToOriginalUrl(
+  public async redirectToOriginalUrl(
     @Param('id') id: string,
     @Res() response: Response,
   ) {

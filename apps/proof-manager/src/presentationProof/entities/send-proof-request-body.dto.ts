@@ -1,23 +1,24 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
+
 import GetProofRequest from './get-proof-request.dto.js';
 
 export default class SendProofRequestBody {
   @ApiProperty({ example: 'comments' })
-  comment?: string;
+  public comment?: string;
 
   @IsString()
-  status?: string;
+  public status?: string;
 
   @ApiProperty({ example: 'WgWxqztrNooG92RXvxSTWv:3:CL:20:tag' })
   @IsString()
-  schemaId: string;
+  public schemaId: string;
 
   @IsString()
-  theirDID?: string;
+  public theirDID?: string;
 
   @IsString()
-  presentationMessage?: string;
+  public presentationMessage?: string;
 
   @ApiProperty({
     example: {
@@ -25,16 +26,16 @@ export default class SendProofRequestBody {
       credentialDefinitionId: 'credentialDefinitionId',
     },
   })
-  options?: {
+  public options?: {
     type: string;
     credentialDefinitionId: string;
   };
 
   @IsString()
-  invitation?: GetProofRequest;
+  public invitation?: GetProofRequest;
 
   @ApiProperty({ example: ['attributeName'] })
-  attributes: [
+  public attributes: [
     {
       attributeName: string;
       schemaId: string;

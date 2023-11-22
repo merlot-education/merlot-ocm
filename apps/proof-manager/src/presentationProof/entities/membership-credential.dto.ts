@@ -2,9 +2,9 @@ import { IsString } from 'class-validator';
 
 export default class MembershipCredentialDto {
   @IsString()
-  connectionId: string;
+  public connectionId: string;
 
-  attributes: {
+  public attributes: {
     attributeName: string;
     schemaId?: string;
     credentialDefId?: string;

@@ -1,18 +1,20 @@
+import type GetPresentProofsDto from '../entities/get-present-proofs.dto.js';
+import type GetProofRequest from '../entities/get-proof-request.dto.js';
+import type MembershipCredentialDto from '../entities/membership-credential.dto.js';
+import type PresentationSubscriptionEndpointDto from '../entities/presentationSubscribeEndPoint.entity.js';
+import type SendProofRequest from '../entities/send-proof-request.dto.js';
+import type { Prisma } from '@prisma/client';
+
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Prisma } from '@prisma/client';
 import { lastValueFrom, map } from 'rxjs';
+
 import NatsClientService from '../../client/nats.client.js';
 import RestClientService from '../../client/rest.client.js';
 import PrismaService from '../../prisma/prisma.service.js';
 import logger from '../../utils/logger.js';
 import pagination from '../../utils/pagination.js';
-import GetPresentProofsDto from '../entities/get-present-proofs.dto.js';
-import GetProofRequest from '../entities/get-proof-request.dto.js';
-import MembershipCredentialDto from '../entities/membership-credential.dto.js';
-import PresentationSubscriptionEndpointDto from '../entities/presentationSubscribeEndPoint.entity.js';
-import SendProofRequest from '../entities/send-proof-request.dto.js';
 import PresentationProofRepository from '../repository/presentationProof.respository.js';
 
 @Injectable()
@@ -23,7 +25,7 @@ export default class PresentationProofsService {
 
   private didcommUrl;
 
-  constructor(
+  public constructor(
     private readonly natsClient: NatsClientService,
     private readonly prismaService: PrismaService,
     private readonly httpService: HttpService,
@@ -38,19 +40,19 @@ export default class PresentationProofsService {
     this.didcommUrl = this.configService.get('agent').didcommUrl;
   }
 
-  getAppUrl() {
+  public getAppUrl() {
     return this.configService.get('APP_URL');
   }
 
-  static readonly connectionStatus = {
+  public static readonly connectionStatus = {
     TRUSTED: 'trusted',
   };
 
-  async findProofByProofRecordId(proof_record_id: string) {
+  public async findProofByProofRecordId(proof_record_id: string) {
     return this.restClient.get(`${this.agentURL}/proofs/${proof_record_id}`);
   }
 
-  async findProofPresentation(
+  public async findProofPresentation(
     pageSize: number,
     page: number,
     proofRecordId?: string | false,
@@ -116,7 +118,7 @@ export default class PresentationProofsService {
     return this.presentationProofRepository.findProofPresentation(query);
   }
 
-  async createPresentationRequest(sendProofRequest: SendProofRequest) {
+  public async createPresentationRequest(sendProofRequest: SendProofRequest) {
     const query: Prisma.ProofCreateInput = {
       proofRecordId: sendProofRequest.proofRecordId || '',
       connectionId: sendProofRequest.connectionId,
@@ -125,13 +127,13 @@ export default class PresentationProofsService {
     return this.presentationProofRepository.createPresentationProof(query);
   }
 
-  async getConnectionByID(connectionID: string) {
+  public async getConnectionByID(connectionID: string) {
     const connection = await this.natsClient.getConnectionById(connectionID);
 
     return connection;
   }
 
-  async sendPresentationRequest(sendProofRequest: SendProofRequest) {
+  public async sendPresentationRequest(sendProofRequest: SendProofRequest) {
     const getPayloadRes =
       PresentationProofsService.createCommonPresentationRequestPaylod(
         sendProofRequest,
@@ -183,7 +185,7 @@ export default class PresentationProofsService {
     return responseData;
   }
 
-  static createCommonPresentationRequestPaylod(
+  public static createCommonPresentationRequestPaylod(
     sendProofRequest: SendProofRequest,
   ) {
     const requestedAttributes: {
@@ -241,7 +243,9 @@ export default class PresentationProofsService {
     return payload;
   }
 
-  async sendOutOfBandPresentationRequest(sendProofRequest: SendProofRequest) {
+  public async sendOutOfBandPresentationRequest(
+    sendProofRequest: SendProofRequest,
+  ) {
     const getPayloadRes =
       PresentationProofsService.createCommonPresentationRequestPaylod(
         sendProofRequest,
@@ -275,7 +279,7 @@ export default class PresentationProofsService {
     return responseData;
   }
 
-  async sendPrincipalCredentialPresentationRequest(
+  public async sendPrincipalCredentialPresentationRequest(
     sendProofRequest: MembershipCredentialDto,
   ) {
     const requestedAttributes: {
@@ -286,41 +290,45 @@ export default class PresentationProofsService {
     } = {};
     const generateNonce: number = Math.floor(Math.random() * 10000000000000);
     const comment = '';
+
     for (
       let index = 0;
       index < sendProofRequest.attributes.length;
       index += 1
     ) {
-      const attributeElement = sendProofRequest.attributes[index].attributeName;
+      const attributeElement = sendProofRequest.attributes[index];
       const attributeReferent = `additionalProp${index + 1}`;
       const keys = Object.keys(requestedAttributes);
       if (keys.length > 0) {
         keys.forEach((attr, i) => {
           if (
+            attributeElement.schemaId &&
             requestedAttributes[attr].restrictions[i].schema_id ===
-            sendProofRequest.attributes[index].schemaId
+              attributeElement.schemaId
           ) {
-            requestedAttributes[attr].names.push(attributeElement);
+            requestedAttributes[attr].names.push({
+              schema_id: attributeElement.schemaId,
+            });
           } else if (keys.length === i + 1) {
             requestedAttributes[attributeReferent] = {
-              names: [attributeElement],
+              names: [attributeElement.attributeName],
               restrictions: [
                 {
-                  schema_id: sendProofRequest.attributes[index].schemaId || '',
+                  schema_id: attributeElement.schemaId || '',
                 },
               ],
-            };
+            } as any; // eslint-disable-line @typescript-eslint/no-explicit-any
           }
         });
       } else {
         requestedAttributes[attributeReferent] = {
-          names: [attributeElement],
+          names: [attributeElement.attributeName],
           restrictions: [
             {
-              schema_id: sendProofRequest.attributes[index].schemaId || '',
+              schema_id: attributeElement.schemaId || '',
             },
           ],
-        };
+        } as any; // eslint-disable-line @typescript-eslint/no-explicit-any
       }
     }
 
@@ -347,7 +355,7 @@ export default class PresentationProofsService {
     return responseData;
   }
 
-  async updatePresentationStatus(getProofRequest: GetProofRequest) {
+  public async updatePresentationStatus(getProofRequest: GetProofRequest) {
     const getRes =
       await this.presentationProofRepository.updatePresentationStatus({
         where: { proofRecordId: getProofRequest.id },
@@ -359,7 +367,7 @@ export default class PresentationProofsService {
     return getRes;
   }
 
-  async acceptPresentation(proof_record_id: string) {
+  public async acceptPresentation(proof_record_id: string) {
     return lastValueFrom(
       this.httpService
         .post(`${this.agentURL}/proofs/${proof_record_id}/accept-presentation`)
@@ -367,7 +375,7 @@ export default class PresentationProofsService {
     );
   }
 
-  async acceptProofRequest(proofRecordId: string) {
+  public async acceptProofRequest(proofRecordId: string) {
     return lastValueFrom(
       this.httpService
         .post(`${this.agentURL}/proofs/${proofRecordId}/accept-request`)
@@ -375,7 +383,7 @@ export default class PresentationProofsService {
     );
   }
 
-  async deleteProofRequest(proofRecordId: string) {
+  public async deleteProofRequest(proofRecordId: string) {
     const response = lastValueFrom(
       this.httpService
         .delete(`${this.agentURL}/proofs/${proofRecordId}`)
@@ -387,7 +395,7 @@ export default class PresentationProofsService {
     return response;
   }
 
-  async declineProofRequest(proofRecordId: string) {
+  public async declineProofRequest(proofRecordId: string) {
     return lastValueFrom(
       this.httpService
         .post(`${this.didcommUrl}/v1/agent/proofs/declineRequest`, {
@@ -397,7 +405,7 @@ export default class PresentationProofsService {
     );
   }
 
-  async getAllProofRequest(threadId: string) {
+  public async getAllProofRequest(threadId: string) {
     const url = threadId
       ? `${this.agentURL}/proofs/?threadId=${threadId}`
       : `${this.agentURL}/proofs/`;
@@ -406,35 +414,35 @@ export default class PresentationProofsService {
     );
   }
 
-  async getSchemaById(schemaId: string) {
+  public async getSchemaById(schemaId: string) {
     const url = `${this.agentURL}/schemas/${schemaId}`;
     return lastValueFrom(
       this.httpService.get(url).pipe(map((response) => response.data)),
     );
   }
 
-  async getCredentialDefinitionsById(credentialDefinitionsId: string) {
+  public async getCredentialDefinitionsById(credentialDefinitionsId: string) {
     const url = `${this.agentURL}/credential-definitions/${credentialDefinitionsId}`;
     return lastValueFrom(
       this.httpService.get(url).pipe(map((response) => response.data)),
     );
   }
 
-  publishPresentationSubscriberEndpoint(
+  public publishPresentationSubscriberEndpoint(
     data: PresentationSubscriptionEndpointDto,
   ) {
     this.natsClient.publishPresentation(data);
   }
 
-  getCredentialsTypeDetails(type: string) {
+  public getCredentialsTypeDetails(type: string) {
     return this.natsClient.getCredentialsTypeDetails(type);
   }
 
-  makeConnectionTrusted(connectionId: string) {
+  public makeConnectionTrusted(connectionId: string) {
     return this.natsClient.makeConnectionTrusted(connectionId);
   }
 
-  async getPresentProofs(data: GetPresentProofsDto) {
+  public async getPresentProofs(data: GetPresentProofsDto) {
     return this.presentationProofRepository.findProofPresentation({
       where: {
         connectionId: data.connectionId,
@@ -442,7 +450,7 @@ export default class PresentationProofsService {
     });
   }
 
-  async findUrlByShortUrlId(id: string) {
+  public async findUrlByShortUrlId(id: string) {
     return this.presentationProofRepository.getShortUrl(id);
   }
 }

@@ -4,5 +4,5 @@ import { IsString } from 'class-validator';
 export default class AcceptPresentationDto {
   @IsString()
   @ApiProperty()
-  proofRecordId: string;
+  public proofRecordId: string;
 }
