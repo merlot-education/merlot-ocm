@@ -1,11 +1,12 @@
-version: "3.3"
+version: "3.9"
 
 services:
-  conn-m:
-    container_name: ocm-connection-manager
+  connection-manager:
     build:
-      context: ../apps/connection-manager
-      dockerfile: deployment/ci/Dockerfile
+      context: ..
+      args:
+        - SERVICE=connection-manager
+    init: true
     ports:
       - "3003:3003"
     env_file:
@@ -15,11 +16,12 @@ services:
       - nats
       - ssi
 
-  att-m:
-    container_name: ocm-attestation-manager
+  attestation-manager:
     build:
-      context: ../apps/attestation-manager
-      dockerfile: deployment/ci/Dockerfile
+      context: ..
+      args:
+        - SERVICE=attestation-manager
+    init: true
     ports:
       - "3005:3005"
     env_file:
@@ -29,11 +31,12 @@ services:
       - nats
       - ssi
 
-  proof-m:
-    container_name: ocm-proof-manager
+  proof-manager:
     build:
-      context: ../apps/proof-manager
-      dockerfile: deployment/ci/Dockerfile
+      context: ..
+      args:
+        - SERVICE=proof-manager
+    init: true
     ports:
       - "3007:3007"
     env_file:
@@ -43,25 +46,12 @@ services:
       - nats
       - ssi
 
-  principal-m:
-    container_name: ocm-principal-manager
-    build:
-      context: ../apps/principal-manager
-      dockerfile: deployment/ci/Dockerfile
-    ports:
-      - "3008:3008"
-    env_file:
-      ./env/principal-manager.env
-    depends_on:
-      - db
-      - nats
-      - ssi
-
   ssi:
-    container_name: ocm-ssi-abstraction
     build:
-      context: ../apps/ssi-abstraction
-      dockerfile: deployment/ci/Dockerfile
+      context: ..
+      args:
+        - SERVICE=ssi-abstraction
+    init: true
     ports:
       - "3009:3009"
       - "3010:3010"
@@ -73,10 +63,9 @@ services:
       - nats
 
   db:
-    container_name: db
-    image: postgres:latest
+    image: postgres:16
     volumes:
-      - ./volumes/postgres-data:/postgres/postgres-data:z
+      - db-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     healthcheck:
@@ -88,12 +77,12 @@ services:
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=postgres
-      - POSTGRES_HOST_AUTH_METHOD=trust
 
   nats:
-    container_name: nats
     image: nats
     ports:
       - '4222:4222' #Nats server port
       - '8222:8222' #Nats server Monitering port
+
+volumes:
+  db-data:
