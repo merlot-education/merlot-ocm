@@ -1,6 +1,7 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+
 import NatsClientService from '../client/nats.client.js';
 import RestClientService from '../client/rest.client.js';
 import TSAClientService from '../client/tsa.client.js';
@@ -10,6 +11,7 @@ import CredentialDefService from '../credentialDef/services/service.js';
 import PrismaService from '../prisma/prisma.service.js';
 import SchemasService from '../schemas/services/service.js';
 import UserInfoService from '../userInfo/services/service.js';
+
 import AttestationController from './controller/controller.js';
 import AttestationService from './services/service.js';
 

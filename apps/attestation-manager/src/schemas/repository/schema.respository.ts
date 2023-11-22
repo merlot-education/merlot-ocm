@@ -1,12 +1,14 @@
+import type { Prisma } from '@prisma/client';
+
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+
 import PrismaService from '../../prisma/prisma.service.js';
 
 @Injectable()
 export default class SchemaRepository {
-  constructor(private readonly prismaService: PrismaService) {}
+  public constructor(private readonly prismaService: PrismaService) {}
 
-  async createSchema(data: Prisma.SchemaCreateInput) {
+  public async createSchema(data: Prisma.SchemaCreateInput) {
     return this.prismaService.schema.create({
       data,
       include: {
@@ -19,7 +21,7 @@ export default class SchemaRepository {
     });
   }
 
-  async findSchemas(params: {
+  public async findSchemas(params: {
     skip?: number;
     take?: number;
     cursor?: Prisma.SchemaWhereUniqueInput;
@@ -48,7 +50,9 @@ export default class SchemaRepository {
     ]);
   }
 
-  async findUniqueSchema(params: { where: Prisma.SchemaWhereUniqueInput }) {
+  public async findUniqueSchema(params: {
+    where: Prisma.SchemaWhereUniqueInput;
+  }) {
     const { where } = params;
     return this.prismaService.schema.findUnique({
       where,

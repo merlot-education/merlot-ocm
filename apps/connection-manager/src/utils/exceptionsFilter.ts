@@ -9,10 +9,10 @@ const { PrismaClientKnownRequestError, PrismaClientValidationError } = Prisma;
 
 @Catch()
 export default class AllExceptionsFilter implements ExceptionFilter {
-  constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
+  public constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  catch(exception: any, host: ArgumentsHost): void {
+  public catch(exception: any, host: ArgumentsHost): void {
     const { httpAdapter } = this.httpAdapterHost;
 
     const ctx = host.switchToHttp();

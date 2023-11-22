@@ -1,0 +1,22 @@
+# Ignore everything
+*
+
+# Except for these files
+!*.ts
+!*.d.ts
+!jest.config.js
+
+# .. also in subdirectories
+!*/
+
+# ... in these ones
+!apps/**/src/*
+
+# Explicitly ignore these locations
+node_modules
+apps/**/dist
+compose
+documentation
+
+# Ignore ssi-abstraction for now
+apps/ssi-abstraction

@@ -4,17 +4,17 @@ import { IsString } from 'class-validator';
 export default class ConnectionCreateInvitationDto {
   @IsString()
   @ApiProperty()
-  autoAcceptConnection?: boolean;
+  public autoAcceptConnection?: boolean;
 
   @IsString()
   @ApiProperty()
-  alias?: string;
+  public alias?: string;
 
   @IsString()
   @ApiProperty()
-  myLabel?: string;
+  public myLabel?: string;
 
   @IsString()
   @ApiProperty()
-  myImageUrl?: string;
+  public myImageUrl?: string;
 }

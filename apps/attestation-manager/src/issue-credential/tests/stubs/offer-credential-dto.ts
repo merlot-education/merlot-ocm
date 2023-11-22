@@ -1,5 +1,7 @@
+import type OfferCredentialDto from '../../entities/entity.js';
+
 import schemaDto from '../../../schemas/tests/stubs/schema-dto.js';
-import OfferCredentialDto from '../../entities/entity.js';
+
 import credentialDto from './credential-dto.js';
 
 const offerCredentialDto = (): OfferCredentialDto => ({

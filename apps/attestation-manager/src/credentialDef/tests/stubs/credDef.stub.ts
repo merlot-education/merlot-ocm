@@ -1,4 +1,4 @@
-import CredentialDefDto from '../../entities/credentialDef-entity.js';
+import type CredentialDefDto from '../../entities/credentialDef-entity.js';
 
 const credDefStub = (): CredentialDefDto =>
   ({

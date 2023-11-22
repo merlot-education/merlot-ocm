@@ -1,3 +1,7 @@
+import type { ResponseType } from '../../common/response.js';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { Response } from 'express';
+
 import {
   Body,
   Controller,
@@ -19,9 +23,8 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
-import type { Response } from 'express';
+
 import { VersionRegex } from '../../common/constants.js';
-import { ResponseType } from '../../common/response.js';
 import logger from '../../utils/logger.js';
 import SchemaDto from '../entities/schema-entity.js';
 import SchemasService from '../services/service.js';
@@ -29,7 +32,7 @@ import SchemasService from '../services/service.js';
 @ApiTags('Schemas')
 @Controller('schemas')
 export default class SchemasController {
-  constructor(private readonly schemasService: SchemasService) {}
+  public constructor(private readonly schemasService: SchemasService) {}
 
   @Version(['1'])
   @ApiQuery({ name: 'page', required: false })
@@ -137,7 +140,7 @@ export default class SchemasController {
       },
     },
   })
-  async findSchemas(
+  public async findSchemas(
     @Query() query: { pageSize: string; page: string },
     @Res() response: Response,
   ) {
@@ -257,7 +260,10 @@ export default class SchemasController {
       },
     },
   })
-  async findSchemasById(@Param('id') id: string, @Res() response: Response) {
+  public async findSchemasById(
+    @Param('id') id: string,
+    @Res() response: Response,
+  ) {
     let res: ResponseType;
     try {
       logger.info('Schema fetched successfully');
@@ -408,7 +414,7 @@ export default class SchemasController {
       },
     },
   })
-  async createSchema(
+  public async createSchema(
     @Body() createSchema: SchemaDto,
     @Res() response: Response,
   ) {
@@ -544,7 +550,10 @@ export default class SchemasController {
       },
     },
   })
-  async getDidsForSchema(@Param('id') id: string, @Res() response: Response) {
+  public async getDidsForSchema(
+    @Param('id') id: string,
+    @Res() response: Response,
+  ) {
     let res: ResponseType;
     try {
       logger.info('Schema DIDs fetched successfully');

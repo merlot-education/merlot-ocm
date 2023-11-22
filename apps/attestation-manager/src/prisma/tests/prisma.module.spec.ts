@@ -1,8 +1,12 @@
+import type { TestingModule } from '@nestjs/testing';
+
 import { ConfigModule } from '@nestjs/config';
-import { Test, TestingModule } from '@nestjs/testing';
-import PrismaModule from '../prisma.module';
-import PrismaService from '../prisma.service';
-import PrismaServiceMock from './__mocks__/prisma.service';
+import { Test } from '@nestjs/testing';
+
+import PrismaModule from '../prisma.module.js';
+import PrismaService from '../prisma.service.js';
+
+import PrismaServiceMock from './__mocks__/prisma.service.js';
 
 describe('PrismaModule', () => {
   let prismaModule: PrismaModule;

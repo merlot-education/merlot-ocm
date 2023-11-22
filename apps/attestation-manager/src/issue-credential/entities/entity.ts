@@ -5,33 +5,33 @@ class CredentialPreviewAttributes {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  name: string;
+  public name: string;
 
   @IsString()
   @ApiProperty()
-  value: string;
+  public value: string;
 }
 export default class OfferCredentialDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  connectionId: string;
+  public connectionId: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  credentialDefinitionId: string;
+  public credentialDefinitionId: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  comment: string;
+  public comment: string;
 
   @ApiProperty({ type: [CredentialPreviewAttributes] })
-  attributes: CredentialPreviewAttributes[];
+  public attributes: CredentialPreviewAttributes[];
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  autoAcceptCredential: string;
+  public autoAcceptCredential: string;
 }

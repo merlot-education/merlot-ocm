@@ -1,5 +1,6 @@
+import type { PolicyReturnType } from '../../tsa.client.js';
+
 import { TSAService } from '../../../common/constants.js';
-import { PolicyReturnType } from '../../tsa.client.js';
 
 const TSAClientServiceMock = jest.fn().mockReturnValue({
   getPolicy: jest.fn().mockImplementation((url: string) => {

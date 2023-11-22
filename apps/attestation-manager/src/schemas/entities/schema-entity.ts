@@ -4,45 +4,45 @@ import { IsString, IsNotEmpty } from 'class-validator';
 export default class SchemaDto {
   @IsString()
   @IsNotEmpty()
-  id: string;
+  public id: string;
 
   @IsString()
   @IsNotEmpty()
-  schemaID: string;
+  public schemaID: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  name: string;
+  public name: string;
 
   @IsString()
   @ApiProperty()
-  createdBy: string;
+  public createdBy: string;
 
   @IsString()
-  createdDate: Date;
+  public createdDate: Date;
 
   @IsString()
-  updatedBy?: string;
+  public updatedBy?: string;
 
   @IsString()
-  updatedDate: Date;
-
-  @IsString()
-  @ApiProperty()
-  version: string;
+  public updatedDate: Date;
 
   @IsString()
   @ApiProperty()
-  attributes: string[];
+  public version: string;
 
   @IsString()
-  pageSize?: string;
+  @ApiProperty()
+  public attributes: string[];
 
   @IsString()
-  page?: string;
+  public pageSize?: string;
+
+  @IsString()
+  public page?: string;
 
   @IsString()
   @ApiPropertyOptional()
-  type?: string;
+  public type?: string;
 }

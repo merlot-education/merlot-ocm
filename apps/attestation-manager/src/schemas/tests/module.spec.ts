@@ -1,6 +1,9 @@
+import type { TestingModule } from '@nestjs/testing';
+
 import { HttpModule } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
+
 import NatsClientService from '../../client/nats.client.js';
 import RestClientService from '../../client/rest.client.js';
 import NatsClientServiceMock from '../../client/tests/__mocks__/nats.client.js';
@@ -9,6 +12,7 @@ import PrismaService from '../../prisma/prisma.service.js';
 import PrismaServiceMock from '../../prisma/tests/__mocks__/prisma.service.js';
 import SchemasModule from '../module.js';
 import SchemasService from '../services/service.js';
+
 import SchemasServiceMock from './__mocks__/service.js';
 
 describe('SchemasModule', () => {

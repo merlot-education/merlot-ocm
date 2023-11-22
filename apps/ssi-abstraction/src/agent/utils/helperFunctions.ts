@@ -1,4 +1,5 @@
-import { AxiosError } from 'axios';
+import type { AxiosError } from 'axios';
+
 import { logger } from '../../globalUtils/logger.js';
 
 export function logAxiosError(err: AxiosError) {

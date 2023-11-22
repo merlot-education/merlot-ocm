@@ -9,7 +9,7 @@ export default class PrismaService
   extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {
-  constructor(private configService: ConfigService) {
+  public constructor(private configService: ConfigService) {
     super({
       datasources: {
         db: {
@@ -19,11 +19,11 @@ export default class PrismaService
     });
   }
 
-  async onModuleInit() {
+  public async onModuleInit() {
     await this.$connect();
   }
 
-  async onModuleDestroy() {
+  public async onModuleDestroy() {
     await this.$disconnect();
   }
 }

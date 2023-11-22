@@ -1,10 +1,11 @@
+import type { ResponseType } from '../common/response.js';
+
 import { Controller, Get, HttpStatus, Version } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { ResponseType } from '../common/response.js';
 
 @Controller('health')
 export default class HealthController {
-  res: ResponseType;
+  public res: ResponseType;
 
   @Version(['1'])
   @Get()
@@ -31,7 +32,7 @@ export default class HealthController {
       },
     },
   })
-  getHealth() {
+  public getHealth() {
     this.res = {
       statusCode: HttpStatus.OK,
       message: `${new Date()}`,

@@ -3,10 +3,10 @@ import { IsString, IsNotEmpty } from 'class-validator';
 export default class CredentialStateDto {
   @IsString()
   @IsNotEmpty()
-  id: string;
+  public id: string;
 
   @IsNotEmpty()
-  metadata: {
+  public metadata: {
     '_internal/indyCredential': {
       credentialDefinitionId: string;
       schemaId: string;
@@ -15,17 +15,17 @@ export default class CredentialStateDto {
 
   @IsString()
   @IsNotEmpty()
-  credDefId: string;
+  public credDefId: string;
 
   @IsString()
   @IsNotEmpty()
-  state: string;
+  public state: string;
 
   @IsString()
   @IsNotEmpty()
-  threadId: string;
+  public threadId: string;
 
   @IsString()
   @IsNotEmpty()
-  connectionId: string;
+  public connectionId: string;
 }

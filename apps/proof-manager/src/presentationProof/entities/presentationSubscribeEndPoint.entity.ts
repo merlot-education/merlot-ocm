@@ -3,9 +3,9 @@ import { IsString, IsNotEmpty } from 'class-validator';
 export default class PresentationSubscriptionEndpointDto {
   @IsString()
   @IsNotEmpty()
-  proofRecordId: string;
+  public proofRecordId: string;
 
   @IsString()
   @IsNotEmpty()
-  status: string;
+  public status: string;
 }

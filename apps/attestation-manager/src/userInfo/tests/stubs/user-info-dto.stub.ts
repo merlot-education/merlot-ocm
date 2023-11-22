@@ -1,7 +1,8 @@
+import type UserInfoDto from '../../entities/userInfo.entity.js';
+
 import credentialDto from '../../../issue-credential/tests/stubs/credential-dto.js';
 import offerCredentialDto from '../../../issue-credential/tests/stubs/offer-credential-dto.js';
 import schemaDto from '../../../schemas/tests/stubs/schema-dto.js';
-import UserInfoDto from '../../entities/userInfo.entity.js';
 
 const userInfo = (): UserInfoDto => ({
   autoAcceptCredential: offerCredentialDto().autoAcceptCredential,

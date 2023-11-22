@@ -4,15 +4,15 @@ import { lastValueFrom, map } from 'rxjs';
 
 @Injectable()
 export default class RestClientService {
-  constructor(private readonly httpService: HttpService) {}
+  public constructor(private readonly httpService: HttpService) {}
 
-  async delete(url: string) {
+  public async delete(url: string) {
     return lastValueFrom(
       this.httpService.delete(url).pipe(map((response) => response.data)),
     );
   }
 
-  async post(url: string, payload: object) {
+  public async post(url: string, payload: object) {
     return lastValueFrom(
       this.httpService
         .post(url, payload)
@@ -20,7 +20,7 @@ export default class RestClientService {
     );
   }
 
-  async get(url: string) {
+  public async get(url: string) {
     return lastValueFrom(
       this.httpService.get(url).pipe(map((response) => response.data)),
     );

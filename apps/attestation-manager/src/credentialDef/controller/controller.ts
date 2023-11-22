@@ -1,3 +1,8 @@
+import type { ResponseType } from '../../common/response.js';
+import type CredentialDefLedgerDto from '../entities/credentialDefLedger-entity.js';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { Response } from 'express';
+
 import {
   Body,
   Controller,
@@ -19,17 +24,17 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
-import type { Response } from 'express';
-import { ResponseType } from '../../common/response.js';
+
 import logger from '../../utils/logger.js';
 import CredentialDefDto from '../entities/credentialDef-entity.js';
-import CredentialDefLedgerDto from '../entities/credentialDefLedger-entity.js';
 import CredentialDefService from '../services/service.js';
 
 @ApiTags('Credential Definitions')
 @Controller('credentialDef')
 export default class CredentialDefController {
-  constructor(private readonly credentialDefService: CredentialDefService) {}
+  public constructor(
+    private readonly credentialDefService: CredentialDefService,
+  ) {}
 
   @Version(['1'])
   @ApiQuery({ name: 'page', required: false })
@@ -124,7 +129,7 @@ export default class CredentialDefController {
       },
     },
   })
-  async findCredentialDef(
+  public async findCredentialDef(
     @Query()
     query: {
       pageSize: string;
@@ -244,7 +249,7 @@ export default class CredentialDefController {
       },
     },
   })
-  async findCredentialDefById(
+  public async findCredentialDefById(
     @Param('id') id: string,
     @Res() response: Response,
   ) {
@@ -390,7 +395,7 @@ export default class CredentialDefController {
       },
     },
   })
-  async createCredentialDef(
+  public async createCredentialDef(
     @Body() credentialDefDto: CredentialDefDto,
     @Res() response: Response,
   ) {

@@ -1,6 +1,6 @@
 export enum LoggerConfig {
   FILE_PATH = 'logs/log.json',
-  lOG_DIR = './logs',
+  LOG_DIR = './logs',
 }
 
 export enum Connection {

@@ -1,6 +1,8 @@
 import type { INestApplication } from '@nestjs/common';
 import type { TestingModule } from '@nestjs/testing';
+
 import { Test } from '@nestjs/testing';
+
 import AppModule from './app.module.js';
 
 describe('App Module', () => {

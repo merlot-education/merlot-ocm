@@ -5,22 +5,22 @@ export default class ProposeCredentialDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  connectionId: string;
+  public connectionId: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  credentialDefinitionId: string;
+  public credentialDefinitionId: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  comment: string;
+  public comment: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  credentialProposal: {
+  public credentialProposal: {
     '@type': string;
     attributes: {
       name: string;
@@ -31,5 +31,5 @@ export default class ProposeCredentialDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  autoAcceptCredential: string;
+  public autoAcceptCredential: string;
 }

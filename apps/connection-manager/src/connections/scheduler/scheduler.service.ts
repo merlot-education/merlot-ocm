@@ -16,12 +16,12 @@ import ConnectionsService from '../services/service.js';
 export default class SchedulerService {
   private connectionRepository;
 
-  constructor(private readonly prismaService: PrismaService) {
+  public constructor(private readonly prismaService: PrismaService) {
     this.connectionRepository = new ConnectionRepository(this.prismaService);
   }
 
   @Cron(CronExpression.EVERY_30_SECONDS)
-  async expireNonCompleteConnection() {
+  public async expireNonCompleteConnection() {
     const compareDateTime = ConfigClient.getConnectionExpire();
     if (compareDateTime) {
       const checkExpireTillDateTime = ConfigClient.checkExpireTill();
@@ -68,7 +68,7 @@ export default class SchedulerService {
   }
 
   @Cron(CronExpression.EVERY_30_SECONDS)
-  async expireNonTrustedConnection() {
+  public async expireNonTrustedConnection() {
     const compareDateTime = ConfigClient.getConnectionExpire();
     if (compareDateTime) {
       const checkExpireTillDateTime = ConfigClient.checkExpireTill();

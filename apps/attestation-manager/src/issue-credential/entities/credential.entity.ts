@@ -3,35 +3,35 @@ import { IsString, IsNotEmpty } from 'class-validator';
 export default class CredentialDto {
   @IsString()
   @IsNotEmpty()
-  credentialId: string;
+  public credentialId: string;
 
   @IsString()
   @IsNotEmpty()
-  credDefId: string;
+  public credDefId: string;
 
   @IsString()
-  schemaId?: string;
-
-  @IsString()
-  @IsNotEmpty()
-  participantId?: string;
+  public schemaId?: string;
 
   @IsString()
   @IsNotEmpty()
-  principalDid?: string;
+  public participantId?: string;
 
   @IsString()
   @IsNotEmpty()
-  state: string;
+  public principalDid?: string;
 
   @IsString()
   @IsNotEmpty()
-  threadId: string;
+  public state: string;
 
   @IsString()
   @IsNotEmpty()
-  connectionId: string;
+  public threadId: string;
 
   @IsString()
-  expirationDate?: Date | null;
+  @IsNotEmpty()
+  public connectionId: string;
+
+  @IsString()
+  public expirationDate?: Date | null;
 }

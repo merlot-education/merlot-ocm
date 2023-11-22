@@ -1,22 +1,13 @@
 import { ecsFormat } from '@elastic/ecs-winston-format';
-import { mkdirSync } from 'fs';
-import winston, { Logger } from 'winston';
-import { LoggerConfig } from '../common/constants.js';
+import { createLogger, transports, type Logger } from 'winston';
 
-mkdirSync(LoggerConfig.lOG_DIR, { recursive: true });
-
-const logger: Logger = winston.createLogger({
+const logger: Logger = createLogger({
   format: ecsFormat({ convertReqRes: true }),
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({
-      filename: LoggerConfig.FILE_PATH,
-    }),
-    // esTransport,
-  ],
+  transports: [new transports.Console()],
 });
 
 logger.on('error', (error) => {
+  // eslint-disable-next-line no-console
   console.error('Error in logger caught', error);
 });
 

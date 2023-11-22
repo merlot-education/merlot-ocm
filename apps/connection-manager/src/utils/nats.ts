@@ -1,4 +1,5 @@
 import type { NatsConnection } from 'nats';
+
 import { connect, StringCodec } from 'nats';
 
 const sc = StringCodec();
@@ -29,13 +30,9 @@ export default class Nats {
   ) {
     if (this.nc) {
       const sub = this.nc.subscribe(subject);
-      (async () => {
-        // airbnb rule for this lint is outdated
-        // eslint-disable-next-line
-        for await (const m of sub) {
-          cb(sc.decode(m.data));
-        }
-      })();
+      for await (const m of sub) {
+        cb(sc.decode(m.data));
+      }
     } else {
       throw new Error('Initialize Nats First!!');
     }

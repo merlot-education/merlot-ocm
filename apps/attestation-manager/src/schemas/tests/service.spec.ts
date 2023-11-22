@@ -1,15 +1,19 @@
+import type { ResponseType } from '../../common/response.js';
+import type { TestingModule } from '@nestjs/testing';
+import type { Schema } from 'joi';
+
 import { HttpModule } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
-import { Test, TestingModule } from '@nestjs/testing';
-import { Schema } from 'joi';
+import { Test } from '@nestjs/testing';
+
 import NatsClientService from '../../client/nats.client.js';
 import RestClientService from '../../client/rest.client.js';
 import NatsClientServiceMock from '../../client/tests/__mocks__/nats.client.js';
 import RestClientServiceMock from '../../client/tests/__mocks__/rest.client.js';
-import { ResponseType } from '../../common/response.js';
 import PrismaService from '../../prisma/prisma.service.js';
 import PrismaServiceMock from '../../prisma/tests/__mocks__/prisma.service.js';
 import SchemasService from '../services/service.js';
+
 import schemaDto from './stubs/schema-dto.js';
 
 describe('SchemasService', () => {

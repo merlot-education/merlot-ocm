@@ -1,5 +1,8 @@
+import type { TestingModule } from '@nestjs/testing';
+
 import { HttpModule } from '@nestjs/axios';
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
+
 import NatsClientService from '../../client/nats.client.js';
 import RestClientService from '../../client/rest.client.js';
 import NatsClientServiceMock from '../../client/tests/__mocks__/nats.client.js';
@@ -8,6 +11,7 @@ import PrismaService from '../../prisma/prisma.service.js';
 import PrismaServiceMock from '../../prisma/tests/__mocks__/prisma.service.js';
 import CredentialDefModule from '../module.js';
 import CredentialDefService from '../services/service.js';
+
 import CredentialDefServiceMock from './__mocks__/service.js';
 
 describe('CredentialDefModule', () => {

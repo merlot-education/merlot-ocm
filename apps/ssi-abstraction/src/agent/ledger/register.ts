@@ -1,7 +1,10 @@
-import { logger } from '../../globalUtils/logger.js';
+import type { LedgerIds } from '../utils/ledgerConfig.js';
+
 import axios from 'axios';
+
+import { logger } from '../../globalUtils/logger.js';
 import { logAxiosError } from '../utils/helperFunctions.js';
-import { LedgerIds, ledgerNamespaces, NYM_URL } from '../utils/ledgerConfig.js';
+import { ledgerNamespaces, NYM_URL } from '../utils/ledgerConfig.js';
 
 type RegisterPublicDidOptions = {
   alias: string;

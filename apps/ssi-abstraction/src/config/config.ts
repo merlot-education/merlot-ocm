@@ -1,5 +1,4 @@
-import { AutoAcceptCredential } from '@aries-framework/core';
-import * as process from 'process';
+import type { AutoAcceptCredential } from '@aries-framework/core';
 
 interface Config {
   agentHost: string;

@@ -5,5 +5,5 @@ export default class UpdateSchemaIdByTypeDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  schemaId: string;
+  public schemaId: string;
 }

@@ -1,3 +1,9 @@
+import type { ResponseType } from '../../common/response.js';
+import type CredentialDto from '../entities/credential.entity.js';
+import type CredentialStateDto from '../entities/credential.state.entity.js';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { Response } from 'express';
+
 import {
   BadRequestException,
   Body,
@@ -26,19 +32,16 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
-import type { Response } from 'express';
+
 import {
   Abstraction,
   NATSServices,
   PrismaErrorCode,
 } from '../../common/constants.js';
-import { ResponseType } from '../../common/response.js';
 import CredentialDefService from '../../credentialDef/services/service.js';
 import SchemasService from '../../schemas/services/service.js';
 import UserInfoService from '../../userInfo/services/service.js';
 import logger from '../../utils/logger.js';
-import CredentialDto from '../entities/credential.entity.js';
-import CredentialStateDto from '../entities/credential.state.entity.js';
 import CredentialTypeDto from '../entities/credentialType.entity.js';
 import OfferCredentialDto from '../entities/entity.js';
 import GetIssueCredentialsDto from '../entities/get-issue-credentials.dto.js';
@@ -51,9 +54,9 @@ import AttestationService from '../services/service.js';
 @ApiTags('Credentials')
 @Controller()
 export default class AttestationController {
-  name: string;
+  public name: string;
 
-  constructor(
+  public constructor(
     private readonly attestationService: AttestationService,
     private readonly credentialDefService: CredentialDefService,
     private readonly userInfoService: UserInfoService,
@@ -213,7 +216,7 @@ export default class AttestationController {
       },
     },
   })
-  async createOfferCredential(
+  public async createOfferCredential(
     @Body() connectionCreate: OfferCredentialDto,
     @Res() response: Response,
   ) {
@@ -392,7 +395,7 @@ export default class AttestationController {
       },
     },
   })
-  async createProposeCredential(
+  public async createProposeCredential(
     @Body() connectionCreate: ProposeCredentialDto,
     @Res() response: Response,
   ) {
@@ -428,7 +431,9 @@ export default class AttestationController {
     description:
       'Accept a credential request as issuer (by sending a credential message) to the connection associated with the credential record.',
   })
-  async acceptOfferCredential(@Param() params: { credentialId: string }) {
+  public async acceptOfferCredential(
+    @Param() params: { credentialId: string },
+  ) {
     try {
       const res: ResponseType = {
         statusCode: HttpStatus.ACCEPTED,
@@ -450,7 +455,9 @@ export default class AttestationController {
     description:
       'Accept a credential proposal as issuer (by sending a credential offer message) to the connection associated with the credential record.',
   })
-  async acceptProposeCredential(@Param() params: { credentialId: string }) {
+  public async acceptProposeCredential(
+    @Param() params: { credentialId: string },
+  ) {
     try {
       if (!params.credentialId) {
         throw new BadRequestException('Invalid credential ID');
@@ -479,7 +486,9 @@ export default class AttestationController {
     description:
       'Accept a credential offer as holder (by sending a credential request message) to the connection associated with the credential record.',
   })
-  async acceptCredentialOffer(@Param() params: { credentialId: string }) {
+  public async acceptCredentialOffer(
+    @Param() params: { credentialId: string },
+  ) {
     try {
       if (!params.credentialId) {
         throw new BadRequestException('Invalid credential ID');
@@ -508,7 +517,7 @@ export default class AttestationController {
     description:
       'Accept a credential as holder (by sending a credential acknowledgement message) to the connection associated with the credential record.',
   })
-  async acceptCredential(@Param() params: { credentialId: string }) {
+  public async acceptCredential(@Param() params: { credentialId: string }) {
     try {
       if (!params.credentialId) {
         throw new BadRequestException('Invalid credential ID');
@@ -535,7 +544,9 @@ export default class AttestationController {
   @EventPattern({
     endpoint: `${Abstraction.NATS_ENDPOINT}/${Abstraction.CREDENTIAL_STATE_CHANGED}`,
   })
-  async webHookCredentials(body: { credentialRecord: CredentialStateDto }) {
+  public async webHookCredentials(body: {
+    credentialRecord: CredentialStateDto;
+  }) {
     const credentialsCreate = body.credentialRecord;
     logger.info(
       `credentials webhook call data ${JSON.stringify(credentialsCreate)}`,
@@ -586,7 +597,9 @@ export default class AttestationController {
         credentialsType?.schemaId === credentialObj.schemaId &&
         credentialsCreate.state === AttestationService.status.DONE
       ) {
-        this.attestationService.connectionTrusted(credentialObj.connectionId);
+        await this.attestationService.connectionTrusted(
+          credentialObj.connectionId,
+        );
       }
       res = {
         statusCode: HttpStatus.OK,
@@ -638,7 +651,7 @@ export default class AttestationController {
       },
     },
   })
-  async getCredentialInfo(
+  public async getCredentialInfo(
     @Param() params: GetCredentialParams,
     @Res() response: Response,
   ) {
@@ -730,7 +743,7 @@ export default class AttestationController {
       },
     },
   })
-  async deleteCredential(
+  public async deleteCredential(
     @Param() params: GetCredentialParams,
     @Res() response: Response,
   ) {
@@ -852,7 +865,7 @@ export default class AttestationController {
       },
     },
   })
-  async getCredentialList(
+  public async getCredentialList(
     @Query() query: GetCredentialQuery,
     @Res() response: Response,
   ) {
@@ -1002,7 +1015,7 @@ export default class AttestationController {
       },
     },
   })
-  async getCredential(
+  public async getCredential(
     @Param() params: GetCredentialParams,
     @Query() query: GetCredentialQuery,
     @Res() response: Response,
@@ -1039,7 +1052,7 @@ export default class AttestationController {
   @MessagePattern({
     endpoint: `${NATSServices.SERVICE_NAME}/offerMemberShipCredentials`,
   })
-  async offerMemberShipCredentials(data: {
+  public async offerMemberShipCredentials(data: {
     status: string;
     connectionId: string;
     theirLabel: string;
@@ -1214,7 +1227,7 @@ export default class AttestationController {
       },
     },
   })
-  async updateSchemaIdByType(
+  public async updateSchemaIdByType(
     @Body() body: { schemaId: string },
     @Query() query: { type: string },
   ) {
@@ -1287,7 +1300,7 @@ export default class AttestationController {
       },
     },
   })
-  async createCredentialType(@Body() body: CredentialTypeDto) {
+  public async createCredentialType(@Body() body: CredentialTypeDto) {
     try {
       const res: ResponseType = {
         statusCode: HttpStatus.CREATED,
@@ -1303,14 +1316,14 @@ export default class AttestationController {
   @MessagePattern({
     endpoint: `${NATSServices.SERVICE_NAME}/getIssueCredentials`,
   })
-  async getIssueCredentials(data: GetIssueCredentialsDto) {
+  public async getIssueCredentials(data: GetIssueCredentialsDto) {
     return this.attestationService.getIssueCredentials(data);
   }
 
   @MessagePattern({
     endpoint: `${NATSServices.SERVICE_NAME}/getCredentialsTypeDetails`,
   })
-  async getCredentialsTypeDetails(data: { type: string }) {
+  public async getCredentialsTypeDetails(data: { type: string }) {
     let res;
 
     const credentialsType =
@@ -1407,7 +1420,7 @@ export default class AttestationController {
       },
     },
   })
-  async getCredentialTypeAttributes(@Query() query: { type: string }) {
+  public async getCredentialTypeAttributes(@Query() query: { type: string }) {
     let res;
 
     const credentialsType =

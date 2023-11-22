@@ -1,56 +1,56 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsBoolean } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
 
 export default class CredentialDefDto {
   @IsString()
-  id: string;
+  public id: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  schemaID: string;
+  public schemaID: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  name: string;
+  public name: string;
 
   @IsString()
-  credDefId: string;
+  public credDefId: string;
 
   @IsBoolean()
-  supportRevocation?: boolean;
-
-  @IsBoolean()
-  @ApiProperty()
-  isRevokable: boolean;
+  public supportRevocation?: boolean;
 
   @IsBoolean()
   @ApiProperty()
-  isAutoIssue: boolean;
+  public isRevokable: boolean;
+
+  @IsBoolean()
+  @ApiProperty()
+  public isAutoIssue: boolean;
 
   @IsString()
   @ApiProperty()
   // Number of hours of Credential validity
-  expiryHours: string;
+  public expiryHours: string;
 
   @IsString()
   @ApiProperty()
-  createdBy: string;
+  public createdBy: string;
 
   @IsString()
-  createdDate: Date;
+  public createdDate: Date;
 
   @IsString()
-  updatedBy: string;
+  public updatedBy: string;
 
   @IsString()
-  updatedDate: Date;
+  public updatedDate: Date;
 
   @IsString()
-  tag?: string;
+  public tag?: string;
 
   @IsString()
   @ApiPropertyOptional()
-  type?: string;
+  public type?: string;
 }

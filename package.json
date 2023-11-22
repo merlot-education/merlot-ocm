@@ -9,8 +9,26 @@
     "principal:build": "pnpm -F principal-manager build",
     "proof:build": "pnpm -F proof-manager build",
     "ssi:build": "pnpm -F ssi-abstraction build",
-    "lint": "pnpm -r lint",
-    "prettier": "prettier --ignore-path .gitignore '**/*.+(js|json|ts|md|yml|yaml)'",
-    "format": "pnpm prettier --write"
+    "lint": "eslint --fix",
+    "lint:all": "npm run lint -- .",
+    "format": "prettier --write",
+    "format:all": "npm run format -- .",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.2",
+    "@commitlint/config-conventional": "^18.4.2",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-workspaces": "^0.9.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.1.0",
+    "prettier": "^3.1.0"
   }
 }
