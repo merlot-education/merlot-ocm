@@ -4,48 +4,48 @@ import InvitationDTO from './InvitationDto.entity.js';
 
 export default class ConnectionStateDto {
   @IsString()
-  _tags?: string;
+  public _tags?: string;
 
   @IsString()
-  metadata?: string;
+  public metadata?: string;
 
   @IsString()
-  didDoc?: string;
+  public didDoc?: string;
 
   @IsString()
-  verkey?: string;
+  public verkey?: string;
 
   @IsString()
-  createdAt?: string;
-
-  @IsString()
-  @IsNotEmpty()
-  role: string;
+  public createdAt?: string;
 
   @IsString()
   @IsNotEmpty()
-  state: string;
+  public role: string;
 
   @IsString()
   @IsNotEmpty()
-  id: string;
+  public state: string;
 
   @IsString()
   @IsNotEmpty()
-  did: string;
+  public id: string;
 
   @IsString()
-  theirDid: string;
+  @IsNotEmpty()
+  public did: string;
 
   @IsString()
-  theirLabel: string;
+  public theirDid: string;
 
   @IsString()
-  invitation: InvitationDTO;
+  public theirLabel: string;
 
   @IsString()
-  alias: string;
+  public invitation: InvitationDTO;
+
+  @IsString()
+  public alias: string;
 
   @IsBooleanString()
-  multiUseInvitation?: boolean;
+  public multiUseInvitation?: boolean;
 }

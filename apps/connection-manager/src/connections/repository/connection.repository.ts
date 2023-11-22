@@ -6,25 +6,25 @@ import PrismaService from '../../prisma/prisma.service.js';
 
 @Injectable()
 export default class ConnectionRepository {
-  constructor(private readonly prismaService: PrismaService) {}
+  public constructor(private readonly prismaService: PrismaService) {}
 
-  async createConnection(data: Prisma.ConnectionCreateInput) {
+  public async createConnection(data: Prisma.ConnectionCreateInput) {
     return this.prismaService.connection.create({ data });
   }
 
-  async createShortUrl(connectionUrl: string) {
+  public async createShortUrl(connectionUrl: string) {
     return this.prismaService.shortUrlConnection.create({
       data: { connectionUrl },
     });
   }
 
-  async getShortUrl(id: string) {
+  public async getShortUrl(id: string) {
     return this.prismaService.shortUrlConnection.findUnique({
       where: { id },
     });
   }
 
-  async updateConnection(params: {
+  public async updateConnection(params: {
     where: Prisma.ConnectionWhereUniqueInput;
     data: Prisma.ConnectionUpdateInput;
   }) {
@@ -36,7 +36,7 @@ export default class ConnectionRepository {
     });
   }
 
-  async updateManyConnection(params: {
+  public async updateManyConnection(params: {
     where: Prisma.ConnectionWhereInput;
     data: Prisma.ConnectionUpdateInput;
   }) {
@@ -48,7 +48,7 @@ export default class ConnectionRepository {
     });
   }
 
-  async findConnections(params: {
+  public async findConnections(params: {
     skip?: number;
     take?: number;
     cursor?: Prisma.ConnectionWhereUniqueInput;
@@ -75,7 +75,7 @@ export default class ConnectionRepository {
     ]);
   }
 
-  async findUniqueConnection(params: {
+  public async findUniqueConnection(params: {
     where: Prisma.ConnectionWhereUniqueInput;
   }) {
     const { where } = params;
@@ -85,12 +85,12 @@ export default class ConnectionRepository {
     });
   }
 
-  findByConnectionId(connectionId: string) {
+  public findByConnectionId(connectionId: string) {
     const query = { where: { connectionId } };
     return this.findUniqueConnection(query);
   }
 
-  findByConnectionByParticipantDID(participantDid: string) {
+  public findByConnectionByParticipantDID(participantDid: string) {
     const query = { where: { participantDid } };
     return this.findUniqueConnection(query);
   }

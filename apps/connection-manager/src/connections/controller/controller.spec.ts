@@ -1,15 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type ConnectionStateDto from '../entities/connectionStateDto.entity.js';
+import type { TestingModule } from '@nestjs/testing';
+
 import { HttpModule } from '@nestjs/axios';
 import { HttpStatus } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import type { TestingModule } from '@nestjs/testing';
 import { Test } from '@nestjs/testing';
-import httpMocks from 'node-mocks-http';
+import { createResponse } from 'node-mocks-http';
+
 import NatsClientService from '../../client/nats.client.js';
 import RestClientService from '../../client/rest.client.js';
 import { NATSServices } from '../../common/constants.js';
 import PrismaService from '../../prisma/prisma.service.js';
-import type ConnectionStateDto from '../entities/connectionStateDto.entity.js';
 import ConnectionsService from '../services/service.js';
 
 import ConnectionsController from './controller.js';
@@ -51,11 +54,6 @@ describe.skip('ConnectionsController', () => {
   describe('Get all connections', () => {
     it('should return an array of connection', async () => {
       const param = {};
-      const query = {
-        pageSize: '0',
-        page: '0',
-        participantId: '7780cd24-af13-423e-b1ff-ae944ab6fd71',
-      };
       const serviceResult: any = [
         1,
         {
@@ -88,7 +86,7 @@ describe.skip('ConnectionsController', () => {
         },
       };
 
-      const response = httpMocks.createResponse();
+      const response = createResponse();
 
       jest
         .spyOn(connectionService, 'findConnections')
@@ -107,10 +105,6 @@ describe.skip('ConnectionsController', () => {
 
     it('If Not provided required parameter response should be bad request', async () => {
       const param = {};
-      const query = {
-        pageSize: '0',
-        page: '0',
-      };
       const serviceResult: any = [
         1,
         {
@@ -127,7 +121,7 @@ describe.skip('ConnectionsController', () => {
         },
       ];
 
-      const response = httpMocks.createResponse();
+      const response = createResponse();
 
       jest
         .spyOn(connectionService, 'findConnections')
@@ -146,7 +140,7 @@ describe.skip('ConnectionsController', () => {
       const param = {
         connectionId: '7b821264-2ae3-4459-b45f-19fa975d91f7',
       };
-      const query = {};
+
       const serviceResult: any = {
         id: '1a7f0b09-b20e-4971-b9b1-7adde7256bbc',
         connectionId: '7b821264-2ae3-4459-b45f-19fa975d91f7',
@@ -178,7 +172,7 @@ describe.skip('ConnectionsController', () => {
         },
       };
 
-      const response = httpMocks.createResponse();
+      const response = createResponse();
       jest
         .spyOn(connectionService, 'findConnections')
         .mockResolvedValueOnce(serviceResult);
@@ -196,7 +190,6 @@ describe.skip('ConnectionsController', () => {
       const param = {
         connectionId: '7b821264-2ae3-4459-b45f-19fa975d91f7',
       };
-      const query = {};
       const serviceResult: any = {
         id: '1a7f0b09-b20e-4971-b9b1-7adde7256bbc',
         connectionId: '7b821264-2ae3-4459-b45f-19fa975d91f7',
@@ -214,7 +207,7 @@ describe.skip('ConnectionsController', () => {
         message: 'No Data found',
       };
 
-      const response = httpMocks.createResponse();
+      const response = createResponse();
       jest
         .spyOn(connectionService, 'findConnections')
         .mockResolvedValueOnce(serviceResult);
@@ -230,12 +223,6 @@ describe.skip('ConnectionsController', () => {
 
     it('should return an array of connection with status filter', async () => {
       const param = {};
-      const query = {
-        pageSize: '0',
-        page: '0',
-        participantId: '7780cd24-af13-423e-b1ff-ae944ab6fd71',
-        status: 'trusted,complete',
-      };
       const serviceResult: any = [
         1,
         {
@@ -268,7 +255,7 @@ describe.skip('ConnectionsController', () => {
         },
       };
 
-      const response = httpMocks.createResponse();
+      const response = createResponse();
       jest
         .spyOn(connectionService, 'findConnections')
         .mockResolvedValueOnce(serviceResult);
@@ -719,7 +706,7 @@ describe.skip('ConnectionsController', () => {
         },
       };
 
-      const response = httpMocks.createResponse();
+      const response = createResponse();
       jest
         .spyOn(connectionService, 'createInvitationURL')
         .mockResolvedValueOnce(serviceResult);
@@ -749,7 +736,7 @@ describe.skip('ConnectionsController', () => {
         message: 'Agent Data not found.',
       };
 
-      const response = httpMocks.createResponse();
+      const response = createResponse();
       jest
         .spyOn(connectionService, 'createInvitationURL')
         .mockResolvedValueOnce(serviceResult);

@@ -1,14 +1,15 @@
+import type ResponseType from './response.js';
 import type { ArgumentsHost, ExceptionFilter } from '@nestjs/common';
+
 import { Catch, HttpException, HttpStatus } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
-import type ResponseType from './response.js';
 
 @Catch()
 export default class ExceptionHandler implements ExceptionFilter {
-  constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
+  public constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  catch(exception: any, host: ArgumentsHost): void {
+  public catch(exception: any, host: ArgumentsHost): void {
     // In certain situations `httpAdapter` might not be available in the
     // constructor method, thus we should resolve it here.
     const { httpAdapter } = this.httpAdapterHost;

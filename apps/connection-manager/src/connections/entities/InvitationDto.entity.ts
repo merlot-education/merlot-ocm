@@ -2,20 +2,20 @@ import { IsString } from 'class-validator';
 
 export default class InvitationDTO {
   @IsString()
-  serviceEndpoint?: string;
+  public serviceEndpoint?: string;
 
   @IsString()
-  ['@type']?: string;
+  public ['@type']?: string;
 
   @IsString()
-  ['@id']?: string;
+  public ['@id']?: string;
 
   @IsString()
-  label?: string;
+  public label?: string;
 
   @IsString()
-  recipientKeys?: [string];
+  public recipientKeys?: [string];
 
   @IsString()
-  routingKeys?: [];
+  public routingKeys?: [];
 }

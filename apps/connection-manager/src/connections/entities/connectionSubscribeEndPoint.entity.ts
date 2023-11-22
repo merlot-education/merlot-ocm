@@ -3,9 +3,9 @@ import { IsString, IsNotEmpty } from 'class-validator';
 export default class ConnectionSubscriptionEndpointDto {
   @IsString()
   @IsNotEmpty()
-  connectionId: string;
+  public connectionId: string;
 
   @IsString()
   @IsNotEmpty()
-  status: string;
+  public status: string;
 }

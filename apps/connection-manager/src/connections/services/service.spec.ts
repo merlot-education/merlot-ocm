@@ -1,5 +1,6 @@
-import type { TestingModule } from '@nestjs/testing';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type ConnectionDto from '../entities/entity.js';
+import type { TestingModule } from '@nestjs/testing';
 
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';

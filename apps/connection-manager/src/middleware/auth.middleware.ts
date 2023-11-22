@@ -10,7 +10,7 @@ import logger from '../utils/logger.js';
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
-  constructor(private readonly configService: ConfigService) {}
+  public constructor(private readonly configService: ConfigService) {}
 
   /* eslint-disable */
   async use(req: Request, res: Response, next: NextFunction) {

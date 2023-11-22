@@ -5,7 +5,7 @@ import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @Controller('health')
 export default class HealthController {
-  res: ResponseType;
+  private res: ResponseType;
 
   @Version(['1'])
   @Get()
@@ -32,7 +32,7 @@ export default class HealthController {
       },
     },
   })
-  getHealth() {
+  public getHealth() {
     this.res = {
       statusCode: HttpStatus.OK,
       message: `${new Date()}`,

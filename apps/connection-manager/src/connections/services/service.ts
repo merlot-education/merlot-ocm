@@ -17,7 +17,7 @@ import ConnectionRepository from '../repository/connection.repository.js';
 export default class ConnectionsService {
   private connectionRepository: ConnectionRepository;
 
-  constructor(
+  public constructor(
     private readonly prismaService: PrismaService,
     private readonly natsClient: NatsClientService,
     private readonly restClient: RestClientService,
@@ -26,13 +26,13 @@ export default class ConnectionsService {
     this.connectionRepository = new ConnectionRepository(this.prismaService);
   }
 
-  static readonly connectionAlias = {
+  public static readonly connectionAlias = {
     MEMBER: 'member',
     SUBSCRIBER: 'subscriber',
     TRUST: 'trust',
   };
 
-  static readonly status = {
+  public static readonly status = {
     DEFAULT: 'invited',
     INVITED: 'invited',
     REQUESTED: 'requested',
@@ -41,12 +41,12 @@ export default class ConnectionsService {
     TRUSTED: 'trusted',
   };
 
-  static readonly roles = {
+  public static readonly roles = {
     INVITER: 'inviter',
     INVITEE: 'invitee',
   };
 
-  async createConnections(connection: ConnectionDto) {
+  public async createConnections(connection: ConnectionDto) {
     logger.info(
       `connection service create connection connection?.invitation?.serviceEndpoint is ${connection?.invitation?.serviceEndpoint}`,
     );
@@ -59,7 +59,7 @@ export default class ConnectionsService {
     });
   }
 
-  async sendConnectionStatusToPrincipal(
+  public async sendConnectionStatusToPrincipal(
     status: string,
     connectionId: string,
     theirLabel: string,
@@ -82,7 +82,7 @@ export default class ConnectionsService {
     }
   }
 
-  async sendMembershipProofRequestToProofManager(connectionId: string) {
+  public async sendMembershipProofRequestToProofManager(connectionId: string) {
     try {
       const response =
         await this.natsClient.sendMembershipProofRequestToProofManager(
@@ -95,7 +95,7 @@ export default class ConnectionsService {
     }
   }
 
-  async updateStatusByConnectionId(connection: ConnectionDto) {
+  public async updateStatusByConnectionId(connection: ConnectionDto) {
     return this.connectionRepository.updateConnection({
       where: { connectionId: connection.connectionId },
       data: {
@@ -107,19 +107,19 @@ export default class ConnectionsService {
     });
   }
 
-  getConnectionByID(connectionId: string) {
+  public getConnectionByID(connectionId: string) {
     return this.connectionRepository.findByConnectionId(connectionId);
   }
 
-  getAgentUrl() {
+  public getAgentUrl() {
     return this.configService.get('agent');
   }
 
-  getAppUrl() {
+  public getAppUrl() {
     return this.configService.get('APP_URL');
   }
 
-  async findConnections(
+  public async findConnections(
     pageSize: number,
     page: number,
     status: string | false,
@@ -154,7 +154,9 @@ export default class ConnectionsService {
     return this.connectionRepository.findConnections(query);
   }
 
-  async createInvitationURL(connectionCreate: ConnectionCreateInvitationDto) {
+  public async createInvitationURL(
+    connectionCreate: ConnectionCreateInvitationDto,
+  ) {
     const { agentUrl } = this.getAgentUrl();
     const appUrl = this.getAppUrl();
     const responseData = await this.restClient.post(
@@ -169,11 +171,11 @@ export default class ConnectionsService {
     return responseData;
   }
 
-  async findConnectionByShortUrlId(id: string) {
+  public async findConnectionByShortUrlId(id: string) {
     return this.connectionRepository.getShortUrl(id);
   }
 
-  async getConnectionInformationRequest(connectionId = '', did = '') {
+  public async getConnectionInformationRequest(connectionId = '', did = '') {
     try {
       let connectionDetails: Connection | null = null;
 
@@ -225,7 +227,7 @@ export default class ConnectionsService {
     }
   }
 
-  async makeConnectionTrusted(connectionId: string) {
+  public async makeConnectionTrusted(connectionId: string) {
     return this.connectionRepository.updateConnection({
       where: { connectionId },
       data: {
@@ -235,11 +237,13 @@ export default class ConnectionsService {
     });
   }
 
-  publishConnectionSubscriberEndpoint(data: ConnectionSubscriptionEndpointDto) {
+  public publishConnectionSubscriberEndpoint(
+    data: ConnectionSubscriptionEndpointDto,
+  ) {
     this.natsClient.publishConnection(data);
   }
 
-  async acceptConnectionInvitation(
+  public async acceptConnectionInvitation(
     agentURL: string,
     payload: {
       invitationUrl: string;
@@ -253,7 +257,7 @@ export default class ConnectionsService {
     );
   }
 
-  async getReceivedConnections() {
+  public async getReceivedConnections() {
     return this.connectionRepository.findConnections({
       where: { isReceived: true },
       select: { connectionId: true },

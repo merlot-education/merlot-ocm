@@ -1,9 +1,11 @@
 import type { MiddlewareConsumer, NestModule } from '@nestjs/common';
+
 import { Module, RequestMethod } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TerminusModule } from '@nestjs/terminus';
+
 import ExceptionHandler from './common/exception.handler.js';
 import config from './config/config.js';
 import validationSchema from './config/validation.js';
@@ -36,7 +38,7 @@ import PrismaModule from './prisma/prisma.module.js';
 })
 export default class AppModule implements NestModule {
   // eslint-disable-next-line class-methods-use-this
-  configure(consumer: MiddlewareConsumer) {
+  public configure(consumer: MiddlewareConsumer) {
     // eslint-disable-line
     consumer
       .apply(AuthMiddleware)

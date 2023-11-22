@@ -2,6 +2,8 @@ import type ResponseType from '../../common/response.js';
 import type ConnectionStateDto from '../entities/connectionStateDto.entity.js';
 import type ConnectionSubscriptionEndpointDto from '../entities/connectionSubscribeEndPoint.entity.js';
 import type ConnectionDto from '../entities/entity.js';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { Response } from 'express';
 
 import {
   Body,
@@ -23,7 +25,6 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Response } from 'express';
 
 import {
   Abstraction,
@@ -38,12 +39,14 @@ import ConnectionsService from '../services/service.js';
 @ApiTags('Connections')
 @Controller()
 export default class ConnectionsController {
-  constructor(private readonly connectionsService: ConnectionsService) {}
+  public constructor(private readonly connectionsService: ConnectionsService) {}
 
   @MessagePattern({
     endpoint: `${Abstraction.NATS_ENDPOINT}/${Abstraction.CONNECTION_STATE_CHANGED}`,
   })
-  async createConnection(body: { connectionRecord: ConnectionStateDto }) {
+  public async createConnection(body: {
+    connectionRecord: ConnectionStateDto;
+  }) {
     const connection = body.connectionRecord;
 
     const connectionObj: ConnectionDto = {
@@ -95,7 +98,7 @@ export default class ConnectionsController {
             logger.info(
               `connection.alias ===${ConnectionsService.connectionAlias.MEMBER}`,
             );
-            this.connectionsService.sendConnectionStatusToPrincipal(
+            await this.connectionsService.sendConnectionStatusToPrincipal(
               connection.state,
               connection.id,
               connection.theirLabel,
@@ -107,7 +110,7 @@ export default class ConnectionsController {
           if (
             connection.alias === ConnectionsService.connectionAlias.SUBSCRIBER
           ) {
-            this.connectionsService.sendMembershipProofRequestToProofManager(
+            await this.connectionsService.sendMembershipProofRequestToProofManager(
               connection.id,
             );
           }
@@ -251,7 +254,7 @@ export default class ConnectionsController {
     },
   })
   @ApiQuery({ name: 'alias', required: true })
-  async createConnectionInvitation(
+  public async createConnectionInvitation(
     @Body() connectionCreate: ConnectionCreateInvitationDto,
     @Query() query: { alias: string },
     @Res() response: Response,
@@ -304,7 +307,7 @@ export default class ConnectionsController {
     description: 'Get full url from short url id',
   })
   @ApiExcludeEndpoint()
-  async redirectToConnectionUrl(
+  public async redirectToConnectionUrl(
     @Param() params: { id: string },
     @Res() response: Response,
   ) {
@@ -399,7 +402,7 @@ export default class ConnectionsController {
       },
     },
   })
-  async getConnectionInformationRequest(
+  public async getConnectionInformationRequest(
     @Query() query: { connectionId: string; did: string },
     @Res() response: Response,
   ) {
@@ -501,7 +504,7 @@ export default class ConnectionsController {
       },
     },
   })
-  async getConnectionLists(
+  public async getConnectionLists(
     @Param() params: { connectionId: string },
     @Query()
     query: {
@@ -611,7 +614,7 @@ export default class ConnectionsController {
       },
     },
   })
-  async getConnection(
+  public async getConnection(
     @Param() params: { connectionId: string },
     @Res() response: Response,
   ) {
@@ -621,7 +624,7 @@ export default class ConnectionsController {
   @MessagePattern({
     endpoint: `${NATSServices.SERVICE_NAME}/getConnectionById`,
   })
-  async getConnectionById(data: { connectionId: string }) {
+  public async getConnectionById(data: { connectionId: string }) {
     const result = await this.connectionsService.findConnections(
       -1,
       -1,
@@ -634,7 +637,7 @@ export default class ConnectionsController {
   @MessagePattern({
     endpoint: `${NATSServices.SERVICE_NAME}/makeConnectionTrusted`,
   })
-  async makeConnectionTrusted(data: { connectionId: string }) {
+  public async makeConnectionTrusted(data: { connectionId: string }) {
     const result = await this.connectionsService.makeConnectionTrusted(
       data.connectionId,
     );
@@ -741,7 +744,7 @@ export default class ConnectionsController {
       },
     },
   })
-  async acceptConnectionInvitation(
+  public async acceptConnectionInvitation(
     @Body() body: AcceptConnectionInvitationBody,
     @Res() response: Response,
   ) {
@@ -765,7 +768,7 @@ export default class ConnectionsController {
   @MessagePattern({
     endpoint: `${NATSServices.SERVICE_NAME}/getReceivedConnections`,
   })
-  async getReceivedConnections() {
+  public async getReceivedConnections() {
     let result: object[] = [];
     const connections = await this.connectionsService.getReceivedConnections();
     if (connections[0]) {

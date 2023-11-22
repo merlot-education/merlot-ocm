@@ -1,48 +1,46 @@
+import type { MicroserviceOptions } from '@nestjs/microservices';
+
 import { VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
-import type { MicroserviceOptions } from '@nestjs/microservices';
 import { Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
 import AppModule from './app.module.js';
 import AllExceptionsFilter from './utils/exceptionsFilter.js';
 import logger from './utils/logger.js';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const configService = app.get(ConfigService);
-  app.enableCors();
+const app = await NestFactory.create(AppModule);
+const configService = app.get(ConfigService);
+app.enableCors();
 
-  app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.NATS,
-    options: {
-      servers: [configService.get('nats').url],
-    },
-  });
+app.connectMicroservice<MicroserviceOptions>({
+  transport: Transport.NATS,
+  options: {
+    servers: [configService.get('nats').url],
+  },
+});
 
-  app.enableVersioning({
-    defaultVersion: ['1', '2'],
-    type: VersioningType.URI,
-  });
+app.enableVersioning({
+  defaultVersion: ['1', '2'],
+  type: VersioningType.URI,
+});
 
-  const swaggerConfig = new DocumentBuilder()
-    .setTitle('Gaia-x Connection Manager API')
-    .setDescription('API documentation for GAIA-X Connection Manager')
-    .setVersion('1.0')
-    .addServer(`http://localhost:${configService.get('PORT')}`)
-    .build();
+const swaggerConfig = new DocumentBuilder()
+  .setTitle('Gaia-x Connection Manager API')
+  .setDescription('API documentation for GAIA-X Connection Manager')
+  .setVersion('1.0')
+  .addServer(`http://localhost:${configService.get('PORT')}`)
+  .build();
 
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
+const document = SwaggerModule.createDocument(app, swaggerConfig);
 
-  SwaggerModule.setup('/swagger', app, document);
-  await app.startAllMicroservices();
+SwaggerModule.setup('/swagger', app, document);
+await app.startAllMicroservices();
 
-  const httpAdapter = app.get(HttpAdapterHost);
-  app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
+const httpAdapter = app.get(HttpAdapterHost);
+app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
 
-  await app.listen(configService.get('PORT') || 3000, () => {
-    logger.info(`Listening on Port:${configService.get('PORT')}` || 3000);
-  });
-}
-
-bootstrap();
+await app.listen(configService.get('PORT') || 3000, () => {
+  logger.info(`Listening on Port:${configService.get('PORT')}` || 3000);
+});

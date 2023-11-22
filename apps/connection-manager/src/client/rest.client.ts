@@ -4,9 +4,9 @@ import { lastValueFrom, map } from 'rxjs';
 
 @Injectable()
 export default class RestClientService {
-  constructor(private readonly httpService: HttpService) {}
+  public constructor(private readonly httpService: HttpService) {}
 
-  async post(url: string, payload: object) {
+  public async post(url: string, payload: object) {
     return lastValueFrom(
       this.httpService
         .post(url, payload)
