@@ -1,991 +1,850 @@
 {
-	"info": {
-		"_postman_id": "096d259a-3afa-45e2-b8fd-ce78cc1afaee",
-		"name": "Gaia-x Attestation Manager API",
-		"description": "API documentation for GAIA-X Attestation Manager",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "10250261"
-	},
-	"item": [
-		{
-			"name": "Fetch credential information by credential id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/credential-info/:id",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"credential-info",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Send credential proposal to connection",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"connectionId\": \"<string>\",\n  \"credentialDefinitionId\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"credentialProposal\": {},\n  \"autoAcceptCredential\": \"<string>\"\n}",
-					"options": {
-						"raw": {
-							"headerFamily": "json",
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/v1/create-propose-credential",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"create-propose-credential"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Send credential offer with credential values to connection",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"connectionId\": \"<string>\",\n  \"credentialDefinitionId\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"attributes\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"autoAcceptCredential\": \"<string>\"\n}",
-					"options": {
-						"raw": {
-							"headerFamily": "json",
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/v1/create-offer-credential",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"create-offer-credential"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Accept credential request by credential id",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/v1/accept-request/:credentialId",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"accept-request",
-						":credentialId"
-					],
-					"variable": [
-						{
-							"key": "credentialId"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Accept credential proposal by credential id",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/v1/accept-proposal/:credentialId",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"accept-proposal",
-						":credentialId"
-					],
-					"variable": [
-						{
-							"key": "credentialId"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Accept credential offer by credential id",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/v1/accept-offer/:credentialId",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"accept-offer",
-						":credentialId"
-					],
-					"variable": [
-						{
-							"key": "credentialId"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Accept credentials by credential id",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/v1/accept-credential/:credentialId",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"accept-credential",
-						":credentialId"
-					],
-					"variable": [
-						{
-							"key": "credentialId"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Fetch list of credential definition",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/credentialDef",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"credentialDef"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Fetch credential definition by id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/credentialDef/:id",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"credentialDef",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "<string>"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create new credential definition",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"schemaID\": \"<string>\",\n  \"name\": \"<string>\",\n  \"isRevokable\": \"<boolean>\",\n  \"isAutoIssue\": \"<boolean>\",\n  \"expiryHours\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"type\": \"<string>\"\n}",
-					"options": {
-						"raw": {
-							"headerFamily": "json",
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/v1/credentialDef",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"credentialDef"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Fetch list of credentials using pagination and queries",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/credential?page=0&pageSize=10&isReceived&threadId&state&credDefId&createdDateStart&createdDateEnd&updatedDateStart&updatedDateEnd&expirationDateStart&expirationDateEnd&connectionId&principalDid",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"credential"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "0"
-						},
-						{
-							"key": "pageSize",
-							"value": "10"
-						},
-						{
-							"key": "isReceived",
-							"value": null
-						},
-						{
-							"key": "threadId",
-							"value": null
-						},
-						{
-							"key": "state",
-							"value": null
-						},
-						{
-							"key": "credDefId",
-							"value": null
-						},
-						{
-							"key": "createdDateStart",
-							"value": null
-						},
-						{
-							"key": "createdDateEnd",
-							"value": null
-						},
-						{
-							"key": "updatedDateStart",
-							"value": null
-						},
-						{
-							"key": "updatedDateEnd",
-							"value": null
-						},
-						{
-							"key": "expirationDateStart",
-							"value": null
-						},
-						{
-							"key": "expirationDateEnd",
-							"value": null
-						},
-						{
-							"key": "connectionId",
-							"value": null
-						},
-						{
-							"key": "principalDid",
-							"value": null
-						}
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Fetch list of credentials using pagination and queries",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/v1/credential?page=0&pageSize=10&isReceived&threadId&state&credDefId&createdDateStart&createdDateEnd&updatedDateStart&updatedDateEnd&expirationDateStart&expirationDateEnd&connectionId&principalDid",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"v1",
-								"credential"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "0"
-								},
-								{
-									"key": "pageSize",
-									"value": "10"
-								},
-								{
-									"key": "isReceived",
-									"value": null
-								},
-								{
-									"key": "threadId",
-									"value": null
-								},
-								{
-									"key": "state",
-									"value": null
-								},
-								{
-									"key": "credDefId",
-									"value": null
-								},
-								{
-									"key": "createdDateStart",
-									"value": null
-								},
-								{
-									"key": "createdDateEnd",
-									"value": null
-								},
-								{
-									"key": "updatedDateStart",
-									"value": null
-								},
-								{
-									"key": "updatedDateEnd",
-									"value": null
-								},
-								{
-									"key": "expirationDateStart",
-									"value": null
-								},
-								{
-									"key": "expirationDateEnd",
-									"value": null
-								},
-								{
-									"key": "connectionId",
-									"value": null
-								},
-								{
-									"key": "principalDid",
-									"value": null
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 02 Jun 2023 05:58:26 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "4576"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"11e0-n29HDRxi/1rhzktri7nD+uBh93Y\""
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Credential fetch successfully\",\n    \"data\": {\n        \"count\": 87,\n        \"records\": [\n            {\n                \"id\": \"01b3d49c-1d51-4070-924d-9424ea239a93\",\n                \"credentialId\": \"f4472554-ee2e-4262-bfc6-0ed268c8be31\",\n                \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:48687:Automation_CredDef_001\",\n                \"threadId\": \"cdb2ce40-970d-4bb2-9d8b-a4aa5e517226\",\n                \"state\": \"done\",\n                \"principalDid\": \"CuZ94QvJCHihuCBCzRULoc\",\n                \"connectionId\": \"2ded97e4-0c8e-470a-8e53-481e24e50db7\",\n                \"createdDate\": \"2023-05-15T13:10:52.070Z\",\n                \"updatedDate\": \"2023-05-15T13:13:10.164Z\",\n                \"expirationDate\": \"2023-05-16T13:10:52.068Z\"\n            },\n            {\n                \"id\": \"0306d10d-1b8f-471a-98c2-86edfe24e1dd\",\n                \"credentialId\": \"c1b80b87-e044-4056-87ed-f53b50480015\",\n                \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:46833:OCM1-passport\",\n                \"threadId\": \"52d63479-a20e-47e3-9e5b-43b06998566d\",\n                \"state\": \"offer-sent\",\n                \"principalDid\": \"FyydY9n2QZyuskXGm73kH8\",\n                \"connectionId\": \"f468aeaa-6482-44af-b3d5-eb67aed0a2bd\",\n                \"createdDate\": \"2023-05-09T12:52:55.259Z\",\n                \"updatedDate\": \"2023-05-09T12:52:55.259Z\",\n                \"expirationDate\": null\n            },\n            {\n                \"id\": \"0b444def-2419-4635-97a5-46b8a2a93a8c\",\n                \"credentialId\": \"2b7f4387-3361-4bc5-b4f8-0a6a3fb7b05a\",\n                \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:48362:Enrollment_credDef-222222322211\",\n                \"threadId\": \"84336905-fbdb-4405-be94-24f0bb3143d8\",\n                \"state\": \"done\",\n                \"principalDid\": \"9M5aDzwUzeiq3sSwBD5mPC\",\n                \"connectionId\": \"4a1b0ed2-d7ce-4629-9d91-03247f0015ca\",\n                \"createdDate\": \"2023-05-09T14:06:00.663Z\",\n                \"updatedDate\": \"2023-05-09T14:09:38.440Z\",\n                \"expirationDate\": \"2023-05-10T14:06:00.661Z\"\n            },\n            {\n                \"id\": \"0be85272-0802-48c4-a155-787534b050c7\",\n                \"credentialId\": \"85ec488c-2f23-4544-885e-3f0e9a4f3e63\",\n                \"credDefId\": \"48f6D93QZPA127oknMazWy:3:CL:41034:test2-credDef\",\n                \"threadId\": \"edbdddc1-1a49-4d3e-aa47-bfbdca65aedf\",\n                \"state\": \"offer-sent\",\n                \"principalDid\": \"LpN6wLLjfm5p1tqUo8Nf3w\",\n                \"connectionId\": \"d45614da-c174-4399-bf27-3cf01928fe3a\",\n                \"createdDate\": \"2023-03-27T12:10:22.645Z\",\n                \"updatedDate\": \"2023-03-27T12:10:22.645Z\",\n                \"expirationDate\": \"2023-03-28T11:10:22.642Z\"\n            },\n            {\n                \"id\": \"13424638-ce33-4c77-9375-7b24e2d55e10\",\n                \"credentialId\": \"4fea6609-cb4f-478b-9c30-a1ef09453dd1\",\n                \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:50014:LoginCredentials2\",\n                \"threadId\": \"eeb6a119-68bd-40bf-b454-69cd0dd6c13d\",\n                \"state\": \"done\",\n                \"principalDid\": \"7tziR5BbxSbqJbrtDC7ZJw\",\n                \"connectionId\": \"9d6b7000-5f5a-49cd-91e7-6aff9ef73f83\",\n                \"createdDate\": \"2023-05-22T11:23:47.206Z\",\n                \"updatedDate\": \"2023-05-22T11:24:05.454Z\",\n                \"expirationDate\": null\n            },\n            {\n                \"id\": \"14b85bde-d2f4-4e1a-a49c-b7f51e0b9d68\",\n                \"credentialId\": \"7dbd2d9d-b285-4c8d-a8c0-c982dbb76194\",\n                \"credDefId\": \"48f6D93QZPA127oknMazWy:3:CL:41034:test2-credDef\",\n                \"threadId\": \"34c43f2b-5223-42ac-8d6b-d6aa3508b30e\",\n                \"state\": \"offer-sent\",\n                \"principalDid\": \"LpN6wLLjfm5p1tqUo8Nf3w\",\n                \"connectionId\": \"d45614da-c174-4399-bf27-3cf01928fe3a\",\n                \"createdDate\": \"2023-03-27T11:43:12.367Z\",\n                \"updatedDate\": \"2023-03-27T11:43:12.367Z\",\n                \"expirationDate\": \"2023-03-28T10:43:12.364Z\"\n            },\n            {\n                \"id\": \"15281264-9b75-457b-babf-ea453ef742df\",\n                \"credentialId\": \"c597ebb2-9dea-4a75-9616-1cf577818699\",\n                \"credDefId\": \"48f6D93QZPA127oknMazWy:3:CL:42130:Driver Licence\",\n                \"threadId\": \"48866e07-61b7-4036-9aeb-b4048edb1f5c\",\n                \"state\": \"done\",\n                \"principalDid\": \"AZGMhjPLkTHmHrwbaVCg8S\",\n                \"connectionId\": \"1e55ac60-ce30-4887-b51b-ce581ab020c0\",\n                \"createdDate\": \"2023-03-22T07:44:10.338Z\",\n                \"updatedDate\": \"2023-03-22T07:45:48.314Z\",\n                \"expirationDate\": null\n            },\n            {\n                \"id\": \"17713cae-bbb5-4347-ab56-bb0abd11d4e3\",\n                \"credentialId\": \"404433ba-bf23-4a1b-91b9-4c2e0b550811\",\n                \"credDefId\": \"PFoX6wEKUmUrciXad7gyxQ:3:CL:46833:SSI-prod-passport1\",\n                \"threadId\": \"3ad48da9-536d-4a70-b519-4a96328fff68\",\n                \"state\": \"credential-received\",\n                \"principalDid\": \"FyydY9n2QZyuskXGm73kH8\",\n                \"connectionId\": \"f468aeaa-6482-44af-b3d5-eb67aed0a2bd\",\n                \"createdDate\": \"2023-05-09T13:21:04.464Z\",\n                \"updatedDate\": \"2023-05-09T13:21:59.765Z\",\n                \"expirationDate\": null\n            },\n            {\n                \"id\": \"17fe1bd6-1fb8-441d-bab7-da0c065feade\",\n                \"credentialId\": \"fb713703-4dbb-4046-92a9-38275dfdc3c3\",\n                \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:48710:Automation_CredDef_001\",\n                \"threadId\": \"92d75b0f-658a-4a15-ad8d-464e1bc9ed56\",\n                \"state\": \"done\",\n                \"principalDid\": \"CuZ94QvJCHihuCBCzRULoc\",\n                \"connectionId\": \"2ded97e4-0c8e-470a-8e53-481e24e50db7\",\n                \"createdDate\": \"2023-05-15T13:10:49.447Z\",\n                \"updatedDate\": \"2023-05-15T13:14:28.548Z\",\n                \"expirationDate\": \"2023-05-16T13:10:49.445Z\"\n            },\n            {\n                \"id\": \"1879df35-ccaf-444a-b953-10339531582a\",\n                \"credentialId\": \"9a5a8b7b-f1d7-45a3-a5f4-af78d0b450f3\",\n                \"credDefId\": \"2ZDQuDB9Ww23qnesQLw9aq:3:CL:43799:Enrollment_credDef-22222322211\",\n                \"threadId\": \"4ab8c6a6-7183-41db-bc5c-75d31c5c3753\",\n                \"state\": \"offer-sent\",\n                \"principalDid\": \"9aRgDXK7SXJVKpbp91yAmr\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"createdDate\": \"2023-04-05T08:47:48.281Z\",\n                \"updatedDate\": \"2023-04-05T08:47:48.281Z\",\n                \"expirationDate\": \"2023-04-06T08:47:48.277Z\"\n            }\n        ]\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Fetch credential by credential id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/credential/:id",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"credential",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "f4472554-ee2e-4262-bfc6-0ed268c8be31"
-						}
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Fetch credential by credential id",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/v1/credential/:id",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"v1",
-								"credential",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "f4472554-ee2e-4262-bfc6-0ed268c8be31"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 02 Jun 2023 05:58:44 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "525"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"20d-E/63SLfeyJlcwG1mLsRAN1dAc50\""
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Credential fetched successfully\",\n    \"data\": {\n        \"id\": \"01b3d49c-1d51-4070-924d-9424ea239a93\",\n        \"credentialId\": \"f4472554-ee2e-4262-bfc6-0ed268c8be31\",\n        \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:48687:Automation_CredDef_001\",\n        \"threadId\": \"cdb2ce40-970d-4bb2-9d8b-a4aa5e517226\",\n        \"state\": \"done\",\n        \"principalDid\": \"CuZ94QvJCHihuCBCzRULoc\",\n        \"connectionId\": \"2ded97e4-0c8e-470a-8e53-481e24e50db7\",\n        \"createdDate\": \"2023-05-15T13:10:52.070Z\",\n        \"updatedDate\": \"2023-05-15T13:13:10.164Z\",\n        \"expirationDate\": \"2023-05-16T13:10:52.068Z\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Create new CredentialType",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"type\": \"<string>\",\n  \"schemaId\": \"<string>\"\n}",
-					"options": {
-						"raw": {
-							"headerFamily": "json",
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/v1/credentialType",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"credentialType"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Fetch CredentialType (schemaId amd its attributes) by type",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/credentialType",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"credentialType"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete credential (request/offer/proposal) by credential id",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/delete-credential/:id",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"delete-credential",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Health check",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/health",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"health"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Health check",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/v1/health",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"v1",
-								"health"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 02 Jun 2023 05:54:20 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "93"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"5d-n7tsAF97fIhtcEb5uvvhp8pNSHg\""
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Fri Jun 02 2023 05:54:20 GMT+0000 (Coordinated Universal Time)\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Fetch list of Schemas with pagination",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/schemas",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"schemas"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create new schema",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"name\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"version\": \"<string>\",\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"type\": \"<string>\"\n}",
-					"options": {
-						"raw": {
-							"headerFamily": "json",
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/v1/schemas",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"schemas"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Fetch list of dids for schema id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/schemas/get-dids-for-schema/:id",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"schemas",
-						"get-dids-for-schema",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "<string>"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Fetch list of Schemas by schema id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/schemas/:id",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"schemas",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "<string>"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update schemaId in CredentialsType",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"schemaId\": \"<string>\"\n}",
-					"options": {
-						"raw": {
-							"headerFamily": "json",
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/v1/updateSchemaIdByType",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"updateSchemaIdByType"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add user information associated with connection id",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"connectionId\": \"<string>\",\n  \"autoAcceptCredential\": \"<string>\",\n  \"userInfo\": {}\n}",
-					"options": {
-						"raw": {
-							"headerFamily": "json",
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/v1/userInfo",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"userInfo"
-					]
-				}
-			},
-			"response": []
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "baseUrl",
-			"value": "https://ssi-dev.vereign.com/ocm/attestation"
-		}
-	]
+  "info": {
+    "_postman_id": "096d259a-3afa-45e2-b8fd-ce78cc1afaee",
+    "name": "Gaia-x Attestation Manager API",
+    "description": "API documentation for GAIA-X Attestation Manager",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "10250261"
+  },
+  "item": [
+    {
+      "name": "Fetch credential information by credential id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/credential-info/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "credential-info", ":id"],
+          "variable": [
+            {
+              "key": "id"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Send credential proposal to connection",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"connectionId\": \"<string>\",\n  \"credentialDefinitionId\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"credentialProposal\": {},\n  \"autoAcceptCredential\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/create-propose-credential",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "create-propose-credential"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Send credential offer with credential values to connection",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"connectionId\": \"<string>\",\n  \"credentialDefinitionId\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"attributes\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"autoAcceptCredential\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/create-offer-credential",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "create-offer-credential"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Accept credential request by credential id",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/v1/accept-request/:credentialId",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "accept-request", ":credentialId"],
+          "variable": [
+            {
+              "key": "credentialId"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Accept credential proposal by credential id",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/v1/accept-proposal/:credentialId",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "accept-proposal", ":credentialId"],
+          "variable": [
+            {
+              "key": "credentialId"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Accept credential offer by credential id",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/v1/accept-offer/:credentialId",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "accept-offer", ":credentialId"],
+          "variable": [
+            {
+              "key": "credentialId"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Accept credentials by credential id",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/v1/accept-credential/:credentialId",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "accept-credential", ":credentialId"],
+          "variable": [
+            {
+              "key": "credentialId"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch list of credential definition",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/credentialDef",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "credentialDef"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch credential definition by id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/credentialDef/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "credentialDef", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "<string>"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create new credential definition",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"schemaID\": \"<string>\",\n  \"name\": \"<string>\",\n  \"isRevokable\": \"<boolean>\",\n  \"isAutoIssue\": \"<boolean>\",\n  \"expiryHours\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/credentialDef",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "credentialDef"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch list of credentials using pagination and queries",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/credential?page=0&pageSize=10&isReceived&threadId&state&credDefId&createdDateStart&createdDateEnd&updatedDateStart&updatedDateEnd&expirationDateStart&expirationDateEnd&connectionId&principalDid",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "credential"],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "pageSize",
+              "value": "10"
+            },
+            {
+              "key": "isReceived",
+              "value": null
+            },
+            {
+              "key": "threadId",
+              "value": null
+            },
+            {
+              "key": "state",
+              "value": null
+            },
+            {
+              "key": "credDefId",
+              "value": null
+            },
+            {
+              "key": "createdDateStart",
+              "value": null
+            },
+            {
+              "key": "createdDateEnd",
+              "value": null
+            },
+            {
+              "key": "updatedDateStart",
+              "value": null
+            },
+            {
+              "key": "updatedDateEnd",
+              "value": null
+            },
+            {
+              "key": "expirationDateStart",
+              "value": null
+            },
+            {
+              "key": "expirationDateEnd",
+              "value": null
+            },
+            {
+              "key": "connectionId",
+              "value": null
+            },
+            {
+              "key": "principalDid",
+              "value": null
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Fetch list of credentials using pagination and queries",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/credential?page=0&pageSize=10&isReceived&threadId&state&credDefId&createdDateStart&createdDateEnd&updatedDateStart&updatedDateEnd&expirationDateStart&expirationDateEnd&connectionId&principalDid",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "credential"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "10"
+                },
+                {
+                  "key": "isReceived",
+                  "value": null
+                },
+                {
+                  "key": "threadId",
+                  "value": null
+                },
+                {
+                  "key": "state",
+                  "value": null
+                },
+                {
+                  "key": "credDefId",
+                  "value": null
+                },
+                {
+                  "key": "createdDateStart",
+                  "value": null
+                },
+                {
+                  "key": "createdDateEnd",
+                  "value": null
+                },
+                {
+                  "key": "updatedDateStart",
+                  "value": null
+                },
+                {
+                  "key": "updatedDateEnd",
+                  "value": null
+                },
+                {
+                  "key": "expirationDateStart",
+                  "value": null
+                },
+                {
+                  "key": "expirationDateEnd",
+                  "value": null
+                },
+                {
+                  "key": "connectionId",
+                  "value": null
+                },
+                {
+                  "key": "principalDid",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 02 Jun 2023 05:58:26 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "4576"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"11e0-n29HDRxi/1rhzktri7nD+uBh93Y\""
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Credential fetch successfully\",\n    \"data\": {\n        \"count\": 87,\n        \"records\": [\n            {\n                \"id\": \"01b3d49c-1d51-4070-924d-9424ea239a93\",\n                \"credentialId\": \"f4472554-ee2e-4262-bfc6-0ed268c8be31\",\n                \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:48687:Automation_CredDef_001\",\n                \"threadId\": \"cdb2ce40-970d-4bb2-9d8b-a4aa5e517226\",\n                \"state\": \"done\",\n                \"principalDid\": \"CuZ94QvJCHihuCBCzRULoc\",\n                \"connectionId\": \"2ded97e4-0c8e-470a-8e53-481e24e50db7\",\n                \"createdDate\": \"2023-05-15T13:10:52.070Z\",\n                \"updatedDate\": \"2023-05-15T13:13:10.164Z\",\n                \"expirationDate\": \"2023-05-16T13:10:52.068Z\"\n            },\n            {\n                \"id\": \"0306d10d-1b8f-471a-98c2-86edfe24e1dd\",\n                \"credentialId\": \"c1b80b87-e044-4056-87ed-f53b50480015\",\n                \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:46833:OCM1-passport\",\n                \"threadId\": \"52d63479-a20e-47e3-9e5b-43b06998566d\",\n                \"state\": \"offer-sent\",\n                \"principalDid\": \"FyydY9n2QZyuskXGm73kH8\",\n                \"connectionId\": \"f468aeaa-6482-44af-b3d5-eb67aed0a2bd\",\n                \"createdDate\": \"2023-05-09T12:52:55.259Z\",\n                \"updatedDate\": \"2023-05-09T12:52:55.259Z\",\n                \"expirationDate\": null\n            },\n            {\n                \"id\": \"0b444def-2419-4635-97a5-46b8a2a93a8c\",\n                \"credentialId\": \"2b7f4387-3361-4bc5-b4f8-0a6a3fb7b05a\",\n                \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:48362:Enrollment_credDef-222222322211\",\n                \"threadId\": \"84336905-fbdb-4405-be94-24f0bb3143d8\",\n                \"state\": \"done\",\n                \"principalDid\": \"9M5aDzwUzeiq3sSwBD5mPC\",\n                \"connectionId\": \"4a1b0ed2-d7ce-4629-9d91-03247f0015ca\",\n                \"createdDate\": \"2023-05-09T14:06:00.663Z\",\n                \"updatedDate\": \"2023-05-09T14:09:38.440Z\",\n                \"expirationDate\": \"2023-05-10T14:06:00.661Z\"\n            },\n            {\n                \"id\": \"0be85272-0802-48c4-a155-787534b050c7\",\n                \"credentialId\": \"85ec488c-2f23-4544-885e-3f0e9a4f3e63\",\n                \"credDefId\": \"48f6D93QZPA127oknMazWy:3:CL:41034:test2-credDef\",\n                \"threadId\": \"edbdddc1-1a49-4d3e-aa47-bfbdca65aedf\",\n                \"state\": \"offer-sent\",\n                \"principalDid\": \"LpN6wLLjfm5p1tqUo8Nf3w\",\n                \"connectionId\": \"d45614da-c174-4399-bf27-3cf01928fe3a\",\n                \"createdDate\": \"2023-03-27T12:10:22.645Z\",\n                \"updatedDate\": \"2023-03-27T12:10:22.645Z\",\n                \"expirationDate\": \"2023-03-28T11:10:22.642Z\"\n            },\n            {\n                \"id\": \"13424638-ce33-4c77-9375-7b24e2d55e10\",\n                \"credentialId\": \"4fea6609-cb4f-478b-9c30-a1ef09453dd1\",\n                \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:50014:LoginCredentials2\",\n                \"threadId\": \"eeb6a119-68bd-40bf-b454-69cd0dd6c13d\",\n                \"state\": \"done\",\n                \"principalDid\": \"7tziR5BbxSbqJbrtDC7ZJw\",\n                \"connectionId\": \"9d6b7000-5f5a-49cd-91e7-6aff9ef73f83\",\n                \"createdDate\": \"2023-05-22T11:23:47.206Z\",\n                \"updatedDate\": \"2023-05-22T11:24:05.454Z\",\n                \"expirationDate\": null\n            },\n            {\n                \"id\": \"14b85bde-d2f4-4e1a-a49c-b7f51e0b9d68\",\n                \"credentialId\": \"7dbd2d9d-b285-4c8d-a8c0-c982dbb76194\",\n                \"credDefId\": \"48f6D93QZPA127oknMazWy:3:CL:41034:test2-credDef\",\n                \"threadId\": \"34c43f2b-5223-42ac-8d6b-d6aa3508b30e\",\n                \"state\": \"offer-sent\",\n                \"principalDid\": \"LpN6wLLjfm5p1tqUo8Nf3w\",\n                \"connectionId\": \"d45614da-c174-4399-bf27-3cf01928fe3a\",\n                \"createdDate\": \"2023-03-27T11:43:12.367Z\",\n                \"updatedDate\": \"2023-03-27T11:43:12.367Z\",\n                \"expirationDate\": \"2023-03-28T10:43:12.364Z\"\n            },\n            {\n                \"id\": \"15281264-9b75-457b-babf-ea453ef742df\",\n                \"credentialId\": \"c597ebb2-9dea-4a75-9616-1cf577818699\",\n                \"credDefId\": \"48f6D93QZPA127oknMazWy:3:CL:42130:Driver Licence\",\n                \"threadId\": \"48866e07-61b7-4036-9aeb-b4048edb1f5c\",\n                \"state\": \"done\",\n                \"principalDid\": \"AZGMhjPLkTHmHrwbaVCg8S\",\n                \"connectionId\": \"1e55ac60-ce30-4887-b51b-ce581ab020c0\",\n                \"createdDate\": \"2023-03-22T07:44:10.338Z\",\n                \"updatedDate\": \"2023-03-22T07:45:48.314Z\",\n                \"expirationDate\": null\n            },\n            {\n                \"id\": \"17713cae-bbb5-4347-ab56-bb0abd11d4e3\",\n                \"credentialId\": \"404433ba-bf23-4a1b-91b9-4c2e0b550811\",\n                \"credDefId\": \"PFoX6wEKUmUrciXad7gyxQ:3:CL:46833:SSI-prod-passport1\",\n                \"threadId\": \"3ad48da9-536d-4a70-b519-4a96328fff68\",\n                \"state\": \"credential-received\",\n                \"principalDid\": \"FyydY9n2QZyuskXGm73kH8\",\n                \"connectionId\": \"f468aeaa-6482-44af-b3d5-eb67aed0a2bd\",\n                \"createdDate\": \"2023-05-09T13:21:04.464Z\",\n                \"updatedDate\": \"2023-05-09T13:21:59.765Z\",\n                \"expirationDate\": null\n            },\n            {\n                \"id\": \"17fe1bd6-1fb8-441d-bab7-da0c065feade\",\n                \"credentialId\": \"fb713703-4dbb-4046-92a9-38275dfdc3c3\",\n                \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:48710:Automation_CredDef_001\",\n                \"threadId\": \"92d75b0f-658a-4a15-ad8d-464e1bc9ed56\",\n                \"state\": \"done\",\n                \"principalDid\": \"CuZ94QvJCHihuCBCzRULoc\",\n                \"connectionId\": \"2ded97e4-0c8e-470a-8e53-481e24e50db7\",\n                \"createdDate\": \"2023-05-15T13:10:49.447Z\",\n                \"updatedDate\": \"2023-05-15T13:14:28.548Z\",\n                \"expirationDate\": \"2023-05-16T13:10:49.445Z\"\n            },\n            {\n                \"id\": \"1879df35-ccaf-444a-b953-10339531582a\",\n                \"credentialId\": \"9a5a8b7b-f1d7-45a3-a5f4-af78d0b450f3\",\n                \"credDefId\": \"2ZDQuDB9Ww23qnesQLw9aq:3:CL:43799:Enrollment_credDef-22222322211\",\n                \"threadId\": \"4ab8c6a6-7183-41db-bc5c-75d31c5c3753\",\n                \"state\": \"offer-sent\",\n                \"principalDid\": \"9aRgDXK7SXJVKpbp91yAmr\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"createdDate\": \"2023-04-05T08:47:48.281Z\",\n                \"updatedDate\": \"2023-04-05T08:47:48.281Z\",\n                \"expirationDate\": \"2023-04-06T08:47:48.277Z\"\n            }\n        ]\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Fetch credential by credential id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/credential/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "credential", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "f4472554-ee2e-4262-bfc6-0ed268c8be31"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Fetch credential by credential id",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/credential/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "credential", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "f4472554-ee2e-4262-bfc6-0ed268c8be31"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 02 Jun 2023 05:58:44 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "525"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"20d-E/63SLfeyJlcwG1mLsRAN1dAc50\""
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Credential fetched successfully\",\n    \"data\": {\n        \"id\": \"01b3d49c-1d51-4070-924d-9424ea239a93\",\n        \"credentialId\": \"f4472554-ee2e-4262-bfc6-0ed268c8be31\",\n        \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:48687:Automation_CredDef_001\",\n        \"threadId\": \"cdb2ce40-970d-4bb2-9d8b-a4aa5e517226\",\n        \"state\": \"done\",\n        \"principalDid\": \"CuZ94QvJCHihuCBCzRULoc\",\n        \"connectionId\": \"2ded97e4-0c8e-470a-8e53-481e24e50db7\",\n        \"createdDate\": \"2023-05-15T13:10:52.070Z\",\n        \"updatedDate\": \"2023-05-15T13:13:10.164Z\",\n        \"expirationDate\": \"2023-05-16T13:10:52.068Z\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create new CredentialType",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"<string>\",\n  \"schemaId\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/credentialType",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "credentialType"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch CredentialType (schemaId amd its attributes) by type",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/credentialType",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "credentialType"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete credential (request/offer/proposal) by credential id",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/delete-credential/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "delete-credential", ":id"],
+          "variable": [
+            {
+              "key": "id"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "health"]
+        }
+      },
+      "response": [
+        {
+          "name": "Health check",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "health"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 02 Jun 2023 05:54:20 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "93"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"5d-n7tsAF97fIhtcEb5uvvhp8pNSHg\""
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Fri Jun 02 2023 05:54:20 GMT+0000 (Coordinated Universal Time)\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Fetch list of Schemas with pagination",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/schemas",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "schemas"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create new schema",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"version\": \"<string>\",\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"type\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/schemas",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "schemas"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch list of dids for schema id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/schemas/get-dids-for-schema/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "schemas", "get-dids-for-schema", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "<string>"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch list of Schemas by schema id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/schemas/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "schemas", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "<string>"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update schemaId in CredentialsType",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"schemaId\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/updateSchemaIdByType",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "updateSchemaIdByType"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add user information associated with connection id",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"connectionId\": \"<string>\",\n  \"autoAcceptCredential\": \"<string>\",\n  \"userInfo\": {}\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/userInfo",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "userInfo"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ssi-dev.vereign.com/ocm/attestation"
+    }
+  ]
 }

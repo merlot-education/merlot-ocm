@@ -67,9 +67,7 @@
                           "@type": "https://didcomm.org/connections/1.0/invitation",
                           "@id": "efe3fe97",
                           "label": "ssi-abstraction-agent",
-                          "recipientKeys": [
-                            "8iT6AAmbj9P"
-                          ],
+                          "recipientKeys": ["8iT6AAmbj9P"],
                           "serviceEndpoint": "https://serviceEndpointUrl.com:443/ocm/didcomm",
                           "routingKeys": []
                         },
@@ -95,9 +93,7 @@
                                 "serviceEndpoint": "https://serviceEndpointUrl.com:443/ocm/didcomm",
                                 "type": "IndyAgent",
                                 "priority": 0,
-                                "recipientKeys": [
-                                  "8iT6AAmbj9P"
-                                ],
+                                "recipientKeys": ["8iT6AAmbj9P"],
                                 "routingKeys": []
                               }
                             ],
@@ -117,9 +113,7 @@
                             "@type": "https://didcomm.org/connections/1.0/invitation",
                             "@id": "efe3fe97",
                             "label": "ssi-abstraction-agent",
-                            "recipientKeys": [
-                              "8iT6AAmbj9P"
-                            ],
+                            "recipientKeys": ["8iT6AAmbj9P"],
                             "serviceEndpoint": "https://serviceEndpointUrl.com:443/ocm/didcomm",
                             "routingKeys": []
                           },
@@ -166,9 +160,7 @@
             }
           }
         },
-        "tags": [
-          "Connections"
-        ]
+        "tags": ["Connections"]
       }
     },
     "/v1/connection-information": {
@@ -243,9 +235,7 @@
             }
           }
         },
-        "tags": [
-          "Connections"
-        ]
+        "tags": ["Connections"]
       }
     },
     "/v1/connections": {
@@ -330,9 +320,7 @@
             }
           }
         },
-        "tags": [
-          "Connections"
-        ]
+        "tags": ["Connections"]
       }
     },
     "/v1/connections/{connectionId}": {
@@ -392,9 +380,7 @@
             }
           }
         },
-        "tags": [
-          "Connections"
-        ]
+        "tags": ["Connections"]
       }
     },
     "/v1/accept-connection-invitation": {
@@ -451,9 +437,7 @@
                               "serviceEndpoint": "https://serviceEndpointUrl.com:443/ocm/didcomm",
                               "type": "IndyAgent",
                               "priority": 0,
-                              "recipientKeys": [
-                                "F6d"
-                              ],
+                              "recipientKeys": ["F6d"],
                               "routingKeys": []
                             }
                           ],
@@ -475,9 +459,7 @@
                           "@type": "https://didcomm.org/connections/1.0/invitation",
                           "@id": "12ebbf61",
                           "label": "ssi-abstraction-agent",
-                          "recipientKeys": [
-                            "5Nj"
-                          ],
+                          "recipientKeys": ["5Nj"],
                           "serviceEndpoint": "https://serviceEndpointUrl.com:443/ocm/didcomm",
                           "routingKeys": []
                         },
@@ -507,9 +489,7 @@
             }
           }
         },
-        "tags": [
-          "Connections"
-        ]
+        "tags": ["Connections"]
       }
     }
   },
@@ -539,12 +519,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "autoAcceptConnection",
-          "alias",
-          "myLabel",
-          "myImageUrl"
-        ]
+        "required": ["autoAcceptConnection", "alias", "myLabel", "myImageUrl"]
       },
       "AcceptConnectionInvitationBody": {
         "type": "object",
@@ -556,10 +531,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "invitationUrl",
-          "autoAcceptConnection"
-        ]
+        "required": ["invitationUrl", "autoAcceptConnection"]
       }
     }
   }

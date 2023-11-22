@@ -4,7 +4,7 @@
 
 This repository provides a simple process for a developer to run an Aries mediator agent. You should be able to bring the stack on-line by copying `.env.stample` to `.env` and running `docker-compose up`. For more information, keep reading.
 
-## Build & Run 
+## Build & Run
 
 This is setup to be run as is with a simple `docker-compose up`. When run it will fire up the following containers:
 
@@ -14,7 +14,7 @@ You need to accept inbound connections. Most of us are behind firewalls or have 
 
 If you have a paid ngrok account you can provide your access token as one of the parameters (via the .env file). If not, leave it blank and it'll assume your on the free plan.
 
-Pro Tip 🤓 
+Pro Tip 🤓
 
 - Free plans can only keep a connection open for 60 minutes. After this, you will need to restart the stack. If this gets annoying, use a paid plan for a long lived tunnel :)
 
@@ -42,7 +42,7 @@ In the `.env` file override the mediator config environment variable by adding `
 MEDIATOR_ARG_FILE=./configs/mediator-with-controller.yml
 ```
 
-2. Enable the mediator service in the docker stack 
+2. Enable the mediator service in the docker stack
 
 Remove these two lines from the [docker-compose.yml](./docker-compose.yml) file in the `mediator-controller` service:
 
@@ -107,19 +107,25 @@ mediator_1             | https://ed49-70-67-240-52.ngrok.io?c_i=eyJAdHlwZSI6ICJk
 The `c_i` parameter is your reusable invitation encoded as base64. Let's decode it and see what's inside:
 
 ```json
-{"@type": "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/invitation", "@id": "ff02936f-763d-47bc-a6ff-2fcfb66ec55f", "label": "Mediator", "recipientKeys": ["ArW7u6H1B4GLgrEzfPLPdDMQyghHWdBSoGyjdBcE3KJD"], "serviceEndpoint": "https://ed49-70-67-240-52.ngrok.io"}
+{
+  "@type": "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/invitation",
+  "@id": "ff02936f-763d-47bc-a6ff-2fcfb66ec55f",
+  "label": "Mediator",
+  "recipientKeys": ["ArW7u6H1B4GLgrEzfPLPdDMQyghHWdBSoGyjdBcE3KJD"],
+  "serviceEndpoint": "https://ed49-70-67-240-52.ngrok.io"
+}
 ```
 
 Pro Tip 🤓
 
 The invitation will be regenerated every time you restart the docker stack for two important reason:
 
-1. The `ngrok` URL changes with restarts; and 
+1. The `ngrok` URL changes with restarts; and
 2. The database is not persistent. This is where wallet initialization data, like [verkey](https://hyperledger.github.io/indy-did-method/) is stored. This will cause the `@id` and `recipientKeys` properties to change in the invitation (`c_i` payload above).
 
-The general workaround steps are: 
+The general workaround steps are:
 
-- expose the caddy ports outside of the container; 
+- expose the caddy ports outside of the container;
 - start `ngrok` outside of a container and update the MEDIATOR_URL in [start.sh](./acapy/start.sh);
 - give postgres a persistent volume;
 
@@ -137,7 +143,7 @@ MEDIATOR_URL=https://ed49-70-67-240-52.ngrok.io?c_i=eyJAdHlwZSI6ICJkaWQ6c292OkJ6
 
 I struggled quite a bit with how HTTP/s and WSS are managed internally. The key, for me, was the `--endpoint` argument in ACA-py. To run a mediator, and maybe other agents, it takes two params for this argument. The first is the HTTP/s endpoint and the second is the `WSS` endpoint.
 
-The HTTP/s endpoints, as per the docs on this param, will be used for invitations. Its going to be how your wallet finds and opens a dialogue with the mediator. Once a connection is established the WSS endpoint will be how the mediator and your wallet primarily communicated; they will message over the WebSocket. 
+The HTTP/s endpoints, as per the docs on this param, will be used for invitations. Its going to be how your wallet finds and opens a dialogue with the mediator. Once a connection is established the WSS endpoint will be how the mediator and your wallet primarily communicated; they will message over the WebSocket.
 
 ### Can I use two URLs rather than one?
 

@@ -1,6 +1,4 @@
-
 # OCM API flows
-
 
 ## Create a connection with a PCM
 
@@ -8,13 +6,12 @@
 
 1. Create an invitation url
 
-
 POST
 {{baseUrl}}/v1/invitation-url?alias=trust
 
 - in the response copy
-       e.g. -> "invitationUrl": "https://example.com:443/ocm/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiI0ZDA2N2FlMi1kNTQ5LTRlYzQtYmU2OC00MzFmMzdkMjJlODUiLCJsYWJlbCI6InNzaS1hYnN0cmFjdGlvbi1hZ2VudCIsInJlY2lwaWVudEtleXMiOlsiNVl6U21xcjY5d0RFSzVvQWpzZFQ3UktjazJuaHdmS0phVVVneUVESEFuNWQiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cHM6Ly9nYWlheC52ZXJlaWduLmNvbTo0NDMvb2NtL2RpZGNvbW0iLCJyb3V0aW5nS2V5cyI6W119",
-	or "invitationUrlShort"
+  e.g. -> "invitationUrl": "https://example.com:443/ocm/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiI0ZDA2N2FlMi1kNTQ5LTRlYzQtYmU2OC00MzFmMzdkMjJlODUiLCJsYWJlbCI6InNzaS1hYnN0cmFjdGlvbi1hZ2VudCIsInJlY2lwaWVudEtleXMiOlsiNVl6U21xcjY5d0RFSzVvQWpzZFQ3UktjazJuaHdmS0phVVVneUVESEFuNWQiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cHM6Ly9nYWlheC52ZXJlaWduLmNvbTo0NDMvb2NtL2RpZGNvbW0iLCJyb3V0aW5nS2V5cyI6W119",
+  or "invitationUrlShort"
 
 2. Convert the invitation URL to a QR code and scan with the PCM
 
@@ -24,26 +21,22 @@ POST
 
 1. Create an invitation url
 
-
 POST
 {{baseUrl}}/v1/invitation-url?alias=trust
 
 - in the response copy
-       e.g. -> "invitationUrl": "https://example.com:443/ocm/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiI0ZDA2N2FlMi1kNTQ5LTRlYzQtYmU2OC00MzFmMzdkMjJlODUiLCJsYWJlbCI6InNzaS1hYnN0cmFjdGlvbi1hZ2VudCIsInJlY2lwaWVudEtleXMiOlsiNVl6U21xcjY5d0RFSzVvQWpzZFQ3UktjazJuaHdmS0phVVVneUVESEFuNWQiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cHM6Ly9nYWlheC52ZXJlaWduLmNvbTo0NDMvb2NtL2RpZGNvbW0iLCJyb3V0aW5nS2V5cyI6W119",
-
+  e.g. -> "invitationUrl": "https://example.com:443/ocm/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiI0ZDA2N2FlMi1kNTQ5LTRlYzQtYmU2OC00MzFmMzdkMjJlODUiLCJsYWJlbCI6InNzaS1hYnN0cmFjdGlvbi1hZ2VudCIsInJlY2lwaWVudEtleXMiOlsiNVl6U21xcjY5d0RFSzVvQWpzZFQ3UktjazJuaHdmS0phVVVneUVESEFuNWQiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cHM6Ly9nYWlheC52ZXJlaWduLmNvbTo0NDMvb2NtL2RpZGNvbW0iLCJyb3V0aW5nS2V5cyI6W119",
 
 2. Accept connection on the other OCM
 
 POST
 {{baseUrl}}/v1/accept-connection-invitation
 
-body: 
+body:
 {
-  "invitationUrl": "https://example.com:443/ocm-provider/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiJhNzE1OGFkZS1iMjBkLTQwYmQtODliNy1jM2RhMjg1NWU0ZDAiLCJsYWJlbCI6IkdYRlMtSW50ZWdyYXRpb24iLCJyZWNpcGllbnRLZXlzIjpbIkNYYlViTTNEeEJ3SzNWTFptaXBWOEtDYmQyVmVXM1NDa3BOb01qblRSb1JiIl0sInNlcnZpY2VFbmRwb2ludCI6Imh0dHBzOi8vaW50ZWdyYXRpb24uZ3hmcy5kZXY6NDQzL29jbS1wcm92aWRlci9kaWRjb21tIiwicm91dGluZ0tleXMiOltdfQ",
-  "autoAcceptConnection": true
+"invitationUrl": "https://example.com:443/ocm-provider/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiJhNzE1OGFkZS1iMjBkLTQwYmQtODliNy1jM2RhMjg1NWU0ZDAiLCJsYWJlbCI6IkdYRlMtSW50ZWdyYXRpb24iLCJyZWNpcGllbnRLZXlzIjpbIkNYYlViTTNEeEJ3SzNWTFptaXBWOEtDYmQyVmVXM1NDa3BOb01qblRSb1JiIl0sInNlcnZpY2VFbmRwb2ludCI6Imh0dHBzOi8vaW50ZWdyYXRpb24uZ3hmcy5kZXY6NDQzL29jbS1wcm92aWRlci9kaWRjb21tIiwicm91dGluZ0tleXMiOltdfQ",
+"autoAcceptConnection": true
 }
-
-
 
 ## Issue a credential to an already established connection
 
@@ -54,8 +47,9 @@ body:
 POST
 {{baseUrl}}/v1/schemas
 
-body: 
+body:
 **make sure to create a unique name for it and choose whatever, however many attributes you want**
+
 ```
 {
   "name": "BasicCredential-oct-3-2022",
@@ -73,9 +67,9 @@ body:
 POST
 {{baseUrl}}/v1/credentialDef
 
-
-body: 
+body:
 **make sure to use the schemaID from the previous response and create a unique name here as well**
+
 ```
 {
   "schemaID": "the schema id from the response of 1.",
@@ -95,6 +89,7 @@ POST
 body:
 **make sure to use here the connection id from ## Create a connection 2. response and the credential definition id from the previous response**
 **make sure the names of the attributes here match the names of the attributes in the schema**
+
 ```
 {
   "connectionId": "12926da1-916f-46d3-8f44-56df4d79c2c3",
@@ -114,8 +109,7 @@ body:
 }
 ```
 
-
-## Accept a credential (OCM - OCM) 
+## Accept a credential (OCM - OCM)
 
 **on the PCM, it is part of the GUI**
 
@@ -129,6 +123,7 @@ POST
 {{baseUrl}}/v1/credential
 
 response example:
+
 ```
 {
     "statusCode": 200,
@@ -165,17 +160,10 @@ response example:
 }
 ```
 
-
 2.  accept credential offer
 
 POST
 {{baseUrl}}/v1/accept-offer?credentialID={{copy-the-credentialId-from-the-previous-response}}
-
-
-
-
-
-
 
 ## To send a proof request to someone in order to present claims for a custom issued credential
 
@@ -188,6 +176,7 @@ POST
 **the credential definition id can be found on attestation-manager -> GET {{baseUrl}}/v1/credentialDef**
 
 body:
+
 ```
 {
     "comment": "Proof Presenation",
@@ -204,11 +193,6 @@ body:
 }
 ```
 
-
-
-
-
-
 ## Accept a proof request
 
 **on the PCM it is done through the GUI**
@@ -221,14 +205,13 @@ GET
 
 The proof request will be in **state: request-received**
 
-
 2. Accept the proof request
 
 POST
 {{baseUrl}}/v1/accept-proof-request?proofRecordId={{proofId}}
 
-
 Response example:
+
 ```
 {
     "statusCode": 200,
@@ -279,39 +262,21 @@ Response example:
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Credential types can be used for automatically requesting proof on a specific credential during login when OCM and TSA are integrated with AA Services
+
 **with the following type: principalMemberCredential**
 
 By default, there will be no credential type on the OCM. An existing schema on the chosen ledger can be linked, or a new schema can be created and linked to this credential type.
-
 
 ## In order to create a credential type:
 
 -> under attestation manager
 
-POST 
+POST
 {{baseUrl}}/v1/credentialType
 
 body:
+
 ```
 {
     "type": "principalMemberCredential",
@@ -319,30 +284,22 @@ body:
 }
 ```
 
-
 ## In order to update schema type for credential type:
 
 -> under attestation manager
 
-PATCH 
+PATCH
 /v1/updateSchemaIdByType?type={credentialType}
 
 Example: /v1/updateSchemaIdByType?type=principalMemberCredential
 
 body:
+
 ```
 {
     "schemaId": "7KuDTpQh3GJ7Gp6kErpWvM:2:test_principalMemberCredential-060722:1.0"
 }
 ```
-
-
-
-
-
-
-
-
 
 ## To check interactions with an existing connection
 
@@ -350,6 +307,7 @@ GET
 {{baseUrl}}/v1/connection-information?connectionId={{the-connectionId-you-are-looking-for}}
 
 example response:
+
 ```
 {
     "statusCode": 200,
@@ -387,6 +345,3 @@ example response:
     }
 }
 ```
-
-
-

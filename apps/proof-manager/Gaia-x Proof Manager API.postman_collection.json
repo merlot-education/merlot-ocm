@@ -1,646 +1,561 @@
 {
-	"info": {
-		"_postman_id": "8cdaf3fb-ded2-4518-8464-c196c01c622f",
-		"name": "Gaia-x Proof Manager API",
-		"description": "API documentation for GAIA-X Proof Manager",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "10250261"
-	},
-	"item": [
-		{
-			"name": "Get full url from short url id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/v1/url/:id",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"url",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "<string>"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Send presentation request",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"comment\": \"Proof Presenation\",\n    \"attributes\": [\n        {\n            \"schemaId\": \"\",\n            \"credentialDefId\": \"{{cred-def-id}}\",\n            \"attributeName\": \"fName\",\n            \"value\": \"\",\n            \"condition\": \"\"\n        },\n        {\n            \"schemaId\": \"\",\n            \"credentialDefId\": \"{{pcm-vc-cred-def-id}}\",\n            \"attributeName\": \"email\",\n            \"value\": \"\",\n            \"condition\": \"\"\n        }\n    ],\n    \"connectionId\": \"{{conn-id}}\"\n}",
-					"options": {
-						"raw": {
-							"headerFamily": "json",
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/v1/send-presentation-request",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"send-presentation-request"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Send out of band presentation request",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"comment\": \"<string>\",\n  \"schemaId\": \"<string>\",\n  \"options\": {},\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-					"options": {
-						"raw": {
-							"headerFamily": "json",
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/v1/send-out-of-band-presentation-request",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"send-out-of-band-presentation-request"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Send out of band proof",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/out-of-band-proof",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"out-of-band-proof"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Health check",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/health",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"health"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Search proof request information using pagination and queries",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/find-proof-presentation?page=0&pageSize=25&proofRecordId&connectionId&credentialDefId&schemaId&theirDid&status&createdDateStart=2023-03-05T08:36:19.170Z&createdDateEnd&updatedDateStart&updatedDateEnd",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"find-proof-presentation"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "0"
-						},
-						{
-							"key": "pageSize",
-							"value": "25"
-						},
-						{
-							"key": "proofRecordId",
-							"value": null
-						},
-						{
-							"key": "connectionId",
-							"value": null
-						},
-						{
-							"key": "credentialDefId",
-							"value": null
-						},
-						{
-							"key": "schemaId",
-							"value": null
-						},
-						{
-							"key": "theirDid",
-							"value": null
-						},
-						{
-							"key": "status",
-							"value": null
-						},
-						{
-							"key": "createdDateStart",
-							"value": "2023-03-05T08:36:19.170Z"
-						},
-						{
-							"key": "createdDateEnd",
-							"value": null
-						},
-						{
-							"key": "updatedDateStart",
-							"value": null
-						},
-						{
-							"key": "updatedDateEnd",
-							"value": null
-						}
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Search proof request information using pagination and queries",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/v1/find-proof-presentation?page=0&pageSize=25&proofRecordId&connectionId&credentialDefId&schemaId&theirDid&status&createdDateStart=2023-03-05T08:36:19.170Z&createdDateEnd&updatedDateStart&updatedDateEnd",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"v1",
-								"find-proof-presentation"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "0"
-								},
-								{
-									"key": "pageSize",
-									"value": "25"
-								},
-								{
-									"key": "proofRecordId",
-									"value": null
-								},
-								{
-									"key": "connectionId",
-									"value": null
-								},
-								{
-									"key": "credentialDefId",
-									"value": null
-								},
-								{
-									"key": "schemaId",
-									"value": null
-								},
-								{
-									"key": "theirDid",
-									"value": null
-								},
-								{
-									"key": "status",
-									"value": null
-								},
-								{
-									"key": "createdDateStart",
-									"value": "2023-03-05T08:36:19.170Z"
-								},
-								{
-									"key": "createdDateEnd",
-									"value": null
-								},
-								{
-									"key": "updatedDateStart",
-									"value": null
-								},
-								{
-									"key": "updatedDateEnd",
-									"value": null
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 02 Jun 2023 06:10:41 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "7522"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"1d62-eeaYumJatMrJi96zaADgb+qSzt0\""
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Proof presentations fetched successfully\",\n    \"data\": {\n        \"count\": 664,\n        \"records\": [\n            {\n                \"id\": \"001ad97f-78f4-41f1-8a69-e03eefe4136a\",\n                \"proofRecordId\": \"6b19a270-3448-4055-97b7-81fb42113688\",\n                \"connectionId\": \"9bf1804a-a356-44b3-b97a-dd40b0667a50\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:36:19.170Z\",\n                \"updatedDate\": \"2023-04-05T08:36:19.170Z\"\n            },\n            {\n                \"id\": \"00bc3f5c-d42f-424c-8db5-2b7fe4f2118f\",\n                \"proofRecordId\": \"f9ff0dae-f74c-4ae4-b164-adcbe2e85192\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-06T11:39:24.077Z\",\n                \"updatedDate\": \"2023-04-06T11:39:24.077Z\"\n            },\n            {\n                \"id\": \"0117964f-96d4-461d-903c-31e9e4ad9f5f\",\n                \"proofRecordId\": \"54673c3c-0325-45cd-b39e-2a77007958a7\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:02:55.339Z\",\n                \"updatedDate\": \"2023-04-05T08:02:55.339Z\"\n            },\n            {\n                \"id\": \"017b6c72-7506-41a4-9cb9-5347641e03de\",\n                \"proofRecordId\": \"299ba1c1-7f9b-4a32-9d18-a41f80c5ff33\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:36:14.844Z\",\n                \"updatedDate\": \"2023-04-05T08:36:14.844Z\"\n            },\n            {\n                \"id\": \"026aa092-a82f-4cab-bf88-55fe3e084062\",\n                \"proofRecordId\": \"f9a2d030-1776-4329-aff1-2707668c61f0\",\n                \"connectionId\": \"757cc3c0-ba70-4ac2-bd52-797ea0fa60a1\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:35:46.086Z\",\n                \"updatedDate\": \"2023-04-05T08:35:46.086Z\"\n            },\n            {\n                \"id\": \"02cecc4a-1824-40d1-b3ea-e1d6e938a74d\",\n                \"proofRecordId\": \"9b419c4b-9945-4813-90ad-400190e61100\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-06-02T02:04:42.738Z\",\n                \"updatedDate\": \"2023-06-02T02:04:42.738Z\"\n            },\n            {\n                \"id\": \"02ffd3e4-3d87-45dc-8c58-2a9075aa057e\",\n                \"proofRecordId\": \"2d619580-7b06-4411-8c47-73dd307ae777\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:35:27.835Z\",\n                \"updatedDate\": \"2023-04-05T08:35:27.836Z\"\n            },\n            {\n                \"id\": \"03d59eae-263c-4f37-82d2-d2a61044e680\",\n                \"proofRecordId\": \"72a2a37b-ba0a-40a6-9c1e-e05b37fb1550\",\n                \"connectionId\": \"9bf1804a-a356-44b3-b97a-dd40b0667a50\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:02:37.486Z\",\n                \"updatedDate\": \"2023-04-05T08:02:37.486Z\"\n            },\n            {\n                \"id\": \"03e459a0-e2e7-45e8-a32c-039672523ca3\",\n                \"proofRecordId\": \"cd6a82ad-ee03-4e71-9c01-71e7fe83219b\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:37:04.571Z\",\n                \"updatedDate\": \"2023-04-05T08:37:04.571Z\"\n            },\n            {\n                \"id\": \"0405d814-57b6-4ff8-a645-3fe3682e09b8\",\n                \"proofRecordId\": \"0a3ad2b8-90f9-49c9-83c8-1cf6b231c5fa\",\n                \"connectionId\": \"757cc3c0-ba70-4ac2-bd52-797ea0fa60a1\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:02:43.442Z\",\n                \"updatedDate\": \"2023-04-05T08:02:43.442Z\"\n            },\n            {\n                \"id\": \"04409e91-77d1-48f3-8982-d425806e79f2\",\n                \"proofRecordId\": \"29e5b3f0-9fcc-40cf-8573-9e219a7366ab\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-05-10T09:43:56.431Z\",\n                \"updatedDate\": \"2023-05-10T09:43:56.431Z\"\n            },\n            {\n                \"id\": \"057647eb-863e-4930-98ce-2e7206756f06\",\n                \"proofRecordId\": \"708a6758-36d5-4327-8334-73b7f56e7d45\",\n                \"connectionId\": \"757cc3c0-ba70-4ac2-bd52-797ea0fa60a1\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:02:03.757Z\",\n                \"updatedDate\": \"2023-04-05T08:02:03.757Z\"\n            },\n            {\n                \"id\": \"057d8759-c2cf-47d1-b809-77b5fa250714\",\n                \"proofRecordId\": \"d3e7bf0d-37b8-4177-b771-c055ba384cde\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-27T08:24:51.139Z\",\n                \"updatedDate\": \"2023-04-27T08:24:51.139Z\"\n            },\n            {\n                \"id\": \"0708a7a2-d679-44dc-bf0c-93b02de40cb8\",\n                \"proofRecordId\": \"74f40bda-9277-4dc9-86dd-01c2266b503f\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:00:54.344Z\",\n                \"updatedDate\": \"2023-04-05T08:00:54.344Z\"\n            },\n            {\n                \"id\": \"0723f10e-66e3-45ec-9a70-751365ae2934\",\n                \"proofRecordId\": \"a3af4436-7dea-41b4-b66a-1e4138b038dd\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-05-10T11:48:56.739Z\",\n                \"updatedDate\": \"2023-05-10T11:48:56.739Z\"\n            },\n            {\n                \"id\": \"074e14bb-01f0-4d77-a021-6af6f6c8a697\",\n                \"proofRecordId\": \"13eb0c78-e4f0-4b24-93f6-af043c13ac57\",\n                \"connectionId\": \"9bf1804a-a356-44b3-b97a-dd40b0667a50\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:36:46.244Z\",\n                \"updatedDate\": \"2023-04-05T08:36:46.244Z\"\n            },\n            {\n                \"id\": \"07bb6a56-c62c-4eed-9673-8973e5cc73e7\",\n                \"proofRecordId\": \"5cdfdc23-d98f-4f1d-bac3-e6dedeced3a3\",\n                \"connectionId\": \"757cc3c0-ba70-4ac2-bd52-797ea0fa60a1\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:01:46.861Z\",\n                \"updatedDate\": \"2023-04-05T08:01:46.861Z\"\n            },\n            {\n                \"id\": \"0870526d-849a-44e5-87e4-05416ba8440b\",\n                \"proofRecordId\": \"732d5ccc-56a7-476a-a1bb-5a6db8eaf0f2\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:37:02.390Z\",\n                \"updatedDate\": \"2023-04-05T08:37:02.390Z\"\n            },\n            {\n                \"id\": \"09d6f050-8bde-48f3-ba0e-e59b4e8f035f\",\n                \"proofRecordId\": \"f41d2f97-f79a-4b9f-a882-b7b78f8966dd\",\n                \"connectionId\": \"757cc3c0-ba70-4ac2-bd52-797ea0fa60a1\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:37:12.868Z\",\n                \"updatedDate\": \"2023-04-05T08:37:12.868Z\"\n            },\n            {\n                \"id\": \"0c2cead8-f125-43dd-bd16-a1611658132d\",\n                \"proofRecordId\": \"0d7d8534-1d4f-4976-bce4-d1ac43a67ac5\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:37:10.867Z\",\n                \"updatedDate\": \"2023-04-05T08:37:10.867Z\"\n            },\n            {\n                \"id\": \"0d0b50dd-bd4f-4409-8918-8faa9e41b36a\",\n                \"proofRecordId\": \"437e0246-3c77-40a9-9984-fa279a6da66f\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-05-25T06:50:47.760Z\",\n                \"updatedDate\": \"2023-05-25T06:50:47.760Z\"\n            },\n            {\n                \"id\": \"0d0fbe35-306c-411b-9924-cfbd0671c0c4\",\n                \"proofRecordId\": \"c6cf80aa-c82b-40d4-932f-b6a0dfd94b31\",\n                \"connectionId\": \"9bf1804a-a356-44b3-b97a-dd40b0667a50\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:02:07.235Z\",\n                \"updatedDate\": \"2023-04-05T08:02:07.197Z\"\n            },\n            {\n                \"id\": \"0d36b72b-0ccd-409b-848b-8aaf64cde60c\",\n                \"proofRecordId\": \"6ed08154-abc5-4b7a-99b2-8cc746ea2efa\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-27T08:24:51.803Z\",\n                \"updatedDate\": \"2023-04-27T08:24:51.804Z\"\n            },\n            {\n                \"id\": \"0d8b8019-3a45-47cc-a0b0-3b7433c79ef3\",\n                \"proofRecordId\": \"8b14c221-4e8c-412d-979e-f980c2493718\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-05-25T08:41:08.159Z\",\n                \"updatedDate\": \"2023-05-25T08:41:08.159Z\"\n            },\n            {\n                \"id\": \"0dcb6484-9bbb-4aa0-8f29-55b2099313ac\",\n                \"proofRecordId\": \"3f29af26-fa7c-4dff-9e73-dfb11aeed108\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"done\",\n                \"createdDate\": \"2023-05-22T10:56:44.678Z\",\n                \"updatedDate\": \"2023-05-22T11:46:59.158Z\"\n            }\n        ]\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Fetch proof presentation (with received credentials) by proofRequestId",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/find-by-presentation-id?proofRecordId=3f29af26-fa7c-4dff-9e73-dfb11aeed108",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"find-by-presentation-id"
-					],
-					"query": [
-						{
-							"key": "proofRecordId",
-							"value": "3f29af26-fa7c-4dff-9e73-dfb11aeed108",
-							"description": "(Required) "
-						}
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Fetch proof presentation (with received credentials) by proofRequestId",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/v1/find-by-presentation-id?proofRecordId=3f29af26-fa7c-4dff-9e73-dfb11aeed106",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"v1",
-								"find-by-presentation-id"
-							],
-							"query": [
-								{
-									"key": "proofRecordId",
-									"value": "3f29af26-fa7c-4dff-9e73-dfb11aeed106",
-									"description": "(Required) "
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 02 Jun 2023 06:11:11 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "328"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"148-MIqXpsMkr4A+x4RvK6AWWJ6RzRM\""
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Proof presentation fetched successfully\",\n    \"data\": {\n        \"state\": \"done\",\n        \"presentations\": [\n            {\n                \"schemaId\": \"BsfUfTECZPVRnoCgHUfB3p:2:LoginCredentials:1.0\",\n                \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:50014:LoginCredentials2\",\n                \"revRegId\": null,\n                \"timestamp\": null,\n                \"credentialSubject\": {\n                    \"email\": \"example@example.com\"\n                }\n            }\n        ]\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Delete proof request by proofRecordId",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/delete-proof-request/:proofRecordId",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"delete-proof-request",
-						":proofRecordId"
-					],
-					"variable": [
-						{
-							"key": "proofRecordId"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Decline proof request by proofRecordId",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/decline-proof-request/:proofRecordId",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"decline-proof-request",
-						":proofRecordId"
-					],
-					"variable": [
-						{
-							"key": "proofRecordId"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Fetch all proofs directly from agent",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/agent-proofs",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"agent-proofs"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Accept proof request by proofRecordId",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/accept-proof-request/:proofRecordId",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"accept-proof-request",
-						":proofRecordId"
-					],
-					"variable": [
-						{
-							"key": "proofRecordId"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Accept presentation request by proofRecordId",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/accept-presentation/:proofRecordId",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"accept-presentation",
-						":proofRecordId"
-					],
-					"variable": [
-						{
-							"key": "proofRecordId",
-							"value": "<string>"
-						}
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Accept presentation request required following attributes ( proof_record_id )",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/v1/accept-presentation/:proofRecordId",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"v1",
-								"accept-presentation",
-								":proofRecordId"
-							],
-							"variable": [
-								{
-									"key": "proofRecordId"
-								}
-							]
-						}
-					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						}
-					],
-					"cookie": [],
-					"body": "{}"
-				}
-			]
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "baseUrl",
-			"value": "https://ssi-dev.vereign.com/ocm/proof"
-		}
-	]
+  "info": {
+    "_postman_id": "8cdaf3fb-ded2-4518-8464-c196c01c622f",
+    "name": "Gaia-x Proof Manager API",
+    "description": "API documentation for GAIA-X Proof Manager",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "10250261"
+  },
+  "item": [
+    {
+      "name": "Get full url from short url id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/v1/url/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "url", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "<string>"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Send presentation request",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"comment\": \"Proof Presenation\",\n    \"attributes\": [\n        {\n            \"schemaId\": \"\",\n            \"credentialDefId\": \"{{cred-def-id}}\",\n            \"attributeName\": \"fName\",\n            \"value\": \"\",\n            \"condition\": \"\"\n        },\n        {\n            \"schemaId\": \"\",\n            \"credentialDefId\": \"{{pcm-vc-cred-def-id}}\",\n            \"attributeName\": \"email\",\n            \"value\": \"\",\n            \"condition\": \"\"\n        }\n    ],\n    \"connectionId\": \"{{conn-id}}\"\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/send-presentation-request",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "send-presentation-request"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Send out of band presentation request",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comment\": \"<string>\",\n  \"schemaId\": \"<string>\",\n  \"options\": {},\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/send-out-of-band-presentation-request",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "send-out-of-band-presentation-request"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Send out of band proof",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/out-of-band-proof",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "out-of-band-proof"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Search proof request information using pagination and queries",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/find-proof-presentation?page=0&pageSize=25&proofRecordId&connectionId&credentialDefId&schemaId&theirDid&status&createdDateStart=2023-03-05T08:36:19.170Z&createdDateEnd&updatedDateStart&updatedDateEnd",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "find-proof-presentation"],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "pageSize",
+              "value": "25"
+            },
+            {
+              "key": "proofRecordId",
+              "value": null
+            },
+            {
+              "key": "connectionId",
+              "value": null
+            },
+            {
+              "key": "credentialDefId",
+              "value": null
+            },
+            {
+              "key": "schemaId",
+              "value": null
+            },
+            {
+              "key": "theirDid",
+              "value": null
+            },
+            {
+              "key": "status",
+              "value": null
+            },
+            {
+              "key": "createdDateStart",
+              "value": "2023-03-05T08:36:19.170Z"
+            },
+            {
+              "key": "createdDateEnd",
+              "value": null
+            },
+            {
+              "key": "updatedDateStart",
+              "value": null
+            },
+            {
+              "key": "updatedDateEnd",
+              "value": null
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Search proof request information using pagination and queries",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/find-proof-presentation?page=0&pageSize=25&proofRecordId&connectionId&credentialDefId&schemaId&theirDid&status&createdDateStart=2023-03-05T08:36:19.170Z&createdDateEnd&updatedDateStart&updatedDateEnd",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "find-proof-presentation"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "25"
+                },
+                {
+                  "key": "proofRecordId",
+                  "value": null
+                },
+                {
+                  "key": "connectionId",
+                  "value": null
+                },
+                {
+                  "key": "credentialDefId",
+                  "value": null
+                },
+                {
+                  "key": "schemaId",
+                  "value": null
+                },
+                {
+                  "key": "theirDid",
+                  "value": null
+                },
+                {
+                  "key": "status",
+                  "value": null
+                },
+                {
+                  "key": "createdDateStart",
+                  "value": "2023-03-05T08:36:19.170Z"
+                },
+                {
+                  "key": "createdDateEnd",
+                  "value": null
+                },
+                {
+                  "key": "updatedDateStart",
+                  "value": null
+                },
+                {
+                  "key": "updatedDateEnd",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 02 Jun 2023 06:10:41 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "7522"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1d62-eeaYumJatMrJi96zaADgb+qSzt0\""
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Proof presentations fetched successfully\",\n    \"data\": {\n        \"count\": 664,\n        \"records\": [\n            {\n                \"id\": \"001ad97f-78f4-41f1-8a69-e03eefe4136a\",\n                \"proofRecordId\": \"6b19a270-3448-4055-97b7-81fb42113688\",\n                \"connectionId\": \"9bf1804a-a356-44b3-b97a-dd40b0667a50\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:36:19.170Z\",\n                \"updatedDate\": \"2023-04-05T08:36:19.170Z\"\n            },\n            {\n                \"id\": \"00bc3f5c-d42f-424c-8db5-2b7fe4f2118f\",\n                \"proofRecordId\": \"f9ff0dae-f74c-4ae4-b164-adcbe2e85192\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-06T11:39:24.077Z\",\n                \"updatedDate\": \"2023-04-06T11:39:24.077Z\"\n            },\n            {\n                \"id\": \"0117964f-96d4-461d-903c-31e9e4ad9f5f\",\n                \"proofRecordId\": \"54673c3c-0325-45cd-b39e-2a77007958a7\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:02:55.339Z\",\n                \"updatedDate\": \"2023-04-05T08:02:55.339Z\"\n            },\n            {\n                \"id\": \"017b6c72-7506-41a4-9cb9-5347641e03de\",\n                \"proofRecordId\": \"299ba1c1-7f9b-4a32-9d18-a41f80c5ff33\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:36:14.844Z\",\n                \"updatedDate\": \"2023-04-05T08:36:14.844Z\"\n            },\n            {\n                \"id\": \"026aa092-a82f-4cab-bf88-55fe3e084062\",\n                \"proofRecordId\": \"f9a2d030-1776-4329-aff1-2707668c61f0\",\n                \"connectionId\": \"757cc3c0-ba70-4ac2-bd52-797ea0fa60a1\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:35:46.086Z\",\n                \"updatedDate\": \"2023-04-05T08:35:46.086Z\"\n            },\n            {\n                \"id\": \"02cecc4a-1824-40d1-b3ea-e1d6e938a74d\",\n                \"proofRecordId\": \"9b419c4b-9945-4813-90ad-400190e61100\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-06-02T02:04:42.738Z\",\n                \"updatedDate\": \"2023-06-02T02:04:42.738Z\"\n            },\n            {\n                \"id\": \"02ffd3e4-3d87-45dc-8c58-2a9075aa057e\",\n                \"proofRecordId\": \"2d619580-7b06-4411-8c47-73dd307ae777\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:35:27.835Z\",\n                \"updatedDate\": \"2023-04-05T08:35:27.836Z\"\n            },\n            {\n                \"id\": \"03d59eae-263c-4f37-82d2-d2a61044e680\",\n                \"proofRecordId\": \"72a2a37b-ba0a-40a6-9c1e-e05b37fb1550\",\n                \"connectionId\": \"9bf1804a-a356-44b3-b97a-dd40b0667a50\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:02:37.486Z\",\n                \"updatedDate\": \"2023-04-05T08:02:37.486Z\"\n            },\n            {\n                \"id\": \"03e459a0-e2e7-45e8-a32c-039672523ca3\",\n                \"proofRecordId\": \"cd6a82ad-ee03-4e71-9c01-71e7fe83219b\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:37:04.571Z\",\n                \"updatedDate\": \"2023-04-05T08:37:04.571Z\"\n            },\n            {\n                \"id\": \"0405d814-57b6-4ff8-a645-3fe3682e09b8\",\n                \"proofRecordId\": \"0a3ad2b8-90f9-49c9-83c8-1cf6b231c5fa\",\n                \"connectionId\": \"757cc3c0-ba70-4ac2-bd52-797ea0fa60a1\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:02:43.442Z\",\n                \"updatedDate\": \"2023-04-05T08:02:43.442Z\"\n            },\n            {\n                \"id\": \"04409e91-77d1-48f3-8982-d425806e79f2\",\n                \"proofRecordId\": \"29e5b3f0-9fcc-40cf-8573-9e219a7366ab\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-05-10T09:43:56.431Z\",\n                \"updatedDate\": \"2023-05-10T09:43:56.431Z\"\n            },\n            {\n                \"id\": \"057647eb-863e-4930-98ce-2e7206756f06\",\n                \"proofRecordId\": \"708a6758-36d5-4327-8334-73b7f56e7d45\",\n                \"connectionId\": \"757cc3c0-ba70-4ac2-bd52-797ea0fa60a1\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:02:03.757Z\",\n                \"updatedDate\": \"2023-04-05T08:02:03.757Z\"\n            },\n            {\n                \"id\": \"057d8759-c2cf-47d1-b809-77b5fa250714\",\n                \"proofRecordId\": \"d3e7bf0d-37b8-4177-b771-c055ba384cde\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-27T08:24:51.139Z\",\n                \"updatedDate\": \"2023-04-27T08:24:51.139Z\"\n            },\n            {\n                \"id\": \"0708a7a2-d679-44dc-bf0c-93b02de40cb8\",\n                \"proofRecordId\": \"74f40bda-9277-4dc9-86dd-01c2266b503f\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:00:54.344Z\",\n                \"updatedDate\": \"2023-04-05T08:00:54.344Z\"\n            },\n            {\n                \"id\": \"0723f10e-66e3-45ec-9a70-751365ae2934\",\n                \"proofRecordId\": \"a3af4436-7dea-41b4-b66a-1e4138b038dd\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-05-10T11:48:56.739Z\",\n                \"updatedDate\": \"2023-05-10T11:48:56.739Z\"\n            },\n            {\n                \"id\": \"074e14bb-01f0-4d77-a021-6af6f6c8a697\",\n                \"proofRecordId\": \"13eb0c78-e4f0-4b24-93f6-af043c13ac57\",\n                \"connectionId\": \"9bf1804a-a356-44b3-b97a-dd40b0667a50\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:36:46.244Z\",\n                \"updatedDate\": \"2023-04-05T08:36:46.244Z\"\n            },\n            {\n                \"id\": \"07bb6a56-c62c-4eed-9673-8973e5cc73e7\",\n                \"proofRecordId\": \"5cdfdc23-d98f-4f1d-bac3-e6dedeced3a3\",\n                \"connectionId\": \"757cc3c0-ba70-4ac2-bd52-797ea0fa60a1\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:01:46.861Z\",\n                \"updatedDate\": \"2023-04-05T08:01:46.861Z\"\n            },\n            {\n                \"id\": \"0870526d-849a-44e5-87e4-05416ba8440b\",\n                \"proofRecordId\": \"732d5ccc-56a7-476a-a1bb-5a6db8eaf0f2\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:37:02.390Z\",\n                \"updatedDate\": \"2023-04-05T08:37:02.390Z\"\n            },\n            {\n                \"id\": \"09d6f050-8bde-48f3-ba0e-e59b4e8f035f\",\n                \"proofRecordId\": \"f41d2f97-f79a-4b9f-a882-b7b78f8966dd\",\n                \"connectionId\": \"757cc3c0-ba70-4ac2-bd52-797ea0fa60a1\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:37:12.868Z\",\n                \"updatedDate\": \"2023-04-05T08:37:12.868Z\"\n            },\n            {\n                \"id\": \"0c2cead8-f125-43dd-bd16-a1611658132d\",\n                \"proofRecordId\": \"0d7d8534-1d4f-4976-bce4-d1ac43a67ac5\",\n                \"connectionId\": \"f9c10d29-2cbd-44b0-b909-26ca4108c5dd\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:37:10.867Z\",\n                \"updatedDate\": \"2023-04-05T08:37:10.867Z\"\n            },\n            {\n                \"id\": \"0d0b50dd-bd4f-4409-8918-8faa9e41b36a\",\n                \"proofRecordId\": \"437e0246-3c77-40a9-9984-fa279a6da66f\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-05-25T06:50:47.760Z\",\n                \"updatedDate\": \"2023-05-25T06:50:47.760Z\"\n            },\n            {\n                \"id\": \"0d0fbe35-306c-411b-9924-cfbd0671c0c4\",\n                \"proofRecordId\": \"c6cf80aa-c82b-40d4-932f-b6a0dfd94b31\",\n                \"connectionId\": \"9bf1804a-a356-44b3-b97a-dd40b0667a50\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-05T08:02:07.235Z\",\n                \"updatedDate\": \"2023-04-05T08:02:07.197Z\"\n            },\n            {\n                \"id\": \"0d36b72b-0ccd-409b-848b-8aaf64cde60c\",\n                \"proofRecordId\": \"6ed08154-abc5-4b7a-99b2-8cc746ea2efa\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-04-27T08:24:51.803Z\",\n                \"updatedDate\": \"2023-04-27T08:24:51.804Z\"\n            },\n            {\n                \"id\": \"0d8b8019-3a45-47cc-a0b0-3b7433c79ef3\",\n                \"proofRecordId\": \"8b14c221-4e8c-412d-979e-f980c2493718\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"request-sent\",\n                \"createdDate\": \"2023-05-25T08:41:08.159Z\",\n                \"updatedDate\": \"2023-05-25T08:41:08.159Z\"\n            },\n            {\n                \"id\": \"0dcb6484-9bbb-4aa0-8f29-55b2099313ac\",\n                \"proofRecordId\": \"3f29af26-fa7c-4dff-9e73-dfb11aeed108\",\n                \"connectionId\": \"\",\n                \"credentialDefId\": \"\",\n                \"schemaId\": \"\",\n                \"theirDid\": \"\",\n                \"status\": \"done\",\n                \"createdDate\": \"2023-05-22T10:56:44.678Z\",\n                \"updatedDate\": \"2023-05-22T11:46:59.158Z\"\n            }\n        ]\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Fetch proof presentation (with received credentials) by proofRequestId",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/find-by-presentation-id?proofRecordId=3f29af26-fa7c-4dff-9e73-dfb11aeed108",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "find-by-presentation-id"],
+          "query": [
+            {
+              "key": "proofRecordId",
+              "value": "3f29af26-fa7c-4dff-9e73-dfb11aeed108",
+              "description": "(Required) "
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Fetch proof presentation (with received credentials) by proofRequestId",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/find-by-presentation-id?proofRecordId=3f29af26-fa7c-4dff-9e73-dfb11aeed106",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "find-by-presentation-id"],
+              "query": [
+                {
+                  "key": "proofRecordId",
+                  "value": "3f29af26-fa7c-4dff-9e73-dfb11aeed106",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 02 Jun 2023 06:11:11 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "328"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"148-MIqXpsMkr4A+x4RvK6AWWJ6RzRM\""
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Proof presentation fetched successfully\",\n    \"data\": {\n        \"state\": \"done\",\n        \"presentations\": [\n            {\n                \"schemaId\": \"BsfUfTECZPVRnoCgHUfB3p:2:LoginCredentials:1.0\",\n                \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:50014:LoginCredentials2\",\n                \"revRegId\": null,\n                \"timestamp\": null,\n                \"credentialSubject\": {\n                    \"email\": \"example@example.com\"\n                }\n            }\n        ]\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete proof request by proofRecordId",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/delete-proof-request/:proofRecordId",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "delete-proof-request", ":proofRecordId"],
+          "variable": [
+            {
+              "key": "proofRecordId"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Decline proof request by proofRecordId",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/decline-proof-request/:proofRecordId",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "decline-proof-request", ":proofRecordId"],
+          "variable": [
+            {
+              "key": "proofRecordId"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch all proofs directly from agent",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/agent-proofs",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "agent-proofs"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Accept proof request by proofRecordId",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/accept-proof-request/:proofRecordId",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "accept-proof-request", ":proofRecordId"],
+          "variable": [
+            {
+              "key": "proofRecordId"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Accept presentation request by proofRecordId",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/accept-presentation/:proofRecordId",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "accept-presentation", ":proofRecordId"],
+          "variable": [
+            {
+              "key": "proofRecordId",
+              "value": "<string>"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Accept presentation request required following attributes ( proof_record_id )",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/accept-presentation/:proofRecordId",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "accept-presentation", ":proofRecordId"],
+              "variable": [
+                {
+                  "key": "proofRecordId"
+                }
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{}"
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ssi-dev.vereign.com/ocm/proof"
+    }
+  ]
 }

@@ -156,9 +156,7 @@
             }
           }
         },
-        "tags": [
-          "Proofs"
-        ]
+        "tags": ["Proofs"]
       }
     },
     "/v1/find-by-presentation-id": {
@@ -238,9 +236,7 @@
             }
           }
         },
-        "tags": [
-          "Proofs"
-        ]
+        "tags": ["Proofs"]
       }
     },
     "/v1/send-presentation-request": {
@@ -305,9 +301,7 @@
             }
           }
         },
-        "tags": [
-          "Proofs"
-        ]
+        "tags": ["Proofs"]
       }
     },
     "/v1/send-out-of-band-presentation-request": {
@@ -373,9 +367,7 @@
             }
           }
         },
-        "tags": [
-          "Proofs"
-        ]
+        "tags": ["Proofs"]
       }
     },
     "/v1/out-of-band-proof": {
@@ -438,9 +430,7 @@
             }
           }
         },
-        "tags": [
-          "Proofs"
-        ]
+        "tags": ["Proofs"]
       }
     },
     "/v1/accept-presentation/{proofRecordId}": {
@@ -506,9 +496,7 @@
             }
           }
         },
-        "tags": [
-          "Proofs"
-        ]
+        "tags": ["Proofs"]
       }
     },
     "/v1/accept-proof-request/{proofRecordId}": {
@@ -612,9 +600,7 @@
             }
           }
         },
-        "tags": [
-          "Proofs"
-        ]
+        "tags": ["Proofs"]
       }
     },
     "/v1/delete-proof-request/{proofRecordId}": {
@@ -676,9 +662,7 @@
             }
           }
         },
-        "tags": [
-          "Proofs"
-        ]
+        "tags": ["Proofs"]
       }
     },
     "/v1/decline-proof-request/{proofRecordId}": {
@@ -782,9 +766,7 @@
             }
           }
         },
-        "tags": [
-          "Proofs"
-        ]
+        "tags": ["Proofs"]
       }
     },
     "/v1/agent-proofs": {
@@ -891,9 +873,7 @@
             }
           }
         },
-        "tags": [
-          "Proofs"
-        ]
+        "tags": ["Proofs"]
       }
     },
     "/v1/url/{id}": {
@@ -916,9 +896,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "Proofs"
-        ]
+        "tags": ["Proofs"]
       }
     }
   },
@@ -957,11 +935,7 @@
             }
           }
         },
-        "required": [
-          "comment",
-          "connectionId",
-          "attributes"
-        ]
+        "required": ["comment", "connectionId", "attributes"]
       },
       "SendProofRequestBody": {
         "type": "object",
@@ -982,21 +956,14 @@
             }
           },
           "attributes": {
-            "example": [
-              "attributeName"
-            ],
+            "example": ["attributeName"],
             "type": "array",
             "items": {
               "type": "string"
             }
           }
         },
-        "required": [
-          "comment",
-          "schemaId",
-          "options",
-          "attributes"
-        ]
+        "required": ["comment", "schemaId", "options", "attributes"]
       }
     }
   }

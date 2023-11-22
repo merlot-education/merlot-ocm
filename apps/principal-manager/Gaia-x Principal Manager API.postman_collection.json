@@ -41,10 +41,11 @@
     "contact": {}
   },
   "tags": [],
-  "servers": [{
-    "url": "http://localhost:3008/",
-    "description": "Localhost with docker configuration."
-  }
+  "servers": [
+    {
+      "url": "http://localhost:3008/",
+      "description": "Localhost with docker configuration."
+    }
   ],
   "components": {
     "schemas": {
@@ -55,9 +56,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "userInfoURL"
-        ]
+        "required": ["userInfoURL"]
       }
     }
   }

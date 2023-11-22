@@ -11,4 +11,4 @@ participant OCM Attestation Manager
   PCM App ->> OCM Attestation Manager: Sends acknowledgement
   OCM Attestation Manager ->> PCM App: Accepts the acknowledgement on accept-request API, and issues the Verifiable Credential, which gets stored in PCM wallet.
   end
-  ```
+```

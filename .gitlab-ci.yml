@@ -1,6 +1,6 @@
 include:
-  - project: '${HELPERS_PATH}'
-    file: '${HELPERS_FILE}'
+  - project: "${HELPERS_PATH}"
+    file: "${HELPERS_FILE}"
 
 stages:
   - lint

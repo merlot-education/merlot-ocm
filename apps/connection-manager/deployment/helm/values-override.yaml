@@ -1,38 +1,38 @@
 image:
-    repository: registry.gitlab.com/gaia-x/data-infrastructure-federation-services/ocm
-    # -- Image name
-    name: connection-manager
+  repository: registry.gitlab.com/gaia-x/data-infrastructure-federation-services/ocm
+  # -- Image name
+  name: connection-manager
 connectionManager:
-    database:
-        host: vereign-database1-postgres.gxfs-vereign
-        user: ENC[AES256_GCM,data:f+UtjwOUiyM=,iv:X/7E+GBmxxVdphMTChhhrCjT/01cLFwh62vhJApJkWA=,tag:oM0vFH3KSpFTBjeRi40oJA==,type:str]
-        password: ENC[AES256_GCM,data:iHEwZCuABQy0RMrDGeq3QEL874JgbQWC+7WQ49TW62Ynh/isVvo0kv8FR/rXRrUks3IlTIGWncj+JnIDQkODMg==,iv:4Lza3vwWDJPTPPYwgmTvrnMLrkQBYa5mnrn9HbQd2oQ=,tag:s6f9IVyJMdqu2NXtt0tuQg==,type:str]
-        db: vereign-database1-postgres
+  database:
+    host: vereign-database1-postgres.gxfs-vereign
+    user: ENC[AES256_GCM,data:f+UtjwOUiyM=,iv:X/7E+GBmxxVdphMTChhhrCjT/01cLFwh62vhJApJkWA=,tag:oM0vFH3KSpFTBjeRi40oJA==,type:str]
+    password: ENC[AES256_GCM,data:iHEwZCuABQy0RMrDGeq3QEL874JgbQWC+7WQ49TW62Ynh/isVvo0kv8FR/rXRrUks3IlTIGWncj+JnIDQkODMg==,iv:4Lza3vwWDJPTPPYwgmTvrnMLrkQBYa5mnrn9HbQd2oQ=,tag:s6f9IVyJMdqu2NXtt0tuQg==,type:str]
+    db: vereign-database1-postgres
 ingress:
-    enabled: true
-    annotations:
-        kubernetes.io/ingress.class: nginx
-        nginx.ingress.kubernetes.io/rewrite-target: /$2
-    tlsEnabled: true
-    frontendDomain: ocm.gxfs.dev
-    frontendTlsSecretName: wildcard-gxfs-dev
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  tlsEnabled: true
+  frontendDomain: ocm.gxfs.dev
+  frontendTlsSecretName: wildcard-gxfs-dev
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1nrk70nevtmrcgzjunsed43ar6dk3e06qt7tryqqprj9axv4e0djqa0n0cg
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBBVHQvUk4xOXBHZjBhT0ly
-            R1pVeUVtU09mYmppb2hucktLeUx2bGtsUXhJCkdUKzQ5TlNCbzFBTWV4L3REMFlR
-            bS9nWUxWZ3JERW81QWtCQXJxU3Uzd3MKLS0tIDdmZXdGemdjYzZ5QU11QVVtYnBz
-            WUROeFJTV0cxYnA4MTREcVlVYkhSZmMKDqEoHpnkE6AbTn1RHDn0G6u3XmeCSaTk
-            smByqqxfWePRPIul8VTlKnDNN68iQuK7Xxmj3RV7LTSj60XwdeIKuQ==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-08-03T14:42:58Z"
-    mac: ENC[AES256_GCM,data:arq9lpFfu4WBPXPiaIgT/tdRQcBv15SB2sgaD9GBlTL+dVxAuZcDiWTykzWaxpvExf8aGv3flGCMYkQlil1u1YGdlIk7TfUHa+elta/US1QVYCJznChdV4UCSLm8PRh4sg9DWRFgrtxfs6IKhEOq17DwpGc1hVAFjNjUHgvPCFg=,iv:+GvCbcxPBJkzZu5TIZ7oGtCsSa8Fl9Qt6mGi6If2wds=,tag:8Lka/tG40HYjR7Uhn9jyig==,type:str]
-    pgp: []
-    encrypted_regex: ^(password|user)$
-    version: 3.7.3
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1nrk70nevtmrcgzjunsed43ar6dk3e06qt7tryqqprj9axv4e0djqa0n0cg
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBBVHQvUk4xOXBHZjBhT0ly
+        R1pVeUVtU09mYmppb2hucktLeUx2bGtsUXhJCkdUKzQ5TlNCbzFBTWV4L3REMFlR
+        bS9nWUxWZ3JERW81QWtCQXJxU3Uzd3MKLS0tIDdmZXdGemdjYzZ5QU11QVVtYnBz
+        WUROeFJTV0cxYnA4MTREcVlVYkhSZmMKDqEoHpnkE6AbTn1RHDn0G6u3XmeCSaTk
+        smByqqxfWePRPIul8VTlKnDNN68iQuK7Xxmj3RV7LTSj60XwdeIKuQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: '2022-08-03T14:42:58Z'
+  mac: ENC[AES256_GCM,data:arq9lpFfu4WBPXPiaIgT/tdRQcBv15SB2sgaD9GBlTL+dVxAuZcDiWTykzWaxpvExf8aGv3flGCMYkQlil1u1YGdlIk7TfUHa+elta/US1QVYCJznChdV4UCSLm8PRh4sg9DWRFgrtxfs6IKhEOq17DwpGc1hVAFjNjUHgvPCFg=,iv:+GvCbcxPBJkzZu5TIZ7oGtCsSa8Fl9Qt6mGi6If2wds=,tag:8Lka/tG40HYjR7Uhn9jyig==,type:str]
+  pgp: []
+  encrypted_regex: ^(password|user)$
+  version: 3.7.3

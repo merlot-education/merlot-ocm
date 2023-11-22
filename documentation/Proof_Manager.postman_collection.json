@@ -1,812 +1,737 @@
 {
-	"info": {
-		"_postman_id": "fc2cf79c-4e29-4101-a833-3fd2a9243c9e",
-		"name": "Proof Manager",
-		"description": "#### **Description** **:**\n\nThe Proof Manager is the collection of request which can be used to request proof presentation to connections and for out of band verifications. Also it returns all the proof presentation requests and their status.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17714957"
-	},
-	"item": [
-		{
-			"name": "Find-proof-presentation",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{proof_man_baseURL}}/v1/find-proof-presentation?pageSize=&page",
-					"host": [
-						"{{proof_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"find-proof-presentation"
-					],
-					"query": [
-						{
-							"key": "pageSize",
-							"value": ""
-						},
-						{
-							"key": "page",
-							"value": null
-						}
-					]
-				},
-				"description": "#### **Description** **:**\n\nThis request fetches the all the proof presentation requests for the participant. The records can be filtered using provided query parameters.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| pageSize | no | `pageSize`  <br>Should be provided in query parameter. It filters the list and sets the page size. |\n| page | no | `page`  <br>Should be provided in query parameter. It filters the list and sets the page to land on. |\n\n#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| Key | Description |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → count` | It returns the total number of records available in the response. |\n| `data → records` | It returns the actual information that was requested in the form of JSON object array. |\n| `data → records → id` | It returns the id for the corresponding record in the database. |\n| `data → records → presentation_id` | It returns the presentation id for the corresponding record in the database. |\n| `data → records → connectionId` | It returns the connection id for the corresponding record in the database. |\n| `data → records → credential_def_id` | It returns the credential defination id for the corresponding record in the database. |\n| `data → records → schemaId` | It returns the corresponding unique id for schema on the ledger. |\n| `data → records → their_did` | It returns the their did for the corresponding record in the database. |\n| `data → records → status` | It returns the status for the corresponding record in the database. |\n| `data → records → created_date` | It returns the date the proof was created. |\n| `data → records → updated_date` | It returns the last proof updation date. |"
-			},
-			"response": [
-				{
-					"name": "Find-proof-presentation",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{proof_man_baseURL}}/v1/find-proof-presentation?pageSize=&page",
-							"host": [
-								"{{proof_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"find-proof-presentation"
-							],
-							"query": [
-								{
-									"key": "pageSize",
-									"value": ""
-								},
-								{
-									"key": "page",
-									"value": null
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "date",
-							"value": "Wed, 15 Jun 2022 09:28:21 GMT"
-						},
-						{
-							"key": "content-type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "content-length",
-							"value": "3672"
-						},
-						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "access-control-allow-origin",
-							"value": "*"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"e58-XnEVMyMw0qXfuwsZQNiDlSRBjyQ\""
-						},
-						{
-							"key": "strict-transport-security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Proof presentation fetch successfully\",\n    \"data\": {\n        \"count\": 36,\n        \"records\": [\n            {\n                \"id\": \"051bdceb-07df-419b-98f4-3c0dd92c4b68\",\n                \"presentation_id\": \"a033c848-7d9c-448e-9336-8237882d4418\",\n                \"connectionId\": \"\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema130622:13.06.22\",\n                \"their_did\": \"\",\n                \"status\": \"request-sent\",\n                \"created_date\": \"2022-06-13T13:56:09.864Z\",\n                \"updated_date\": \"2022-06-13T13:56:09.864Z\"\n            },\n            {\n                \"id\": \"095e6ea8-f580-4269-993a-8eef6758ba74\",\n                \"presentation_id\": \"b0784df1-14a6-4f5d-b038-43c296bf715f\",\n                \"connectionId\": \"9050c647-2931-4fdb-8f65-007c79f0bd33\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:principal_schema_13-06-22:13.06.22\",\n                \"their_did\": \"\",\n                \"status\": \"done\",\n                \"created_date\": \"2022-06-14T10:39:49.377Z\",\n                \"updated_date\": \"2022-06-14T10:40:59.510Z\"\n            },\n            {\n                \"id\": \"15107aeb-3a77-4b62-a3b6-0710cdc64225\",\n                \"presentation_id\": \"bfbd97a8-efd9-4aa0-bdc4-b2fa1d342148\",\n                \"connectionId\": \"\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema130622:13.06.22\",\n                \"their_did\": \"\",\n                \"status\": \"done\",\n                \"created_date\": \"2022-06-13T14:11:14.955Z\",\n                \"updated_date\": \"2022-06-13T14:11:29.769Z\"\n            },\n            {\n                \"id\": \"1b459690-849b-4f3d-b6a4-0316933590a4\",\n                \"presentation_id\": \"bcda614b-bac8-41f7-9680-f95ff67f6382\",\n                \"connectionId\": \"\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-07:14.06.2207\",\n                \"their_did\": \"\",\n                \"status\": \"done\",\n                \"created_date\": \"2022-06-14T11:58:39.846Z\",\n                \"updated_date\": \"2022-06-14T12:01:07.841Z\"\n            },\n            {\n                \"id\": \"1f8df45a-0e53-461b-b90b-cfe40042e629\",\n                \"presentation_id\": \"b00113d8-4aa7-4c6f-9bfa-90be89834355\",\n                \"connectionId\": \"493f3aee-448d-4fc7-9698-e3d8aa6f862c\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:principal_schema_06_09:1.0.4\",\n                \"their_did\": \"\",\n                \"status\": \"request-sent\",\n                \"created_date\": \"2022-06-09T12:16:23.157Z\",\n                \"updated_date\": \"2022-06-09T12:16:23.157Z\"\n            },\n            {\n                \"id\": \"1fe91ebc-c086-43ef-8cac-ebb56f32e14d\",\n                \"presentation_id\": \"f3c137d7-c945-4e1b-8c00-55c3dbc94cf4\",\n                \"connectionId\": \"f4f39f80-3f9f-45b3-a6f9-e7eb3946353c\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:principal_schema_13-06-22:13.06.22\",\n                \"their_did\": \"\",\n                \"status\": \"done\",\n                \"created_date\": \"2022-06-14T10:20:54.732Z\",\n                \"updated_date\": \"2022-06-14T10:21:06.573Z\"\n            },\n            {\n                \"id\": \"2bf3377e-4d84-46c9-851a-98d8ab0244ec\",\n                \"presentation_id\": \"0b3e2ec9-d5f7-4c34-8fba-d2b4120c0866\",\n                \"connectionId\": \"9050c647-2931-4fdb-8f65-007c79f0bd33\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-04:14.06.2204\",\n                \"their_did\": \"\",\n                \"status\": \"request-sent\",\n                \"created_date\": \"2022-06-14T10:36:51.670Z\",\n                \"updated_date\": \"2022-06-14T10:36:51.670Z\"\n            },\n            {\n                \"id\": \"2d725225-acfd-4aa3-96b0-2564aa2a71a3\",\n                \"presentation_id\": \"0f65c623-f130-4895-8154-fb229b2484f8\",\n                \"connectionId\": \"30df956f-e9f2-4421-9d5b-73d259106667\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:principal_schema_13-06-22:13.06.22\",\n                \"their_did\": \"\",\n                \"status\": \"done\",\n                \"created_date\": \"2022-06-13T13:54:43.312Z\",\n                \"updated_date\": \"2022-06-13T13:55:13.701Z\"\n            },\n            {\n                \"id\": \"377cbfc2-7055-48f1-8d69-ccb994e4dc0f\",\n                \"presentation_id\": \"5732be89-cb54-40fc-81e6-7b9fe7676769\",\n                \"connectionId\": \"9050c647-2931-4fdb-8f65-007c79f0bd33\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-06:14.06.2206\",\n                \"their_did\": \"\",\n                \"status\": \"request-sent\",\n                \"created_date\": \"2022-06-14T10:46:12.010Z\",\n                \"updated_date\": \"2022-06-14T10:46:12.010Z\"\n            },\n            {\n                \"id\": \"3a2eae7d-1021-4ee8-8cfb-41ec7789d03e\",\n                \"presentation_id\": \"62257855-af83-46dc-9f18-ea223db7e663\",\n                \"connectionId\": \"\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-04:14.06.2204\",\n                \"their_did\": \"\",\n                \"status\": \"request-sent\",\n                \"created_date\": \"2022-06-14T10:26:57.734Z\",\n                \"updated_date\": \"2022-06-14T10:26:57.734Z\"\n            }\n        ]\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Send-presentation-request",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json()\r",
-							"\r",
-							"if(res.statusCode == 201){\r",
-							"    pm.environment.set(\"presentation-id\", res.data.presentationId);\r",
-							"}"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"comment\": \"Tested participant\",\r\n    \"attributes\": [\r\n        {\r\n            \"attribute_name\": \"{{array0}}\",\r\n            \"value\": \"\",\r\n            \"condition\": \"\"\r\n        }\r\n    ],\r\n    \"schemaId\": \"\",\r\n    \"credentialDefId\": \"{{cred-def-id}}\",\r\n    \"connectionId\": \"{{conn-id}}\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{proof_man_baseURL}}/v1/send-presentation-request",
-					"host": [
-						"{{proof_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"send-presentation-request"
-					]
-				},
-				"description": "#### **Description** **:**\n\nFrom a verifier to a prover, the presentation request message describes values that need to be revealed and predicates that need to be fulfilled.\n\n> In Hyperledger Indy, this message is required, because it forces the Issuer to make a cryptographic commitment to the set of fields in the final credential and thus prevents Issuers from inserting spurious data.\n\n#### **Body Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| connectionId | required | `\"`connectionId`\"`  <br>should be provided in \"STRING\" format. It the peer to peer connection id for two aeries agent. |\n| credential_def_id | required | `\"cred_def_id\"`  <br>key maps to the credential definition identifier of the credential with the current attribute. It should be provided in \"STRING\" format. Mandatory if schema_id is not provided. |\n| schemaId | required | `\"schema_name\"`  <br>Should be valid existing schema and should be provided as \"STRING\". Mandatory if cred_def_id is not provided. |\n| attributes | required | `[{ \"`attribute_name`\" : \"attr_name\" }]`  <br>should be provided JSON array. |\n\n  \n\n#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| Key | Description |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → id` | It returns the id for the corresponding record in the database. |\n| `data → presentation_id` | It returns the presentation id for the corresponding record in the database. |\n| `data → connectionId` | It returns the connection id for the corresponding record in the database. |\n| `data → credential_def_id` | It returns the credential defination id for the corresponding record in the database. |\n| `data → schemaId` | It returns the corresponding unique id for schema on the ledger. |\n| `data → their_did` | It returns the their did for the corresponding record in the database. |\n| `data → status` | It returns the status for the corresponding record in the database. |\n| `data → created_date` | It returns the date the proof was created. |\n| `data → updated_date` | It returns the last proof updation date. |"
-			},
-			"response": [
-				{
-					"name": "Send-presentation-request",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"comment\": \"Tested participant\",\r\n    \"attributes\": [\r\n        {\r\n            \"attribute_name\": \"{{array0}}\",\r\n            \"value\": \"\",\r\n            \"condition\": \"\"\r\n        },\r\n        {\r\n            \"attribute_name\": \"{{array1}}\",\r\n            \"value\": \"\",\r\n            \"condition\": \"\"\r\n        }\r\n    ],\r\n    \"schemaId\": \"{{schema-id}}\",\r\n    \"credential_def_id\": \"\",\r\n    \"connectionId\": \"{{conn-id}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{proof_man_baseURL}}/v1/send-presentation-request",
-							"host": [
-								"{{proof_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"send-presentation-request"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "date",
-							"value": "Wed, 15 Jun 2022 09:27:07 GMT"
-						},
-						{
-							"key": "content-type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "content-length",
-							"value": "454"
-						},
-						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "access-control-allow-origin",
-							"value": "*"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"1c6-E7pFwPlnxfbEOOkPcsFYYpmaWW8\""
-						},
-						{
-							"key": "strict-transport-security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 201,\n    \"message\": \"Presentation request send successfully\",\n    \"data\": {\n        \"id\": \"48b2b61d-a5d9-4c1d-a745-ed5cd018c5bd\",\n        \"presentation_id\": \"07f27a99-4ff2-4d3c-82f9-0f49cd6d8203\",\n        \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n        \"credential_def_id\": \"\",\n        \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-07:14.06.2207\",\n        \"their_did\": \"\",\n        \"status\": \"request-sent\",\n        \"created_date\": \"2022-06-15T09:27:07.302Z\",\n        \"updated_date\": \"2022-06-15T09:27:07.302Z\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Check-Verification",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json();\r",
-							"\r",
-							"if (res.statusCode == 200) {\r",
-							"\tif (res.data.isVerified == true && res.data.state == \"done\") {\r",
-							"\t\tlet template = `\r",
-							"            <html>\r",
-							"                <body> \r",
-							"                    <div style=\"text-align:center; color:green;\">\r",
-							"                        <h2>Proof verified successfully</h2>\r",
-							"                    </div>\r",
-							"                </body>\r",
-							"            </html>`;\r",
-							"\t\tpm.visualizer.set(template, res);\r",
-							"\t} else {\r",
-							"\t\tlet template = `\r",
-							"            <html>\r",
-							"                <body> \r",
-							"                    <div style=\"text-align:center; color:red;\">\r",
-							"                        <h2>Proof not presented yet.</h2>\r",
-							"                    </div>\r",
-							"                </body>\r",
-							"            </html>`;\r",
-							"\t\tpm.visualizer.set(template, res);\r",
-							"\t}\r",
-							"}"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{proof_man_baseURL}}/v1/find-by-presentation-id?presentationId={{presentation-id}}",
-					"host": [
-						"{{proof_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"find-by-presentation-id"
-					],
-					"query": [
-						{
-							"key": "presentationId",
-							"value": "{{presentation-id}}"
-						}
-					]
-				},
-				"description": "#### **Description** **:**\n\nThis request is used to fetch proof presentation request information for the presentation id provided in query parameter.\n\n> It also provides state of the proof presentation request.\n\n#### **Query Parameter** **:**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| presentationId | required | `\"presentation_id\"`  <br>presentation_id is fetched from the proof request. It provides the state of the request. |"
-			},
-			"response": [
-				{
-					"name": "Check-Verification",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{proof_man_baseURL}}/v1/find-by-presentation-id?presentation_id={{presentation-id}}",
-							"host": [
-								"{{proof_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"find-by-presentation-id"
-							],
-							"query": [
-								{
-									"key": "presentation_id",
-									"value": "{{presentation-id}}"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "date",
-							"value": "Wed, 15 Jun 2022 09:27:28 GMT"
-						},
-						{
-							"key": "content-type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "content-length",
-							"value": "7040"
-						},
-						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "access-control-allow-origin",
-							"value": "*"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"1b80-KzH+KoJHRvjoAbq0eUEVKSnHnbc\""
-						},
-						{
-							"key": "strict-transport-security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Proof presentation fetch successfully\",\n    \"data\": {\n        \"_tags\": {\n            \"threadId\": \"2037118f-1e63-4bd7-963b-c0e437f0ddd3\",\n            \"state\": \"done\",\n            \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\"\n        },\n        \"metadata\": {},\n        \"id\": \"07f27a99-4ff2-4d3c-82f9-0f49cd6d8203\",\n        \"createdAt\": \"2022-06-15T09:27:07.209Z\",\n        \"requestMessage\": {\n            \"@type\": \"https://didcomm.org/present-proof/1.0/request-presentation\",\n            \"@id\": \"2037118f-1e63-4bd7-963b-c0e437f0ddd3\",\n            \"comment\": \"Tested participant\",\n            \"request_presentations~attach\": [\n                {\n                    \"@id\": \"libindy-request-presentation-0\",\n                    \"mime-type\": \"application/json\",\n                    \"data\": {\n                        \"base64\": \"eyJuYW1lIjoiUHJvb2YgUmVxdWVzdCIsInZlcnNpb24iOiJQcm9vZiBSZXF1ZXN0Iiwibm9uY2UiOiIxMTMzMjE0Mzg2ODU3IiwicmVxdWVzdGVkX2F0dHJpYnV0ZXMiOnsiYWRkaXRpb25hbFByb3AxIjp7Im5hbWVzIjpbImZOYW1lIiwibE5hbWUiXSwicmVzdHJpY3Rpb25zIjpbeyJzY2hlbWFfaWQiOiI3S3VEVHBRaDNHSjdHcDZrRXJwV3ZNOjI6dGVzdF90ZXN0X3NjaGVtYTE0MDYyMi0wNzoxNC4wNi4yMjA3In1dfX0sInJlcXVlc3RlZF9wcmVkaWNhdGVzIjp7fX0=\"\n                    }\n                }\n            ]\n        },\n        \"state\": \"done\",\n        \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n        \"threadId\": \"2037118f-1e63-4bd7-963b-c0e437f0ddd3\",\n        \"isVerified\": true,\n        \"presentationMessage\": {\n            \"@type\": \"https://didcomm.org/present-proof/1.0/presentation\",\n            \"@id\": \"7396b6fd-cde1-454f-b620-1014e363b723\",\n            \"presentations~attach\": [\n                {\n                    \"@id\": \"libindy-presentation-0\",\n                    \"mime-type\": \"application/json\",\n                    \"data\": {\n                        \"base64\": \"eyJwcm9vZiI6eyJwcm9vZnMiOlt7InByaW1hcnlfcHJvb2YiOnsiZXFfcHJvb2YiOnsicmV2ZWFsZWRfYXR0cnMiOnsiZm5hbWUiOiI0MjkzNDcxNDc0OTY3NTMwMzk1ODI1OTA0NDczMTAyOTQ2NDcxODMwODcxMjkzOTE0ODc5NjcyODk2ODQxNzI3MzY2NjYyMjUwNTA1MSIsImxuYW1lIjoiMjgxMzAxMTU0OTE5NzQ0MTU0MjQyNDA4MDgzMTA1NDczMTE5MzE1MDg4NzA1NzkzMTY4Njg4ODc2MjA3MzYwMTI2NzE2NTkyOTA4MjMifSwiYV9wcmltZSI6IjU0ODA1NjExMjEwMzgxMDA1MTgxNjc3Njg0OTU2Mjg3ODYzMjkwODMyODI0MjEzNzM2NjQwNDE2MjA2MTAzMDQ0ODQxNzkyMTMyMzc3MTA4ODE4NTg3MzgyOTEyNTE2ODU2NTc0NzA4NjI2Nzc4NDgzMDU4NzI3ODc1MjAzNTkzOTUxMDgxODMxNzMyMDg2MzEzMDM1MzQxODY0NTkzMDk2Nzk5ODYxMTE5NjQ1MTAwMzc0ODAxODM3NzU3ODU0MDI4OTMxMzYxMDA4NTk4NTgxNDU2MDI1OTAxNzM1NTc5MzkxNDc0MDE4Mzg1NDUxNjY2MjY1MzUyNjM3OTcwMTUxMTA0NDQzNDI3NzQ0MDI4MjYyNTg0ODU1MDQ4ODQzMzg1NTQ4MTYyNjA5NzU2NzM4NzA1OTcyNjExNDg0ODgzOTkwODM3OTE5MDI1NzI0NDExODg4MTkyMTI3NDUzMTIwMDI2MzY0NTU1NzAzMjcxNjYxNTUwNTMxMTk1NTIwNzk3OTU1ODI4MTcwODcxNzMwNjQ4MzYyMDE2MTc3MjU5Njk2NDQyNzE2NTAyNDY2MDcxMzgwNzk4Mjc4OTM0NTc5Nzg0NDIxMTg3NjYzMjU5MjU1MDk5Mzg2ODgxNDc4NDM5MDkyMTA3MDE2MzgwMTYxNzYwMDg5MTUzMDUzNjMwNzY2ODQzMDQwNDY0MTY3ODE3NTgxMjc4NTEwOTA4MjIxNjY2OTUwNjgxMTEwMDI4NzU2OTMwNDIxNjkxNjE3MDcxNzgxODcwNzU0NDI5NDk3NzQyMzYwMTI1MjEwNjg4MzM0NTI1NjkxIiwiZSI6IjM5ODgzMDc4NDcyMjI5MTg1ODQzMTE2NjkxNDM1ODc2MzA0MTUzMDQwMzI5MTQ0MTY1MzY3MTU4ODY1MDY5MzExOTQ5MzY2NTM2NDg0NTgxMjU0NDc3NTUwNzYwODgzNzEzNjc0NTQ4ODI0MzQ1ODU1MTczMDgxNDI5MDc0MTY0OTE1ODkzOTA5IiwidiI6IjExMTI0Njg4MDYyMTE5MDgwNTg3MTYwOTgwMDI5MjIzNTc3MjIwNzAyMjQzNzY5MTIyMzkyMTg1OTA5NDE5Nzg5MjExODg4NjUzMjg1NTAwNTYwNDQ5MzcxODY2MTA1NTkzMzMyNDMwOTE4Mzg1MTQ5NTQ5NTAwMzI5NTMwNDY3NTkyMzc4Mjg0OTg1ODk1MTM0NDExMDY2NTUyNDg2ODMxNzA0NzM1MzY1MTYyMzM5MjI5NTMxNjA2MDYzMzk4OTk3MjQzMDE4OTU5NDE0NzE2ODkyNDY2NjM0MDEzOTE0MzM5MTQzODI4NDk0NDYwODQ3NTAyNjIxMzI4MDM3OTc2MDE3OTQyMjM0NDEwNzAzNzgyMzgxNDYxNjYwNTc1NzQyMjk5NDYwMDM1NDczNjI4MzE1MjAxOTUzMjI0MDkyNDgwMTgyNzk3NDg2MjU0MDY4MTExMzQ3MjkxMDM2NDA4MDE3OTgwNjU4NTg3OTE0MTA1NTM4MDU5MDgxMzU3MTI3MjU1OTc3MjU1MzM5Mzg2MTIyMjQwMjM3ODA5Nzg4Mzk3MDQyMzYwMTY0OTI3NDIyNjI4NDA4OTE5OTc3ODMxMzIxNDA1NDY0MjQxNzgzNzU5MTYxNDEzODYyNTY0OTQzNjE1MjA3MTk4NDk4MzUxNjA5OTk1OTE3MTY4MzY1NjA1MTc3MDM4MDA2NTMwNzA4MjA3OTk5MTY0NjQ3MjcwNDYzNDY1NDA5NDU0MzA4MDA0NjU0Nzg1OTI2NjEzMDYwNDk5NDY2NzIxMjI5NzQwOTk5NDM2NDMxMzM4MTAxMTY5NjY3Nzk1ODk4Nzk0NjQ3MjkxOTI2OTk5MTUxMjgxNDY1MDQyMDgwMjQ1NzM4MzA3MTM1NjAyNDgzNDg0OTQwOTU4NTUwNjMzMTAxMjE5MTkxNjYwMDExNjQ5MjY3MzI3ODIzMzk0MzY4NTk5MDE3Njk1NTEwNTk1NjU2MTU4MDI3NjUyMjEyODQ1MTUyNTQ0MzE1Njk1NjE2NDU1MzI1NTI2NzE1NTA3MzQ2NjA0NDIxMjc5NTA1OTQ0MjY5NzQ2OTg4NjIwNTUzNjI2OTk3NjkzNjY3MzUxMTIyNTQ0MDMwNTg4NjE2MDQxNDc0MDMyNDQzNTY0MTcwMDI4NzIyOTQxMzk1NDYyNDk3ODM4MDY1NjY1MTU4NDAyODgxNTI5MzEwOTYwNjU3ODIwNDYzNDkwMDU0OTUiLCJtIjp7ImdlbmRlciI6IjcyMjk0MzA2MDk1NjU2OTQ1OTY2NzgxMDAwNzY1NDg0OTA0Mjg4MjUyMDU1MjE0OTU1MjEzNzE3NzU4MTc0MTE4ODY3OTEzODI5MzAwMzk2MjA3OTU5MzA2MzU5MTI3MTEzMzYzMDA0MDUzNTc5NzE3OTQ2MTUyMzQyODAxNjUzOTUwNDY0MzgwMzExNTU4NDEwOTUzODc3MjMxMTEyMzQ3OTY2NTQ2MjQyNTc1NjY3MDIiLCJtYXN0ZXJfc2VjcmV0IjoiNjM5MDE0ODgzMjE3NTY0ODA4Njk3MTAxOTMyNjgyODg3Mzc4MjE1Njk4MzkwNDAxNDYzMzY2OTkwMzgyNzQ1MzQwMTM1Mjk2Njc3ODI2MTY5NDEwNjA3MTEyODAwNjc1OTk0NTU3ODgwNDI1NTUxMzAwNjg4MDA5NzU5NDkwOTYwMTY1NTY2OTI4MzUyMjM3NDE5OTY4NTQ1MjY0NDkzNzgxNjkzNzMyOTE1Nzg1OTE3NyJ9LCJtMiI6IjgwNjYxMzg5NDY1MDcwMDU5NjkwMTkxNzU2Mzk5NjUzOTUxNTgzNTc1Mjk3NjQ1MjQ3NzIyNjgyNTA1MDM4MDcyMzc4NzA5Nzg4MTc0MTc4MzgyNjMzMTI1MjY4OTU3OTE2Njg1NTYzNTU1NTg2MDQ2OTM1NzAxNTI1NDg5MDc5MjI2NDA3MDMwMDM4MjU2MTkzNzA3MTM0NzcxMzA0NDk0MTAyNzM5MzcwNzAwOTM1NDAifSwiZ2VfcHJvb2ZzIjpbXX0sIm5vbl9yZXZvY19wcm9vZiI6bnVsbH1dLCJhZ2dyZWdhdGVkX3Byb29mIjp7ImNfaGFzaCI6IjExMjI1Nzc2Njc5MDE1NzAxODY5NjgwNTAzMzcxMDg2NzI4NjY4OTMwMDIwOTc5NjEyOTgwMTA2MDk3Mzk0Nzk0OTI1OTg3OTc2MDM1MCIsImNfbGlzdCI6W1sxLDE3OCwzNiwyMjUsMTU3LDI0OSwyNCwyMDgsMTMsNTAsODIsMTYsMjE0LDY3LDQ0LDI0NywyMTMsNjgsMTg1LDI1NSwxMDUsMTM4LDIzMywxNDksMTI4LDEyMiwxODAsMjE3LDE3NSwyMywzMyw2NywxMzIsMjA4LDUxLDQ2LDExOCwyMzMsMjIsMjMyLDExMSwxMTcsMjEwLDk3LDEzMCw1LDIwNSwzOCwyOCwzMCwxMjQsMjE3LDE0NSwyMTgsOTMsMTYwLDEyNiw2MywyMTQsMjAwLDUsNDcsNjksODEsMjI1LDM5LDU4LDEwNywxOCwxMjcsMTcyLDIwLDI1Myw1MCw3Nyw5NiwyMjMsMTc3LDQzLDYxLDU1LDIxNSwyMSw1NSw2MCwyMTIsMTc5LDEwNywzNiwyNTUsNjksMTQ5LDE5MSwyNDQsNjAsMjA4LDIwMiwxODQsMjAzLDE0OSwxNTcsMTU0LDE0MywxMDUsMTcwLDE2NSwxMSwzLDkzLDk0LDIzMiwxNjQsMTc4LDI0MSwyMzUsNTgsOTMsMjQyLDIxOCw2MSw3NSw2Niw5MywxNTcsMjQ2LDE5OCwxNzIsMTY2LDEwMCwxOCwxMTgsMTk2LDU2LDU4LDEzNywyMjksMTMyLDIyNSwyMiw1MSwxNTksMTcxLDYsNTUsMjM1LDE2OCwxMiw0NiwxMjIsNDAsMTcsMTU4LDE4NywxNzksMTkwLDEyMCwyNDcsMTk3LDY2LDE0NSwxNDcsNzcsNTksMTg3LDI1NCw3MCwyMjYsOSwxNzgsMjIyLDEwMiwyMzcsMTYsMTMwLDEwLDI0MywyNiwxNzQsMTIwLDEwNCwxMDQsMTA3LDc1LDE4NiwzMCwyMTksNzYsMTAxLDIzOCwxMiw3Niw2OCwzMyw2LDE4MSwxMzEsMjU0LDI1MCwxNjIsMTAyLDE4OSw4LDU3LDE1MywxMTIsOSwyNSwxOTYsMjA5LDAsMTk4LDE5MiwxOTgsMTcwLDIxOCwxMiw1Nyw3MiwzNCwzLDExOCwxMzAsMTU4LDIyNyw0NCwxODcsMTA5LDE4MSwyMzAsMjE3LDIwNyw0Myw3NSwxNjIsMjQzLDIxMiwyMSwxNjcsMTU3LDIwNiwxMzksMTM3LDI1MCwxNzksMzAsODIsNzAsNzMsMTQsNjMsMjA2LDI0Myw2MiwxNjksMTYyLDI0NCwyNTFdXX19LCJyZXF1ZXN0ZWRfcHJvb2YiOnsicmV2ZWFsZWRfYXR0cnMiOnt9LCJyZXZlYWxlZF9hdHRyX2dyb3VwcyI6eyJhZGRpdGlvbmFsUHJvcDEiOnsic3ViX3Byb29mX2luZGV4IjowLCJ2YWx1ZXMiOnsiZk5hbWUiOnsicmF3IjoidGVzdF9mbmFtZV8zIiwiZW5jb2RlZCI6IjQyOTM0NzE0NzQ5Njc1MzAzOTU4MjU5MDQ0NzMxMDI5NDY0NzE4MzA4NzEyOTM5MTQ4Nzk2NzI4OTY4NDE3MjczNjY2NjIyNTA1MDUxIn0sImxOYW1lIjp7InJhdyI6InRlc3RfbG5hbWVfMyIsImVuY29kZWQiOiIyODEzMDExNTQ5MTk3NDQxNTQyNDI0MDgwODMxMDU0NzMxMTkzMTUwODg3MDU3OTMxNjg2ODg4NzYyMDczNjAxMjY3MTY1OTI5MDgyMyJ9fX19LCJzZWxmX2F0dGVzdGVkX2F0dHJzIjp7fSwidW5yZXZlYWxlZF9hdHRycyI6e30sInByZWRpY2F0ZXMiOnt9fSwiaWRlbnRpZmllcnMiOlt7InNjaGVtYV9pZCI6IjdLdURUcFFoM0dKN0dwNmtFcnBXdk06Mjp0ZXN0X3Rlc3Rfc2NoZW1hMTQwNjIyLTA3OjE0LjA2LjIyMDciLCJjcmVkX2RlZl9pZCI6IjdLdURUcFFoM0dKN0dwNmtFcnBXdk06MzpDTDozMjI4NzY6dGVzdF90ZXN0X2NyZWQtZGVmXzE0MDYyMi0wNyIsInJldl9yZWdfaWQiOm51bGwsInRpbWVzdGFtcCI6bnVsbH1dfQ==\"\n                    }\n                }\n            ],\n            \"~thread\": {\n                \"thid\": \"2037118f-1e63-4bd7-963b-c0e437f0ddd3\"\n            }\n        }\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Out-of-band-proof-presentation",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json();\r",
-							"\r",
-							"let template = `\r",
-							"<html>\r",
-							"    <body> \r",
-							"        <div>Scan the QR code below for out of band proof presentation</div>\r",
-							"        <br>\r",
-							"        <div style=\"text-align:center;\">\r",
-							"            <img src='https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=+{{data.presentationMessage}}'></img>\r",
-							"        </div>\r",
-							"    </body>\r",
-							"</html>`;\r",
-							"pm.visualizer.set(template, res);\r",
-							"\r",
-							"if(res.statusCode == 201){\r",
-							"    pm.environment.set(\"oob-presentation-id\", res.data.presentationId);\r",
-							"}"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"schemaName\":\"\",\r\n  \"attributes\":[\"{{array0}}\",\"{{array1}}\"],\r\n  \"options\": {  \r\n                \"type\":\"Aries1.0\",\r\n                \"credentialDefinationName\":\"{{cred-def-id}}\"\r\n             }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{proof_man_baseURL}}/v1/send-out-of-band-presentation-request",
-					"host": [
-						"{{proof_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"send-out-of-band-presentation-request"
-					]
-				},
-				"description": "#### **Description** **:**\n\nFrom a verifier to a prover, the out of band presentation request message describes values that need to be revealed and predicates that need to be fulfilled.\n\n> The Out-of-band protocol is used when you wish to engage with another agent and you don't have a DIDComm connection to use for the interaction.\n\n#### **Body Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| credential_def_id | required | `\"cred_def_id\"`  <br>key maps to the credential definition identifier of the credential with the current attribute. It should be provided in \"STRING\" format. Mandatory if schema_id is not provided. |\n| schemaId | required | `\"schema_name\"`  <br>Should be valid existing schema and should be provided as \"STRING\". Mandatory if cred_def_id is not provided. |\n| attributes | required | `[{ \"`attribute_name`\" : \"attr_name\" }]`  <br>should be provided JSON array. |\n\n  \n  \n\n#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| Key | Description |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → id` | It returns the id for the corresponding record in the database. |\n| `data → presentation_id` | It returns the presentation id for the corresponding record in the database. |\n| `data → connectionId` | It returns the connection id for the corresponding record in the database. |\n| `data → credential_def_id` | It returns the credential defination id for the corresponding record in the database. |\n| `data → schemaId` | It returns the corresponding unique id for schema on the ledger. |\n| `data → their_did` | It returns the their did for the corresponding record in the database. |\n| `data → status` | It returns the status for the corresponding record in the database. |\n| `data → created_date` | It returns the date the presentation proof was created. |\n| `data → updated_date` | It returns the last presentation proof updation date. |\n| `data → presentationMessage` | It returns the presentation message for the corresponding record return by the mediator. |"
-			},
-			"response": [
-				{
-					"name": "Out-of-band-proof-presentation",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"comment\": \"Out of Band\",\r\n    \"attributes\": [\r\n        {\r\n            \"attribute_name\": \"{{array0}}\",\r\n            \"value\": \"\",\r\n            \"condition\": \"\"\r\n        },\r\n        {\r\n            \"attribute_name\": \"{{array1}}\",\r\n            \"value\": \"\",\r\n            \"condition\": \"\"\r\n        }\r\n    ],\r\n    \"credential_def_id\": \"\",\r\n    \"schemaId\": \"{{schema-id}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{proof_man_baseURL}}/v1/send-out-of-band-presentation-request",
-							"host": [
-								"{{proof_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"send-out-of-band-presentation-request"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "date",
-							"value": "Wed, 15 Jun 2022 09:27:47 GMT"
-						},
-						{
-							"key": "content-type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "content-length",
-							"value": "1570"
-						},
-						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "access-control-allow-origin",
-							"value": "*"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"622-ZaUMbvDBDS5ELn3jeaSKeedxEIQ\""
-						},
-						{
-							"key": "strict-transport-security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 201,\n    \"message\": \"Presentation request send successfully\",\n    \"data\": {\n        \"id\": \"853d92b2-0260-41a7-a9af-3c026be8fe35\",\n        \"presentation_id\": \"7fa03531-74f4-49a0-a94f-6feb30041c13\",\n        \"connectionId\": \"\",\n        \"credential_def_id\": \"\",\n        \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-07:14.06.2207\",\n        \"their_did\": \"\",\n        \"status\": \"request-sent\",\n        \"created_date\": \"2022-06-15T09:27:47.562Z\",\n        \"updated_date\": \"2022-06-15T09:27:47.562Z\",\n        \"presentationMessage\": \"https://gaiax.vereign.com:443/ocm/didcomm/?d_m=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvcHJlc2VudC1wcm9vZi8xLjAvcmVxdWVzdC1wcmVzZW50YXRpb24iLCJAaWQiOiJlOGViZGQyZS0xOGM2LTRkY2EtOWFmMy05ZjZjNWYyNzk0YzYiLCJjb21tZW50IjoiT3V0IG9mIEJhbmQiLCJyZXF1ZXN0X3ByZXNlbnRhdGlvbnN-YXR0YWNoIjpbeyJAaWQiOiJsaWJpbmR5LXJlcXVlc3QtcHJlc2VudGF0aW9uLTAiLCJtaW1lLXR5cGUiOiJhcHBsaWNhdGlvbi9qc29uIiwiZGF0YSI6eyJiYXNlNjQiOiJleUp1WVcxbElqb2lUM1YwSUU5bUlFSmhibVFnVUhKdmIyWWdVbVZ4ZFdWemRDSXNJblpsY25OcGIyNGlPaUpQZFhRZ1QyWWdRbUZ1WkNCUWNtOXZaaUJTWlhGMVpYTjBJaXdpYm05dVkyVWlPaUk1TmprMk5qTTBNalkyTkRZMElpd2ljbVZ4ZFdWemRHVmtYMkYwZEhKcFluVjBaWE1pT25zaVlXUmthWFJwYjI1aGJGQnliM0F4SWpwN0ltNWhiV1Z6SWpwYkltWk9ZVzFsSWl3aWJFNWhiV1VpWFN3aWNtVnpkSEpwWTNScGIyNXpJanBiZXlKelkyaGxiV0ZmYVdRaU9pSTNTM1ZFVkhCUmFETkhTamRIY0RaclJYSndWM1pOT2pJNmRHVnpkRjkwWlhOMFgzTmphR1Z0WVRFME1EWXlNaTB3TnpveE5DNHdOaTR5TWpBM0luMWRmWDBzSW5KbGNYVmxjM1JsWkY5d2NtVmthV05oZEdWeklqcDdmWDA9In19XSwifnNlcnZpY2UiOnsicmVjaXBpZW50S2V5cyI6WyJCdWpMMnlmYTNYTkFXTHJ6dmVyc216OXpZdkpKTmRZaHBMa0tCNXpnM0JpTCJdLCJyb3V0aW5nS2V5cyI6W10sInNlcnZpY2VFbmRwb2ludCI6Imh0dHBzOi8vZ2FpYXgudmVyZWlnbi5jb206NDQzL29jbS9kaWRjb21tIn19\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Check-OOB-Verification",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json();\r",
-							"\r",
-							"if (res.statusCode == 200) {\r",
-							"\tif (res.data.isVerified == true && res.data.state == \"done\") {\r",
-							"\t\tlet template = `\r",
-							"            <html>\r",
-							"                <body> \r",
-							"                    <div style=\"text-align:center; color:green;\">\r",
-							"                        <h2>Proof verified successfully</h2>\r",
-							"                    </div>\r",
-							"                </body>\r",
-							"            </html>`;\r",
-							"\t\tpm.visualizer.set(template, res);\r",
-							"\t} else {\r",
-							"\t\tlet template = `\r",
-							"            <html>\r",
-							"                <body> \r",
-							"                    <div style=\"text-align:center; color:red;\">\r",
-							"                        <h2>Proof not presented yet.</h2>\r",
-							"                    </div>\r",
-							"                </body>\r",
-							"            </html>`;\r",
-							"\t\tpm.visualizer.set(template, res);\r",
-							"\t}\r",
-							"}"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{proof_man_baseURL}}/v1/find-by-presentation-id?presentationId={{oob-presentation-id}}",
-					"host": [
-						"{{proof_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"find-by-presentation-id"
-					],
-					"query": [
-						{
-							"key": "presentationId",
-							"value": "{{oob-presentation-id}}"
-						}
-					]
-				},
-				"description": "#### **Description** **:**\n\nThis request is used to fetch proof presentation request information for the presentation id provided in query parameter.\n\n> It also provides state of the proof presentation request.\n\n#### **Query Parameter** **:**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| presentationId | required | `\"presentation_id\"`  <br>presentation_id is fetched from the proof request. It provides the state of the request. |"
-			},
-			"response": [
-				{
-					"name": "Check-OOB-Verification",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{proof_man_baseURL}}/v1/find-by-presentation-id?presentation_id={{oob-presentation-id}}",
-							"host": [
-								"{{proof_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"find-by-presentation-id"
-							],
-							"query": [
-								{
-									"key": "presentation_id",
-									"value": "{{oob-presentation-id}}"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "date",
-							"value": "Wed, 15 Jun 2022 09:28:08 GMT"
-						},
-						{
-							"key": "content-type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "content-length",
-							"value": "7384"
-						},
-						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "access-control-allow-origin",
-							"value": "*"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"1cd8-GlvND2hpBaJd1J2NNqI0bQBluQU\""
-						},
-						{
-							"key": "strict-transport-security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Proof presentation fetch successfully\",\n    \"data\": {\n        \"_tags\": {\n            \"state\": \"done\",\n            \"threadId\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\"\n        },\n        \"metadata\": {},\n        \"id\": \"7fa03531-74f4-49a0-a94f-6feb30041c13\",\n        \"createdAt\": \"2022-06-15T09:27:47.528Z\",\n        \"requestMessage\": {\n            \"@type\": \"https://didcomm.org/present-proof/1.0/request-presentation\",\n            \"@id\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\",\n            \"comment\": \"Out of Band\",\n            \"request_presentations~attach\": [\n                {\n                    \"@id\": \"libindy-request-presentation-0\",\n                    \"mime-type\": \"application/json\",\n                    \"data\": {\n                        \"base64\": \"eyJuYW1lIjoiT3V0IE9mIEJhbmQgUHJvb2YgUmVxdWVzdCIsInZlcnNpb24iOiJPdXQgT2YgQmFuZCBQcm9vZiBSZXF1ZXN0Iiwibm9uY2UiOiI5Njk2NjM0MjY2NDY0IiwicmVxdWVzdGVkX2F0dHJpYnV0ZXMiOnsiYWRkaXRpb25hbFByb3AxIjp7Im5hbWVzIjpbImZOYW1lIiwibE5hbWUiXSwicmVzdHJpY3Rpb25zIjpbeyJzY2hlbWFfaWQiOiI3S3VEVHBRaDNHSjdHcDZrRXJwV3ZNOjI6dGVzdF90ZXN0X3NjaGVtYTE0MDYyMi0wNzoxNC4wNi4yMjA3In1dfX0sInJlcXVlc3RlZF9wcmVkaWNhdGVzIjp7fX0=\"\n                    }\n                }\n            ],\n            \"~service\": {\n                \"recipientKeys\": [\n                    \"BujL2yfa3XNAWLrzversmz9zYvJJNdYhpLkKB5zg3BiL\"\n                ],\n                \"routingKeys\": [],\n                \"serviceEndpoint\": \"https://gaiax.vereign.com:443/ocm/didcomm\"\n            }\n        },\n        \"state\": \"done\",\n        \"threadId\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\",\n        \"autoAcceptProof\": \"always\",\n        \"isVerified\": true,\n        \"presentationMessage\": {\n            \"@type\": \"https://didcomm.org/present-proof/1.0/presentation\",\n            \"@id\": \"8e2ce5d1-2f04-4edd-935e-75e6b5fed752\",\n            \"presentations~attach\": [\n                {\n                    \"@id\": \"libindy-presentation-0\",\n                    \"mime-type\": \"application/json\",\n                    \"data\": {\n                        \"base64\": \"eyJwcm9vZiI6eyJwcm9vZnMiOlt7InByaW1hcnlfcHJvb2YiOnsiZXFfcHJvb2YiOnsicmV2ZWFsZWRfYXR0cnMiOnsiZm5hbWUiOiI0MjkzNDcxNDc0OTY3NTMwMzk1ODI1OTA0NDczMTAyOTQ2NDcxODMwODcxMjkzOTE0ODc5NjcyODk2ODQxNzI3MzY2NjYyMjUwNTA1MSIsImxuYW1lIjoiMjgxMzAxMTU0OTE5NzQ0MTU0MjQyNDA4MDgzMTA1NDczMTE5MzE1MDg4NzA1NzkzMTY4Njg4ODc2MjA3MzYwMTI2NzE2NTkyOTA4MjMifSwiYV9wcmltZSI6IjIzNzk0MTQ0MDAyNjU3Nzk2ODUxNzA2MTE2NTU1MDkyMTI4ODg3MzA0ODc1NzMwODQ3OTMyNDczODI5NzQ4MjE3MzQwMTE5ODQ4Nzg4OTY1OTg3NDIzNDAyOTg1OTUyMzIxMDYwOTk2MDkxNzIwMzgzMzQzNTk2Mjg1MjY5ODA4NjM5NzIxMjM1Njc2MjM5ODk3MjczNDY0NDQyMzkwMDI5ODMyNDk5Mzg3NDg3NTI1MjQyODA0ODI2ODI4OTE1ODcyMjUzNTI3NTI2Nzk2OTg3NzQ0NDc5Njc4MDY3NTMyMTI4ODU4NzczNDA4NDI0NDYwNDIyMjI4MzEwNTg0OTY5MzU3MzIzNTAzNzM0OTc0OTA0MjAzNzc3MzE1Nzc2ODk3NjkwOTk0OTA1ODk0OTA1NzM2MzY0NDY1MzU4NDY0ODkxNDExOTI2MzI5OTcyNTQ5MjM0NjU4ODk2Mzg0Njk4NDMyMDUzMjQ2NDIzNjI0NjY1MTE0MTA5NDk4MTY5NjAyNjgwMDQ4NTI5MTI5NTQxMzA2NzQ5MjQ2MDQ5MjIzMjMwOTU3NzI3Mzk3MTY4Njc4OTkyNDcxMDczMjYzNjQ3MTYxNzg1ODY0NzExNzIyMTA5NTUzMDA5MjQwOTAxODE1NTU3NzEwNTMwNzM2NjA4MDE5MzQ3NDExMzgxMDE1OTM2MTU4ODIxMTQ1MzEzOTk5MzU2NjAzNjQ5MTc1NTU2MDU5NzQwMTA1ODA0OTgyMjI3Njk1OTI3ODcyMzIzOTE5ODMyOTMxODI4MjUwNjAzNTg1Nzg4OTgzOTk1NTk5Mjk1MjUzNjc1IiwiZSI6IjE0NDU5NDA4Nzg4MjMwNTI5ODYxODg2Mzg2NjEwMzY2MjcxMjY3NzgwMjQxOTI4MjY1MzU5Njg5MzQ0MzAwMDUyOTcyMDIzMDI3OTE4NzIwODk0NzI0OTgyNDE2NDYyMzUxOTY1OTA4MDc0Njc1MzgwMDA2NTM3NjQ1MDI5MTg1MzkyNjcyMTQyMyIsInYiOiIxMTE4MTE2MzM1MjY4MTU5NzgzMDA4MzM4ODQ3ODY3NzkxNjk3MTQ3NTAxOTk4ODMwMzIwMDYwNzQ0NjYwOTM2NjU1NDk1Mjc2OTg3NDUzODUyNzUzNzU5MjUzMzYyNDQxNjIyMjMzNTc5Mzc5MDUwMTE1NDI4MjkwMzY5ODg3OTI4MjY2MDQ3NDk0NzYwNzczODc1NjM1MDM0MjYwNjIwMDUxNzEyNTQzOTkzODc5MjQ2NTgxNjE5NDAyMzQ4OTE1MTUyOTA4OTMyNzQ4NzIyOTIwMzU2NDgxMTkzODkwODcwNjEyOTc1NzQyNTk2ODc4MDk4MzkxMDM0NTY5MjgxOTMwMTcwMjQ4NjY5Njc3ODQ4NzU4MTg1NDA0MzY3MTk2OTgwOTQ1NDgxMDkyOTkzOTg2MzQzNzc5MDI4MzI3MTIyMjk1OTkyODQ1NjY5NzIxOTU4Njk1Mzg0MjA1MzU1MTI4ODU3Mzc0NDIyMzk3NTA1MTI5MDYzMzU1MjMxNDIzMzA5OTQwMzk5MjE3NTk4NjgwNDUzNjkxODU1MzE5NzAzMzUxNTczODI2NDk5NDQ3OTg5NTU5MTY1NjgxMzcyNjM3NzYwOTg3MjE4MjMxMjA0NTczNzA1NTg3NDc0MTQ0MTQxMDY0NTY0ODc4OTgxMjEwOTI2ODAxNTY1MjQyOTg3ODMzMTYxMjMxNTQ0NTQ0OTUyODI1MDk5ODM3MDY1Mjg1OTExOTE4OTkyOTcyODA0NDExMzcxODk5MDg1ODc2MTU3OTAxODI1OTU4NzE0NDIzMTA5OTg0ODkwNjc0NTQ2MTMyMjczMTc2Mzg5MjQ1NzU5NjA4MDg3MjU4MDMxNzYwOTU1NTI1MDM4Mjc1MzcyNTQ1NDMyODQwMTA5MDI1NjI3NzU2ODMzMzI5MjMzNzQxNDQ3MDI2NTg0OTUzNTI4NjM3MDM0NzUxNzIzMjE4MTY4OTMxNDM1MDg4MjMyMTc2OTM2MjkxMTIzMjY0ODEyNzg5MTY2MTA3NTk3NTg1NzMzMjQxMDM0MDUzODMxNzA5MjU4MjUyMTU4OTY3MjcyMTkzMTkxODYxNzk1NjMzMjMyODE0ODEzNjE2NTA2MjE2MTU4NDU3MDI1NDQwMDAzMTc0MDEzNTg5ODk2OTg3MDcxMDIwMzA0Mjk2NTUzNDkxNzg0NDE3MDM2MDQxMzI0NTcxNzk4ODExNTczODY2NDI0NTkwNjgxIiwibSI6eyJtYXN0ZXJfc2VjcmV0IjoiMTAxMTQ4NTA2NDgxNjEyOTM4NzI3NTgzNzYxMjQxODQwMzYxODcyMTU1NzU3NDE3MDg1Nzk2MjQzMjY5Nzg0MTg3NTk2NzE0OTA2MTc4MTIxNTk3MDM4NTM0MTk5MDExMTc2NjMxNjY3ODk4NzQ3ODQzNjE2MDE0MzU2OTQ4MDUzMDUzMTcxNjQzODQwOTY1MDE3NTk0MDA0Mjk3ODU2Mjk4OTcwNDI0Mzg2ODY1NjU2OTYiLCJnZW5kZXIiOiIzMjc1MzEzNTkxNDkyMDMyNzUwNDcxMTI4MDA3NTc0NTc3MDkyNDQxODYyMzM1NDg0NDg2MTUzNTM3Njc1OTY4MjUzNjcwMDI2Mjg4NzA0OTg1Nzc4ODc4NDM4ODQ0MTIwODQ0MjU4ODc3NDEyMjAwNzI0MTI2NjAxNzkyOTY0ODA2NzU5NzI4NDA4ODA0MTEwOTk4NzUwOTMzMjQ0MTI2NDQ0NDQyMDA3NDU5MzgxNDA2In0sIm0yIjoiMTI2ODM1NDM0OTk2NTkzNjUyNzU3MTQ2MzY1MTA2NjQzNTYxOTA3NDM0MTY3Njg1ODc2NjU5NzUwMTU2Njg4MDM1MDQ1NDg4MjM1MjA0MjU0MjI4NTk2MTcyOTI2MTgwMjc3NzU4MjYzMTU1MDY1ODE4MjAyNTE2OTc3NTIzOTYwOTQ1MDIzMDkzOTk2Nzc2MjM1MDQyNTk0NzIxMjc5NDIzMzk5ODI3MjE0MzE1OTI4OTgifSwiZ2VfcHJvb2ZzIjpbXX0sIm5vbl9yZXZvY19wcm9vZiI6bnVsbH1dLCJhZ2dyZWdhdGVkX3Byb29mIjp7ImNfaGFzaCI6IjQ1OTgzMTQzOTkwNDU4NDM2NjYzNzIwODcyNDkwNzA0NTIxMjYxODI2NjUzMDA0MjE1ODE0OTAzODA1MzAxMzE4NDIwMjQyNTgyNTA3IiwiY19saXN0IjpbWzE4OCwxMjQsMTAxLDE5MSw3OCw4MiwyMjgsMjE4LDI1MCwxOTQsODgsMTk0LDEyMywzOCw2LDEsMjA0LDIyMSw3MywyMDIsMTQ5LDkwLDE3NiwyNTEsMTExLDU0LDIxMSwxOCwxNCwyNDgsMzEsNzMsNjQsMTU2LDIxNywzMywxMDcsNTcsOTgsMjExLDI0MiwyMzQsMTksMTE5LDc2LDE5LDYzLDM1LDI0OCw4Myw2NywyMjgsMjE5LDE1MiwyOCw0Nyw4NywxMjYsMTk5LDI0MiwxNDYsMTQsMTM3LDk2LDE4NSwyNDMsNDUsMzgsMTA3LDE2NSwyMDksMjA0LDczLDE0MywxMCwxMjEsMTU2LDE0MywyMDQsMjM0LDY3LDI0Miw3MiwxNDQsMTg4LDI1MCwyMTMsMTM2LDE3NiwxMDUsMjA2LDU5LDExMywyMzYsMjQyLDEyMywyMTcsMTEsMjE1LDE2MSwxNTEsMjM1LDgxLDI0NiwyMDEsMTgyLDE4OSw1MSwyMDEsMjI4LDc1LDE3MCwyMjgsMTgyLDM4LDUxLDExNiwxODgsMjM1LDE4NiwyMjIsMTI2LDEyNSwxOSwxNTgsMTQsNTYsNDYsODgsMTc4LDU0LDIxMCwxMDUsMjE2LDEyOSwyMzEsNTAsMTExLDg3LDE1OSwyNDUsMjQsNzksMjQxLDkzLDI1NCwxMjYsMTg1LDEyOCwyMjgsMTExLDg3LDc1LDE0MSwyMjAsMjI5LDQ2LDEwLDI0LDYwLDIxNSwxMDIsMTY3LDE0MCw1NCw3NywyMzIsMjUxLDE0MSw3NiwyNSwyLDE1NSw1NSwyNTEsMjQyLDE4NiwxNTQsMjM1LDI5LDgxLDExMiwxNjMsNjgsNSwyMCwxNzEsNiwyMTYsMTgwLDUwLDExOCwyMDIsNjgsNTYsNzQsMjMxLDIyNSw4OSwxMTYsMTYxLDU2LDE1Miw1MSwxNzEsOTksMjI4LDcyLDE0MCw0MCwyMTAsNjMsODEsMjUyLDIyLDEwLDIwOSwxNTAsMjMyLDE0NSw1MiwxNDcsMTIyLDI0NCwxOCwxMDQsNTIsMjI0LDI1NSwxNiwxMzcsMTA4LDI0NSwyNDAsMTIwLDE1NCwxOTYsMjAwLDIxMiw1Myw2MywxMDQsMjAwLDIzLDE2MiwxMDQsMTA5LDE1OSwyMzgsMTc5LDAsMTcxLDEzMCwyNTAsMTQwLDE3MV1dfX0sInJlcXVlc3RlZF9wcm9vZiI6eyJyZXZlYWxlZF9hdHRycyI6e30sInJldmVhbGVkX2F0dHJfZ3JvdXBzIjp7ImFkZGl0aW9uYWxQcm9wMSI6eyJzdWJfcHJvb2ZfaW5kZXgiOjAsInZhbHVlcyI6eyJmTmFtZSI6eyJyYXciOiJ0ZXN0X2ZuYW1lXzMiLCJlbmNvZGVkIjoiNDI5MzQ3MTQ3NDk2NzUzMDM5NTgyNTkwNDQ3MzEwMjk0NjQ3MTgzMDg3MTI5MzkxNDg3OTY3Mjg5Njg0MTcyNzM2NjY2MjI1MDUwNTEifSwibE5hbWUiOnsicmF3IjoidGVzdF9sbmFtZV8zIiwiZW5jb2RlZCI6IjI4MTMwMTE1NDkxOTc0NDE1NDI0MjQwODA4MzEwNTQ3MzExOTMxNTA4ODcwNTc5MzE2ODY4ODg3NjIwNzM2MDEyNjcxNjU5MjkwODIzIn19fX0sInNlbGZfYXR0ZXN0ZWRfYXR0cnMiOnt9LCJ1bnJldmVhbGVkX2F0dHJzIjp7fSwicHJlZGljYXRlcyI6e319LCJpZGVudGlmaWVycyI6W3sic2NoZW1hX2lkIjoiN0t1RFRwUWgzR0o3R3A2a0VycFd2TToyOnRlc3RfdGVzdF9zY2hlbWExNDA2MjItMDc6MTQuMDYuMjIwNyIsImNyZWRfZGVmX2lkIjoiN0t1RFRwUWgzR0o3R3A2a0VycFd2TTozOkNMOjMyMjg3Njp0ZXN0X3Rlc3RfY3JlZC1kZWZfMTQwNjIyLTA3IiwicmV2X3JlZ19pZCI6bnVsbCwidGltZXN0YW1wIjpudWxsfV19\"\n                    }\n                }\n            ],\n            \"~thread\": {\n                \"thid\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\"\n            },\n            \"~service\": {\n                \"recipientKeys\": [\n                    \"evCcbASAsuvWGB4y2Z3tVeXKQLsgnF6MZ1NPWcPteiH\"\n                ],\n                \"routingKeys\": [\n                    \"3uq8CaLCKcP1Q2JW8KLyDQu9ZrHPbZw4Kix9oZqeY7Tf\"\n                ],\n                \"serviceEndpoint\": \"https://gaiax.vereign.com/mediator\"\n            },\n            \"~transport\": {\n                \"return_route\": \"all\"\n            }\n        }\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Out-of-band-proof-for-type",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json();\r",
-							"\r",
-							"let template = `\r",
-							"<html>\r",
-							"    <body> \r",
-							"        <div>Scan the QR code below for out of band proof presentation</div>\r",
-							"        <br>\r",
-							"        <div style=\"text-align:center;\">\r",
-							"            <img src='https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=+{{data.presentationMessage}}'></img>\r",
-							"        </div>\r",
-							"    </body>\r",
-							"</html>`;\r",
-							"pm.visualizer.set(template, res);\r",
-							"\r",
-							"if(res.statusCode == 201){\r",
-							"    pm.environment.set(\"oob_type-presentation-id\", res.data.presentationId);\r",
-							"}"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "accept",
-						"value": "*/*"
-					}
-				],
-				"url": {
-					"raw": "{{proof_man_baseURL}}/v1/out-of-band-proof?type=principalMemberCredential",
-					"host": [
-						"{{proof_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"out-of-band-proof"
-					],
-					"query": [
-						{
-							"key": "type",
-							"value": "principalMemberCredential"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Check-OOB-Type-Verification",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const res = pm.response.json();\r",
-							"\r",
-							"if (res.statusCode == 200) {\r",
-							"\tif (res.data.isVerified == true && res.data.state == \"done\") {\r",
-							"\t\tlet template = `\r",
-							"            <html>\r",
-							"                <body> \r",
-							"                    <div style=\"text-align:center; color:green;\">\r",
-							"                        <h2>Proof verified successfully</h2>\r",
-							"                    </div>\r",
-							"                </body>\r",
-							"            </html>`;\r",
-							"\t\tpm.visualizer.set(template, res);\r",
-							"\t} else {\r",
-							"\t\tlet template = `\r",
-							"            <html>\r",
-							"                <body> \r",
-							"                    <div style=\"text-align:center; color:red;\">\r",
-							"                        <h2>Proof not presented yet.</h2>\r",
-							"                    </div>\r",
-							"                </body>\r",
-							"            </html>`;\r",
-							"\t\tpm.visualizer.set(template, res);\r",
-							"\t}\r",
-							"}"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{proof_man_baseURL}}/v1/find-by-presentation-id?presentationId={{oob_type-presentation-id}}",
-					"host": [
-						"{{proof_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"find-by-presentation-id"
-					],
-					"query": [
-						{
-							"key": "presentationId",
-							"value": "{{oob_type-presentation-id}}"
-						}
-					]
-				},
-				"description": "#### **Description** **:**\n\nThis request is used to fetch proof presentation request information for the presentation id provided in query parameter.\n\n> It also provides state of the proof presentation request.\n\n#### **Query Parameter** **:**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| presentationId | required | `\"presentation_id\"`  <br>presentation_id is fetched from the proof request. It provides the state of the request. |"
-			},
-			"response": [
-				{
-					"name": "Check-OOB-Verification",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{proof_man_baseURL}}/v1/find-by-presentation-id?presentation_id={{oob-presentation-id}}",
-							"host": [
-								"{{proof_man_baseURL}}"
-							],
-							"path": [
-								"v1",
-								"find-by-presentation-id"
-							],
-							"query": [
-								{
-									"key": "presentation_id",
-									"value": "{{oob-presentation-id}}"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "date",
-							"value": "Wed, 15 Jun 2022 09:28:08 GMT"
-						},
-						{
-							"key": "content-type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "content-length",
-							"value": "7384"
-						},
-						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "access-control-allow-origin",
-							"value": "*"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"1cd8-GlvND2hpBaJd1J2NNqI0bQBluQU\""
-						},
-						{
-							"key": "strict-transport-security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Proof presentation fetch successfully\",\n    \"data\": {\n        \"_tags\": {\n            \"state\": \"done\",\n            \"threadId\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\"\n        },\n        \"metadata\": {},\n        \"id\": \"7fa03531-74f4-49a0-a94f-6feb30041c13\",\n        \"createdAt\": \"2022-06-15T09:27:47.528Z\",\n        \"requestMessage\": {\n            \"@type\": \"https://didcomm.org/present-proof/1.0/request-presentation\",\n            \"@id\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\",\n            \"comment\": \"Out of Band\",\n            \"request_presentations~attach\": [\n                {\n                    \"@id\": \"libindy-request-presentation-0\",\n                    \"mime-type\": \"application/json\",\n                    \"data\": {\n                        \"base64\": \"eyJuYW1lIjoiT3V0IE9mIEJhbmQgUHJvb2YgUmVxdWVzdCIsInZlcnNpb24iOiJPdXQgT2YgQmFuZCBQcm9vZiBSZXF1ZXN0Iiwibm9uY2UiOiI5Njk2NjM0MjY2NDY0IiwicmVxdWVzdGVkX2F0dHJpYnV0ZXMiOnsiYWRkaXRpb25hbFByb3AxIjp7Im5hbWVzIjpbImZOYW1lIiwibE5hbWUiXSwicmVzdHJpY3Rpb25zIjpbeyJzY2hlbWFfaWQiOiI3S3VEVHBRaDNHSjdHcDZrRXJwV3ZNOjI6dGVzdF90ZXN0X3NjaGVtYTE0MDYyMi0wNzoxNC4wNi4yMjA3In1dfX0sInJlcXVlc3RlZF9wcmVkaWNhdGVzIjp7fX0=\"\n                    }\n                }\n            ],\n            \"~service\": {\n                \"recipientKeys\": [\n                    \"BujL2yfa3XNAWLrzversmz9zYvJJNdYhpLkKB5zg3BiL\"\n                ],\n                \"routingKeys\": [],\n                \"serviceEndpoint\": \"https://gaiax.vereign.com:443/ocm/didcomm\"\n            }\n        },\n        \"state\": \"done\",\n        \"threadId\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\",\n        \"autoAcceptProof\": \"always\",\n        \"isVerified\": true,\n        \"presentationMessage\": {\n            \"@type\": \"https://didcomm.org/present-proof/1.0/presentation\",\n            \"@id\": \"8e2ce5d1-2f04-4edd-935e-75e6b5fed752\",\n            \"presentations~attach\": [\n                {\n                    \"@id\": \"libindy-presentation-0\",\n                    \"mime-type\": \"application/json\",\n                    \"data\": {\n                        \"base64\": \"eyJwcm9vZiI6eyJwcm9vZnMiOlt7InByaW1hcnlfcHJvb2YiOnsiZXFfcHJvb2YiOnsicmV2ZWFsZWRfYXR0cnMiOnsiZm5hbWUiOiI0MjkzNDcxNDc0OTY3NTMwMzk1ODI1OTA0NDczMTAyOTQ2NDcxODMwODcxMjkzOTE0ODc5NjcyODk2ODQxNzI3MzY2NjYyMjUwNTA1MSIsImxuYW1lIjoiMjgxMzAxMTU0OTE5NzQ0MTU0MjQyNDA4MDgzMTA1NDczMTE5MzE1MDg4NzA1NzkzMTY4Njg4ODc2MjA3MzYwMTI2NzE2NTkyOTA4MjMifSwiYV9wcmltZSI6IjIzNzk0MTQ0MDAyNjU3Nzk2ODUxNzA2MTE2NTU1MDkyMTI4ODg3MzA0ODc1NzMwODQ3OTMyNDczODI5NzQ4MjE3MzQwMTE5ODQ4Nzg4OTY1OTg3NDIzNDAyOTg1OTUyMzIxMDYwOTk2MDkxNzIwMzgzMzQzNTk2Mjg1MjY5ODA4NjM5NzIxMjM1Njc2MjM5ODk3MjczNDY0NDQyMzkwMDI5ODMyNDk5Mzg3NDg3NTI1MjQyODA0ODI2ODI4OTE1ODcyMjUzNTI3NTI2Nzk2OTg3NzQ0NDc5Njc4MDY3NTMyMTI4ODU4NzczNDA4NDI0NDYwNDIyMjI4MzEwNTg0OTY5MzU3MzIzNTAzNzM0OTc0OTA0MjAzNzc3MzE1Nzc2ODk3NjkwOTk0OTA1ODk0OTA1NzM2MzY0NDY1MzU4NDY0ODkxNDExOTI2MzI5OTcyNTQ5MjM0NjU4ODk2Mzg0Njk4NDMyMDUzMjQ2NDIzNjI0NjY1MTE0MTA5NDk4MTY5NjAyNjgwMDQ4NTI5MTI5NTQxMzA2NzQ5MjQ2MDQ5MjIzMjMwOTU3NzI3Mzk3MTY4Njc4OTkyNDcxMDczMjYzNjQ3MTYxNzg1ODY0NzExNzIyMTA5NTUzMDA5MjQwOTAxODE1NTU3NzEwNTMwNzM2NjA4MDE5MzQ3NDExMzgxMDE1OTM2MTU4ODIxMTQ1MzEzOTk5MzU2NjAzNjQ5MTc1NTU2MDU5NzQwMTA1ODA0OTgyMjI3Njk1OTI3ODcyMzIzOTE5ODMyOTMxODI4MjUwNjAzNTg1Nzg4OTgzOTk1NTk5Mjk1MjUzNjc1IiwiZSI6IjE0NDU5NDA4Nzg4MjMwNTI5ODYxODg2Mzg2NjEwMzY2MjcxMjY3NzgwMjQxOTI4MjY1MzU5Njg5MzQ0MzAwMDUyOTcyMDIzMDI3OTE4NzIwODk0NzI0OTgyNDE2NDYyMzUxOTY1OTA4MDc0Njc1MzgwMDA2NTM3NjQ1MDI5MTg1MzkyNjcyMTQyMyIsInYiOiIxMTE4MTE2MzM1MjY4MTU5NzgzMDA4MzM4ODQ3ODY3NzkxNjk3MTQ3NTAxOTk4ODMwMzIwMDYwNzQ0NjYwOTM2NjU1NDk1Mjc2OTg3NDUzODUyNzUzNzU5MjUzMzYyNDQxNjIyMjMzNTc5Mzc5MDUwMTE1NDI4MjkwMzY5ODg3OTI4MjY2MDQ3NDk0NzYwNzczODc1NjM1MDM0MjYwNjIwMDUxNzEyNTQzOTkzODc5MjQ2NTgxNjE5NDAyMzQ4OTE1MTUyOTA4OTMyNzQ4NzIyOTIwMzU2NDgxMTkzODkwODcwNjEyOTc1NzQyNTk2ODc4MDk4MzkxMDM0NTY5MjgxOTMwMTcwMjQ4NjY5Njc3ODQ4NzU4MTg1NDA0MzY3MTk2OTgwOTQ1NDgxMDkyOTkzOTg2MzQzNzc5MDI4MzI3MTIyMjk1OTkyODQ1NjY5NzIxOTU4Njk1Mzg0MjA1MzU1MTI4ODU3Mzc0NDIyMzk3NTA1MTI5MDYzMzU1MjMxNDIzMzA5OTQwMzk5MjE3NTk4NjgwNDUzNjkxODU1MzE5NzAzMzUxNTczODI2NDk5NDQ3OTg5NTU5MTY1NjgxMzcyNjM3NzYwOTg3MjE4MjMxMjA0NTczNzA1NTg3NDc0MTQ0MTQxMDY0NTY0ODc4OTgxMjEwOTI2ODAxNTY1MjQyOTg3ODMzMTYxMjMxNTQ0NTQ0OTUyODI1MDk5ODM3MDY1Mjg1OTExOTE4OTkyOTcyODA0NDExMzcxODk5MDg1ODc2MTU3OTAxODI1OTU4NzE0NDIzMTA5OTg0ODkwNjc0NTQ2MTMyMjczMTc2Mzg5MjQ1NzU5NjA4MDg3MjU4MDMxNzYwOTU1NTI1MDM4Mjc1MzcyNTQ1NDMyODQwMTA5MDI1NjI3NzU2ODMzMzI5MjMzNzQxNDQ3MDI2NTg0OTUzNTI4NjM3MDM0NzUxNzIzMjE4MTY4OTMxNDM1MDg4MjMyMTc2OTM2MjkxMTIzMjY0ODEyNzg5MTY2MTA3NTk3NTg1NzMzMjQxMDM0MDUzODMxNzA5MjU4MjUyMTU4OTY3MjcyMTkzMTkxODYxNzk1NjMzMjMyODE0ODEzNjE2NTA2MjE2MTU4NDU3MDI1NDQwMDAzMTc0MDEzNTg5ODk2OTg3MDcxMDIwMzA0Mjk2NTUzNDkxNzg0NDE3MDM2MDQxMzI0NTcxNzk4ODExNTczODY2NDI0NTkwNjgxIiwibSI6eyJtYXN0ZXJfc2VjcmV0IjoiMTAxMTQ4NTA2NDgxNjEyOTM4NzI3NTgzNzYxMjQxODQwMzYxODcyMTU1NzU3NDE3MDg1Nzk2MjQzMjY5Nzg0MTg3NTk2NzE0OTA2MTc4MTIxNTk3MDM4NTM0MTk5MDExMTc2NjMxNjY3ODk4NzQ3ODQzNjE2MDE0MzU2OTQ4MDUzMDUzMTcxNjQzODQwOTY1MDE3NTk0MDA0Mjk3ODU2Mjk4OTcwNDI0Mzg2ODY1NjU2OTYiLCJnZW5kZXIiOiIzMjc1MzEzNTkxNDkyMDMyNzUwNDcxMTI4MDA3NTc0NTc3MDkyNDQxODYyMzM1NDg0NDg2MTUzNTM3Njc1OTY4MjUzNjcwMDI2Mjg4NzA0OTg1Nzc4ODc4NDM4ODQ0MTIwODQ0MjU4ODc3NDEyMjAwNzI0MTI2NjAxNzkyOTY0ODA2NzU5NzI4NDA4ODA0MTEwOTk4NzUwOTMzMjQ0MTI2NDQ0NDQyMDA3NDU5MzgxNDA2In0sIm0yIjoiMTI2ODM1NDM0OTk2NTkzNjUyNzU3MTQ2MzY1MTA2NjQzNTYxOTA3NDM0MTY3Njg1ODc2NjU5NzUwMTU2Njg4MDM1MDQ1NDg4MjM1MjA0MjU0MjI4NTk2MTcyOTI2MTgwMjc3NzU4MjYzMTU1MDY1ODE4MjAyNTE2OTc3NTIzOTYwOTQ1MDIzMDkzOTk2Nzc2MjM1MDQyNTk0NzIxMjc5NDIzMzk5ODI3MjE0MzE1OTI4OTgifSwiZ2VfcHJvb2ZzIjpbXX0sIm5vbl9yZXZvY19wcm9vZiI6bnVsbH1dLCJhZ2dyZWdhdGVkX3Byb29mIjp7ImNfaGFzaCI6IjQ1OTgzMTQzOTkwNDU4NDM2NjYzNzIwODcyNDkwNzA0NTIxMjYxODI2NjUzMDA0MjE1ODE0OTAzODA1MzAxMzE4NDIwMjQyNTgyNTA3IiwiY19saXN0IjpbWzE4OCwxMjQsMTAxLDE5MSw3OCw4MiwyMjgsMjE4LDI1MCwxOTQsODgsMTk0LDEyMywzOCw2LDEsMjA0LDIyMSw3MywyMDIsMTQ5LDkwLDE3NiwyNTEsMTExLDU0LDIxMSwxOCwxNCwyNDgsMzEsNzMsNjQsMTU2LDIxNywzMywxMDcsNTcsOTgsMjExLDI0MiwyMzQsMTksMTE5LDc2LDE5LDYzLDM1LDI0OCw4Myw2NywyMjgsMjE5LDE1MiwyOCw0Nyw4NywxMjYsMTk5LDI0MiwxNDYsMTQsMTM3LDk2LDE4NSwyNDMsNDUsMzgsMTA3LDE2NSwyMDksMjA0LDczLDE0MywxMCwxMjEsMTU2LDE0MywyMDQsMjM0LDY3LDI0Miw3MiwxNDQsMTg4LDI1MCwyMTMsMTM2LDE3NiwxMDUsMjA2LDU5LDExMywyMzYsMjQyLDEyMywyMTcsMTEsMjE1LDE2MSwxNTEsMjM1LDgxLDI0NiwyMDEsMTgyLDE4OSw1MSwyMDEsMjI4LDc1LDE3MCwyMjgsMTgyLDM4LDUxLDExNiwxODgsMjM1LDE4NiwyMjIsMTI2LDEyNSwxOSwxNTgsMTQsNTYsNDYsODgsMTc4LDU0LDIxMCwxMDUsMjE2LDEyOSwyMzEsNTAsMTExLDg3LDE1OSwyNDUsMjQsNzksMjQxLDkzLDI1NCwxMjYsMTg1LDEyOCwyMjgsMTExLDg3LDc1LDE0MSwyMjAsMjI5LDQ2LDEwLDI0LDYwLDIxNSwxMDIsMTY3LDE0MCw1NCw3NywyMzIsMjUxLDE0MSw3NiwyNSwyLDE1NSw1NSwyNTEsMjQyLDE4NiwxNTQsMjM1LDI5LDgxLDExMiwxNjMsNjgsNSwyMCwxNzEsNiwyMTYsMTgwLDUwLDExOCwyMDIsNjgsNTYsNzQsMjMxLDIyNSw4OSwxMTYsMTYxLDU2LDE1Miw1MSwxNzEsOTksMjI4LDcyLDE0MCw0MCwyMTAsNjMsODEsMjUyLDIyLDEwLDIwOSwxNTAsMjMyLDE0NSw1MiwxNDcsMTIyLDI0NCwxOCwxMDQsNTIsMjI0LDI1NSwxNiwxMzcsMTA4LDI0NSwyNDAsMTIwLDE1NCwxOTYsMjAwLDIxMiw1Myw2MywxMDQsMjAwLDIzLDE2MiwxMDQsMTA5LDE1OSwyMzgsMTc5LDAsMTcxLDEzMCwyNTAsMTQwLDE3MV1dfX0sInJlcXVlc3RlZF9wcm9vZiI6eyJyZXZlYWxlZF9hdHRycyI6e30sInJldmVhbGVkX2F0dHJfZ3JvdXBzIjp7ImFkZGl0aW9uYWxQcm9wMSI6eyJzdWJfcHJvb2ZfaW5kZXgiOjAsInZhbHVlcyI6eyJmTmFtZSI6eyJyYXciOiJ0ZXN0X2ZuYW1lXzMiLCJlbmNvZGVkIjoiNDI5MzQ3MTQ3NDk2NzUzMDM5NTgyNTkwNDQ3MzEwMjk0NjQ3MTgzMDg3MTI5MzkxNDg3OTY3Mjg5Njg0MTcyNzM2NjY2MjI1MDUwNTEifSwibE5hbWUiOnsicmF3IjoidGVzdF9sbmFtZV8zIiwiZW5jb2RlZCI6IjI4MTMwMTE1NDkxOTc0NDE1NDI0MjQwODA4MzEwNTQ3MzExOTMxNTA4ODcwNTc5MzE2ODY4ODg3NjIwNzM2MDEyNjcxNjU5MjkwODIzIn19fX0sInNlbGZfYXR0ZXN0ZWRfYXR0cnMiOnt9LCJ1bnJldmVhbGVkX2F0dHJzIjp7fSwicHJlZGljYXRlcyI6e319LCJpZGVudGlmaWVycyI6W3sic2NoZW1hX2lkIjoiN0t1RFRwUWgzR0o3R3A2a0VycFd2TToyOnRlc3RfdGVzdF9zY2hlbWExNDA2MjItMDc6MTQuMDYuMjIwNyIsImNyZWRfZGVmX2lkIjoiN0t1RFRwUWgzR0o3R3A2a0VycFd2TTozOkNMOjMyMjg3Njp0ZXN0X3Rlc3RfY3JlZC1kZWZfMTQwNjIyLTA3IiwicmV2X3JlZ19pZCI6bnVsbCwidGltZXN0YW1wIjpudWxsfV19\"\n                    }\n                }\n            ],\n            \"~thread\": {\n                \"thid\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\"\n            },\n            \"~service\": {\n                \"recipientKeys\": [\n                    \"evCcbASAsuvWGB4y2Z3tVeXKQLsgnF6MZ1NPWcPteiH\"\n                ],\n                \"routingKeys\": [\n                    \"3uq8CaLCKcP1Q2JW8KLyDQu9ZrHPbZw4Kix9oZqeY7Tf\"\n                ],\n                \"serviceEndpoint\": \"https://gaiax.vereign.com/mediator\"\n            },\n            \"~transport\": {\n                \"return_route\": \"all\"\n            }\n        }\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "http://3.111.77.38:3007/v1/accept-presentation?presentation_id=5eceaa96-d08a-42a3-a083-98672ce55188",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "accept",
-						"value": "*/*"
-					}
-				],
-				"url": {
-					"raw": "{{proof_man_baseURL}}/v1/accept-presentation?presentation_id=5eceaa96-d08a-42a3-a083-98672ce55188",
-					"host": [
-						"{{proof_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"accept-presentation"
-					],
-					"query": [
-						{
-							"key": "presentation_id",
-							"value": "5eceaa96-d08a-42a3-a083-98672ce55188"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get-agent-proofs-proposal",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{proof_man_baseURL}}/v1/agent-proofs?threadId=85054e0d-2c21-4711-88d0-0c66ad1959f5",
-					"host": [
-						"{{proof_man_baseURL}}"
-					],
-					"path": [
-						"v1",
-						"agent-proofs"
-					],
-					"query": [
-						{
-							"key": "threadId",
-							"value": "85054e0d-2c21-4711-88d0-0c66ad1959f5"
-						}
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "fc2cf79c-4e29-4101-a833-3fd2a9243c9e",
+    "name": "Proof Manager",
+    "description": "#### **Description** **:**\n\nThe Proof Manager is the collection of request which can be used to request proof presentation to connections and for out of band verifications. Also it returns all the proof presentation requests and their status.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17714957"
+  },
+  "item": [
+    {
+      "name": "Find-proof-presentation",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{proof_man_baseURL}}/v1/find-proof-presentation?pageSize=&page",
+          "host": ["{{proof_man_baseURL}}"],
+          "path": ["v1", "find-proof-presentation"],
+          "query": [
+            {
+              "key": "pageSize",
+              "value": ""
+            },
+            {
+              "key": "page",
+              "value": null
+            }
+          ]
+        },
+        "description": "#### **Description** **:**\n\nThis request fetches the all the proof presentation requests for the participant. The records can be filtered using provided query parameters.\n\n#### **Query Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| pageSize | no | `pageSize`  <br>Should be provided in query parameter. It filters the list and sets the page size. |\n| page | no | `page`  <br>Should be provided in query parameter. It filters the list and sets the page to land on. |\n\n#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| Key | Description |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → count` | It returns the total number of records available in the response. |\n| `data → records` | It returns the actual information that was requested in the form of JSON object array. |\n| `data → records → id` | It returns the id for the corresponding record in the database. |\n| `data → records → presentation_id` | It returns the presentation id for the corresponding record in the database. |\n| `data → records → connectionId` | It returns the connection id for the corresponding record in the database. |\n| `data → records → credential_def_id` | It returns the credential defination id for the corresponding record in the database. |\n| `data → records → schemaId` | It returns the corresponding unique id for schema on the ledger. |\n| `data → records → their_did` | It returns the their did for the corresponding record in the database. |\n| `data → records → status` | It returns the status for the corresponding record in the database. |\n| `data → records → created_date` | It returns the date the proof was created. |\n| `data → records → updated_date` | It returns the last proof updation date. |"
+      },
+      "response": [
+        {
+          "name": "Find-proof-presentation",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{proof_man_baseURL}}/v1/find-proof-presentation?pageSize=&page",
+              "host": ["{{proof_man_baseURL}}"],
+              "path": ["v1", "find-proof-presentation"],
+              "query": [
+                {
+                  "key": "pageSize",
+                  "value": ""
+                },
+                {
+                  "key": "page",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Wed, 15 Jun 2022 09:28:21 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "content-length",
+              "value": "3672"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"e58-XnEVMyMw0qXfuwsZQNiDlSRBjyQ\""
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Proof presentation fetch successfully\",\n    \"data\": {\n        \"count\": 36,\n        \"records\": [\n            {\n                \"id\": \"051bdceb-07df-419b-98f4-3c0dd92c4b68\",\n                \"presentation_id\": \"a033c848-7d9c-448e-9336-8237882d4418\",\n                \"connectionId\": \"\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema130622:13.06.22\",\n                \"their_did\": \"\",\n                \"status\": \"request-sent\",\n                \"created_date\": \"2022-06-13T13:56:09.864Z\",\n                \"updated_date\": \"2022-06-13T13:56:09.864Z\"\n            },\n            {\n                \"id\": \"095e6ea8-f580-4269-993a-8eef6758ba74\",\n                \"presentation_id\": \"b0784df1-14a6-4f5d-b038-43c296bf715f\",\n                \"connectionId\": \"9050c647-2931-4fdb-8f65-007c79f0bd33\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:principal_schema_13-06-22:13.06.22\",\n                \"their_did\": \"\",\n                \"status\": \"done\",\n                \"created_date\": \"2022-06-14T10:39:49.377Z\",\n                \"updated_date\": \"2022-06-14T10:40:59.510Z\"\n            },\n            {\n                \"id\": \"15107aeb-3a77-4b62-a3b6-0710cdc64225\",\n                \"presentation_id\": \"bfbd97a8-efd9-4aa0-bdc4-b2fa1d342148\",\n                \"connectionId\": \"\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema130622:13.06.22\",\n                \"their_did\": \"\",\n                \"status\": \"done\",\n                \"created_date\": \"2022-06-13T14:11:14.955Z\",\n                \"updated_date\": \"2022-06-13T14:11:29.769Z\"\n            },\n            {\n                \"id\": \"1b459690-849b-4f3d-b6a4-0316933590a4\",\n                \"presentation_id\": \"bcda614b-bac8-41f7-9680-f95ff67f6382\",\n                \"connectionId\": \"\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-07:14.06.2207\",\n                \"their_did\": \"\",\n                \"status\": \"done\",\n                \"created_date\": \"2022-06-14T11:58:39.846Z\",\n                \"updated_date\": \"2022-06-14T12:01:07.841Z\"\n            },\n            {\n                \"id\": \"1f8df45a-0e53-461b-b90b-cfe40042e629\",\n                \"presentation_id\": \"b00113d8-4aa7-4c6f-9bfa-90be89834355\",\n                \"connectionId\": \"493f3aee-448d-4fc7-9698-e3d8aa6f862c\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:principal_schema_06_09:1.0.4\",\n                \"their_did\": \"\",\n                \"status\": \"request-sent\",\n                \"created_date\": \"2022-06-09T12:16:23.157Z\",\n                \"updated_date\": \"2022-06-09T12:16:23.157Z\"\n            },\n            {\n                \"id\": \"1fe91ebc-c086-43ef-8cac-ebb56f32e14d\",\n                \"presentation_id\": \"f3c137d7-c945-4e1b-8c00-55c3dbc94cf4\",\n                \"connectionId\": \"f4f39f80-3f9f-45b3-a6f9-e7eb3946353c\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:principal_schema_13-06-22:13.06.22\",\n                \"their_did\": \"\",\n                \"status\": \"done\",\n                \"created_date\": \"2022-06-14T10:20:54.732Z\",\n                \"updated_date\": \"2022-06-14T10:21:06.573Z\"\n            },\n            {\n                \"id\": \"2bf3377e-4d84-46c9-851a-98d8ab0244ec\",\n                \"presentation_id\": \"0b3e2ec9-d5f7-4c34-8fba-d2b4120c0866\",\n                \"connectionId\": \"9050c647-2931-4fdb-8f65-007c79f0bd33\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-04:14.06.2204\",\n                \"their_did\": \"\",\n                \"status\": \"request-sent\",\n                \"created_date\": \"2022-06-14T10:36:51.670Z\",\n                \"updated_date\": \"2022-06-14T10:36:51.670Z\"\n            },\n            {\n                \"id\": \"2d725225-acfd-4aa3-96b0-2564aa2a71a3\",\n                \"presentation_id\": \"0f65c623-f130-4895-8154-fb229b2484f8\",\n                \"connectionId\": \"30df956f-e9f2-4421-9d5b-73d259106667\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:principal_schema_13-06-22:13.06.22\",\n                \"their_did\": \"\",\n                \"status\": \"done\",\n                \"created_date\": \"2022-06-13T13:54:43.312Z\",\n                \"updated_date\": \"2022-06-13T13:55:13.701Z\"\n            },\n            {\n                \"id\": \"377cbfc2-7055-48f1-8d69-ccb994e4dc0f\",\n                \"presentation_id\": \"5732be89-cb54-40fc-81e6-7b9fe7676769\",\n                \"connectionId\": \"9050c647-2931-4fdb-8f65-007c79f0bd33\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-06:14.06.2206\",\n                \"their_did\": \"\",\n                \"status\": \"request-sent\",\n                \"created_date\": \"2022-06-14T10:46:12.010Z\",\n                \"updated_date\": \"2022-06-14T10:46:12.010Z\"\n            },\n            {\n                \"id\": \"3a2eae7d-1021-4ee8-8cfb-41ec7789d03e\",\n                \"presentation_id\": \"62257855-af83-46dc-9f18-ea223db7e663\",\n                \"connectionId\": \"\",\n                \"credential_def_id\": \"\",\n                \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-04:14.06.2204\",\n                \"their_did\": \"\",\n                \"status\": \"request-sent\",\n                \"created_date\": \"2022-06-14T10:26:57.734Z\",\n                \"updated_date\": \"2022-06-14T10:26:57.734Z\"\n            }\n        ]\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Send-presentation-request",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json()\r",
+              "\r",
+              "if(res.statusCode == 201){\r",
+              "    pm.environment.set(\"presentation-id\", res.data.presentationId);\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"comment\": \"Tested participant\",\r\n    \"attributes\": [\r\n        {\r\n            \"attribute_name\": \"{{array0}}\",\r\n            \"value\": \"\",\r\n            \"condition\": \"\"\r\n        }\r\n    ],\r\n    \"schemaId\": \"\",\r\n    \"credentialDefId\": \"{{cred-def-id}}\",\r\n    \"connectionId\": \"{{conn-id}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{proof_man_baseURL}}/v1/send-presentation-request",
+          "host": ["{{proof_man_baseURL}}"],
+          "path": ["v1", "send-presentation-request"]
+        },
+        "description": "#### **Description** **:**\n\nFrom a verifier to a prover, the presentation request message describes values that need to be revealed and predicates that need to be fulfilled.\n\n> In Hyperledger Indy, this message is required, because it forces the Issuer to make a cryptographic commitment to the set of fields in the final credential and thus prevents Issuers from inserting spurious data.\n\n#### **Body Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| connectionId | required | `\"`connectionId`\"`  <br>should be provided in \"STRING\" format. It the peer to peer connection id for two aeries agent. |\n| credential_def_id | required | `\"cred_def_id\"`  <br>key maps to the credential definition identifier of the credential with the current attribute. It should be provided in \"STRING\" format. Mandatory if schema_id is not provided. |\n| schemaId | required | `\"schema_name\"`  <br>Should be valid existing schema and should be provided as \"STRING\". Mandatory if cred_def_id is not provided. |\n| attributes | required | `[{ \"`attribute_name`\" : \"attr_name\" }]`  <br>should be provided JSON array. |\n\n  \n\n#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| Key | Description |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → id` | It returns the id for the corresponding record in the database. |\n| `data → presentation_id` | It returns the presentation id for the corresponding record in the database. |\n| `data → connectionId` | It returns the connection id for the corresponding record in the database. |\n| `data → credential_def_id` | It returns the credential defination id for the corresponding record in the database. |\n| `data → schemaId` | It returns the corresponding unique id for schema on the ledger. |\n| `data → their_did` | It returns the their did for the corresponding record in the database. |\n| `data → status` | It returns the status for the corresponding record in the database. |\n| `data → created_date` | It returns the date the proof was created. |\n| `data → updated_date` | It returns the last proof updation date. |"
+      },
+      "response": [
+        {
+          "name": "Send-presentation-request",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"comment\": \"Tested participant\",\r\n    \"attributes\": [\r\n        {\r\n            \"attribute_name\": \"{{array0}}\",\r\n            \"value\": \"\",\r\n            \"condition\": \"\"\r\n        },\r\n        {\r\n            \"attribute_name\": \"{{array1}}\",\r\n            \"value\": \"\",\r\n            \"condition\": \"\"\r\n        }\r\n    ],\r\n    \"schemaId\": \"{{schema-id}}\",\r\n    \"credential_def_id\": \"\",\r\n    \"connectionId\": \"{{conn-id}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{proof_man_baseURL}}/v1/send-presentation-request",
+              "host": ["{{proof_man_baseURL}}"],
+              "path": ["v1", "send-presentation-request"]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Wed, 15 Jun 2022 09:27:07 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "content-length",
+              "value": "454"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"1c6-E7pFwPlnxfbEOOkPcsFYYpmaWW8\""
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 201,\n    \"message\": \"Presentation request send successfully\",\n    \"data\": {\n        \"id\": \"48b2b61d-a5d9-4c1d-a745-ed5cd018c5bd\",\n        \"presentation_id\": \"07f27a99-4ff2-4d3c-82f9-0f49cd6d8203\",\n        \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n        \"credential_def_id\": \"\",\n        \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-07:14.06.2207\",\n        \"their_did\": \"\",\n        \"status\": \"request-sent\",\n        \"created_date\": \"2022-06-15T09:27:07.302Z\",\n        \"updated_date\": \"2022-06-15T09:27:07.302Z\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Check-Verification",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json();\r",
+              "\r",
+              "if (res.statusCode == 200) {\r",
+              "\tif (res.data.isVerified == true && res.data.state == \"done\") {\r",
+              "\t\tlet template = `\r",
+              "            <html>\r",
+              "                <body> \r",
+              "                    <div style=\"text-align:center; color:green;\">\r",
+              "                        <h2>Proof verified successfully</h2>\r",
+              "                    </div>\r",
+              "                </body>\r",
+              "            </html>`;\r",
+              "\t\tpm.visualizer.set(template, res);\r",
+              "\t} else {\r",
+              "\t\tlet template = `\r",
+              "            <html>\r",
+              "                <body> \r",
+              "                    <div style=\"text-align:center; color:red;\">\r",
+              "                        <h2>Proof not presented yet.</h2>\r",
+              "                    </div>\r",
+              "                </body>\r",
+              "            </html>`;\r",
+              "\t\tpm.visualizer.set(template, res);\r",
+              "\t}\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{proof_man_baseURL}}/v1/find-by-presentation-id?presentationId={{presentation-id}}",
+          "host": ["{{proof_man_baseURL}}"],
+          "path": ["v1", "find-by-presentation-id"],
+          "query": [
+            {
+              "key": "presentationId",
+              "value": "{{presentation-id}}"
+            }
+          ]
+        },
+        "description": "#### **Description** **:**\n\nThis request is used to fetch proof presentation request information for the presentation id provided in query parameter.\n\n> It also provides state of the proof presentation request.\n\n#### **Query Parameter** **:**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| presentationId | required | `\"presentation_id\"`  <br>presentation_id is fetched from the proof request. It provides the state of the request. |"
+      },
+      "response": [
+        {
+          "name": "Check-Verification",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{proof_man_baseURL}}/v1/find-by-presentation-id?presentation_id={{presentation-id}}",
+              "host": ["{{proof_man_baseURL}}"],
+              "path": ["v1", "find-by-presentation-id"],
+              "query": [
+                {
+                  "key": "presentation_id",
+                  "value": "{{presentation-id}}"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Wed, 15 Jun 2022 09:27:28 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "content-length",
+              "value": "7040"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"1b80-KzH+KoJHRvjoAbq0eUEVKSnHnbc\""
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Proof presentation fetch successfully\",\n    \"data\": {\n        \"_tags\": {\n            \"threadId\": \"2037118f-1e63-4bd7-963b-c0e437f0ddd3\",\n            \"state\": \"done\",\n            \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\"\n        },\n        \"metadata\": {},\n        \"id\": \"07f27a99-4ff2-4d3c-82f9-0f49cd6d8203\",\n        \"createdAt\": \"2022-06-15T09:27:07.209Z\",\n        \"requestMessage\": {\n            \"@type\": \"https://didcomm.org/present-proof/1.0/request-presentation\",\n            \"@id\": \"2037118f-1e63-4bd7-963b-c0e437f0ddd3\",\n            \"comment\": \"Tested participant\",\n            \"request_presentations~attach\": [\n                {\n                    \"@id\": \"libindy-request-presentation-0\",\n                    \"mime-type\": \"application/json\",\n                    \"data\": {\n                        \"base64\": \"eyJuYW1lIjoiUHJvb2YgUmVxdWVzdCIsInZlcnNpb24iOiJQcm9vZiBSZXF1ZXN0Iiwibm9uY2UiOiIxMTMzMjE0Mzg2ODU3IiwicmVxdWVzdGVkX2F0dHJpYnV0ZXMiOnsiYWRkaXRpb25hbFByb3AxIjp7Im5hbWVzIjpbImZOYW1lIiwibE5hbWUiXSwicmVzdHJpY3Rpb25zIjpbeyJzY2hlbWFfaWQiOiI3S3VEVHBRaDNHSjdHcDZrRXJwV3ZNOjI6dGVzdF90ZXN0X3NjaGVtYTE0MDYyMi0wNzoxNC4wNi4yMjA3In1dfX0sInJlcXVlc3RlZF9wcmVkaWNhdGVzIjp7fX0=\"\n                    }\n                }\n            ]\n        },\n        \"state\": \"done\",\n        \"connectionId\": \"3d14a056-8e4d-4336-9a48-541ce7ec7a80\",\n        \"threadId\": \"2037118f-1e63-4bd7-963b-c0e437f0ddd3\",\n        \"isVerified\": true,\n        \"presentationMessage\": {\n            \"@type\": \"https://didcomm.org/present-proof/1.0/presentation\",\n            \"@id\": \"7396b6fd-cde1-454f-b620-1014e363b723\",\n            \"presentations~attach\": [\n                {\n                    \"@id\": \"libindy-presentation-0\",\n                    \"mime-type\": \"application/json\",\n                    \"data\": {\n                        \"base64\": \"eyJwcm9vZiI6eyJwcm9vZnMiOlt7InByaW1hcnlfcHJvb2YiOnsiZXFfcHJvb2YiOnsicmV2ZWFsZWRfYXR0cnMiOnsiZm5hbWUiOiI0MjkzNDcxNDc0OTY3NTMwMzk1ODI1OTA0NDczMTAyOTQ2NDcxODMwODcxMjkzOTE0ODc5NjcyODk2ODQxNzI3MzY2NjYyMjUwNTA1MSIsImxuYW1lIjoiMjgxMzAxMTU0OTE5NzQ0MTU0MjQyNDA4MDgzMTA1NDczMTE5MzE1MDg4NzA1NzkzMTY4Njg4ODc2MjA3MzYwMTI2NzE2NTkyOTA4MjMifSwiYV9wcmltZSI6IjU0ODA1NjExMjEwMzgxMDA1MTgxNjc3Njg0OTU2Mjg3ODYzMjkwODMyODI0MjEzNzM2NjQwNDE2MjA2MTAzMDQ0ODQxNzkyMTMyMzc3MTA4ODE4NTg3MzgyOTEyNTE2ODU2NTc0NzA4NjI2Nzc4NDgzMDU4NzI3ODc1MjAzNTkzOTUxMDgxODMxNzMyMDg2MzEzMDM1MzQxODY0NTkzMDk2Nzk5ODYxMTE5NjQ1MTAwMzc0ODAxODM3NzU3ODU0MDI4OTMxMzYxMDA4NTk4NTgxNDU2MDI1OTAxNzM1NTc5MzkxNDc0MDE4Mzg1NDUxNjY2MjY1MzUyNjM3OTcwMTUxMTA0NDQzNDI3NzQ0MDI4MjYyNTg0ODU1MDQ4ODQzMzg1NTQ4MTYyNjA5NzU2NzM4NzA1OTcyNjExNDg0ODgzOTkwODM3OTE5MDI1NzI0NDExODg4MTkyMTI3NDUzMTIwMDI2MzY0NTU1NzAzMjcxNjYxNTUwNTMxMTk1NTIwNzk3OTU1ODI4MTcwODcxNzMwNjQ4MzYyMDE2MTc3MjU5Njk2NDQyNzE2NTAyNDY2MDcxMzgwNzk4Mjc4OTM0NTc5Nzg0NDIxMTg3NjYzMjU5MjU1MDk5Mzg2ODgxNDc4NDM5MDkyMTA3MDE2MzgwMTYxNzYwMDg5MTUzMDUzNjMwNzY2ODQzMDQwNDY0MTY3ODE3NTgxMjc4NTEwOTA4MjIxNjY2OTUwNjgxMTEwMDI4NzU2OTMwNDIxNjkxNjE3MDcxNzgxODcwNzU0NDI5NDk3NzQyMzYwMTI1MjEwNjg4MzM0NTI1NjkxIiwiZSI6IjM5ODgzMDc4NDcyMjI5MTg1ODQzMTE2NjkxNDM1ODc2MzA0MTUzMDQwMzI5MTQ0MTY1MzY3MTU4ODY1MDY5MzExOTQ5MzY2NTM2NDg0NTgxMjU0NDc3NTUwNzYwODgzNzEzNjc0NTQ4ODI0MzQ1ODU1MTczMDgxNDI5MDc0MTY0OTE1ODkzOTA5IiwidiI6IjExMTI0Njg4MDYyMTE5MDgwNTg3MTYwOTgwMDI5MjIzNTc3MjIwNzAyMjQzNzY5MTIyMzkyMTg1OTA5NDE5Nzg5MjExODg4NjUzMjg1NTAwNTYwNDQ5MzcxODY2MTA1NTkzMzMyNDMwOTE4Mzg1MTQ5NTQ5NTAwMzI5NTMwNDY3NTkyMzc4Mjg0OTg1ODk1MTM0NDExMDY2NTUyNDg2ODMxNzA0NzM1MzY1MTYyMzM5MjI5NTMxNjA2MDYzMzk4OTk3MjQzMDE4OTU5NDE0NzE2ODkyNDY2NjM0MDEzOTE0MzM5MTQzODI4NDk0NDYwODQ3NTAyNjIxMzI4MDM3OTc2MDE3OTQyMjM0NDEwNzAzNzgyMzgxNDYxNjYwNTc1NzQyMjk5NDYwMDM1NDczNjI4MzE1MjAxOTUzMjI0MDkyNDgwMTgyNzk3NDg2MjU0MDY4MTExMzQ3MjkxMDM2NDA4MDE3OTgwNjU4NTg3OTE0MTA1NTM4MDU5MDgxMzU3MTI3MjU1OTc3MjU1MzM5Mzg2MTIyMjQwMjM3ODA5Nzg4Mzk3MDQyMzYwMTY0OTI3NDIyNjI4NDA4OTE5OTc3ODMxMzIxNDA1NDY0MjQxNzgzNzU5MTYxNDEzODYyNTY0OTQzNjE1MjA3MTk4NDk4MzUxNjA5OTk1OTE3MTY4MzY1NjA1MTc3MDM4MDA2NTMwNzA4MjA3OTk5MTY0NjQ3MjcwNDYzNDY1NDA5NDU0MzA4MDA0NjU0Nzg1OTI2NjEzMDYwNDk5NDY2NzIxMjI5NzQwOTk5NDM2NDMxMzM4MTAxMTY5NjY3Nzk1ODk4Nzk0NjQ3MjkxOTI2OTk5MTUxMjgxNDY1MDQyMDgwMjQ1NzM4MzA3MTM1NjAyNDgzNDg0OTQwOTU4NTUwNjMzMTAxMjE5MTkxNjYwMDExNjQ5MjY3MzI3ODIzMzk0MzY4NTk5MDE3Njk1NTEwNTk1NjU2MTU4MDI3NjUyMjEyODQ1MTUyNTQ0MzE1Njk1NjE2NDU1MzI1NTI2NzE1NTA3MzQ2NjA0NDIxMjc5NTA1OTQ0MjY5NzQ2OTg4NjIwNTUzNjI2OTk3NjkzNjY3MzUxMTIyNTQ0MDMwNTg4NjE2MDQxNDc0MDMyNDQzNTY0MTcwMDI4NzIyOTQxMzk1NDYyNDk3ODM4MDY1NjY1MTU4NDAyODgxNTI5MzEwOTYwNjU3ODIwNDYzNDkwMDU0OTUiLCJtIjp7ImdlbmRlciI6IjcyMjk0MzA2MDk1NjU2OTQ1OTY2NzgxMDAwNzY1NDg0OTA0Mjg4MjUyMDU1MjE0OTU1MjEzNzE3NzU4MTc0MTE4ODY3OTEzODI5MzAwMzk2MjA3OTU5MzA2MzU5MTI3MTEzMzYzMDA0MDUzNTc5NzE3OTQ2MTUyMzQyODAxNjUzOTUwNDY0MzgwMzExNTU4NDEwOTUzODc3MjMxMTEyMzQ3OTY2NTQ2MjQyNTc1NjY3MDIiLCJtYXN0ZXJfc2VjcmV0IjoiNjM5MDE0ODgzMjE3NTY0ODA4Njk3MTAxOTMyNjgyODg3Mzc4MjE1Njk4MzkwNDAxNDYzMzY2OTkwMzgyNzQ1MzQwMTM1Mjk2Njc3ODI2MTY5NDEwNjA3MTEyODAwNjc1OTk0NTU3ODgwNDI1NTUxMzAwNjg4MDA5NzU5NDkwOTYwMTY1NTY2OTI4MzUyMjM3NDE5OTY4NTQ1MjY0NDkzNzgxNjkzNzMyOTE1Nzg1OTE3NyJ9LCJtMiI6IjgwNjYxMzg5NDY1MDcwMDU5NjkwMTkxNzU2Mzk5NjUzOTUxNTgzNTc1Mjk3NjQ1MjQ3NzIyNjgyNTA1MDM4MDcyMzc4NzA5Nzg4MTc0MTc4MzgyNjMzMTI1MjY4OTU3OTE2Njg1NTYzNTU1NTg2MDQ2OTM1NzAxNTI1NDg5MDc5MjI2NDA3MDMwMDM4MjU2MTkzNzA3MTM0NzcxMzA0NDk0MTAyNzM5MzcwNzAwOTM1NDAifSwiZ2VfcHJvb2ZzIjpbXX0sIm5vbl9yZXZvY19wcm9vZiI6bnVsbH1dLCJhZ2dyZWdhdGVkX3Byb29mIjp7ImNfaGFzaCI6IjExMjI1Nzc2Njc5MDE1NzAxODY5NjgwNTAzMzcxMDg2NzI4NjY4OTMwMDIwOTc5NjEyOTgwMTA2MDk3Mzk0Nzk0OTI1OTg3OTc2MDM1MCIsImNfbGlzdCI6W1sxLDE3OCwzNiwyMjUsMTU3LDI0OSwyNCwyMDgsMTMsNTAsODIsMTYsMjE0LDY3LDQ0LDI0NywyMTMsNjgsMTg1LDI1NSwxMDUsMTM4LDIzMywxNDksMTI4LDEyMiwxODAsMjE3LDE3NSwyMywzMyw2NywxMzIsMjA4LDUxLDQ2LDExOCwyMzMsMjIsMjMyLDExMSwxMTcsMjEwLDk3LDEzMCw1LDIwNSwzOCwyOCwzMCwxMjQsMjE3LDE0NSwyMTgsOTMsMTYwLDEyNiw2MywyMTQsMjAwLDUsNDcsNjksODEsMjI1LDM5LDU4LDEwNywxOCwxMjcsMTcyLDIwLDI1Myw1MCw3Nyw5NiwyMjMsMTc3LDQzLDYxLDU1LDIxNSwyMSw1NSw2MCwyMTIsMTc5LDEwNywzNiwyNTUsNjksMTQ5LDE5MSwyNDQsNjAsMjA4LDIwMiwxODQsMjAzLDE0OSwxNTcsMTU0LDE0MywxMDUsMTcwLDE2NSwxMSwzLDkzLDk0LDIzMiwxNjQsMTc4LDI0MSwyMzUsNTgsOTMsMjQyLDIxOCw2MSw3NSw2Niw5MywxNTcsMjQ2LDE5OCwxNzIsMTY2LDEwMCwxOCwxMTgsMTk2LDU2LDU4LDEzNywyMjksMTMyLDIyNSwyMiw1MSwxNTksMTcxLDYsNTUsMjM1LDE2OCwxMiw0NiwxMjIsNDAsMTcsMTU4LDE4NywxNzksMTkwLDEyMCwyNDcsMTk3LDY2LDE0NSwxNDcsNzcsNTksMTg3LDI1NCw3MCwyMjYsOSwxNzgsMjIyLDEwMiwyMzcsMTYsMTMwLDEwLDI0MywyNiwxNzQsMTIwLDEwNCwxMDQsMTA3LDc1LDE4NiwzMCwyMTksNzYsMTAxLDIzOCwxMiw3Niw2OCwzMyw2LDE4MSwxMzEsMjU0LDI1MCwxNjIsMTAyLDE4OSw4LDU3LDE1MywxMTIsOSwyNSwxOTYsMjA5LDAsMTk4LDE5MiwxOTgsMTcwLDIxOCwxMiw1Nyw3MiwzNCwzLDExOCwxMzAsMTU4LDIyNyw0NCwxODcsMTA5LDE4MSwyMzAsMjE3LDIwNyw0Myw3NSwxNjIsMjQzLDIxMiwyMSwxNjcsMTU3LDIwNiwxMzksMTM3LDI1MCwxNzksMzAsODIsNzAsNzMsMTQsNjMsMjA2LDI0Myw2MiwxNjksMTYyLDI0NCwyNTFdXX19LCJyZXF1ZXN0ZWRfcHJvb2YiOnsicmV2ZWFsZWRfYXR0cnMiOnt9LCJyZXZlYWxlZF9hdHRyX2dyb3VwcyI6eyJhZGRpdGlvbmFsUHJvcDEiOnsic3ViX3Byb29mX2luZGV4IjowLCJ2YWx1ZXMiOnsiZk5hbWUiOnsicmF3IjoidGVzdF9mbmFtZV8zIiwiZW5jb2RlZCI6IjQyOTM0NzE0NzQ5Njc1MzAzOTU4MjU5MDQ0NzMxMDI5NDY0NzE4MzA4NzEyOTM5MTQ4Nzk2NzI4OTY4NDE3MjczNjY2NjIyNTA1MDUxIn0sImxOYW1lIjp7InJhdyI6InRlc3RfbG5hbWVfMyIsImVuY29kZWQiOiIyODEzMDExNTQ5MTk3NDQxNTQyNDI0MDgwODMxMDU0NzMxMTkzMTUwODg3MDU3OTMxNjg2ODg4NzYyMDczNjAxMjY3MTY1OTI5MDgyMyJ9fX19LCJzZWxmX2F0dGVzdGVkX2F0dHJzIjp7fSwidW5yZXZlYWxlZF9hdHRycyI6e30sInByZWRpY2F0ZXMiOnt9fSwiaWRlbnRpZmllcnMiOlt7InNjaGVtYV9pZCI6IjdLdURUcFFoM0dKN0dwNmtFcnBXdk06Mjp0ZXN0X3Rlc3Rfc2NoZW1hMTQwNjIyLTA3OjE0LjA2LjIyMDciLCJjcmVkX2RlZl9pZCI6IjdLdURUcFFoM0dKN0dwNmtFcnBXdk06MzpDTDozMjI4NzY6dGVzdF90ZXN0X2NyZWQtZGVmXzE0MDYyMi0wNyIsInJldl9yZWdfaWQiOm51bGwsInRpbWVzdGFtcCI6bnVsbH1dfQ==\"\n                    }\n                }\n            ],\n            \"~thread\": {\n                \"thid\": \"2037118f-1e63-4bd7-963b-c0e437f0ddd3\"\n            }\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Out-of-band-proof-presentation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json();\r",
+              "\r",
+              "let template = `\r",
+              "<html>\r",
+              "    <body> \r",
+              "        <div>Scan the QR code below for out of band proof presentation</div>\r",
+              "        <br>\r",
+              "        <div style=\"text-align:center;\">\r",
+              "            <img src='https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=+{{data.presentationMessage}}'></img>\r",
+              "        </div>\r",
+              "    </body>\r",
+              "</html>`;\r",
+              "pm.visualizer.set(template, res);\r",
+              "\r",
+              "if(res.statusCode == 201){\r",
+              "    pm.environment.set(\"oob-presentation-id\", res.data.presentationId);\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"schemaName\":\"\",\r\n  \"attributes\":[\"{{array0}}\",\"{{array1}}\"],\r\n  \"options\": {  \r\n                \"type\":\"Aries1.0\",\r\n                \"credentialDefinationName\":\"{{cred-def-id}}\"\r\n             }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{proof_man_baseURL}}/v1/send-out-of-band-presentation-request",
+          "host": ["{{proof_man_baseURL}}"],
+          "path": ["v1", "send-out-of-band-presentation-request"]
+        },
+        "description": "#### **Description** **:**\n\nFrom a verifier to a prover, the out of band presentation request message describes values that need to be revealed and predicates that need to be fulfilled.\n\n> The Out-of-band protocol is used when you wish to engage with another agent and you don't have a DIDComm connection to use for the interaction.\n\n#### **Body Parameters :**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| credential_def_id | required | `\"cred_def_id\"`  <br>key maps to the credential definition identifier of the credential with the current attribute. It should be provided in \"STRING\" format. Mandatory if schema_id is not provided. |\n| schemaId | required | `\"schema_name\"`  <br>Should be valid existing schema and should be provided as \"STRING\". Mandatory if cred_def_id is not provided. |\n| attributes | required | `[{ \"`attribute_name`\" : \"attr_name\" }]`  <br>should be provided JSON array. |\n\n  \n  \n\n#### **Response :**\n\nThe positive response for this request comprises of following attributes :\n\n| Key | Description |\n| --- | --- |\n| `statusCode` | It return the http response code on the execution of this request. |\n| `message` | It returns the standard response with accordance to the action performed. |\n| `data` | It returns the requested information for the request. |\n| `data → id` | It returns the id for the corresponding record in the database. |\n| `data → presentation_id` | It returns the presentation id for the corresponding record in the database. |\n| `data → connectionId` | It returns the connection id for the corresponding record in the database. |\n| `data → credential_def_id` | It returns the credential defination id for the corresponding record in the database. |\n| `data → schemaId` | It returns the corresponding unique id for schema on the ledger. |\n| `data → their_did` | It returns the their did for the corresponding record in the database. |\n| `data → status` | It returns the status for the corresponding record in the database. |\n| `data → created_date` | It returns the date the presentation proof was created. |\n| `data → updated_date` | It returns the last presentation proof updation date. |\n| `data → presentationMessage` | It returns the presentation message for the corresponding record return by the mediator. |"
+      },
+      "response": [
+        {
+          "name": "Out-of-band-proof-presentation",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"comment\": \"Out of Band\",\r\n    \"attributes\": [\r\n        {\r\n            \"attribute_name\": \"{{array0}}\",\r\n            \"value\": \"\",\r\n            \"condition\": \"\"\r\n        },\r\n        {\r\n            \"attribute_name\": \"{{array1}}\",\r\n            \"value\": \"\",\r\n            \"condition\": \"\"\r\n        }\r\n    ],\r\n    \"credential_def_id\": \"\",\r\n    \"schemaId\": \"{{schema-id}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{proof_man_baseURL}}/v1/send-out-of-band-presentation-request",
+              "host": ["{{proof_man_baseURL}}"],
+              "path": ["v1", "send-out-of-band-presentation-request"]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Wed, 15 Jun 2022 09:27:47 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "content-length",
+              "value": "1570"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"622-ZaUMbvDBDS5ELn3jeaSKeedxEIQ\""
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 201,\n    \"message\": \"Presentation request send successfully\",\n    \"data\": {\n        \"id\": \"853d92b2-0260-41a7-a9af-3c026be8fe35\",\n        \"presentation_id\": \"7fa03531-74f4-49a0-a94f-6feb30041c13\",\n        \"connectionId\": \"\",\n        \"credential_def_id\": \"\",\n        \"schemaId\": \"7KuDTpQh3GJ7Gp6kErpWvM:2:test_test_schema140622-07:14.06.2207\",\n        \"their_did\": \"\",\n        \"status\": \"request-sent\",\n        \"created_date\": \"2022-06-15T09:27:47.562Z\",\n        \"updated_date\": \"2022-06-15T09:27:47.562Z\",\n        \"presentationMessage\": \"https://gaiax.vereign.com:443/ocm/didcomm/?d_m=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvcHJlc2VudC1wcm9vZi8xLjAvcmVxdWVzdC1wcmVzZW50YXRpb24iLCJAaWQiOiJlOGViZGQyZS0xOGM2LTRkY2EtOWFmMy05ZjZjNWYyNzk0YzYiLCJjb21tZW50IjoiT3V0IG9mIEJhbmQiLCJyZXF1ZXN0X3ByZXNlbnRhdGlvbnN-YXR0YWNoIjpbeyJAaWQiOiJsaWJpbmR5LXJlcXVlc3QtcHJlc2VudGF0aW9uLTAiLCJtaW1lLXR5cGUiOiJhcHBsaWNhdGlvbi9qc29uIiwiZGF0YSI6eyJiYXNlNjQiOiJleUp1WVcxbElqb2lUM1YwSUU5bUlFSmhibVFnVUhKdmIyWWdVbVZ4ZFdWemRDSXNJblpsY25OcGIyNGlPaUpQZFhRZ1QyWWdRbUZ1WkNCUWNtOXZaaUJTWlhGMVpYTjBJaXdpYm05dVkyVWlPaUk1TmprMk5qTTBNalkyTkRZMElpd2ljbVZ4ZFdWemRHVmtYMkYwZEhKcFluVjBaWE1pT25zaVlXUmthWFJwYjI1aGJGQnliM0F4SWpwN0ltNWhiV1Z6SWpwYkltWk9ZVzFsSWl3aWJFNWhiV1VpWFN3aWNtVnpkSEpwWTNScGIyNXpJanBiZXlKelkyaGxiV0ZmYVdRaU9pSTNTM1ZFVkhCUmFETkhTamRIY0RaclJYSndWM1pOT2pJNmRHVnpkRjkwWlhOMFgzTmphR1Z0WVRFME1EWXlNaTB3TnpveE5DNHdOaTR5TWpBM0luMWRmWDBzSW5KbGNYVmxjM1JsWkY5d2NtVmthV05oZEdWeklqcDdmWDA9In19XSwifnNlcnZpY2UiOnsicmVjaXBpZW50S2V5cyI6WyJCdWpMMnlmYTNYTkFXTHJ6dmVyc216OXpZdkpKTmRZaHBMa0tCNXpnM0JpTCJdLCJyb3V0aW5nS2V5cyI6W10sInNlcnZpY2VFbmRwb2ludCI6Imh0dHBzOi8vZ2FpYXgudmVyZWlnbi5jb206NDQzL29jbS9kaWRjb21tIn19\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Check-OOB-Verification",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json();\r",
+              "\r",
+              "if (res.statusCode == 200) {\r",
+              "\tif (res.data.isVerified == true && res.data.state == \"done\") {\r",
+              "\t\tlet template = `\r",
+              "            <html>\r",
+              "                <body> \r",
+              "                    <div style=\"text-align:center; color:green;\">\r",
+              "                        <h2>Proof verified successfully</h2>\r",
+              "                    </div>\r",
+              "                </body>\r",
+              "            </html>`;\r",
+              "\t\tpm.visualizer.set(template, res);\r",
+              "\t} else {\r",
+              "\t\tlet template = `\r",
+              "            <html>\r",
+              "                <body> \r",
+              "                    <div style=\"text-align:center; color:red;\">\r",
+              "                        <h2>Proof not presented yet.</h2>\r",
+              "                    </div>\r",
+              "                </body>\r",
+              "            </html>`;\r",
+              "\t\tpm.visualizer.set(template, res);\r",
+              "\t}\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{proof_man_baseURL}}/v1/find-by-presentation-id?presentationId={{oob-presentation-id}}",
+          "host": ["{{proof_man_baseURL}}"],
+          "path": ["v1", "find-by-presentation-id"],
+          "query": [
+            {
+              "key": "presentationId",
+              "value": "{{oob-presentation-id}}"
+            }
+          ]
+        },
+        "description": "#### **Description** **:**\n\nThis request is used to fetch proof presentation request information for the presentation id provided in query parameter.\n\n> It also provides state of the proof presentation request.\n\n#### **Query Parameter** **:**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| presentationId | required | `\"presentation_id\"`  <br>presentation_id is fetched from the proof request. It provides the state of the request. |"
+      },
+      "response": [
+        {
+          "name": "Check-OOB-Verification",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{proof_man_baseURL}}/v1/find-by-presentation-id?presentation_id={{oob-presentation-id}}",
+              "host": ["{{proof_man_baseURL}}"],
+              "path": ["v1", "find-by-presentation-id"],
+              "query": [
+                {
+                  "key": "presentation_id",
+                  "value": "{{oob-presentation-id}}"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Wed, 15 Jun 2022 09:28:08 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "content-length",
+              "value": "7384"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"1cd8-GlvND2hpBaJd1J2NNqI0bQBluQU\""
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Proof presentation fetch successfully\",\n    \"data\": {\n        \"_tags\": {\n            \"state\": \"done\",\n            \"threadId\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\"\n        },\n        \"metadata\": {},\n        \"id\": \"7fa03531-74f4-49a0-a94f-6feb30041c13\",\n        \"createdAt\": \"2022-06-15T09:27:47.528Z\",\n        \"requestMessage\": {\n            \"@type\": \"https://didcomm.org/present-proof/1.0/request-presentation\",\n            \"@id\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\",\n            \"comment\": \"Out of Band\",\n            \"request_presentations~attach\": [\n                {\n                    \"@id\": \"libindy-request-presentation-0\",\n                    \"mime-type\": \"application/json\",\n                    \"data\": {\n                        \"base64\": \"eyJuYW1lIjoiT3V0IE9mIEJhbmQgUHJvb2YgUmVxdWVzdCIsInZlcnNpb24iOiJPdXQgT2YgQmFuZCBQcm9vZiBSZXF1ZXN0Iiwibm9uY2UiOiI5Njk2NjM0MjY2NDY0IiwicmVxdWVzdGVkX2F0dHJpYnV0ZXMiOnsiYWRkaXRpb25hbFByb3AxIjp7Im5hbWVzIjpbImZOYW1lIiwibE5hbWUiXSwicmVzdHJpY3Rpb25zIjpbeyJzY2hlbWFfaWQiOiI3S3VEVHBRaDNHSjdHcDZrRXJwV3ZNOjI6dGVzdF90ZXN0X3NjaGVtYTE0MDYyMi0wNzoxNC4wNi4yMjA3In1dfX0sInJlcXVlc3RlZF9wcmVkaWNhdGVzIjp7fX0=\"\n                    }\n                }\n            ],\n            \"~service\": {\n                \"recipientKeys\": [\n                    \"BujL2yfa3XNAWLrzversmz9zYvJJNdYhpLkKB5zg3BiL\"\n                ],\n                \"routingKeys\": [],\n                \"serviceEndpoint\": \"https://gaiax.vereign.com:443/ocm/didcomm\"\n            }\n        },\n        \"state\": \"done\",\n        \"threadId\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\",\n        \"autoAcceptProof\": \"always\",\n        \"isVerified\": true,\n        \"presentationMessage\": {\n            \"@type\": \"https://didcomm.org/present-proof/1.0/presentation\",\n            \"@id\": \"8e2ce5d1-2f04-4edd-935e-75e6b5fed752\",\n            \"presentations~attach\": [\n                {\n                    \"@id\": \"libindy-presentation-0\",\n                    \"mime-type\": \"application/json\",\n                    \"data\": {\n                        \"base64\": \"eyJwcm9vZiI6eyJwcm9vZnMiOlt7InByaW1hcnlfcHJvb2YiOnsiZXFfcHJvb2YiOnsicmV2ZWFsZWRfYXR0cnMiOnsiZm5hbWUiOiI0MjkzNDcxNDc0OTY3NTMwMzk1ODI1OTA0NDczMTAyOTQ2NDcxODMwODcxMjkzOTE0ODc5NjcyODk2ODQxNzI3MzY2NjYyMjUwNTA1MSIsImxuYW1lIjoiMjgxMzAxMTU0OTE5NzQ0MTU0MjQyNDA4MDgzMTA1NDczMTE5MzE1MDg4NzA1NzkzMTY4Njg4ODc2MjA3MzYwMTI2NzE2NTkyOTA4MjMifSwiYV9wcmltZSI6IjIzNzk0MTQ0MDAyNjU3Nzk2ODUxNzA2MTE2NTU1MDkyMTI4ODg3MzA0ODc1NzMwODQ3OTMyNDczODI5NzQ4MjE3MzQwMTE5ODQ4Nzg4OTY1OTg3NDIzNDAyOTg1OTUyMzIxMDYwOTk2MDkxNzIwMzgzMzQzNTk2Mjg1MjY5ODA4NjM5NzIxMjM1Njc2MjM5ODk3MjczNDY0NDQyMzkwMDI5ODMyNDk5Mzg3NDg3NTI1MjQyODA0ODI2ODI4OTE1ODcyMjUzNTI3NTI2Nzk2OTg3NzQ0NDc5Njc4MDY3NTMyMTI4ODU4NzczNDA4NDI0NDYwNDIyMjI4MzEwNTg0OTY5MzU3MzIzNTAzNzM0OTc0OTA0MjAzNzc3MzE1Nzc2ODk3NjkwOTk0OTA1ODk0OTA1NzM2MzY0NDY1MzU4NDY0ODkxNDExOTI2MzI5OTcyNTQ5MjM0NjU4ODk2Mzg0Njk4NDMyMDUzMjQ2NDIzNjI0NjY1MTE0MTA5NDk4MTY5NjAyNjgwMDQ4NTI5MTI5NTQxMzA2NzQ5MjQ2MDQ5MjIzMjMwOTU3NzI3Mzk3MTY4Njc4OTkyNDcxMDczMjYzNjQ3MTYxNzg1ODY0NzExNzIyMTA5NTUzMDA5MjQwOTAxODE1NTU3NzEwNTMwNzM2NjA4MDE5MzQ3NDExMzgxMDE1OTM2MTU4ODIxMTQ1MzEzOTk5MzU2NjAzNjQ5MTc1NTU2MDU5NzQwMTA1ODA0OTgyMjI3Njk1OTI3ODcyMzIzOTE5ODMyOTMxODI4MjUwNjAzNTg1Nzg4OTgzOTk1NTk5Mjk1MjUzNjc1IiwiZSI6IjE0NDU5NDA4Nzg4MjMwNTI5ODYxODg2Mzg2NjEwMzY2MjcxMjY3NzgwMjQxOTI4MjY1MzU5Njg5MzQ0MzAwMDUyOTcyMDIzMDI3OTE4NzIwODk0NzI0OTgyNDE2NDYyMzUxOTY1OTA4MDc0Njc1MzgwMDA2NTM3NjQ1MDI5MTg1MzkyNjcyMTQyMyIsInYiOiIxMTE4MTE2MzM1MjY4MTU5NzgzMDA4MzM4ODQ3ODY3NzkxNjk3MTQ3NTAxOTk4ODMwMzIwMDYwNzQ0NjYwOTM2NjU1NDk1Mjc2OTg3NDUzODUyNzUzNzU5MjUzMzYyNDQxNjIyMjMzNTc5Mzc5MDUwMTE1NDI4MjkwMzY5ODg3OTI4MjY2MDQ3NDk0NzYwNzczODc1NjM1MDM0MjYwNjIwMDUxNzEyNTQzOTkzODc5MjQ2NTgxNjE5NDAyMzQ4OTE1MTUyOTA4OTMyNzQ4NzIyOTIwMzU2NDgxMTkzODkwODcwNjEyOTc1NzQyNTk2ODc4MDk4MzkxMDM0NTY5MjgxOTMwMTcwMjQ4NjY5Njc3ODQ4NzU4MTg1NDA0MzY3MTk2OTgwOTQ1NDgxMDkyOTkzOTg2MzQzNzc5MDI4MzI3MTIyMjk1OTkyODQ1NjY5NzIxOTU4Njk1Mzg0MjA1MzU1MTI4ODU3Mzc0NDIyMzk3NTA1MTI5MDYzMzU1MjMxNDIzMzA5OTQwMzk5MjE3NTk4NjgwNDUzNjkxODU1MzE5NzAzMzUxNTczODI2NDk5NDQ3OTg5NTU5MTY1NjgxMzcyNjM3NzYwOTg3MjE4MjMxMjA0NTczNzA1NTg3NDc0MTQ0MTQxMDY0NTY0ODc4OTgxMjEwOTI2ODAxNTY1MjQyOTg3ODMzMTYxMjMxNTQ0NTQ0OTUyODI1MDk5ODM3MDY1Mjg1OTExOTE4OTkyOTcyODA0NDExMzcxODk5MDg1ODc2MTU3OTAxODI1OTU4NzE0NDIzMTA5OTg0ODkwNjc0NTQ2MTMyMjczMTc2Mzg5MjQ1NzU5NjA4MDg3MjU4MDMxNzYwOTU1NTI1MDM4Mjc1MzcyNTQ1NDMyODQwMTA5MDI1NjI3NzU2ODMzMzI5MjMzNzQxNDQ3MDI2NTg0OTUzNTI4NjM3MDM0NzUxNzIzMjE4MTY4OTMxNDM1MDg4MjMyMTc2OTM2MjkxMTIzMjY0ODEyNzg5MTY2MTA3NTk3NTg1NzMzMjQxMDM0MDUzODMxNzA5MjU4MjUyMTU4OTY3MjcyMTkzMTkxODYxNzk1NjMzMjMyODE0ODEzNjE2NTA2MjE2MTU4NDU3MDI1NDQwMDAzMTc0MDEzNTg5ODk2OTg3MDcxMDIwMzA0Mjk2NTUzNDkxNzg0NDE3MDM2MDQxMzI0NTcxNzk4ODExNTczODY2NDI0NTkwNjgxIiwibSI6eyJtYXN0ZXJfc2VjcmV0IjoiMTAxMTQ4NTA2NDgxNjEyOTM4NzI3NTgzNzYxMjQxODQwMzYxODcyMTU1NzU3NDE3MDg1Nzk2MjQzMjY5Nzg0MTg3NTk2NzE0OTA2MTc4MTIxNTk3MDM4NTM0MTk5MDExMTc2NjMxNjY3ODk4NzQ3ODQzNjE2MDE0MzU2OTQ4MDUzMDUzMTcxNjQzODQwOTY1MDE3NTk0MDA0Mjk3ODU2Mjk4OTcwNDI0Mzg2ODY1NjU2OTYiLCJnZW5kZXIiOiIzMjc1MzEzNTkxNDkyMDMyNzUwNDcxMTI4MDA3NTc0NTc3MDkyNDQxODYyMzM1NDg0NDg2MTUzNTM3Njc1OTY4MjUzNjcwMDI2Mjg4NzA0OTg1Nzc4ODc4NDM4ODQ0MTIwODQ0MjU4ODc3NDEyMjAwNzI0MTI2NjAxNzkyOTY0ODA2NzU5NzI4NDA4ODA0MTEwOTk4NzUwOTMzMjQ0MTI2NDQ0NDQyMDA3NDU5MzgxNDA2In0sIm0yIjoiMTI2ODM1NDM0OTk2NTkzNjUyNzU3MTQ2MzY1MTA2NjQzNTYxOTA3NDM0MTY3Njg1ODc2NjU5NzUwMTU2Njg4MDM1MDQ1NDg4MjM1MjA0MjU0MjI4NTk2MTcyOTI2MTgwMjc3NzU4MjYzMTU1MDY1ODE4MjAyNTE2OTc3NTIzOTYwOTQ1MDIzMDkzOTk2Nzc2MjM1MDQyNTk0NzIxMjc5NDIzMzk5ODI3MjE0MzE1OTI4OTgifSwiZ2VfcHJvb2ZzIjpbXX0sIm5vbl9yZXZvY19wcm9vZiI6bnVsbH1dLCJhZ2dyZWdhdGVkX3Byb29mIjp7ImNfaGFzaCI6IjQ1OTgzMTQzOTkwNDU4NDM2NjYzNzIwODcyNDkwNzA0NTIxMjYxODI2NjUzMDA0MjE1ODE0OTAzODA1MzAxMzE4NDIwMjQyNTgyNTA3IiwiY19saXN0IjpbWzE4OCwxMjQsMTAxLDE5MSw3OCw4MiwyMjgsMjE4LDI1MCwxOTQsODgsMTk0LDEyMywzOCw2LDEsMjA0LDIyMSw3MywyMDIsMTQ5LDkwLDE3NiwyNTEsMTExLDU0LDIxMSwxOCwxNCwyNDgsMzEsNzMsNjQsMTU2LDIxNywzMywxMDcsNTcsOTgsMjExLDI0MiwyMzQsMTksMTE5LDc2LDE5LDYzLDM1LDI0OCw4Myw2NywyMjgsMjE5LDE1MiwyOCw0Nyw4NywxMjYsMTk5LDI0MiwxNDYsMTQsMTM3LDk2LDE4NSwyNDMsNDUsMzgsMTA3LDE2NSwyMDksMjA0LDczLDE0MywxMCwxMjEsMTU2LDE0MywyMDQsMjM0LDY3LDI0Miw3MiwxNDQsMTg4LDI1MCwyMTMsMTM2LDE3NiwxMDUsMjA2LDU5LDExMywyMzYsMjQyLDEyMywyMTcsMTEsMjE1LDE2MSwxNTEsMjM1LDgxLDI0NiwyMDEsMTgyLDE4OSw1MSwyMDEsMjI4LDc1LDE3MCwyMjgsMTgyLDM4LDUxLDExNiwxODgsMjM1LDE4NiwyMjIsMTI2LDEyNSwxOSwxNTgsMTQsNTYsNDYsODgsMTc4LDU0LDIxMCwxMDUsMjE2LDEyOSwyMzEsNTAsMTExLDg3LDE1OSwyNDUsMjQsNzksMjQxLDkzLDI1NCwxMjYsMTg1LDEyOCwyMjgsMTExLDg3LDc1LDE0MSwyMjAsMjI5LDQ2LDEwLDI0LDYwLDIxNSwxMDIsMTY3LDE0MCw1NCw3NywyMzIsMjUxLDE0MSw3NiwyNSwyLDE1NSw1NSwyNTEsMjQyLDE4NiwxNTQsMjM1LDI5LDgxLDExMiwxNjMsNjgsNSwyMCwxNzEsNiwyMTYsMTgwLDUwLDExOCwyMDIsNjgsNTYsNzQsMjMxLDIyNSw4OSwxMTYsMTYxLDU2LDE1Miw1MSwxNzEsOTksMjI4LDcyLDE0MCw0MCwyMTAsNjMsODEsMjUyLDIyLDEwLDIwOSwxNTAsMjMyLDE0NSw1MiwxNDcsMTIyLDI0NCwxOCwxMDQsNTIsMjI0LDI1NSwxNiwxMzcsMTA4LDI0NSwyNDAsMTIwLDE1NCwxOTYsMjAwLDIxMiw1Myw2MywxMDQsMjAwLDIzLDE2MiwxMDQsMTA5LDE1OSwyMzgsMTc5LDAsMTcxLDEzMCwyNTAsMTQwLDE3MV1dfX0sInJlcXVlc3RlZF9wcm9vZiI6eyJyZXZlYWxlZF9hdHRycyI6e30sInJldmVhbGVkX2F0dHJfZ3JvdXBzIjp7ImFkZGl0aW9uYWxQcm9wMSI6eyJzdWJfcHJvb2ZfaW5kZXgiOjAsInZhbHVlcyI6eyJmTmFtZSI6eyJyYXciOiJ0ZXN0X2ZuYW1lXzMiLCJlbmNvZGVkIjoiNDI5MzQ3MTQ3NDk2NzUzMDM5NTgyNTkwNDQ3MzEwMjk0NjQ3MTgzMDg3MTI5MzkxNDg3OTY3Mjg5Njg0MTcyNzM2NjY2MjI1MDUwNTEifSwibE5hbWUiOnsicmF3IjoidGVzdF9sbmFtZV8zIiwiZW5jb2RlZCI6IjI4MTMwMTE1NDkxOTc0NDE1NDI0MjQwODA4MzEwNTQ3MzExOTMxNTA4ODcwNTc5MzE2ODY4ODg3NjIwNzM2MDEyNjcxNjU5MjkwODIzIn19fX0sInNlbGZfYXR0ZXN0ZWRfYXR0cnMiOnt9LCJ1bnJldmVhbGVkX2F0dHJzIjp7fSwicHJlZGljYXRlcyI6e319LCJpZGVudGlmaWVycyI6W3sic2NoZW1hX2lkIjoiN0t1RFRwUWgzR0o3R3A2a0VycFd2TToyOnRlc3RfdGVzdF9zY2hlbWExNDA2MjItMDc6MTQuMDYuMjIwNyIsImNyZWRfZGVmX2lkIjoiN0t1RFRwUWgzR0o3R3A2a0VycFd2TTozOkNMOjMyMjg3Njp0ZXN0X3Rlc3RfY3JlZC1kZWZfMTQwNjIyLTA3IiwicmV2X3JlZ19pZCI6bnVsbCwidGltZXN0YW1wIjpudWxsfV19\"\n                    }\n                }\n            ],\n            \"~thread\": {\n                \"thid\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\"\n            },\n            \"~service\": {\n                \"recipientKeys\": [\n                    \"evCcbASAsuvWGB4y2Z3tVeXKQLsgnF6MZ1NPWcPteiH\"\n                ],\n                \"routingKeys\": [\n                    \"3uq8CaLCKcP1Q2JW8KLyDQu9ZrHPbZw4Kix9oZqeY7Tf\"\n                ],\n                \"serviceEndpoint\": \"https://gaiax.vereign.com/mediator\"\n            },\n            \"~transport\": {\n                \"return_route\": \"all\"\n            }\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Out-of-band-proof-for-type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json();\r",
+              "\r",
+              "let template = `\r",
+              "<html>\r",
+              "    <body> \r",
+              "        <div>Scan the QR code below for out of band proof presentation</div>\r",
+              "        <br>\r",
+              "        <div style=\"text-align:center;\">\r",
+              "            <img src='https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=+{{data.presentationMessage}}'></img>\r",
+              "        </div>\r",
+              "    </body>\r",
+              "</html>`;\r",
+              "pm.visualizer.set(template, res);\r",
+              "\r",
+              "if(res.statusCode == 201){\r",
+              "    pm.environment.set(\"oob_type-presentation-id\", res.data.presentationId);\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          }
+        ],
+        "url": {
+          "raw": "{{proof_man_baseURL}}/v1/out-of-band-proof?type=principalMemberCredential",
+          "host": ["{{proof_man_baseURL}}"],
+          "path": ["v1", "out-of-band-proof"],
+          "query": [
+            {
+              "key": "type",
+              "value": "principalMemberCredential"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check-OOB-Type-Verification",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json();\r",
+              "\r",
+              "if (res.statusCode == 200) {\r",
+              "\tif (res.data.isVerified == true && res.data.state == \"done\") {\r",
+              "\t\tlet template = `\r",
+              "            <html>\r",
+              "                <body> \r",
+              "                    <div style=\"text-align:center; color:green;\">\r",
+              "                        <h2>Proof verified successfully</h2>\r",
+              "                    </div>\r",
+              "                </body>\r",
+              "            </html>`;\r",
+              "\t\tpm.visualizer.set(template, res);\r",
+              "\t} else {\r",
+              "\t\tlet template = `\r",
+              "            <html>\r",
+              "                <body> \r",
+              "                    <div style=\"text-align:center; color:red;\">\r",
+              "                        <h2>Proof not presented yet.</h2>\r",
+              "                    </div>\r",
+              "                </body>\r",
+              "            </html>`;\r",
+              "\t\tpm.visualizer.set(template, res);\r",
+              "\t}\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{proof_man_baseURL}}/v1/find-by-presentation-id?presentationId={{oob_type-presentation-id}}",
+          "host": ["{{proof_man_baseURL}}"],
+          "path": ["v1", "find-by-presentation-id"],
+          "query": [
+            {
+              "key": "presentationId",
+              "value": "{{oob_type-presentation-id}}"
+            }
+          ]
+        },
+        "description": "#### **Description** **:**\n\nThis request is used to fetch proof presentation request information for the presentation id provided in query parameter.\n\n> It also provides state of the proof presentation request.\n\n#### **Query Parameter** **:**\n\n| **Key** | **isRequired** | **Value** |\n| --- | --- | --- |\n| presentationId | required | `\"presentation_id\"`  <br>presentation_id is fetched from the proof request. It provides the state of the request. |"
+      },
+      "response": [
+        {
+          "name": "Check-OOB-Verification",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{proof_man_baseURL}}/v1/find-by-presentation-id?presentation_id={{oob-presentation-id}}",
+              "host": ["{{proof_man_baseURL}}"],
+              "path": ["v1", "find-by-presentation-id"],
+              "query": [
+                {
+                  "key": "presentation_id",
+                  "value": "{{oob-presentation-id}}"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Wed, 15 Jun 2022 09:28:08 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "content-length",
+              "value": "7384"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"1cd8-GlvND2hpBaJd1J2NNqI0bQBluQU\""
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Proof presentation fetch successfully\",\n    \"data\": {\n        \"_tags\": {\n            \"state\": \"done\",\n            \"threadId\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\"\n        },\n        \"metadata\": {},\n        \"id\": \"7fa03531-74f4-49a0-a94f-6feb30041c13\",\n        \"createdAt\": \"2022-06-15T09:27:47.528Z\",\n        \"requestMessage\": {\n            \"@type\": \"https://didcomm.org/present-proof/1.0/request-presentation\",\n            \"@id\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\",\n            \"comment\": \"Out of Band\",\n            \"request_presentations~attach\": [\n                {\n                    \"@id\": \"libindy-request-presentation-0\",\n                    \"mime-type\": \"application/json\",\n                    \"data\": {\n                        \"base64\": \"eyJuYW1lIjoiT3V0IE9mIEJhbmQgUHJvb2YgUmVxdWVzdCIsInZlcnNpb24iOiJPdXQgT2YgQmFuZCBQcm9vZiBSZXF1ZXN0Iiwibm9uY2UiOiI5Njk2NjM0MjY2NDY0IiwicmVxdWVzdGVkX2F0dHJpYnV0ZXMiOnsiYWRkaXRpb25hbFByb3AxIjp7Im5hbWVzIjpbImZOYW1lIiwibE5hbWUiXSwicmVzdHJpY3Rpb25zIjpbeyJzY2hlbWFfaWQiOiI3S3VEVHBRaDNHSjdHcDZrRXJwV3ZNOjI6dGVzdF90ZXN0X3NjaGVtYTE0MDYyMi0wNzoxNC4wNi4yMjA3In1dfX0sInJlcXVlc3RlZF9wcmVkaWNhdGVzIjp7fX0=\"\n                    }\n                }\n            ],\n            \"~service\": {\n                \"recipientKeys\": [\n                    \"BujL2yfa3XNAWLrzversmz9zYvJJNdYhpLkKB5zg3BiL\"\n                ],\n                \"routingKeys\": [],\n                \"serviceEndpoint\": \"https://gaiax.vereign.com:443/ocm/didcomm\"\n            }\n        },\n        \"state\": \"done\",\n        \"threadId\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\",\n        \"autoAcceptProof\": \"always\",\n        \"isVerified\": true,\n        \"presentationMessage\": {\n            \"@type\": \"https://didcomm.org/present-proof/1.0/presentation\",\n            \"@id\": \"8e2ce5d1-2f04-4edd-935e-75e6b5fed752\",\n            \"presentations~attach\": [\n                {\n                    \"@id\": \"libindy-presentation-0\",\n                    \"mime-type\": \"application/json\",\n                    \"data\": {\n                        \"base64\": \"eyJwcm9vZiI6eyJwcm9vZnMiOlt7InByaW1hcnlfcHJvb2YiOnsiZXFfcHJvb2YiOnsicmV2ZWFsZWRfYXR0cnMiOnsiZm5hbWUiOiI0MjkzNDcxNDc0OTY3NTMwMzk1ODI1OTA0NDczMTAyOTQ2NDcxODMwODcxMjkzOTE0ODc5NjcyODk2ODQxNzI3MzY2NjYyMjUwNTA1MSIsImxuYW1lIjoiMjgxMzAxMTU0OTE5NzQ0MTU0MjQyNDA4MDgzMTA1NDczMTE5MzE1MDg4NzA1NzkzMTY4Njg4ODc2MjA3MzYwMTI2NzE2NTkyOTA4MjMifSwiYV9wcmltZSI6IjIzNzk0MTQ0MDAyNjU3Nzk2ODUxNzA2MTE2NTU1MDkyMTI4ODg3MzA0ODc1NzMwODQ3OTMyNDczODI5NzQ4MjE3MzQwMTE5ODQ4Nzg4OTY1OTg3NDIzNDAyOTg1OTUyMzIxMDYwOTk2MDkxNzIwMzgzMzQzNTk2Mjg1MjY5ODA4NjM5NzIxMjM1Njc2MjM5ODk3MjczNDY0NDQyMzkwMDI5ODMyNDk5Mzg3NDg3NTI1MjQyODA0ODI2ODI4OTE1ODcyMjUzNTI3NTI2Nzk2OTg3NzQ0NDc5Njc4MDY3NTMyMTI4ODU4NzczNDA4NDI0NDYwNDIyMjI4MzEwNTg0OTY5MzU3MzIzNTAzNzM0OTc0OTA0MjAzNzc3MzE1Nzc2ODk3NjkwOTk0OTA1ODk0OTA1NzM2MzY0NDY1MzU4NDY0ODkxNDExOTI2MzI5OTcyNTQ5MjM0NjU4ODk2Mzg0Njk4NDMyMDUzMjQ2NDIzNjI0NjY1MTE0MTA5NDk4MTY5NjAyNjgwMDQ4NTI5MTI5NTQxMzA2NzQ5MjQ2MDQ5MjIzMjMwOTU3NzI3Mzk3MTY4Njc4OTkyNDcxMDczMjYzNjQ3MTYxNzg1ODY0NzExNzIyMTA5NTUzMDA5MjQwOTAxODE1NTU3NzEwNTMwNzM2NjA4MDE5MzQ3NDExMzgxMDE1OTM2MTU4ODIxMTQ1MzEzOTk5MzU2NjAzNjQ5MTc1NTU2MDU5NzQwMTA1ODA0OTgyMjI3Njk1OTI3ODcyMzIzOTE5ODMyOTMxODI4MjUwNjAzNTg1Nzg4OTgzOTk1NTk5Mjk1MjUzNjc1IiwiZSI6IjE0NDU5NDA4Nzg4MjMwNTI5ODYxODg2Mzg2NjEwMzY2MjcxMjY3NzgwMjQxOTI4MjY1MzU5Njg5MzQ0MzAwMDUyOTcyMDIzMDI3OTE4NzIwODk0NzI0OTgyNDE2NDYyMzUxOTY1OTA4MDc0Njc1MzgwMDA2NTM3NjQ1MDI5MTg1MzkyNjcyMTQyMyIsInYiOiIxMTE4MTE2MzM1MjY4MTU5NzgzMDA4MzM4ODQ3ODY3NzkxNjk3MTQ3NTAxOTk4ODMwMzIwMDYwNzQ0NjYwOTM2NjU1NDk1Mjc2OTg3NDUzODUyNzUzNzU5MjUzMzYyNDQxNjIyMjMzNTc5Mzc5MDUwMTE1NDI4MjkwMzY5ODg3OTI4MjY2MDQ3NDk0NzYwNzczODc1NjM1MDM0MjYwNjIwMDUxNzEyNTQzOTkzODc5MjQ2NTgxNjE5NDAyMzQ4OTE1MTUyOTA4OTMyNzQ4NzIyOTIwMzU2NDgxMTkzODkwODcwNjEyOTc1NzQyNTk2ODc4MDk4MzkxMDM0NTY5MjgxOTMwMTcwMjQ4NjY5Njc3ODQ4NzU4MTg1NDA0MzY3MTk2OTgwOTQ1NDgxMDkyOTkzOTg2MzQzNzc5MDI4MzI3MTIyMjk1OTkyODQ1NjY5NzIxOTU4Njk1Mzg0MjA1MzU1MTI4ODU3Mzc0NDIyMzk3NTA1MTI5MDYzMzU1MjMxNDIzMzA5OTQwMzk5MjE3NTk4NjgwNDUzNjkxODU1MzE5NzAzMzUxNTczODI2NDk5NDQ3OTg5NTU5MTY1NjgxMzcyNjM3NzYwOTg3MjE4MjMxMjA0NTczNzA1NTg3NDc0MTQ0MTQxMDY0NTY0ODc4OTgxMjEwOTI2ODAxNTY1MjQyOTg3ODMzMTYxMjMxNTQ0NTQ0OTUyODI1MDk5ODM3MDY1Mjg1OTExOTE4OTkyOTcyODA0NDExMzcxODk5MDg1ODc2MTU3OTAxODI1OTU4NzE0NDIzMTA5OTg0ODkwNjc0NTQ2MTMyMjczMTc2Mzg5MjQ1NzU5NjA4MDg3MjU4MDMxNzYwOTU1NTI1MDM4Mjc1MzcyNTQ1NDMyODQwMTA5MDI1NjI3NzU2ODMzMzI5MjMzNzQxNDQ3MDI2NTg0OTUzNTI4NjM3MDM0NzUxNzIzMjE4MTY4OTMxNDM1MDg4MjMyMTc2OTM2MjkxMTIzMjY0ODEyNzg5MTY2MTA3NTk3NTg1NzMzMjQxMDM0MDUzODMxNzA5MjU4MjUyMTU4OTY3MjcyMTkzMTkxODYxNzk1NjMzMjMyODE0ODEzNjE2NTA2MjE2MTU4NDU3MDI1NDQwMDAzMTc0MDEzNTg5ODk2OTg3MDcxMDIwMzA0Mjk2NTUzNDkxNzg0NDE3MDM2MDQxMzI0NTcxNzk4ODExNTczODY2NDI0NTkwNjgxIiwibSI6eyJtYXN0ZXJfc2VjcmV0IjoiMTAxMTQ4NTA2NDgxNjEyOTM4NzI3NTgzNzYxMjQxODQwMzYxODcyMTU1NzU3NDE3MDg1Nzk2MjQzMjY5Nzg0MTg3NTk2NzE0OTA2MTc4MTIxNTk3MDM4NTM0MTk5MDExMTc2NjMxNjY3ODk4NzQ3ODQzNjE2MDE0MzU2OTQ4MDUzMDUzMTcxNjQzODQwOTY1MDE3NTk0MDA0Mjk3ODU2Mjk4OTcwNDI0Mzg2ODY1NjU2OTYiLCJnZW5kZXIiOiIzMjc1MzEzNTkxNDkyMDMyNzUwNDcxMTI4MDA3NTc0NTc3MDkyNDQxODYyMzM1NDg0NDg2MTUzNTM3Njc1OTY4MjUzNjcwMDI2Mjg4NzA0OTg1Nzc4ODc4NDM4ODQ0MTIwODQ0MjU4ODc3NDEyMjAwNzI0MTI2NjAxNzkyOTY0ODA2NzU5NzI4NDA4ODA0MTEwOTk4NzUwOTMzMjQ0MTI2NDQ0NDQyMDA3NDU5MzgxNDA2In0sIm0yIjoiMTI2ODM1NDM0OTk2NTkzNjUyNzU3MTQ2MzY1MTA2NjQzNTYxOTA3NDM0MTY3Njg1ODc2NjU5NzUwMTU2Njg4MDM1MDQ1NDg4MjM1MjA0MjU0MjI4NTk2MTcyOTI2MTgwMjc3NzU4MjYzMTU1MDY1ODE4MjAyNTE2OTc3NTIzOTYwOTQ1MDIzMDkzOTk2Nzc2MjM1MDQyNTk0NzIxMjc5NDIzMzk5ODI3MjE0MzE1OTI4OTgifSwiZ2VfcHJvb2ZzIjpbXX0sIm5vbl9yZXZvY19wcm9vZiI6bnVsbH1dLCJhZ2dyZWdhdGVkX3Byb29mIjp7ImNfaGFzaCI6IjQ1OTgzMTQzOTkwNDU4NDM2NjYzNzIwODcyNDkwNzA0NTIxMjYxODI2NjUzMDA0MjE1ODE0OTAzODA1MzAxMzE4NDIwMjQyNTgyNTA3IiwiY19saXN0IjpbWzE4OCwxMjQsMTAxLDE5MSw3OCw4MiwyMjgsMjE4LDI1MCwxOTQsODgsMTk0LDEyMywzOCw2LDEsMjA0LDIyMSw3MywyMDIsMTQ5LDkwLDE3NiwyNTEsMTExLDU0LDIxMSwxOCwxNCwyNDgsMzEsNzMsNjQsMTU2LDIxNywzMywxMDcsNTcsOTgsMjExLDI0MiwyMzQsMTksMTE5LDc2LDE5LDYzLDM1LDI0OCw4Myw2NywyMjgsMjE5LDE1MiwyOCw0Nyw4NywxMjYsMTk5LDI0MiwxNDYsMTQsMTM3LDk2LDE4NSwyNDMsNDUsMzgsMTA3LDE2NSwyMDksMjA0LDczLDE0MywxMCwxMjEsMTU2LDE0MywyMDQsMjM0LDY3LDI0Miw3MiwxNDQsMTg4LDI1MCwyMTMsMTM2LDE3NiwxMDUsMjA2LDU5LDExMywyMzYsMjQyLDEyMywyMTcsMTEsMjE1LDE2MSwxNTEsMjM1LDgxLDI0NiwyMDEsMTgyLDE4OSw1MSwyMDEsMjI4LDc1LDE3MCwyMjgsMTgyLDM4LDUxLDExNiwxODgsMjM1LDE4NiwyMjIsMTI2LDEyNSwxOSwxNTgsMTQsNTYsNDYsODgsMTc4LDU0LDIxMCwxMDUsMjE2LDEyOSwyMzEsNTAsMTExLDg3LDE1OSwyNDUsMjQsNzksMjQxLDkzLDI1NCwxMjYsMTg1LDEyOCwyMjgsMTExLDg3LDc1LDE0MSwyMjAsMjI5LDQ2LDEwLDI0LDYwLDIxNSwxMDIsMTY3LDE0MCw1NCw3NywyMzIsMjUxLDE0MSw3NiwyNSwyLDE1NSw1NSwyNTEsMjQyLDE4NiwxNTQsMjM1LDI5LDgxLDExMiwxNjMsNjgsNSwyMCwxNzEsNiwyMTYsMTgwLDUwLDExOCwyMDIsNjgsNTYsNzQsMjMxLDIyNSw4OSwxMTYsMTYxLDU2LDE1Miw1MSwxNzEsOTksMjI4LDcyLDE0MCw0MCwyMTAsNjMsODEsMjUyLDIyLDEwLDIwOSwxNTAsMjMyLDE0NSw1MiwxNDcsMTIyLDI0NCwxOCwxMDQsNTIsMjI0LDI1NSwxNiwxMzcsMTA4LDI0NSwyNDAsMTIwLDE1NCwxOTYsMjAwLDIxMiw1Myw2MywxMDQsMjAwLDIzLDE2MiwxMDQsMTA5LDE1OSwyMzgsMTc5LDAsMTcxLDEzMCwyNTAsMTQwLDE3MV1dfX0sInJlcXVlc3RlZF9wcm9vZiI6eyJyZXZlYWxlZF9hdHRycyI6e30sInJldmVhbGVkX2F0dHJfZ3JvdXBzIjp7ImFkZGl0aW9uYWxQcm9wMSI6eyJzdWJfcHJvb2ZfaW5kZXgiOjAsInZhbHVlcyI6eyJmTmFtZSI6eyJyYXciOiJ0ZXN0X2ZuYW1lXzMiLCJlbmNvZGVkIjoiNDI5MzQ3MTQ3NDk2NzUzMDM5NTgyNTkwNDQ3MzEwMjk0NjQ3MTgzMDg3MTI5MzkxNDg3OTY3Mjg5Njg0MTcyNzM2NjY2MjI1MDUwNTEifSwibE5hbWUiOnsicmF3IjoidGVzdF9sbmFtZV8zIiwiZW5jb2RlZCI6IjI4MTMwMTE1NDkxOTc0NDE1NDI0MjQwODA4MzEwNTQ3MzExOTMxNTA4ODcwNTc5MzE2ODY4ODg3NjIwNzM2MDEyNjcxNjU5MjkwODIzIn19fX0sInNlbGZfYXR0ZXN0ZWRfYXR0cnMiOnt9LCJ1bnJldmVhbGVkX2F0dHJzIjp7fSwicHJlZGljYXRlcyI6e319LCJpZGVudGlmaWVycyI6W3sic2NoZW1hX2lkIjoiN0t1RFRwUWgzR0o3R3A2a0VycFd2TToyOnRlc3RfdGVzdF9zY2hlbWExNDA2MjItMDc6MTQuMDYuMjIwNyIsImNyZWRfZGVmX2lkIjoiN0t1RFRwUWgzR0o3R3A2a0VycFd2TTozOkNMOjMyMjg3Njp0ZXN0X3Rlc3RfY3JlZC1kZWZfMTQwNjIyLTA3IiwicmV2X3JlZ19pZCI6bnVsbCwidGltZXN0YW1wIjpudWxsfV19\"\n                    }\n                }\n            ],\n            \"~thread\": {\n                \"thid\": \"e8ebdd2e-18c6-4dca-9af3-9f6c5f2794c6\"\n            },\n            \"~service\": {\n                \"recipientKeys\": [\n                    \"evCcbASAsuvWGB4y2Z3tVeXKQLsgnF6MZ1NPWcPteiH\"\n                ],\n                \"routingKeys\": [\n                    \"3uq8CaLCKcP1Q2JW8KLyDQu9ZrHPbZw4Kix9oZqeY7Tf\"\n                ],\n                \"serviceEndpoint\": \"https://gaiax.vereign.com/mediator\"\n            },\n            \"~transport\": {\n                \"return_route\": \"all\"\n            }\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "http://3.111.77.38:3007/v1/accept-presentation?presentation_id=5eceaa96-d08a-42a3-a083-98672ce55188",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          }
+        ],
+        "url": {
+          "raw": "{{proof_man_baseURL}}/v1/accept-presentation?presentation_id=5eceaa96-d08a-42a3-a083-98672ce55188",
+          "host": ["{{proof_man_baseURL}}"],
+          "path": ["v1", "accept-presentation"],
+          "query": [
+            {
+              "key": "presentation_id",
+              "value": "5eceaa96-d08a-42a3-a083-98672ce55188"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get-agent-proofs-proposal",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{proof_man_baseURL}}/v1/agent-proofs?threadId=85054e0d-2c21-4711-88d0-0c66ad1959f5",
+          "host": ["{{proof_man_baseURL}}"],
+          "path": ["v1", "agent-proofs"],
+          "query": [
+            {
+              "key": "threadId",
+              "value": "85054e0d-2c21-4711-88d0-0c66ad1959f5"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
 }

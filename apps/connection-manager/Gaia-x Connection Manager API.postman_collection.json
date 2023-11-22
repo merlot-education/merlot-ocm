@@ -1,673 +1,611 @@
 {
-	"info": {
-		"_postman_id": "1da5476b-7f1e-4a30-8dba-b348f7ac6672",
-		"name": "Gaia-x Connection Manager API",
-		"description": "API documentation for GAIA-X Connection Manager",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "10250261"
-	},
-	"item": [
-		{
-			"name": "Fetch connection by connection id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/connections/adede599-a398-49ea-b115-b8522d17f714",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"connections",
-						"adede599-a398-49ea-b115-b8522d17f714"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Fetch connection by connection id",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/v1/connections/adede599-a398-49ea-b115-b8522d17f714",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"v1",
-								"connections",
-								"adede599-a398-49ea-b115-b8522d17f714"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 02 Jun 2023 02:02:41 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "430"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"1ae-MrfZd4/V8Lo8suMlUBONZ1OD7d4\""
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connections fetch successfully\",\n    \"data\": {\n        \"records\": {\n            \"id\": \"5457aa3a-9885-4f2c-83c4-54189102dcb2\",\n            \"connectionId\": \"adede599-a398-49ea-b115-b8522d17f714\",\n            \"status\": \"trusted\",\n            \"participantDid\": \"5hfjHDaZMTknD4kVApcXnC\",\n            \"theirDid\": \"UZkhCWb66vXWpDiBK6jJD9\",\n            \"theirLabel\": \"ssi-abstraction-agent\",\n            \"createdDate\": \"2023-04-05T10:06:13.140Z\",\n            \"updatedDate\": \"2023-04-05T10:06:13.761Z\",\n            \"isActive\": true,\n            \"isReceived\": true\n        }\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Fetch list of connections with pagination and queries",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/connections?page=0&pageSize=25&status&participantDID",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"connections"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "0"
-						},
-						{
-							"key": "pageSize",
-							"value": "25"
-						},
-						{
-							"key": "status",
-							"value": null
-						},
-						{
-							"key": "participantDID",
-							"value": null
-						}
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Fetch list of connections with pagination and queries",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/v1/connections?page=0&pageSize=25&status&participantDID",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"v1",
-								"connections"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "0"
-								},
-								{
-									"key": "pageSize",
-									"value": "25"
-								},
-								{
-									"key": "status",
-									"value": null
-								},
-								{
-									"key": "participantDID",
-									"value": null
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 02 Jun 2023 02:00:49 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "8254"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"203e-T9AKdRFxK834ZNwao8c6y6TX3wc\""
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connections fetch successfully\",\n    \"data\": {\n        \"count\": 232,\n        \"records\": [\n            {\n                \"id\": \"008e3953-15d9-421c-ba30-3b06661595fe\",\n                \"connectionId\": \"a11a0f89-bdc7-468d-a76f-0f2652af1447\",\n                \"status\": \"invited\",\n                \"participantDid\": \"PYk6P7VfYMHTEqdnQBEtuY\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-04-06T11:36:24.395Z\",\n                \"updatedDate\": \"2023-04-06T11:36:24.395Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"015b95e0-6a43-4b11-9d2d-89e17fddfcc2\",\n                \"connectionId\": \"c3d767ea-9e02-4076-8e92-d2a7942e4800\",\n                \"status\": \"invited\",\n                \"participantDid\": \"9obzVbmTx3oCNLoQeKdS1U\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-23T07:52:11.931Z\",\n                \"updatedDate\": \"2023-03-23T07:52:11.931Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0215762c-e581-46e5-a789-4ff13adc3dff\",\n                \"connectionId\": \"52ae2374-4c9e-4abd-9da5-aabe98d6acb4\",\n                \"status\": \"invited\",\n                \"participantDid\": \"Lg6tP3d456p6oyereiCiKU\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-05-10T09:28:45.850Z\",\n                \"updatedDate\": \"2023-05-10T09:28:45.850Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"02c81e42-7cfa-47fa-a819-dfbc14042ec2\",\n                \"connectionId\": \"7cb7cdec-fd69-4c3a-93f4-ab3f85bfa7cb\",\n                \"status\": \"invited\",\n                \"participantDid\": \"HJ66AqHk4fpvbPXUjb9VqN\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-09T10:24:37.644Z\",\n                \"updatedDate\": \"2023-03-09T10:24:37.644Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"03563562-d0dc-4c0d-804a-42adbfd4ea4d\",\n                \"connectionId\": \"9d756266-f9fc-4a12-88b2-5123166aebae\",\n                \"status\": \"invited\",\n                \"participantDid\": \"FTzEn6oyH6peQigjc5pyxp\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-22T13:24:10.790Z\",\n                \"updatedDate\": \"2023-03-22T13:24:10.790Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"049020d5-8c21-4ea0-89b0-39426e385c73\",\n                \"connectionId\": \"6a625623-1ae1-4c26-ae9e-8ae7043a439a\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"95GnbqtZSARbgVDRgstB6A\",\n                \"theirDid\": \"QhiAVXCFc4aFeo8Xeio7cD\",\n                \"theirLabel\": \"cef7d748-0e1e-409d-a992-eed8fde1f603\",\n                \"createdDate\": \"2023-05-09T13:32:59.666Z\",\n                \"updatedDate\": \"2023-05-09T13:43:19.978Z\",\n                \"isActive\": true,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"04f11557-4157-4083-a73f-f6c1dc233583\",\n                \"connectionId\": \"058d420f-af66-4489-be17-2e5bcdd4d7cd\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"Fkr8PoGdHGHPEHsUiZpVD2\",\n                \"theirDid\": \"Ue61ZtAw1RVzfU42JHbXcU\",\n                \"theirLabel\": \"ssi-abstraction-agent\",\n                \"createdDate\": \"2023-05-09T08:20:47.044Z\",\n                \"updatedDate\": \"2023-05-09T08:20:48.154Z\",\n                \"isActive\": true,\n                \"isReceived\": true\n            },\n            {\n                \"id\": \"04f7aa6c-dcc2-4a3c-9300-9b21e8045a17\",\n                \"connectionId\": \"2de29e2f-50cc-45f2-95ef-1770bc3c7b9d\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"Mmik8v2w5DrZdi755maeFJ\",\n                \"theirDid\": \"Ud2wNAWLFEaBaRvdUKwwVa\",\n                \"theirLabel\": \"557a4089-4e72-402c-8422-5ddaac2f3d1b\",\n                \"createdDate\": \"2023-03-27T07:35:28.046Z\",\n                \"updatedDate\": \"2023-03-27T07:35:38.401Z\",\n                \"isActive\": true,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"055ad5f4-d9f3-46e0-9279-8f8c3071ae32\",\n                \"connectionId\": \"7e44f02f-9c4f-4c65-a028-d2f90f907ee5\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"5rBDJq3yK3MLCe8pny4kLz\",\n                \"theirDid\": \"RbaMdHuU8PNAHYi2YouicD\",\n                \"theirLabel\": \"44f30cb6-7b3b-4a84-861b-767fe670ce26\",\n                \"createdDate\": \"2023-05-22T13:47:45.062Z\",\n                \"updatedDate\": \"2023-05-22T13:48:16.503Z\",\n                \"isActive\": true,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0605a933-8f4c-4cd4-b816-79bc17ebc47a\",\n                \"connectionId\": \"d8f473d7-1055-4512-bd27-60394314ef2f\",\n                \"status\": \"invited\",\n                \"participantDid\": \"WBduFTtbz3si6RnebYh91m\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-07T08:09:36.156Z\",\n                \"updatedDate\": \"2023-03-07T08:09:36.156Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"06954fec-600c-4d97-81e3-b65d2c8a4d90\",\n                \"connectionId\": \"98e3538d-bb71-44e3-8ee4-4999ab357e8c\",\n                \"status\": \"invited\",\n                \"participantDid\": \"PafruvwBVEqSWJtXCq16Ge\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-05-22T10:27:14.205Z\",\n                \"updatedDate\": \"2023-05-22T10:27:14.205Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0804f8c0-9aff-43c6-a473-344369c9ddc7\",\n                \"connectionId\": \"92ffb41e-0190-4731-99ca-af4308b0357a\",\n                \"status\": \"complete\",\n                \"participantDid\": \"TBkKc84kS2DELsDceQDHFh\",\n                \"theirDid\": \"8qcNQgxQfAGJYa8mjgvjfB\",\n                \"theirLabel\": \"ssi-abstraction-agent\",\n                \"createdDate\": \"2023-04-24T09:17:55.082Z\",\n                \"updatedDate\": \"2023-04-24T09:20:49.861Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"08b49296-5adb-416a-ba63-7d36cef4d6cd\",\n                \"connectionId\": \"6bf8ecb9-4ce2-4fd7-8eec-73094fd118fc\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"QZQH23QAKuMJxzwUQpXQUG\",\n                \"theirDid\": \"31sxM8gpGFTU7YZ58q7rMB\",\n                \"theirLabel\": \"e9cbfec0-6575-4025-aa6e-bedf7b7c5938\",\n                \"createdDate\": \"2023-05-15T11:29:05.256Z\",\n                \"updatedDate\": \"2023-05-15T11:29:10.037Z\",\n                \"isActive\": true,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"09e6e5c4-2b4e-4610-82e9-7dac9435fd59\",\n                \"connectionId\": \"14e554fe-c9da-4881-afe7-1d92bffe6eb6\",\n                \"status\": \"requested\",\n                \"participantDid\": \"My7fYuLyF7ptsMnBn5d7xH\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"ssi-abstraction-agent\",\n                \"createdDate\": \"2023-05-09T11:15:42.452Z\",\n                \"updatedDate\": \"2023-05-09T11:15:42.557Z\",\n                \"isActive\": false,\n                \"isReceived\": true\n            },\n            {\n                \"id\": \"0b3435e3-cbed-4635-ab55-cacdaafbc1cb\",\n                \"connectionId\": \"cdca3644-2147-47ce-abd4-7a82e6195d19\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"8qcNQgxQfAGJYa8mjgvjfB\",\n                \"theirDid\": \"TBkKc84kS2DELsDceQDHFh\",\n                \"theirLabel\": \"ssi-abstraction-agent\",\n                \"createdDate\": \"2023-04-24T09:20:48.866Z\",\n                \"updatedDate\": \"2023-04-24T09:20:49.758Z\",\n                \"isActive\": true,\n                \"isReceived\": true\n            },\n            {\n                \"id\": \"0ba240e7-0663-4220-b32c-6e9beaf8a39b\",\n                \"connectionId\": \"3020b9cc-51c8-4ae7-9fa5-05f873260a6e\",\n                \"status\": \"invited\",\n                \"participantDid\": \"97rZZnBjDiQWVkNEu5kxoP\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-04-06T11:43:20.246Z\",\n                \"updatedDate\": \"2023-04-06T11:43:20.246Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0c0baac0-b452-46de-8796-a841e7661cb8\",\n                \"connectionId\": \"f97bbf2b-9186-4326-80f6-d4235ef019b2\",\n                \"status\": \"invited\",\n                \"participantDid\": \"9bHihwYECeRbDyAWzGYrkR\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-04-04T14:40:22.948Z\",\n                \"updatedDate\": \"2023-04-04T14:40:22.948Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0d2ac070-b316-4d48-9c49-bcd68e626f00\",\n                \"connectionId\": \"88f8d883-f5fc-4781-9a4c-04238fcd233b\",\n                \"status\": \"invited\",\n                \"participantDid\": \"66WLh3hCCSehqE4QoeLKD2\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-05-10T09:31:21.937Z\",\n                \"updatedDate\": \"2023-05-10T09:31:21.937Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0d44b8f7-e703-405d-ac48-f33e5261bda5\",\n                \"connectionId\": \"e823cd0b-8bd3-46f7-9866-a949f8adb493\",\n                \"status\": \"invited\",\n                \"participantDid\": \"C9rZe9uuw9ogqw8FHPJx28\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-25T14:57:16.527Z\",\n                \"updatedDate\": \"2023-03-25T14:57:16.527Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0e5bce8f-4c92-4583-8413-11701f49fd14\",\n                \"connectionId\": \"77bf538d-e2ae-4310-a45f-a4a51f26f02f\",\n                \"status\": \"complete\",\n                \"participantDid\": \"QLLQtZxcq7g8exUMYCAzJL\",\n                \"theirDid\": \"2mcHSKBnpbQzzq7Kte8Fbi\",\n                \"theirLabel\": \"de3d717c-fcb0-49fb-8bff-1e5a4acdc280\",\n                \"createdDate\": \"2023-05-22T01:42:55.707Z\",\n                \"updatedDate\": \"2023-05-22T01:43:24.442Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0e7aae40-202d-4d12-968e-b93eab0858eb\",\n                \"connectionId\": \"c4326fe8-dfb0-4c3c-9e26-068e01733abc\",\n                \"status\": \"invited\",\n                \"participantDid\": \"3ADpcR1D11ozo5UNWurLVY\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-05-10T12:19:56.914Z\",\n                \"updatedDate\": \"2023-05-10T12:19:56.913Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"10bf37e2-f5b5-4e97-9c87-6e09bf723bce\",\n                \"connectionId\": \"4aa93902-729d-42ad-b224-c21390055bdf\",\n                \"status\": \"invited\",\n                \"participantDid\": \"Kq7H3nDWnQhXYe5yosR1J7\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-05-10T09:57:05.517Z\",\n                \"updatedDate\": \"2023-05-10T09:57:05.517Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"10dea699-a127-4082-b25e-68c128c937ee\",\n                \"connectionId\": \"df7a1b85-ea59-40fc-9520-6ae59651eda0\",\n                \"status\": \"invited\",\n                \"participantDid\": \"Xekj3zM5wUQ1jvaL4cv4Ay\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-07T08:11:02.103Z\",\n                \"updatedDate\": \"2023-03-07T08:11:02.103Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"114e8be7-49cd-4581-9675-06650833f1f1\",\n                \"connectionId\": \"655fdf48-6ff9-4451-9f73-88621750a3fa\",\n                \"status\": \"invited\",\n                \"participantDid\": \"BrMoyqzb92hX6Xm2t6wNs5\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-27T07:20:27.591Z\",\n                \"updatedDate\": \"2023-03-27T07:20:27.591Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"11def929-68a8-4464-bae6-e9bed225c68d\",\n                \"connectionId\": \"61154910-3a13-4e65-b151-d0b9dfec9ecf\",\n                \"status\": \"invited\",\n                \"participantDid\": \"KDeiHYWP2Y5YgXSPbaZAW4\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-30T11:12:13.346Z\",\n                \"updatedDate\": \"2023-03-30T11:12:13.346Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            }\n        ]\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Fetch connection information by query id or did ",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/connection-information?connectionId=6a625623-1ae1-4c26-ae9e-8ae7043a439a&did",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"connection-information"
-					],
-					"query": [
-						{
-							"key": "connectionId",
-							"value": "6a625623-1ae1-4c26-ae9e-8ae7043a439a"
-						},
-						{
-							"key": "did",
-							"value": null
-						}
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Fetch connection information by query id or did ",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/v1/connection-information?connectionId=6a625623-1ae1-4c26-ae9e-8ae7043a439a&did",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"v1",
-								"connection-information"
-							],
-							"query": [
-								{
-									"key": "connectionId",
-									"value": "6a625623-1ae1-4c26-ae9e-8ae7043a439a"
-								},
-								{
-									"key": "did",
-									"value": null
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 02 Jun 2023 02:09:45 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "1294"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"50e-QdCj91548b/gSNWPOH6hEgXsq6k\""
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connection information fetch successfully\",\n    \"data\": {\n        \"records\": {\n            \"issueCredentials\": [\n                {\n                    \"id\": \"d1b0a2e0-2d42-40c2-a1bf-f00187ac34c1\",\n                    \"credentialId\": \"abfd32ca-80fc-439d-ab62-1e19f909f670\",\n                    \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:46833:OCM1-passport\",\n                    \"threadId\": \"619094b6-dae4-4d35-83f6-bd3ef9a78ff3\",\n                    \"state\": \"done\",\n                    \"principalDid\": \"QhiAVXCFc4aFeo8Xeio7cD\",\n                    \"connectionId\": \"6a625623-1ae1-4c26-ae9e-8ae7043a439a\",\n                    \"createdDate\": \"2023-05-09T13:41:15.067Z\",\n                    \"updatedDate\": \"2023-05-09T13:41:29.640Z\",\n                    \"expirationDate\": null\n                },\n                {\n                    \"id\": \"8658a92b-807b-4627-a180-d9f8fd2389b5\",\n                    \"credentialId\": \"047978b7-ea0f-4ed9-92df-7bd01a91576b\",\n                    \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:50014:LoginCredentials2\",\n                    \"threadId\": \"f3d65d44-0735-4712-a9db-5dfb2489a58d\",\n                    \"state\": \"offer-sent\",\n                    \"principalDid\": \"QhiAVXCFc4aFeo8Xeio7cD\",\n                    \"connectionId\": \"6a625623-1ae1-4c26-ae9e-8ae7043a439a\",\n                    \"createdDate\": \"2023-05-22T07:19:37.637Z\",\n                    \"updatedDate\": \"2023-05-22T07:19:37.638Z\",\n                    \"expirationDate\": null\n                }\n            ],\n            \"presentProofs\": [\n                {\n                    \"id\": \"1daf4f41-d12e-40b0-8ff0-e03436735ade\",\n                    \"proofRecordId\": \"8eb6beb7-3f38-4482-90c4-14b27342b35f\",\n                    \"connectionId\": \"6a625623-1ae1-4c26-ae9e-8ae7043a439a\",\n                    \"credentialDefId\": \"\",\n                    \"schemaId\": \"\",\n                    \"theirDid\": \"\",\n                    \"status\": \"done\",\n                    \"createdDate\": \"2023-05-09T13:42:09.025Z\",\n                    \"updatedDate\": \"2023-05-09T13:43:19.967Z\"\n                }\n            ]\n        }\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Accept connection invitation",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"invitationUrl\": \"https://ssi-dev.vereign.com:443/ocm/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiJmYzM1ODNhYi1kZjEyLTRiNmEtOGYxYi0yY2I2NTk1NWFkMzIiLCJsYWJlbCI6InNzaS1hYnN0cmFjdGlvbi1hZ2VudCIsInJlY2lwaWVudEtleXMiOlsiOEoxVWdoRmFpZ3NUWDlKeHhuV1haUkRzWUtHdU53dDlFRkY5dXN6Q1h0dDQiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cHM6Ly9zc2ktZGV2LnZlcmVpZ24uY29tOjQ0My9vY20vZGlkY29tbSIsInJvdXRpbmdLZXlzIjpbXX0\",\n  \"autoAcceptConnection\": true\n}",
-					"options": {
-						"raw": {
-							"headerFamily": "json",
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/v1/accept-connection-invitation",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"accept-connection-invitation"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Accept connection invitation",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"invitationUrl\": \"https://ssi-dev.vereign.com:443/ocm/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiJmYzM1ODNhYi1kZjEyLTRiNmEtOGYxYi0yY2I2NTk1NWFkMzIiLCJsYWJlbCI6InNzaS1hYnN0cmFjdGlvbi1hZ2VudCIsInJlY2lwaWVudEtleXMiOlsiOEoxVWdoRmFpZ3NUWDlKeHhuV1haUkRzWUtHdU53dDlFRkY5dXN6Q1h0dDQiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cHM6Ly9zc2ktZGV2LnZlcmVpZ24uY29tOjQ0My9vY20vZGlkY29tbSIsInJvdXRpbmdLZXlzIjpbXX0\",\n  \"autoAcceptConnection\": true\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/v1/accept-connection-invitation",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"v1",
-								"accept-connection-invitation"
-							]
-						}
-					},
-					"status": "Accepted",
-					"code": 202,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 02 Jun 2023 02:12:02 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "1477"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"5c5-XLhvcE9qBLdJDJdTDANXXroqTQY\""
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 202,\n    \"message\": \"Accepted Connection Request\",\n    \"data\": {\n        \"_tags\": {\n            \"state\": \"invited\",\n            \"verkey\": \"Fitz5HGemw3rW1agFPZ222LAsAQHSB7Q4NPdtM8uCfx4\",\n            \"role\": \"invitee\",\n            \"invitationKey\": \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\"\n        },\n        \"metadata\": {},\n        \"id\": \"85ee9709-639e-44b7-aaca-93aa1a7c8db5\",\n        \"createdAt\": \"2023-06-02T02:12:01.910Z\",\n        \"did\": \"U1ghVZwqoDcv55uVjiiGRZ\",\n        \"didDoc\": {\n            \"@context\": \"https://w3id.org/did/v1\",\n            \"publicKey\": [\n                {\n                    \"id\": \"U1ghVZwqoDcv55uVjiiGRZ#1\",\n                    \"controller\": \"U1ghVZwqoDcv55uVjiiGRZ\",\n                    \"type\": \"Ed25519VerificationKey2018\",\n                    \"publicKeyBase58\": \"Fitz5HGemw3rW1agFPZ222LAsAQHSB7Q4NPdtM8uCfx4\"\n                }\n            ],\n            \"service\": [\n                {\n                    \"id\": \"U1ghVZwqoDcv55uVjiiGRZ#IndyAgentService\",\n                    \"serviceEndpoint\": \"https://ssi-dev.vereign.com:443/ocm/didcomm\",\n                    \"type\": \"IndyAgent\",\n                    \"priority\": 0,\n                    \"recipientKeys\": [\n                        \"Fitz5HGemw3rW1agFPZ222LAsAQHSB7Q4NPdtM8uCfx4\"\n                    ],\n                    \"routingKeys\": []\n                }\n            ],\n            \"authentication\": [\n                {\n                    \"publicKey\": \"U1ghVZwqoDcv55uVjiiGRZ#1\",\n                    \"type\": \"Ed25519SignatureAuthentication2018\"\n                }\n            ],\n            \"id\": \"U1ghVZwqoDcv55uVjiiGRZ\"\n        },\n        \"verkey\": \"Fitz5HGemw3rW1agFPZ222LAsAQHSB7Q4NPdtM8uCfx4\",\n        \"theirLabel\": \"ssi-abstraction-agent\",\n        \"state\": \"requested\",\n        \"role\": \"invitee\",\n        \"alias\": \"connection-received\",\n        \"autoAcceptConnection\": true,\n        \"invitation\": {\n            \"@type\": \"https://didcomm.org/connections/1.0/invitation\",\n            \"@id\": \"fc3583ab-df12-4b6a-8f1b-2cb65955ad32\",\n            \"label\": \"ssi-abstraction-agent\",\n            \"recipientKeys\": [\n                \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\"\n            ],\n            \"serviceEndpoint\": \"https://ssi-dev.vereign.com:443/ocm/didcomm\",\n            \"routingKeys\": []\n        },\n        \"multiUseInvitation\": false\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Health check",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/v1/health",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"health"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Health check",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/v1/health",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"v1",
-								"health"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 02 Jun 2023 01:57:14 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "93"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"5d-6fAWdfgLj4ONHU0kBMP++Ryy1mQ\""
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Fri Jun 02 2023 01:57:14 GMT+0000 (Coordinated Universal Time)\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Create new connection invitation",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"autoAcceptConnection\": true\n}",
-					"options": {
-						"raw": {
-							"headerFamily": "json",
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/v1/invitation-url?alias=trust",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"v1",
-						"invitation-url"
-					],
-					"query": [
-						{
-							"key": "alias",
-							"value": "trust"
-						}
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Create new connection invitation",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"autoAcceptConnection\": true\n}",
-							"options": {
-								"raw": {
-									"headerFamily": "json",
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/v1/invitation-url?alias=trust",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"v1",
-								"invitation-url"
-							],
-							"query": [
-								{
-									"key": "alias",
-									"value": "trust"
-								}
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 02 Jun 2023 01:58:59 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "2137"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"859-jOPeDmwN60Q2TJ0P9cGI3mOlf2A\""
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15724800; includeSubDomains"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connection created successfully\",\n    \"data\": {\n        \"invitationUrl\": \"https://ssi-dev.vereign.com:443/ocm/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiJmYzM1ODNhYi1kZjEyLTRiNmEtOGYxYi0yY2I2NTk1NWFkMzIiLCJsYWJlbCI6InNzaS1hYnN0cmFjdGlvbi1hZ2VudCIsInJlY2lwaWVudEtleXMiOlsiOEoxVWdoRmFpZ3NUWDlKeHhuV1haUkRzWUtHdU53dDlFRkY5dXN6Q1h0dDQiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cHM6Ly9zc2ktZGV2LnZlcmVpZ24uY29tOjQ0My9vY20vZGlkY29tbSIsInJvdXRpbmdLZXlzIjpbXX0\",\n        \"invitation\": {\n            \"@type\": \"https://didcomm.org/connections/1.0/invitation\",\n            \"@id\": \"fc3583ab-df12-4b6a-8f1b-2cb65955ad32\",\n            \"label\": \"ssi-abstraction-agent\",\n            \"recipientKeys\": [\n                \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\"\n            ],\n            \"serviceEndpoint\": \"https://ssi-dev.vereign.com:443/ocm/didcomm\",\n            \"routingKeys\": []\n        },\n        \"connection\": {\n            \"_tags\": {},\n            \"metadata\": {},\n            \"id\": \"2078a34b-a7fe-4e22-91fc-9797c0b42505\",\n            \"createdAt\": \"2023-06-02T01:58:58.280Z\",\n            \"did\": \"EP7amWYvKAUL4t3iS7vc1m\",\n            \"didDoc\": {\n                \"@context\": \"https://w3id.org/did/v1\",\n                \"publicKey\": [\n                    {\n                        \"id\": \"EP7amWYvKAUL4t3iS7vc1m#1\",\n                        \"controller\": \"EP7amWYvKAUL4t3iS7vc1m\",\n                        \"type\": \"Ed25519VerificationKey2018\",\n                        \"publicKeyBase58\": \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\"\n                    }\n                ],\n                \"service\": [\n                    {\n                        \"id\": \"EP7amWYvKAUL4t3iS7vc1m#IndyAgentService\",\n                        \"serviceEndpoint\": \"https://ssi-dev.vereign.com:443/ocm/didcomm\",\n                        \"type\": \"IndyAgent\",\n                        \"priority\": 0,\n                        \"recipientKeys\": [\n                            \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\"\n                        ],\n                        \"routingKeys\": []\n                    }\n                ],\n                \"authentication\": [\n                    {\n                        \"publicKey\": \"EP7amWYvKAUL4t3iS7vc1m#1\",\n                        \"type\": \"Ed25519SignatureAuthentication2018\"\n                    }\n                ],\n                \"id\": \"EP7amWYvKAUL4t3iS7vc1m\"\n            },\n            \"verkey\": \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\",\n            \"state\": \"invited\",\n            \"role\": \"inviter\",\n            \"alias\": \"trust\",\n            \"autoAcceptConnection\": true,\n            \"invitation\": {\n                \"@type\": \"https://didcomm.org/connections/1.0/invitation\",\n                \"@id\": \"fc3583ab-df12-4b6a-8f1b-2cb65955ad32\",\n                \"label\": \"ssi-abstraction-agent\",\n                \"recipientKeys\": [\n                    \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\"\n                ],\n                \"serviceEndpoint\": \"https://ssi-dev.vereign.com:443/ocm/didcomm\",\n                \"routingKeys\": []\n            },\n            \"multiUseInvitation\": false\n        },\n        \"invitationUrlShort\": \"https://ssi-dev.vereign.com/ocm/connection/v1/url/d82b96f4-5966-4ada-a171-88dd4f80394a\"\n    }\n}"
-				}
-			]
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "baseUrl",
-			"value": "https://ssi-dev.vereign.com/ocm/connection"
-		}
-	]
+  "info": {
+    "_postman_id": "1da5476b-7f1e-4a30-8dba-b348f7ac6672",
+    "name": "Gaia-x Connection Manager API",
+    "description": "API documentation for GAIA-X Connection Manager",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "10250261"
+  },
+  "item": [
+    {
+      "name": "Fetch connection by connection id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/connections/adede599-a398-49ea-b115-b8522d17f714",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "connections", "adede599-a398-49ea-b115-b8522d17f714"]
+        }
+      },
+      "response": [
+        {
+          "name": "Fetch connection by connection id",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/connections/adede599-a398-49ea-b115-b8522d17f714",
+              "host": ["{{baseUrl}}"],
+              "path": [
+                "v1",
+                "connections",
+                "adede599-a398-49ea-b115-b8522d17f714"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 02 Jun 2023 02:02:41 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "430"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1ae-MrfZd4/V8Lo8suMlUBONZ1OD7d4\""
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connections fetch successfully\",\n    \"data\": {\n        \"records\": {\n            \"id\": \"5457aa3a-9885-4f2c-83c4-54189102dcb2\",\n            \"connectionId\": \"adede599-a398-49ea-b115-b8522d17f714\",\n            \"status\": \"trusted\",\n            \"participantDid\": \"5hfjHDaZMTknD4kVApcXnC\",\n            \"theirDid\": \"UZkhCWb66vXWpDiBK6jJD9\",\n            \"theirLabel\": \"ssi-abstraction-agent\",\n            \"createdDate\": \"2023-04-05T10:06:13.140Z\",\n            \"updatedDate\": \"2023-04-05T10:06:13.761Z\",\n            \"isActive\": true,\n            \"isReceived\": true\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Fetch list of connections with pagination and queries",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/connections?page=0&pageSize=25&status&participantDID",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "connections"],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "pageSize",
+              "value": "25"
+            },
+            {
+              "key": "status",
+              "value": null
+            },
+            {
+              "key": "participantDID",
+              "value": null
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Fetch list of connections with pagination and queries",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/connections?page=0&pageSize=25&status&participantDID",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "connections"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "25"
+                },
+                {
+                  "key": "status",
+                  "value": null
+                },
+                {
+                  "key": "participantDID",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 02 Jun 2023 02:00:49 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "8254"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"203e-T9AKdRFxK834ZNwao8c6y6TX3wc\""
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connections fetch successfully\",\n    \"data\": {\n        \"count\": 232,\n        \"records\": [\n            {\n                \"id\": \"008e3953-15d9-421c-ba30-3b06661595fe\",\n                \"connectionId\": \"a11a0f89-bdc7-468d-a76f-0f2652af1447\",\n                \"status\": \"invited\",\n                \"participantDid\": \"PYk6P7VfYMHTEqdnQBEtuY\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-04-06T11:36:24.395Z\",\n                \"updatedDate\": \"2023-04-06T11:36:24.395Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"015b95e0-6a43-4b11-9d2d-89e17fddfcc2\",\n                \"connectionId\": \"c3d767ea-9e02-4076-8e92-d2a7942e4800\",\n                \"status\": \"invited\",\n                \"participantDid\": \"9obzVbmTx3oCNLoQeKdS1U\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-23T07:52:11.931Z\",\n                \"updatedDate\": \"2023-03-23T07:52:11.931Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0215762c-e581-46e5-a789-4ff13adc3dff\",\n                \"connectionId\": \"52ae2374-4c9e-4abd-9da5-aabe98d6acb4\",\n                \"status\": \"invited\",\n                \"participantDid\": \"Lg6tP3d456p6oyereiCiKU\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-05-10T09:28:45.850Z\",\n                \"updatedDate\": \"2023-05-10T09:28:45.850Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"02c81e42-7cfa-47fa-a819-dfbc14042ec2\",\n                \"connectionId\": \"7cb7cdec-fd69-4c3a-93f4-ab3f85bfa7cb\",\n                \"status\": \"invited\",\n                \"participantDid\": \"HJ66AqHk4fpvbPXUjb9VqN\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-09T10:24:37.644Z\",\n                \"updatedDate\": \"2023-03-09T10:24:37.644Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"03563562-d0dc-4c0d-804a-42adbfd4ea4d\",\n                \"connectionId\": \"9d756266-f9fc-4a12-88b2-5123166aebae\",\n                \"status\": \"invited\",\n                \"participantDid\": \"FTzEn6oyH6peQigjc5pyxp\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-22T13:24:10.790Z\",\n                \"updatedDate\": \"2023-03-22T13:24:10.790Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"049020d5-8c21-4ea0-89b0-39426e385c73\",\n                \"connectionId\": \"6a625623-1ae1-4c26-ae9e-8ae7043a439a\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"95GnbqtZSARbgVDRgstB6A\",\n                \"theirDid\": \"QhiAVXCFc4aFeo8Xeio7cD\",\n                \"theirLabel\": \"cef7d748-0e1e-409d-a992-eed8fde1f603\",\n                \"createdDate\": \"2023-05-09T13:32:59.666Z\",\n                \"updatedDate\": \"2023-05-09T13:43:19.978Z\",\n                \"isActive\": true,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"04f11557-4157-4083-a73f-f6c1dc233583\",\n                \"connectionId\": \"058d420f-af66-4489-be17-2e5bcdd4d7cd\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"Fkr8PoGdHGHPEHsUiZpVD2\",\n                \"theirDid\": \"Ue61ZtAw1RVzfU42JHbXcU\",\n                \"theirLabel\": \"ssi-abstraction-agent\",\n                \"createdDate\": \"2023-05-09T08:20:47.044Z\",\n                \"updatedDate\": \"2023-05-09T08:20:48.154Z\",\n                \"isActive\": true,\n                \"isReceived\": true\n            },\n            {\n                \"id\": \"04f7aa6c-dcc2-4a3c-9300-9b21e8045a17\",\n                \"connectionId\": \"2de29e2f-50cc-45f2-95ef-1770bc3c7b9d\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"Mmik8v2w5DrZdi755maeFJ\",\n                \"theirDid\": \"Ud2wNAWLFEaBaRvdUKwwVa\",\n                \"theirLabel\": \"557a4089-4e72-402c-8422-5ddaac2f3d1b\",\n                \"createdDate\": \"2023-03-27T07:35:28.046Z\",\n                \"updatedDate\": \"2023-03-27T07:35:38.401Z\",\n                \"isActive\": true,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"055ad5f4-d9f3-46e0-9279-8f8c3071ae32\",\n                \"connectionId\": \"7e44f02f-9c4f-4c65-a028-d2f90f907ee5\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"5rBDJq3yK3MLCe8pny4kLz\",\n                \"theirDid\": \"RbaMdHuU8PNAHYi2YouicD\",\n                \"theirLabel\": \"44f30cb6-7b3b-4a84-861b-767fe670ce26\",\n                \"createdDate\": \"2023-05-22T13:47:45.062Z\",\n                \"updatedDate\": \"2023-05-22T13:48:16.503Z\",\n                \"isActive\": true,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0605a933-8f4c-4cd4-b816-79bc17ebc47a\",\n                \"connectionId\": \"d8f473d7-1055-4512-bd27-60394314ef2f\",\n                \"status\": \"invited\",\n                \"participantDid\": \"WBduFTtbz3si6RnebYh91m\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-07T08:09:36.156Z\",\n                \"updatedDate\": \"2023-03-07T08:09:36.156Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"06954fec-600c-4d97-81e3-b65d2c8a4d90\",\n                \"connectionId\": \"98e3538d-bb71-44e3-8ee4-4999ab357e8c\",\n                \"status\": \"invited\",\n                \"participantDid\": \"PafruvwBVEqSWJtXCq16Ge\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-05-22T10:27:14.205Z\",\n                \"updatedDate\": \"2023-05-22T10:27:14.205Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0804f8c0-9aff-43c6-a473-344369c9ddc7\",\n                \"connectionId\": \"92ffb41e-0190-4731-99ca-af4308b0357a\",\n                \"status\": \"complete\",\n                \"participantDid\": \"TBkKc84kS2DELsDceQDHFh\",\n                \"theirDid\": \"8qcNQgxQfAGJYa8mjgvjfB\",\n                \"theirLabel\": \"ssi-abstraction-agent\",\n                \"createdDate\": \"2023-04-24T09:17:55.082Z\",\n                \"updatedDate\": \"2023-04-24T09:20:49.861Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"08b49296-5adb-416a-ba63-7d36cef4d6cd\",\n                \"connectionId\": \"6bf8ecb9-4ce2-4fd7-8eec-73094fd118fc\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"QZQH23QAKuMJxzwUQpXQUG\",\n                \"theirDid\": \"31sxM8gpGFTU7YZ58q7rMB\",\n                \"theirLabel\": \"e9cbfec0-6575-4025-aa6e-bedf7b7c5938\",\n                \"createdDate\": \"2023-05-15T11:29:05.256Z\",\n                \"updatedDate\": \"2023-05-15T11:29:10.037Z\",\n                \"isActive\": true,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"09e6e5c4-2b4e-4610-82e9-7dac9435fd59\",\n                \"connectionId\": \"14e554fe-c9da-4881-afe7-1d92bffe6eb6\",\n                \"status\": \"requested\",\n                \"participantDid\": \"My7fYuLyF7ptsMnBn5d7xH\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"ssi-abstraction-agent\",\n                \"createdDate\": \"2023-05-09T11:15:42.452Z\",\n                \"updatedDate\": \"2023-05-09T11:15:42.557Z\",\n                \"isActive\": false,\n                \"isReceived\": true\n            },\n            {\n                \"id\": \"0b3435e3-cbed-4635-ab55-cacdaafbc1cb\",\n                \"connectionId\": \"cdca3644-2147-47ce-abd4-7a82e6195d19\",\n                \"status\": \"trusted\",\n                \"participantDid\": \"8qcNQgxQfAGJYa8mjgvjfB\",\n                \"theirDid\": \"TBkKc84kS2DELsDceQDHFh\",\n                \"theirLabel\": \"ssi-abstraction-agent\",\n                \"createdDate\": \"2023-04-24T09:20:48.866Z\",\n                \"updatedDate\": \"2023-04-24T09:20:49.758Z\",\n                \"isActive\": true,\n                \"isReceived\": true\n            },\n            {\n                \"id\": \"0ba240e7-0663-4220-b32c-6e9beaf8a39b\",\n                \"connectionId\": \"3020b9cc-51c8-4ae7-9fa5-05f873260a6e\",\n                \"status\": \"invited\",\n                \"participantDid\": \"97rZZnBjDiQWVkNEu5kxoP\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-04-06T11:43:20.246Z\",\n                \"updatedDate\": \"2023-04-06T11:43:20.246Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0c0baac0-b452-46de-8796-a841e7661cb8\",\n                \"connectionId\": \"f97bbf2b-9186-4326-80f6-d4235ef019b2\",\n                \"status\": \"invited\",\n                \"participantDid\": \"9bHihwYECeRbDyAWzGYrkR\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-04-04T14:40:22.948Z\",\n                \"updatedDate\": \"2023-04-04T14:40:22.948Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0d2ac070-b316-4d48-9c49-bcd68e626f00\",\n                \"connectionId\": \"88f8d883-f5fc-4781-9a4c-04238fcd233b\",\n                \"status\": \"invited\",\n                \"participantDid\": \"66WLh3hCCSehqE4QoeLKD2\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-05-10T09:31:21.937Z\",\n                \"updatedDate\": \"2023-05-10T09:31:21.937Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0d44b8f7-e703-405d-ac48-f33e5261bda5\",\n                \"connectionId\": \"e823cd0b-8bd3-46f7-9866-a949f8adb493\",\n                \"status\": \"invited\",\n                \"participantDid\": \"C9rZe9uuw9ogqw8FHPJx28\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-25T14:57:16.527Z\",\n                \"updatedDate\": \"2023-03-25T14:57:16.527Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0e5bce8f-4c92-4583-8413-11701f49fd14\",\n                \"connectionId\": \"77bf538d-e2ae-4310-a45f-a4a51f26f02f\",\n                \"status\": \"complete\",\n                \"participantDid\": \"QLLQtZxcq7g8exUMYCAzJL\",\n                \"theirDid\": \"2mcHSKBnpbQzzq7Kte8Fbi\",\n                \"theirLabel\": \"de3d717c-fcb0-49fb-8bff-1e5a4acdc280\",\n                \"createdDate\": \"2023-05-22T01:42:55.707Z\",\n                \"updatedDate\": \"2023-05-22T01:43:24.442Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"0e7aae40-202d-4d12-968e-b93eab0858eb\",\n                \"connectionId\": \"c4326fe8-dfb0-4c3c-9e26-068e01733abc\",\n                \"status\": \"invited\",\n                \"participantDid\": \"3ADpcR1D11ozo5UNWurLVY\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-05-10T12:19:56.914Z\",\n                \"updatedDate\": \"2023-05-10T12:19:56.913Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"10bf37e2-f5b5-4e97-9c87-6e09bf723bce\",\n                \"connectionId\": \"4aa93902-729d-42ad-b224-c21390055bdf\",\n                \"status\": \"invited\",\n                \"participantDid\": \"Kq7H3nDWnQhXYe5yosR1J7\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-05-10T09:57:05.517Z\",\n                \"updatedDate\": \"2023-05-10T09:57:05.517Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"10dea699-a127-4082-b25e-68c128c937ee\",\n                \"connectionId\": \"df7a1b85-ea59-40fc-9520-6ae59651eda0\",\n                \"status\": \"invited\",\n                \"participantDid\": \"Xekj3zM5wUQ1jvaL4cv4Ay\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-07T08:11:02.103Z\",\n                \"updatedDate\": \"2023-03-07T08:11:02.103Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"114e8be7-49cd-4581-9675-06650833f1f1\",\n                \"connectionId\": \"655fdf48-6ff9-4451-9f73-88621750a3fa\",\n                \"status\": \"invited\",\n                \"participantDid\": \"BrMoyqzb92hX6Xm2t6wNs5\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-27T07:20:27.591Z\",\n                \"updatedDate\": \"2023-03-27T07:20:27.591Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            },\n            {\n                \"id\": \"11def929-68a8-4464-bae6-e9bed225c68d\",\n                \"connectionId\": \"61154910-3a13-4e65-b151-d0b9dfec9ecf\",\n                \"status\": \"invited\",\n                \"participantDid\": \"KDeiHYWP2Y5YgXSPbaZAW4\",\n                \"theirDid\": \"\",\n                \"theirLabel\": \"\",\n                \"createdDate\": \"2023-03-30T11:12:13.346Z\",\n                \"updatedDate\": \"2023-03-30T11:12:13.346Z\",\n                \"isActive\": false,\n                \"isReceived\": false\n            }\n        ]\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Fetch connection information by query id or did ",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/connection-information?connectionId=6a625623-1ae1-4c26-ae9e-8ae7043a439a&did",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "connection-information"],
+          "query": [
+            {
+              "key": "connectionId",
+              "value": "6a625623-1ae1-4c26-ae9e-8ae7043a439a"
+            },
+            {
+              "key": "did",
+              "value": null
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Fetch connection information by query id or did ",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/connection-information?connectionId=6a625623-1ae1-4c26-ae9e-8ae7043a439a&did",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "connection-information"],
+              "query": [
+                {
+                  "key": "connectionId",
+                  "value": "6a625623-1ae1-4c26-ae9e-8ae7043a439a"
+                },
+                {
+                  "key": "did",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 02 Jun 2023 02:09:45 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1294"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"50e-QdCj91548b/gSNWPOH6hEgXsq6k\""
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connection information fetch successfully\",\n    \"data\": {\n        \"records\": {\n            \"issueCredentials\": [\n                {\n                    \"id\": \"d1b0a2e0-2d42-40c2-a1bf-f00187ac34c1\",\n                    \"credentialId\": \"abfd32ca-80fc-439d-ab62-1e19f909f670\",\n                    \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:46833:OCM1-passport\",\n                    \"threadId\": \"619094b6-dae4-4d35-83f6-bd3ef9a78ff3\",\n                    \"state\": \"done\",\n                    \"principalDid\": \"QhiAVXCFc4aFeo8Xeio7cD\",\n                    \"connectionId\": \"6a625623-1ae1-4c26-ae9e-8ae7043a439a\",\n                    \"createdDate\": \"2023-05-09T13:41:15.067Z\",\n                    \"updatedDate\": \"2023-05-09T13:41:29.640Z\",\n                    \"expirationDate\": null\n                },\n                {\n                    \"id\": \"8658a92b-807b-4627-a180-d9f8fd2389b5\",\n                    \"credentialId\": \"047978b7-ea0f-4ed9-92df-7bd01a91576b\",\n                    \"credDefId\": \"BsfUfTECZPVRnoCgHUfB3p:3:CL:50014:LoginCredentials2\",\n                    \"threadId\": \"f3d65d44-0735-4712-a9db-5dfb2489a58d\",\n                    \"state\": \"offer-sent\",\n                    \"principalDid\": \"QhiAVXCFc4aFeo8Xeio7cD\",\n                    \"connectionId\": \"6a625623-1ae1-4c26-ae9e-8ae7043a439a\",\n                    \"createdDate\": \"2023-05-22T07:19:37.637Z\",\n                    \"updatedDate\": \"2023-05-22T07:19:37.638Z\",\n                    \"expirationDate\": null\n                }\n            ],\n            \"presentProofs\": [\n                {\n                    \"id\": \"1daf4f41-d12e-40b0-8ff0-e03436735ade\",\n                    \"proofRecordId\": \"8eb6beb7-3f38-4482-90c4-14b27342b35f\",\n                    \"connectionId\": \"6a625623-1ae1-4c26-ae9e-8ae7043a439a\",\n                    \"credentialDefId\": \"\",\n                    \"schemaId\": \"\",\n                    \"theirDid\": \"\",\n                    \"status\": \"done\",\n                    \"createdDate\": \"2023-05-09T13:42:09.025Z\",\n                    \"updatedDate\": \"2023-05-09T13:43:19.967Z\"\n                }\n            ]\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Accept connection invitation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"invitationUrl\": \"https://ssi-dev.vereign.com:443/ocm/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiJmYzM1ODNhYi1kZjEyLTRiNmEtOGYxYi0yY2I2NTk1NWFkMzIiLCJsYWJlbCI6InNzaS1hYnN0cmFjdGlvbi1hZ2VudCIsInJlY2lwaWVudEtleXMiOlsiOEoxVWdoRmFpZ3NUWDlKeHhuV1haUkRzWUtHdU53dDlFRkY5dXN6Q1h0dDQiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cHM6Ly9zc2ktZGV2LnZlcmVpZ24uY29tOjQ0My9vY20vZGlkY29tbSIsInJvdXRpbmdLZXlzIjpbXX0\",\n  \"autoAcceptConnection\": true\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/accept-connection-invitation",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "accept-connection-invitation"]
+        }
+      },
+      "response": [
+        {
+          "name": "Accept connection invitation",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invitationUrl\": \"https://ssi-dev.vereign.com:443/ocm/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiJmYzM1ODNhYi1kZjEyLTRiNmEtOGYxYi0yY2I2NTk1NWFkMzIiLCJsYWJlbCI6InNzaS1hYnN0cmFjdGlvbi1hZ2VudCIsInJlY2lwaWVudEtleXMiOlsiOEoxVWdoRmFpZ3NUWDlKeHhuV1haUkRzWUtHdU53dDlFRkY5dXN6Q1h0dDQiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cHM6Ly9zc2ktZGV2LnZlcmVpZ24uY29tOjQ0My9vY20vZGlkY29tbSIsInJvdXRpbmdLZXlzIjpbXX0\",\n  \"autoAcceptConnection\": true\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/accept-connection-invitation",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "accept-connection-invitation"]
+            }
+          },
+          "status": "Accepted",
+          "code": 202,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 02 Jun 2023 02:12:02 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1477"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"5c5-XLhvcE9qBLdJDJdTDANXXroqTQY\""
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 202,\n    \"message\": \"Accepted Connection Request\",\n    \"data\": {\n        \"_tags\": {\n            \"state\": \"invited\",\n            \"verkey\": \"Fitz5HGemw3rW1agFPZ222LAsAQHSB7Q4NPdtM8uCfx4\",\n            \"role\": \"invitee\",\n            \"invitationKey\": \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\"\n        },\n        \"metadata\": {},\n        \"id\": \"85ee9709-639e-44b7-aaca-93aa1a7c8db5\",\n        \"createdAt\": \"2023-06-02T02:12:01.910Z\",\n        \"did\": \"U1ghVZwqoDcv55uVjiiGRZ\",\n        \"didDoc\": {\n            \"@context\": \"https://w3id.org/did/v1\",\n            \"publicKey\": [\n                {\n                    \"id\": \"U1ghVZwqoDcv55uVjiiGRZ#1\",\n                    \"controller\": \"U1ghVZwqoDcv55uVjiiGRZ\",\n                    \"type\": \"Ed25519VerificationKey2018\",\n                    \"publicKeyBase58\": \"Fitz5HGemw3rW1agFPZ222LAsAQHSB7Q4NPdtM8uCfx4\"\n                }\n            ],\n            \"service\": [\n                {\n                    \"id\": \"U1ghVZwqoDcv55uVjiiGRZ#IndyAgentService\",\n                    \"serviceEndpoint\": \"https://ssi-dev.vereign.com:443/ocm/didcomm\",\n                    \"type\": \"IndyAgent\",\n                    \"priority\": 0,\n                    \"recipientKeys\": [\n                        \"Fitz5HGemw3rW1agFPZ222LAsAQHSB7Q4NPdtM8uCfx4\"\n                    ],\n                    \"routingKeys\": []\n                }\n            ],\n            \"authentication\": [\n                {\n                    \"publicKey\": \"U1ghVZwqoDcv55uVjiiGRZ#1\",\n                    \"type\": \"Ed25519SignatureAuthentication2018\"\n                }\n            ],\n            \"id\": \"U1ghVZwqoDcv55uVjiiGRZ\"\n        },\n        \"verkey\": \"Fitz5HGemw3rW1agFPZ222LAsAQHSB7Q4NPdtM8uCfx4\",\n        \"theirLabel\": \"ssi-abstraction-agent\",\n        \"state\": \"requested\",\n        \"role\": \"invitee\",\n        \"alias\": \"connection-received\",\n        \"autoAcceptConnection\": true,\n        \"invitation\": {\n            \"@type\": \"https://didcomm.org/connections/1.0/invitation\",\n            \"@id\": \"fc3583ab-df12-4b6a-8f1b-2cb65955ad32\",\n            \"label\": \"ssi-abstraction-agent\",\n            \"recipientKeys\": [\n                \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\"\n            ],\n            \"serviceEndpoint\": \"https://ssi-dev.vereign.com:443/ocm/didcomm\",\n            \"routingKeys\": []\n        },\n        \"multiUseInvitation\": false\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/v1/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "health"]
+        }
+      },
+      "response": [
+        {
+          "name": "Health check",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "health"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 02 Jun 2023 01:57:14 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "93"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"5d-6fAWdfgLj4ONHU0kBMP++Ryy1mQ\""
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Fri Jun 02 2023 01:57:14 GMT+0000 (Coordinated Universal Time)\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create new connection invitation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"autoAcceptConnection\": true\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/v1/invitation-url?alias=trust",
+          "host": ["{{baseUrl}}"],
+          "path": ["v1", "invitation-url"],
+          "query": [
+            {
+              "key": "alias",
+              "value": "trust"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Create new connection invitation",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"autoAcceptConnection\": true\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/invitation-url?alias=trust",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "invitation-url"],
+              "query": [
+                {
+                  "key": "alias",
+                  "value": "trust"
+                }
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 02 Jun 2023 01:58:59 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "2137"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"859-jOPeDmwN60Q2TJ0P9cGI3mOlf2A\""
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=15724800; includeSubDomains"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Connection created successfully\",\n    \"data\": {\n        \"invitationUrl\": \"https://ssi-dev.vereign.com:443/ocm/didcomm?c_i=eyJAdHlwZSI6Imh0dHBzOi8vZGlkY29tbS5vcmcvY29ubmVjdGlvbnMvMS4wL2ludml0YXRpb24iLCJAaWQiOiJmYzM1ODNhYi1kZjEyLTRiNmEtOGYxYi0yY2I2NTk1NWFkMzIiLCJsYWJlbCI6InNzaS1hYnN0cmFjdGlvbi1hZ2VudCIsInJlY2lwaWVudEtleXMiOlsiOEoxVWdoRmFpZ3NUWDlKeHhuV1haUkRzWUtHdU53dDlFRkY5dXN6Q1h0dDQiXSwic2VydmljZUVuZHBvaW50IjoiaHR0cHM6Ly9zc2ktZGV2LnZlcmVpZ24uY29tOjQ0My9vY20vZGlkY29tbSIsInJvdXRpbmdLZXlzIjpbXX0\",\n        \"invitation\": {\n            \"@type\": \"https://didcomm.org/connections/1.0/invitation\",\n            \"@id\": \"fc3583ab-df12-4b6a-8f1b-2cb65955ad32\",\n            \"label\": \"ssi-abstraction-agent\",\n            \"recipientKeys\": [\n                \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\"\n            ],\n            \"serviceEndpoint\": \"https://ssi-dev.vereign.com:443/ocm/didcomm\",\n            \"routingKeys\": []\n        },\n        \"connection\": {\n            \"_tags\": {},\n            \"metadata\": {},\n            \"id\": \"2078a34b-a7fe-4e22-91fc-9797c0b42505\",\n            \"createdAt\": \"2023-06-02T01:58:58.280Z\",\n            \"did\": \"EP7amWYvKAUL4t3iS7vc1m\",\n            \"didDoc\": {\n                \"@context\": \"https://w3id.org/did/v1\",\n                \"publicKey\": [\n                    {\n                        \"id\": \"EP7amWYvKAUL4t3iS7vc1m#1\",\n                        \"controller\": \"EP7amWYvKAUL4t3iS7vc1m\",\n                        \"type\": \"Ed25519VerificationKey2018\",\n                        \"publicKeyBase58\": \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\"\n                    }\n                ],\n                \"service\": [\n                    {\n                        \"id\": \"EP7amWYvKAUL4t3iS7vc1m#IndyAgentService\",\n                        \"serviceEndpoint\": \"https://ssi-dev.vereign.com:443/ocm/didcomm\",\n                        \"type\": \"IndyAgent\",\n                        \"priority\": 0,\n                        \"recipientKeys\": [\n                            \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\"\n                        ],\n                        \"routingKeys\": []\n                    }\n                ],\n                \"authentication\": [\n                    {\n                        \"publicKey\": \"EP7amWYvKAUL4t3iS7vc1m#1\",\n                        \"type\": \"Ed25519SignatureAuthentication2018\"\n                    }\n                ],\n                \"id\": \"EP7amWYvKAUL4t3iS7vc1m\"\n            },\n            \"verkey\": \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\",\n            \"state\": \"invited\",\n            \"role\": \"inviter\",\n            \"alias\": \"trust\",\n            \"autoAcceptConnection\": true,\n            \"invitation\": {\n                \"@type\": \"https://didcomm.org/connections/1.0/invitation\",\n                \"@id\": \"fc3583ab-df12-4b6a-8f1b-2cb65955ad32\",\n                \"label\": \"ssi-abstraction-agent\",\n                \"recipientKeys\": [\n                    \"8J1UghFaigsTX9JxxnWXZRDsYKGuNwt9EFF9uszCXtt4\"\n                ],\n                \"serviceEndpoint\": \"https://ssi-dev.vereign.com:443/ocm/didcomm\",\n                \"routingKeys\": []\n            },\n            \"multiUseInvitation\": false\n        },\n        \"invitationUrlShort\": \"https://ssi-dev.vereign.com/ocm/connection/v1/url/d82b96f4-5966-4ada-a171-88dd4f80394a\"\n    }\n}"
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ssi-dev.vereign.com/ocm/connection"
+    }
+  ]
 }
