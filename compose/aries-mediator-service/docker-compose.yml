@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 networks:
   mediator-network:
@@ -120,7 +120,7 @@ services:
     environment:
       POSTGRES_PASSWORD: ${POSTGRESQL_ADMIN_PASSWORD:-development}
     ports: # Uncomment to access postgres outside of containers
-      - "5435:5432"
+      - '5435:5432'
     networks:
       - mediator-network
     volumes:

@@ -1,5 +1,5 @@
 {
-  "name": "connection-manager",
+  "name": "@ocm/connection-manager",
   "version": "0.0.1",
   "description": "",
   "author": "Sagar",

@@ -1,6 +1,6 @@
 import type { AxiosError } from 'axios';
 
-import { logger } from '../../globalUtils/logger.js';
+import { logger } from './logger.js';
 
 export function logAxiosError(err: AxiosError) {
   if (err.response) {

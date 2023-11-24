@@ -28,7 +28,10 @@ module.exports = {
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-use-before-define': ['error', { functions: false, classes: false, variables: true }],
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      { functions: false, classes: false, variables: true },
+    ],
     '@typescript-eslint/explicit-member-accessibility': 'error',
     'no-console': 'error',
     '@typescript-eslint/ban-ts-comment': 'warn',
@@ -72,14 +75,10 @@ module.exports = {
   },
   overrides: [
     {
-      files: [
-        '*.spec.ts',
-        '*.e2e-spec.ts',
-        '**/tests/**',
-      ],
+      files: ['*.spec.ts', '*.e2e-spec.ts', '**/tests/**'],
       env: {
         jest: true,
-        node: false,
+        node: true,
       },
       rules: {
         'import/no-extraneous-dependencies': [
@@ -89,6 +88,6 @@ module.exports = {
           },
         ],
       },
-    }
-  ]
-}
+    },
+  ],
+};

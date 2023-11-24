@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 
 services:
   connection-manager:
@@ -8,7 +8,7 @@ services:
         - SERVICE=connection-manager
     init: true
     ports:
-      - "3003:3003"
+      - '3003:3003'
     env_file: ./env/connection-manager.env
     depends_on:
       - db
@@ -22,7 +22,7 @@ services:
         - SERVICE=attestation-manager
     init: true
     ports:
-      - "3005:3005"
+      - '3005:3005'
     env_file: ./env/attestation-manager.env
     depends_on:
       - db
@@ -36,7 +36,7 @@ services:
         - SERVICE=proof-manager
     init: true
     ports:
-      - "3007:3007"
+      - '3007:3007'
     env_file: ./env/proof-manager.env
     depends_on:
       - db
@@ -50,9 +50,9 @@ services:
         - SERVICE=ssi-abstraction
     init: true
     ports:
-      - "3009:3009"
-      - "3010:3010"
-      - "4000:4000"
+      - '3009:3009'
+      - '3010:3010'
+      - '4000:4000'
     env_file: ./env/ssi-abstraction.env
     depends_on:
       - db
@@ -65,7 +65,7 @@ services:
     ports:
       - 5432:5432
     healthcheck:
-      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root"]
+      test: ['CMD', 'pg_isready', '-q', '-d', 'postgres', '-U', 'root']
       timeout: 45s
       interval: 10s
       retries: 10

@@ -1,4 +1,4 @@
-import type { AutoAcceptCredential } from '@aries-framework/core';
+import { AutoAcceptCredential } from '@aries-framework/core';
 
 interface Config {
   agentHost: string;
@@ -13,7 +13,7 @@ interface Config {
     name: string;
     walletId: string;
     walletKey: string;
-    ledgerIds: string[] | undefined;
+    ledgerIds?: string[];
     host: string;
     peerPort: string;
     path: string;
@@ -37,14 +37,15 @@ export const config = (): Config => ({
     name: process.env.AGENT_NAME || '',
     walletId: process.env.AGENT_WALLET_ID || '',
     walletKey: process.env.AGENT_WALLET_KEY || '',
-    ledgerIds: process.env.AGENT_LEDGER_ID?.split(',') || undefined,
+    ledgerIds: process.env.AGENT_LEDGER_ID?.split(','),
     host: process.env.AGENT_HOST || '',
     peerPort: process.env.AGENT_PEER_PORT || '',
     path: process.env.AGENT_URL_PATH || '',
     publicDidSeed: process.env.AGENT_PUBLIC_DID_SEED || '',
     autoAcceptConnection: process.env.AGENT_AUTO_ACCEPT_CONNECTION === 'true',
-    autoAcceptCredential: process.env
-      .AGENT_AUTO_ACCEPT_CREDENTIAL as AutoAcceptCredential,
+    autoAcceptCredential:
+      (process.env.AGENT_AUTO_ACCEPT_CREDENTIAL as AutoAcceptCredential) ||
+      AutoAcceptCredential.ContentApproved,
     idUnionKey: process.env.AGENT_ID_UNION_KEY || '',
   },
 });
