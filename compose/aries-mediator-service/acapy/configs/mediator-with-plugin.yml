@@ -58,5 +58,5 @@ plugin:
 # Print an admin invite
 connections-invite: true
 invite-metadata: '{"group": "admin"}'
-invite-label: "Mediator (Admin)"
+invite-label: 'Mediator (Admin)'
 invite-multi-use: true

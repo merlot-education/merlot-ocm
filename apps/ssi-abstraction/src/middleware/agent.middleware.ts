@@ -1,4 +1,4 @@
-import type { NestMiddleware} from '@nestjs/common';
+import type { NestMiddleware } from '@nestjs/common';
 import type { Request, NextFunction, Response } from 'express';
 
 import { Injectable, HttpStatus } from '@nestjs/common';
@@ -8,7 +8,7 @@ import { Injectable, HttpStatus } from '@nestjs/common';
  * to the requests.
  */
 @Injectable()
-export class AgentMid implements NestMiddleware {
+export class AgentMiddleware implements NestMiddleware {
   public use(req: Request, res: Response, next: NextFunction) {
     const [, prop] = req.url.split('/');
     if (prop === 'info') {

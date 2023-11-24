@@ -1,9 +1,6 @@
-import type {
-  LedgerIds} from './utils/ledgerConfig.js';
-import type {
-  InitConfig} from '@aries-framework/core';
-import type {
-  IndyVdrPoolConfig} from '@aries-framework/indy-vdr';
+import type { LedgerIds } from '../config/ledger.js';
+import type { InitConfig } from '@aries-framework/core';
+import type { IndyVdrPoolConfig } from '@aries-framework/indy-vdr';
 
 import { AnonCredsModule } from '@aries-framework/anoncreds';
 import { AnonCredsRsModule } from '@aries-framework/anoncreds-rs';
@@ -34,16 +31,12 @@ import { ariesAskar } from '@hyperledger/aries-askar-nodejs';
 import { indyVdr } from '@hyperledger/indy-vdr-nodejs';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { logger } from '@ocm/shared';
 
-import { logger } from '../globalUtils/logger.js';
+import { LEDGERS } from '../config/ledger.js';
 
 import { registerPublicDids } from './ledger/register.js';
-import {
-  ledgerNamespaces,
-  LEDGER_GENESIS,
-} from './utils/ledgerConfig.js';
-import { AgentLogger } from './utils/logger.js';
-
+import { AgentLogger } from './logger.js';
 
 export type AppAgent = Agent<AgentService['modules']>;
 
@@ -134,15 +127,15 @@ export class AgentService {
     return ledgerIds.map((id: LedgerIds) => {
       const ledgerId: LedgerIds = id;
 
-      if (!LEDGER_GENESIS?.[ledgerId]) {
+      if (!LEDGERS[ledgerId]) {
         throw new Error(
           `No pool transaction genesis provided for ledger ${ledgerId}`,
         );
       }
 
       const ledger: IndyVdrPoolConfig = {
-        indyNamespace: ledgerNamespaces[ledgerId],
-        genesisTransactions: LEDGER_GENESIS?.[ledgerId],
+        indyNamespace: LEDGERS[ledgerId].namespace,
+        genesisTransactions: LEDGERS[ledgerId].genesisTransaction,
         isProduction: false,
       };
 

@@ -1,10 +1,9 @@
-import type { LedgerIds } from '../utils/ledgerConfig.js';
+import type { LedgerIds } from '../../config/ledger.js';
 
+import { logger, logAxiosError } from '@ocm/shared';
 import axios from 'axios';
 
-import { logger } from '../../globalUtils/logger.js';
-import { logAxiosError } from '../utils/helperFunctions.js';
-import { ledgerNamespaces, NYM_URL } from '../utils/ledgerConfig.js';
+import { LEDGERS } from '../../config/ledger.js';
 
 type RegisterPublicDidOptions = {
   alias: string;
@@ -32,8 +31,8 @@ export const registerPublicDids = async ({
   const responses: Array<RegisterPublicDidResponse> = [];
   for (const ledgerId of ledgerIds) {
     try {
-      const ledgerRegisterUrl = NYM_URL[ledgerId];
-      const ledgerNamespace = ledgerNamespaces[ledgerId];
+      const ledgerRegisterUrl = LEDGERS[ledgerId].registerNymUrl;
+      const ledgerNamespace = LEDGERS[ledgerId].namespace;
 
       const body: LedgerRegistrationBody = {
         role: 'ENDORSER',

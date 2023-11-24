@@ -1,6 +1,5 @@
 import { BaseLogger, LogLevel } from '@aries-framework/core';
-
-import { logger } from '../../globalUtils/logger.js';
+import { logger } from '@ocm/shared';
 
 export class AgentLogger extends BaseLogger {
   public test(

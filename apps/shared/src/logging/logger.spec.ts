@@ -1,5 +1,5 @@
 describe('check logger', () => {
-  it('should return module', async () => {
+  it('should return module', () => {
     jest.requireActual('./logger');
   });
 });

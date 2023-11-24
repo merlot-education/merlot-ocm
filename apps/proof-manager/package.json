@@ -1,5 +1,5 @@
 {
-  "name": "proof-manager",
+  "name": "@ocm/proof-manager",
   "version": "0.0.1",
   "description": "The Proof Manager provides an endpoint to request a presentation over an existing connection",
   "author": "Sagar",

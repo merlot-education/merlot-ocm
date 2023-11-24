@@ -1,4 +1,4 @@
-import type { MicroserviceOptions} from '@nestjs/microservices';
+import type { MicroserviceOptions } from '@nestjs/microservices';
 
 import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
