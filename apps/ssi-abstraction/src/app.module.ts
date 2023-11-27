@@ -4,7 +4,7 @@ import { TerminusModule } from '@nestjs/terminus';
 import { HealthController } from '@ocm/shared';
 
 import { AgentModule } from './agent/agent.module.js';
-import { ConnectionModule } from './agent/connection/connection.module.js';
+import { ConnectionsModule } from './agent/connections/connections.module.js';
 import { config } from './config/config.js';
 import { validationSchema } from './config/validation.js';
 
@@ -17,7 +17,7 @@ import { validationSchema } from './config/validation.js';
       validationSchema,
     }),
     AgentModule,
-    ConnectionModule,
+    ConnectionsModule,
   ],
   controllers: [HealthController],
 })
