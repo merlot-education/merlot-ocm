@@ -1,3 +1,4 @@
+import { DidDocument } from '@aries-framework/core';
 import { Test } from '@nestjs/testing';
 
 import { mockConfigModule } from '../../config/__tests__/mockConfig.js';
@@ -10,7 +11,7 @@ describe('AgentController', () => {
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [mockConfigModule],
+      imports: [mockConfigModule()],
       controllers: [AgentController],
       providers: [AgentService],
     }).compile();
@@ -21,12 +22,11 @@ describe('AgentController', () => {
 
   describe('public did', () => {
     it('should get the public did information of the agent', async () => {
-      const result = { id: 'test' };
-      jest
-        .spyOn(agentService, 'getPublicDid')
-        .mockResolvedValue(result)
+      const result = new DidDocument({ id: 'did:key:123' });
+      jest.spyOn(agentService, 'getPublicDid').mockResolvedValue(result);
 
-      expect(await agentController.publicDid()).toBe(result);
+      const event = await agentController.publicDid();
+      expect(event.data).toMatchObject({ didDocument: result });
     });
   });
 });

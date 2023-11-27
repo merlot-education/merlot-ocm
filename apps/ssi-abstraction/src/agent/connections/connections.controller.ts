@@ -1,6 +1,9 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
-import { EventDidcommConnectionsGetAll } from '@ocm/shared';
+import {
+  EventDidcommConnectionsGetById,
+  EventDidcommConnectionsGetAll,
+} from '@ocm/shared';
 
 import { ConnectionsService } from './connections.service.js';
 
@@ -12,6 +15,17 @@ export class ConnectionsController {
   public async getAll(): Promise<EventDidcommConnectionsGetAll> {
     return new EventDidcommConnectionsGetAll({
       connections: await this.connectionsService.getAll(),
+    });
+  }
+
+  @MessagePattern('didcomm.connections.getById')
+  public async getById({
+    id,
+  }: {
+    id: string;
+  }): Promise<EventDidcommConnectionsGetById> {
+    return new EventDidcommConnectionsGetById({
+      connection: await this.connectionsService.getById(id),
     });
   }
 }

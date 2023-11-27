@@ -44,13 +44,12 @@ ssi-abstraction deployment
 | security.runAsNonRoot                                             | bool   | `false`                              | by default, apps run as non-root                               |
 | security.runAsUid                                                 | int    | `0`                                  | User used by the apps                                          |
 | service.port                                                      | int    | `3009`                               |                                                                |
-| ssiAbstraction.afjExtPort                                         | int    | `3010`                               |                                                                |
 | ssiAbstraction.agent.autoAccept.connection                        | bool   | `true`                               |                                                                |
 | ssiAbstraction.agent.autoAccept.credential                        | bool   | `true`                               |                                                                |
 | ssiAbstraction.agent.host                                         | string | `"gaiax.vereign.com"`                |                                                                |
 | ssiAbstraction.agent.ledgerId                                     | string | `"ID_UNION"`                         |                                                                |
 | ssiAbstraction.agent.name                                         | string | `"ssi-abstraction-agent"`            |                                                                |
-| ssiAbstraction.agent.peerPort                                     | int    | `443`                                |                                                                |
+| ssiAbstraction.agent.inboundPort                                  | int    | `443`                                |                                                                |
 | ssiAbstraction.agent.protocol                                     | string | `"http"`                             |                                                                |
 | ssiAbstraction.agent.publicDidSeed                                | string | `"6b8b882e2618fa5d45ee7229ca880083"` |                                                                |
 | ssiAbstraction.agent.urlPath                                      | string | `"/ocm/didcomm"`                     |                                                                |

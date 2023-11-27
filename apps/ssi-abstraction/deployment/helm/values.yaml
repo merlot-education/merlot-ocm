@@ -90,7 +90,7 @@ ssiAbstraction:
     name: ssi-abstraction-agent
     host: gaiax.vereign.com
     protocol: http
-    peerPort: 443
+    inboundPort: 443
     urlPath: /ocm/didcomm
     publicDidSeed: 6b8b882e2618fa5d45ee7229ca880083
     autoAccept:
@@ -100,7 +100,6 @@ ssiAbstraction:
       key: ssi-wallet-key
       id: ssi-wallet-id
     ledgerId: ID_UNION
-  afjExtPort: 3010
   database:
     host: postgresql.infra
     user: root

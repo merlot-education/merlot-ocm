@@ -40,10 +40,11 @@ export const registerPublicDids = async ({
         seed,
       };
 
-      const res = await new axios.Axios().post<RegisterPublicDidResponse>(
-        ledgerRegisterUrl,
-        body,
-      );
+      const res = await axios({
+        method: 'post',
+        url: ledgerRegisterUrl,
+        data: body,
+      });
 
       if (res.data) {
         logger.info('Agent DID registered.');

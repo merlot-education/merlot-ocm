@@ -13,7 +13,7 @@ describe('ConnectionsController', () => {
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [mockConfigModule, AgentModule],
+      imports: [mockConfigModule(), AgentModule],
       controllers: [ConnectionsController],
       providers: [ConnectionsService],
     }).compile();
@@ -32,6 +32,21 @@ describe('ConnectionsController', () => {
       const connectionsEvent = await connectionsController.getAll();
 
       expect(connectionsEvent.data).toStrictEqual({ connections: result });
+    });
+  });
+
+  describe('get by id', () => {
+    it('should get a connection record by id', async () => {
+      const result: ConnectionRecord | null = null;
+      jest
+        .spyOn(connectionsService, 'getById')
+        .mockImplementation(() => Promise.resolve(result));
+
+      const connectionsEvent = await connectionsController.getById({
+        id: 'id',
+      });
+
+      expect(connectionsEvent.data).toStrictEqual({ connection: result });
     });
   });
 });

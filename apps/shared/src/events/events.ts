@@ -1,4 +1,6 @@
-import { utils, type ConnectionRecord } from '@aries-framework/core';
+import type { DidDocument, ConnectionRecord } from '@aries-framework/core';
+
+import { utils } from '@aries-framework/core';
 
 export class BaseEvent<
   T extends Record<string, unknown> = Record<string, unknown>,
@@ -16,6 +18,14 @@ export class BaseEvent<
   }
 }
 
+export class EventInfoPublicDid extends BaseEvent<{
+  didDocument: DidDocument;
+}> {}
+
 export class EventDidcommConnectionsGetAll extends BaseEvent<{
   connections: Array<ConnectionRecord>;
+}> {}
+
+export class EventDidcommConnectionsGetById extends BaseEvent<{
+  connection: ConnectionRecord | null;
 }> {}

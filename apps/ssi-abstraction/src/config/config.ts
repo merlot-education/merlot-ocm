@@ -15,7 +15,7 @@ export interface AppConfig {
     walletKey: string;
     ledgerIds?: string[];
     host: string;
-    peerPort: string;
+    inboundPort: number;
     path: string;
     publicDidSeed: string;
     autoAcceptConnection: boolean;
@@ -25,7 +25,7 @@ export interface AppConfig {
 
 export const config = (): AppConfig => ({
   agentHost: process.env.AGENT_HOST || '',
-  port: Number(process.env.PORT),
+  port: parseInt(process.env.PORT || '3000'),
   jwtSecret: process.env.JWT_SECRET || '',
 
   nats: {
@@ -38,7 +38,7 @@ export const config = (): AppConfig => ({
     walletKey: process.env.AGENT_WALLET_KEY || '',
     ledgerIds: process.env.AGENT_LEDGER_ID?.split(','),
     host: process.env.AGENT_HOST || '',
-    peerPort: process.env.AGENT_PEER_PORT || '',
+    inboundPort: parseInt(process.env.AGENT_INBOUND_PORT || '3001'),
     path: process.env.AGENT_URL_PATH || '',
     publicDidSeed: process.env.AGENT_PUBLIC_DID_SEED || '',
     autoAcceptConnection: process.env.AGENT_AUTO_ACCEPT_CONNECTION === 'true',
