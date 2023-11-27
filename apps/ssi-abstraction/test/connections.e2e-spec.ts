@@ -1,5 +1,6 @@
 import type { INestApplication } from '@nestjs/common';
 import type { ClientProxy } from '@nestjs/microservices';
+import type { EventDidcommConnectionsGetAll } from '@ocm/shared';
 
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
@@ -36,12 +37,12 @@ describe('Connections', () => {
   });
 
   it('didcomm.connections.getAll', async () => {
-    const response$: Observable<unknown> = client.send(
+    const response$: Observable<EventDidcommConnectionsGetAll> = client.send(
       'didcomm.connections.getAll',
       {},
     );
     const response = await firstValueFrom(response$);
-    expect(response).toMatchObject([]);
+    expect(response.data).toMatchObject({ connections: [] });
   });
 
   afterAll(async () => {

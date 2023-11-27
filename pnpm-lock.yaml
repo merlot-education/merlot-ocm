@@ -36,8 +36,8 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1(eslint-config-prettier@9.0.0)(eslint@8.54.0)(prettier@3.1.0)
       eslint-plugin-workspaces:
-        specifier: ^0.9.0
-        version: 0.9.0
+        specifier: ^0.10.0
+        version: 0.10.0
       husky:
         specifier: ^8.0.0
         version: 8.0.3
@@ -7869,10 +7869,10 @@ packages:
       synckit: 0.8.5
     dev: true
 
-  /eslint-plugin-workspaces@0.9.0:
-    resolution: {integrity: sha512-krMuZ+yZgzwv1oTBfz50oamNVPDIm7CDyot3i1GRKBqMD2oXAwnXHLQWH7ctpV8k6YVrkhcaZhuV9IJxD8OPAQ==}
+  /eslint-plugin-workspaces@0.10.0:
+    resolution: {integrity: sha512-H692yRZFczzzyde0Sq3nmRDlyywv6foYJnmsxO3slWImJdCf4g5D+gzdWeRpmfitgUsFZxXVJdvW4OS6yY4M9g==}
     dependencies:
-      find-workspaces: 0.2.0
+      find-workspaces: 0.3.0
     dev: true
 
   /eslint-scope@5.1.1:
@@ -8608,8 +8608,8 @@ packages:
       semver-regex: 4.0.5
     dev: true
 
-  /find-workspaces@0.2.0:
-    resolution: {integrity: sha512-OTHryv88yjzwvbXHGi0+XRFu7Jqe5pFuIR2mhqdatDJQOBJd7MFJOPFJv4EbNo8n1BNM/13Y2KcyDpFQYf0ETw==}
+  /find-workspaces@0.3.0:
+    resolution: {integrity: sha512-sHdt3vbddcDuN0CYnKoG/b77jrOkSYPlxoM7ve7/vEvAd29XC7u/qE2zavRzJv4eD1sbTvDnRNZskdy/e0v83A==}
     dependencies:
       fast-glob: 3.3.2
       pkg-types: 1.0.3

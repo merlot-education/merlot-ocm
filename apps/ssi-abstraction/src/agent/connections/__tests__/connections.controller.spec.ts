@@ -29,7 +29,9 @@ describe('ConnectionsController', () => {
         .spyOn(connectionsService, 'getAll')
         .mockImplementation(() => Promise.resolve(result));
 
-      expect(await connectionsController.getAll()).toBe(result);
+      const connectionsEvent = await connectionsController.getAll();
+
+      expect(connectionsEvent.data).toStrictEqual({ connections: result });
     });
   });
 });
