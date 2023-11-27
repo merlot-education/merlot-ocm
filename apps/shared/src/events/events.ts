@@ -25,3 +25,7 @@ export class EventInfoPublicDid extends BaseEvent<{
 export class EventDidcommConnectionsGetAll extends BaseEvent<{
   connections: Array<ConnectionRecord>;
 }> {}
+
+export class EventDidcommConnectionsGetById extends BaseEvent<{
+  connection: ConnectionRecord | null;
+}> {}

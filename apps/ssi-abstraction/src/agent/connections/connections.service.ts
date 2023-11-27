@@ -16,4 +16,8 @@ export class ConnectionsService {
   public async getAll(): Promise<Array<ConnectionRecord>> {
     return await this.agent.connections.getAll();
   }
+
+  public async getById(id: string): Promise<ConnectionRecord | null> {
+    return await this.agent.connections.findById(id);
+  }
 }

@@ -11,7 +11,7 @@ describe('AgentController', () => {
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [mockConfigModule(3002)],
+      imports: [mockConfigModule()],
       controllers: [AgentController],
       providers: [AgentService],
     }).compile();
