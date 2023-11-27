@@ -38,8 +38,6 @@ spec:
         env:
           - name: PORT
             value: {{ .Values.service.port | quote }}
-          - name: AFJ_EXT_PORT
-            value: {{ .Values.ssiAbstraction.afjExtPort | quote }}
           - name: DATABASE_URL
             value: {{ template "app.postgresql.connectionstring" (merge (dict "application" "true") .) }}
           - name: NATS_URL
@@ -52,8 +50,8 @@ spec:
             value: {{ .Values.ssiAbstraction.agent.urlPath }}
           - name: AGENT_NAME
             value: {{ .Values.ssiAbstraction.agent.name }}
-          - name: AGENT_PEER_PORT
-            value: ":{{ .Values.ssiAbstraction.agent.peerPort }}"
+          - name: AGENT_INBOUND_PORT
+            value: ":{{ .Values.ssiAbstraction.agent.inboundPort }}"
           - name: AGENT_PUBLIC_DID_SEED
             value: {{ .Values.ssiAbstraction.agent.publicDidSeed  | quote }}
           - name: AGENT_AUTO_ACCEPT_CONNECTION
@@ -80,8 +78,6 @@ spec:
         {{- end }}
         - name: http
           containerPort: {{ .Values.service.port }}
-        - name: afj
-          containerPort: {{ .Values.ssiAbstraction.afjExtPort }}
         - name: peer
           containerPort: {{ .Values.ssiAbstraction.agent.peerPort }}
         readinessProbe:

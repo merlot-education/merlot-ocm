@@ -25,5 +25,5 @@ spec:
               service:
                 name: {{ template "app.name" . }}
                 port:
-                  number: {{ .Values.ssiAbstraction.agent.peerPort }}
+                  number: {{ .Values.ssiAbstraction.agent.inboundPort }}
 {{- end }}

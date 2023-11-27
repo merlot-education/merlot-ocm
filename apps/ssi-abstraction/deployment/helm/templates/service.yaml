@@ -10,10 +10,7 @@ spec:
     - name: http
       port: { { .Values.service.port } }
       targetPort: { { .Values.service.port } }
-    - name: afj
-      port: { { .Values.ssiAbstraction.afjExtPort } }
-      targetPort: { { .Values.ssiAbstraction.afjExtPort } }
     - name: peer
-      port: { { .Values.ssiAbstraction.agent.peerPort } }
-      targetPort: { { .Values.ssiAbstraction.agent.peerPort } }
+      port: { { .Values.ssiAbstraction.agent.inboundPort } }
+      targetPort: { { .Values.ssiAbstraction.agent.inboundPort } }
   selector: { { - include "app.selectorLabels" . | nindent 4 } }

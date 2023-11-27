@@ -51,7 +51,6 @@ $ pnpm install
 [.env.example](.env.example)
 
 - PORT is the port for the signing and verification interface
-- AFJ_EXT_PORT is the port for the openapi documentation described in [swagger.json](swagger.json)
 - AGENT_AUTO_ACCEPT_CONNECTION can be either true or false
 - AGENT_AUTO_ACCEPT_CREDENTIAL can be either: always, contentApproved, never
 - AGENT_PUBLIC_DID_SEED will generate the did and verkey (32 symbols)

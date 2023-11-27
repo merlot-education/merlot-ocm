@@ -49,7 +49,7 @@ export class AgentService {
   public constructor(configService: ConfigService) {
     this.configService = configService;
 
-    const peerPort = this.configService.get('agent.peerPort');
+    const inboundPort = this.configService.get('agent.inboundPort');
 
     this.agent = new Agent({
       config: this.config,
@@ -58,7 +58,7 @@ export class AgentService {
     });
 
     const httpInbound = new HttpInboundTransport({
-      port: peerPort,
+      port: inboundPort,
     });
 
     this.agent.registerInboundTransport(httpInbound);
@@ -67,10 +67,10 @@ export class AgentService {
   }
 
   public get config(): InitConfig {
-    const { name, walletId, walletKey, host, peerPort, path } =
+    const { name, walletId, walletKey, host, inboundPort, path } =
       this.configService.get('agent');
 
-    const endpoints = [`${host}${peerPort}${path}`];
+    const endpoints = [`${host}${inboundPort}${path}`];
 
     return {
       label: name,
