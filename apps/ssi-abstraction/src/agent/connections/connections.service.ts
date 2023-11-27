@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 import { AgentService } from '../agent.service.js';
 
 @Injectable()
-export class ConnectionService {
+export class ConnectionsService {
   public agent: AppAgent;
 
   public constructor(agentService: AgentService) {

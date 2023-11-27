@@ -9,8 +9,6 @@ export class AgentController {
 
   @MessagePattern('info.publicDid')
   public async publicDid() {
-    return {
-      id: 'test',
-    };
+    return await this.agent.getPublicDid()
   }
 }

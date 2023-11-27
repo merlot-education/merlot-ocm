@@ -79,7 +79,7 @@ export class AgentService {
         key: walletKey,
       },
       endpoints,
-      logger: new AgentLogger(LogLevel.warn),
+      logger: new AgentLogger(LogLevel.off),
     };
   }
 
@@ -174,6 +174,12 @@ export class AgentService {
         ],
       });
     }
+  }
+
+  public async getPublicDid() {
+    return {
+      id: 'test',
+    };
   }
 
   public async onModuleInit() {

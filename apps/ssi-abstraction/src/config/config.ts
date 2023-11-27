@@ -1,6 +1,6 @@
 import { AutoAcceptCredential } from '@aries-framework/core';
 
-interface Config {
+export interface AppConfig {
   agentHost: string;
   port: number;
   jwtSecret: string;
@@ -20,11 +20,10 @@ interface Config {
     publicDidSeed: string;
     autoAcceptConnection: boolean;
     autoAcceptCredential: AutoAcceptCredential;
-    idUnionKey: string;
   };
 }
 
-export const config = (): Config => ({
+export const config = (): AppConfig => ({
   agentHost: process.env.AGENT_HOST || '',
   port: Number(process.env.PORT),
   jwtSecret: process.env.JWT_SECRET || '',
@@ -46,6 +45,5 @@ export const config = (): Config => ({
     autoAcceptCredential:
       (process.env.AGENT_AUTO_ACCEPT_CREDENTIAL as AutoAcceptCredential) ||
       AutoAcceptCredential.ContentApproved,
-    idUnionKey: process.env.AGENT_ID_UNION_KEY || '',
   },
 });
