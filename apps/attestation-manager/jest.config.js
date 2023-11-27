@@ -7,7 +7,7 @@ export default {
   moduleFileExtensions: ['js', 'ts'],
   testEnvironment: 'node',
   transform: {
-    '^.+\\.ts$': [
+    '^.+\\.(js|ts)$': [
       '@swc/jest',
       {
         ...swcConfig,
