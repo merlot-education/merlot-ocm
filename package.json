@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "prisma:generate": "pnpm -r prisma:generate",
-    "attestation:build": "pnpm -F attestation-manager build",
+    "schema:build": "pnpm -F schema-manager build",
+    "credential:build": "pnpm -F credential-manager build",
     "connection:build": "pnpm -F connection-manager build",
     "principal:build": "pnpm -F principal-manager build",
     "proof:build": "pnpm -F proof-manager build",

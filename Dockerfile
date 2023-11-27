@@ -24,14 +24,18 @@ FROM base AS build
 ARG APP_HOME=/home/node/app
 WORKDIR ${APP_HOME}
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.json ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig*.json .swcrc ./
 COPY apps/${SERVICE}/package.json ./apps/${SERVICE}/
+COPY apps/shared/package.json ./apps/shared/
 
 RUN pnpm install --frozen-lockfile
 
 COPY apps/${SERVICE} ./apps/${SERVICE}
+COPY apps/shared ./apps/shared
+RUN pnpm --filter shared build
 RUN pnpm --filter ${SERVICE} build:production
 RUN pnpm --filter ${SERVICE} --prod deploy build
+RUN pnpm --filter shared --prod deploy shared
 
 # This is a way of keeping the generated prisma client in the build folder
 RUN if [ -d ./apps/${SERVICE}/node_modules/\@prisma/client ]; then \
@@ -55,6 +59,7 @@ CMD ["node", "dist/main.js"]
 
 COPY --chown=node:node ./docker-entrypoint.sh ./docker-entrypoint.sh
 COPY --from=build --chown=node:node ${APP_HOME}/build/dist ./dist
+COPY --from=build --chown=node:node ${APP_HOME}/shared/dist ./shared
 COPY --from=build --chown=node:node ${APP_HOME}/build/node_modules ./node_modules
 COPY --from=build --chown=node:node ${APP_HOME}/build/package.json .
 
@@ -64,4 +69,4 @@ RUN node -e "\
     fs.writeFileSync('./package.json', JSON.stringify({ name, version, type }, null, 2));\
 "
 
-USER node
+# USER node
