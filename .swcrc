@@ -16,5 +16,5 @@
     "type": "es6"
   },
   "sourceMaps": true,
-  "exclude": [".spec.ts", ".e2e-spec.ts"]
+  "exclude": ["__tests__/.*.ts"]
 }

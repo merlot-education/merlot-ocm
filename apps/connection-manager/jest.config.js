@@ -1,9 +1,8 @@
-/** @type {import('jest').Config} */
-
 import { readFileSync } from 'node:fs';
 
-const swcConfig = JSON.parse(readFileSync('./.swcrc', 'utf8'));
+const swcConfig = JSON.parse(readFileSync('../../.swcrc', 'utf8'));
 
+/** @type {import('jest').Config} */
 export default {
   moduleFileExtensions: ['js', 'ts'],
   testEnvironment: 'node',
