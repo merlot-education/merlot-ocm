@@ -1,5 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
+import { EventInfoPublicDid } from '@ocm/shared';
 
 import { AgentService } from './agent.service.js';
 
@@ -9,6 +10,8 @@ export class AgentController {
 
   @MessagePattern('info.publicDid')
   public async publicDid() {
-    return await this.agent.getPublicDid()
+    const didDocument = await this.agent.getPublicDid();
+
+    return new EventInfoPublicDid({ didDocument });
   }
 }

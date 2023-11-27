@@ -13,7 +13,7 @@ describe('ConnectionsController', () => {
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [mockConfigModule, AgentModule],
+      imports: [mockConfigModule(3003), AgentModule],
       controllers: [ConnectionsController],
       providers: [ConnectionsService],
     }).compile();

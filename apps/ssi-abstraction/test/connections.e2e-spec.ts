@@ -18,7 +18,7 @@ describe('Connections', () => {
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [
-        mockConfigModule,
+        mockConfigModule(3004),
         AgentModule,
         ConnectionsModule,
         ClientsModule.register([{ name: TOKEN, transport: Transport.NATS }]),

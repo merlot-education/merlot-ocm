@@ -58,7 +58,7 @@ export class AgentService {
     });
 
     const httpInbound = new HttpInboundTransport({
-      port: Number(peerPort.replace(':', '')),
+      port: peerPort,
     });
 
     this.agent.registerInboundTransport(httpInbound);
@@ -119,9 +119,7 @@ export class AgentService {
     const ledgerIds = this.configService.get('agent.ledgerIds');
 
     if (!ledgerIds || ledgerIds.length < 1 || ledgerIds[0] === '') {
-      throw new Error(
-        'Agent could not start, please provide a ledger environment variable.',
-      );
+      return [];
     }
 
     return ledgerIds.map((id: LedgerIds) => {
@@ -148,12 +146,11 @@ export class AgentService {
 
     if (!publicDidSeed) {
       logger.info('No public did seed provided, skipping registration');
+      return;
     }
 
     if (!ledgerIds || ledgerIds.length < 1 || ledgerIds[0] === '') {
-      throw new Error(
-        'Agent could not start, please provide a ledger environment variable.',
-      );
+      return;
     }
 
     const registeredPublicDidResponses = await registerPublicDids({
@@ -177,9 +174,24 @@ export class AgentService {
   }
 
   public async getPublicDid() {
-    return {
-      id: 'test',
-    };
+    const dids = await this.agent.dids.getCreatedDids({ method: 'indy' });
+    if (dids.length === 0) {
+      throw new Error('No registered public DIDs');
+    }
+
+    if (dids.length > 1) {
+      throw new Error('Multiple public DIDs found');
+    }
+
+    const didRecord = dids[0];
+
+    if (!didRecord.didDocument) {
+      throw new Error(
+        'A public DID was found, but did not include a DID Document',
+      );
+    }
+
+    return didRecord.didDocument;
   }
 
   public async onModuleInit() {

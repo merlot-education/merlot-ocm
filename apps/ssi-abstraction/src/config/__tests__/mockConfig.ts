@@ -5,9 +5,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { validationSchema } from '../validation.js';
 
-const mockConfig: AppConfig = {
+const mockConfig = (port: number = 3001): AppConfig => ({
   agentHost: '',
-  port: 3000,
+  port:3000,
   jwtSecret: '',
   nats: {
     url: 'localhost',
@@ -16,45 +16,48 @@ const mockConfig: AppConfig = {
     name: 'my-test-agent',
     walletId: 'some-id',
     walletKey: 'some-key',
-    ledgerIds: ['BCOVRIN_TEST'],
+    ledgerIds: [],
     host: '3000',
-    peerPort: '3001',
+    inboundPort: port,
     path: '',
-    publicDidSeed: 'none',
+    publicDidSeed: '',
     autoAcceptConnection: false,
     autoAcceptCredential: AutoAcceptCredential.ContentApproved,
   },
-};
-
-export const mockConfigModule = ConfigModule.forRoot({
-  load: [() => mockConfig],
-  validationSchema,
 });
 
+export const mockConfigModule = (port: number = 3000) =>
+  ConfigModule.forRoot({
+    load: [() => mockConfig(port)],
+    validationSchema,
+  });
+
 describe('configuration', () => {
+  const mockedConfig = mockConfig();
+
   describe('service', () => {
     it('should be able to instantiate a config service', () => {
-      const configuration = new ConfigService(mockConfig);
+      const configuration = new ConfigService(mockConfig());
       expect(configuration).toBeInstanceOf(ConfigService);
     });
 
     it('should be able to extract root value', () => {
-      const configuration = new ConfigService(mockConfig);
+      const configuration = new ConfigService(mockConfig());
 
-      expect(configuration.get('port')).toStrictEqual(mockConfig.port);
+      expect(configuration.get('port')).toStrictEqual(mockedConfig.port);
     });
 
     it('should be able to extract root value as object', () => {
-      const configuration = new ConfigService(mockConfig);
+      const configuration = new ConfigService(mockConfig());
 
-      expect(configuration.get('agent')).toMatchObject(mockConfig.agent);
+      expect(configuration.get('agent')).toMatchObject(mockedConfig.agent);
     });
 
     it('should be able to extract nested values', () => {
-      const configuration = new ConfigService(mockConfig);
+      const configuration = new ConfigService(mockConfig());
 
       expect(configuration.get('agent.autoAcceptCredential')).toStrictEqual(
-        mockConfig.agent.autoAcceptCredential,
+        mockedConfig.agent.autoAcceptCredential,
       );
     });
   });
