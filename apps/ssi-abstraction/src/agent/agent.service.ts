@@ -203,6 +203,11 @@ export class AgentService implements OnApplicationShutdown {
   public async onApplicationShutdown() {
     if (!this.agent.isInitialized) return;
 
-    await this.agent.shutdown();
+    // If we cannot shutdown the wallet on application shutdown, no error will occur
+    // This is done because the Askar shutdown procedure is a bit buggy
+    try {
+      await this.agent.shutdown();
+      // eslint-disable-next-line no-empty
+    } catch {}
   }
 }

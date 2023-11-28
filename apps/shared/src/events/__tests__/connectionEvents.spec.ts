@@ -5,6 +5,7 @@ import {
 } from '@aries-framework/core';
 
 import {
+  EventDidcommConnectionsBlock,
   EventDidcommConnectionsCreateWithSelf,
   EventDidcommConnectionsGetAll,
   EventDidcommConnectionsGetById,
@@ -43,6 +44,23 @@ describe('Connection Events', () => {
 
     expect(typeof event.id).toStrictEqual('string');
     expect(event.type).toStrictEqual('EventDidcommConnectionsCreateWithSelf');
+    expect(event.timestamp).toBeInstanceOf(Date);
+    expect(event.instance).toMatchObject({
+      role: DidExchangeRole.Requester,
+      state: DidExchangeState.Completed,
+    });
+  });
+
+  it('should create a new connections block event', () => {
+    const event = new EventDidcommConnectionsBlock(
+      new ConnectionRecord({
+        role: DidExchangeRole.Requester,
+        state: DidExchangeState.Completed,
+      }),
+    );
+
+    expect(typeof event.id).toStrictEqual('string');
+    expect(event.type).toStrictEqual('EventDidcommConnectionsBlock');
     expect(event.timestamp).toBeInstanceOf(Date);
     expect(event.instance).toMatchObject({
       role: DidExchangeRole.Requester,

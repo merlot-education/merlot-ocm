@@ -55,9 +55,7 @@ export class EventDidcommConnectionsCreateWithSelf extends BaseEvent<ConnectionR
   public static token = 'didcomm.connections.createWithSelf';
 
   public get instance() {
-    return JsonTransformer.fromJSON(this.data, ConnectionRecord, {
-      validate: true,
-    });
+    return JsonTransformer.fromJSON(this.data, ConnectionRecord);
   }
 
   public static fromEvent(e: EventDidcommConnectionsCreateWithSelf) {
@@ -67,5 +65,19 @@ export class EventDidcommConnectionsCreateWithSelf extends BaseEvent<ConnectionR
       e.type,
       e.timestamp,
     );
+  }
+}
+
+export class EventDidcommConnectionsBlock extends BaseEvent<ConnectionRecord | null> {
+  public static token = 'didcomm.connections.block';
+
+  public get instance() {
+    return this.data
+      ? JsonTransformer.fromJSON(this.data, ConnectionRecord)
+      : null;
+  }
+
+  public static fromEvent(e: EventDidcommConnectionsBlock) {
+    return new EventDidcommConnectionsBlock(e.data, e.id, e.type, e.timestamp);
   }
 }
