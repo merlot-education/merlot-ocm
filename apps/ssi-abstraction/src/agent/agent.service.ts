@@ -12,6 +12,8 @@ import {
   CredentialsModule,
   DidsModule,
   HttpOutboundTransport,
+  JwkDidRegistrar,
+  JwkDidResolver,
   KeyDidRegistrar,
   KeyDidResolver,
   KeyType,
@@ -19,6 +21,7 @@ import {
   PeerDidRegistrar,
   PeerDidResolver,
   TypedArrayEncoder,
+  WebDidResolver,
 } from '@aries-framework/core';
 import {
   IndyVdrAnonCredsRegistry,
@@ -107,8 +110,10 @@ export class AgentService implements OnApplicationShutdown {
           new IndyVdrSovDidResolver(),
           new PeerDidResolver(),
           new KeyDidResolver(),
+          new JwkDidResolver(),
+          new WebDidResolver(),
         ],
-        registrars: [new PeerDidRegistrar(), new KeyDidRegistrar()],
+        registrars: [new PeerDidRegistrar(), new KeyDidRegistrar(), new JwkDidRegistrar()],
       }),
 
       askar: new AskarModule({ ariesAskar }),
@@ -203,6 +208,11 @@ export class AgentService implements OnApplicationShutdown {
   public async onApplicationShutdown() {
     if (!this.agent.isInitialized) return;
 
-    await this.agent.shutdown();
+    // If we cannot shutdown the wallet on application shutdown, no error will occur
+    // This is done because the Askar shutdown procedure is a bit buggy
+    try {
+      await this.agent.shutdown();
+      // eslint-disable-next-line no-empty
+    } catch {}
   }
 }
