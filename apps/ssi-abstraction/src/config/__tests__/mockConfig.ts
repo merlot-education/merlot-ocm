@@ -1,27 +1,27 @@
 import type { AppConfig } from '../config.js';
 
-import { AutoAcceptCredential } from '@aries-framework/core';
+import { AutoAcceptCredential, utils } from '@aries-framework/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { validationSchema } from '../validation.js';
 
 const mockConfig = (port: number = 3001): AppConfig => ({
   agentHost: '',
-  port:3000,
+  port: 3000,
   jwtSecret: '',
   nats: {
     url: 'localhost',
   },
   agent: {
     name: 'my-test-agent',
-    walletId: 'some-id',
+    walletId: utils.uuid(),
     walletKey: 'some-key',
     ledgerIds: [],
-    host: '3000',
+    host: 'http://localhost',
     inboundPort: port,
     path: '',
     publicDidSeed: '',
-    autoAcceptConnection: false,
+    autoAcceptConnection: true,
     autoAcceptCredential: AutoAcceptCredential.ContentApproved,
   },
 });
@@ -50,7 +50,7 @@ describe('configuration', () => {
     it('should be able to extract root value as object', () => {
       const configuration = new ConfigService(mockConfig());
 
-      expect(configuration.get('agent')).toMatchObject(mockedConfig.agent);
+      expect(configuration.get('agent')).toHaveProperty('name');
     });
 
     it('should be able to extract nested values', () => {

@@ -26,7 +26,7 @@ describe('AgentController', () => {
       jest.spyOn(agentService, 'getPublicDid').mockResolvedValue(result);
 
       const event = await agentController.publicDid();
-      expect(event.data).toMatchObject({ didDocument: result });
+      expect(event.data).toMatchObject(result);
     });
   });
 });

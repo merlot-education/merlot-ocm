@@ -1,6 +1,7 @@
 import type { LedgerIds } from '../config/ledger.js';
 import type { InitConfig } from '@aries-framework/core';
 import type { IndyVdrPoolConfig } from '@aries-framework/indy-vdr';
+import type { OnApplicationShutdown } from '@nestjs/common';
 
 import { AnonCredsModule } from '@aries-framework/anoncreds';
 import { AnonCredsRsModule } from '@aries-framework/anoncreds-rs';
@@ -41,7 +42,7 @@ import { AgentLogger } from './logger.js';
 export type AppAgent = Agent<AgentService['modules']>;
 
 @Injectable()
-export class AgentService {
+export class AgentService implements OnApplicationShutdown {
   public agent: AppAgent;
 
   private configService: ConfigService;
@@ -50,7 +51,6 @@ export class AgentService {
     this.configService = configService;
 
     const inboundPort = this.configService.get('agent.inboundPort');
-
     this.agent = new Agent({
       config: this.config,
       modules: this.modules,
@@ -70,7 +70,7 @@ export class AgentService {
     const { name, walletId, walletKey, host, inboundPort, path } =
       this.configService.get('agent');
 
-    const endpoints = [`${host}${inboundPort}${path}`];
+    const endpoints = [`${host}:${inboundPort}${path}`];
 
     return {
       label: name,
@@ -200,7 +200,9 @@ export class AgentService {
     logger.info('Agent initialized');
   }
 
-  public async onModuleDestory() {
+  public async onApplicationShutdown() {
+    if (!this.agent.isInitialized) return;
+
     await this.agent.shutdown();
   }
 }

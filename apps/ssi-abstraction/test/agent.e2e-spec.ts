@@ -1,10 +1,12 @@
+import './setEnvVars.js';
+
 import type { INestApplication } from '@nestjs/common';
 import type { ClientProxy } from '@nestjs/microservices';
-import type { EventInfoPublicDid } from '@ocm/shared';
 
 import { DidDocument } from '@aries-framework/core';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
+import { EventInfoPublicDid } from '@ocm/shared';
 import { firstValueFrom, type Observable } from 'rxjs';
 
 import { AgentModule } from '../src/agent/agent.module.js';
@@ -12,7 +14,7 @@ import { AgentService } from '../src/agent/agent.service.js';
 import { mockConfigModule } from '../src/config/__tests__/mockConfig.js';
 
 const mockDidDocument = {
-  '@context': ['https://w3id.org/did/v1'],
+  context: ['https://w3id.org/did/v1'],
   id: 'did:indy:bcovrin:test:7KuDTpQh3GJ7Gp6kErpWvM',
   verificationMethod: [
     {
@@ -33,9 +35,7 @@ describe('Agent', () => {
   beforeAll(async () => {
     jest
       .spyOn(AgentService.prototype, 'getPublicDid')
-      .mockImplementation(() =>
-        Promise.resolve(new DidDocument(mockDidDocument)),
-      );
+      .mockResolvedValue(new DidDocument(mockDidDocument));
 
     const moduleRef = await Test.createTestingModule({
       imports: [
@@ -56,17 +56,16 @@ describe('Agent', () => {
     await client.connect();
   });
 
-  it('info.publicDid', async () => {
+  it(EventInfoPublicDid.token, async () => {
     const response$: Observable<EventInfoPublicDid> = client.send(
-      'info.publicDid',
+      EventInfoPublicDid.token,
       {},
     );
 
     const response = await firstValueFrom(response$);
+    const eventInstance = EventInfoPublicDid.fromEvent(response);
 
-    expect(response.data).toMatchObject({
-      didDocument: mockDidDocument,
-    });
+    expect(eventInstance.instance).toMatchObject(mockDidDocument);
   });
 
   afterAll(async () => {

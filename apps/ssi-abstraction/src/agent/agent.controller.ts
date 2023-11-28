@@ -8,10 +8,10 @@ import { AgentService } from './agent.service.js';
 export class AgentController {
   public constructor(private agent: AgentService) {}
 
-  @MessagePattern('info.publicDid')
+  @MessagePattern(EventInfoPublicDid.token)
   public async publicDid() {
     const didDocument = await this.agent.getPublicDid();
 
-    return new EventInfoPublicDid({ didDocument });
+    return new EventInfoPublicDid(didDocument);
   }
 }

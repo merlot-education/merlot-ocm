@@ -1,5 +1,8 @@
-import type { ConnectionRecord } from '@aries-framework/core';
-
+import {
+  ConnectionRecord,
+  DidExchangeRole,
+  DidExchangeState,
+} from '@aries-framework/core';
 import { Test } from '@nestjs/testing';
 
 import { mockConfigModule } from '../../../config/__tests__/mockConfig.js';
@@ -25,28 +28,42 @@ describe('ConnectionsController', () => {
   describe('get all', () => {
     it('should get all the connection records of the agent', async () => {
       const result: Array<ConnectionRecord> = [];
-      jest
-        .spyOn(connectionsService, 'getAll')
-        .mockImplementation(() => Promise.resolve(result));
+      jest.spyOn(connectionsService, 'getAll').mockResolvedValue(result);
 
       const connectionsEvent = await connectionsController.getAll();
 
-      expect(connectionsEvent.data).toStrictEqual({ connections: result });
+      expect(connectionsEvent.data).toStrictEqual(result);
     });
   });
 
   describe('get by id', () => {
     it('should get a connection record by id', async () => {
       const result: ConnectionRecord | null = null;
-      jest
-        .spyOn(connectionsService, 'getById')
-        .mockImplementation(() => Promise.resolve(result));
+      jest.spyOn(connectionsService, 'getById').mockResolvedValue(result);
 
       const connectionsEvent = await connectionsController.getById({
         id: 'id',
       });
 
-      expect(connectionsEvent.data).toStrictEqual({ connection: result });
+      expect(connectionsEvent.data).toStrictEqual(result);
+    });
+  });
+
+  describe('create connection with self', () => {
+    it('should create a connection with itself', async () => {
+      const result: ConnectionRecord = new ConnectionRecord({
+        state: DidExchangeState.Completed,
+        role: DidExchangeRole.Requester,
+      });
+
+      jest
+        .spyOn(connectionsService, 'createConnectionWithSelf')
+        .mockResolvedValue(result);
+
+      const connectionsEvent =
+        await connectionsController.createConnectionWithSelf();
+
+      expect(connectionsEvent.data).toStrictEqual(result);
     });
   });
 });
