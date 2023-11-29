@@ -15,20 +15,6 @@ services:
       - nats
       - ssi
 
-  # attestation-manager:
-  #   build:
-  #     context: ..
-  #     args:
-  #       - SERVICE=attestation-manager
-  #   init: true
-  #   ports:
-  #     - '3005:3005'
-  #   env_file: ./env/attestation-manager.env
-  #   depends_on:
-  #     - db
-  #     - nats
-  #     - ssi
-
   credential-manager:
     build:
       context: ..

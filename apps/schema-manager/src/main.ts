@@ -7,8 +7,6 @@ import { Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import AppModule from './app.module.js';
-// import AllExceptionsFilter from './utils/exceptionsFilter.js';
-// import logger from './utils/logger.js';
 
 const app = await NestFactory.create(AppModule);
 const configService = app.get(ConfigService);
@@ -37,9 +35,4 @@ const document = SwaggerModule.createDocument(app, swaggerConfig);
 SwaggerModule.setup('/swagger', app, document);
 await app.startAllMicroservices();
 
-// const httpAdapter = app.get(HttpAdapterHost);
-// app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
-
-await app.listen(configService.get('PORT') || 3000, () => {
-  // logger.info(`Listening on Port:${configService.get('PORT')}` || 3000);
-});
+await app.listen(configService.get('PORT') || 3000);
