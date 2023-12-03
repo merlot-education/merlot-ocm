@@ -1,13 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { AgentController } from './agent.controller.js';
 import { AgentService } from './agent.service.js';
+import { WithTenantService } from './withTenantService.js';
 
 @Module({
   imports: [ConfigModule],
-  providers: [AgentService],
-  controllers: [AgentController],
-  exports: [AgentService],
+  providers: [AgentService, WithTenantService],
+  exports: [AgentService, WithTenantService],
 })
 export class AgentModule {}

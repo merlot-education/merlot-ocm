@@ -6,7 +6,7 @@ describe('Base Events', () => {
   });
 
   it('should create a new base event', () => {
-    const baseEvent = new BaseEvent({ some: 'data' });
+    const baseEvent = new BaseEvent({ some: 'data' }, 'tenantId');
 
     expect(typeof baseEvent.id).toStrictEqual('string');
     expect(baseEvent.type).toStrictEqual('BaseEvent');

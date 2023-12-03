@@ -1,7 +1,10 @@
+import type { BaseEventInput } from './baseEvents.js';
+
 import { ConnectionRecord, JsonTransformer } from '@aries-framework/core';
 
 import { BaseEvent } from './baseEvents.js';
 
+export type EventDidcommConnectionsGetAllInput = BaseEventInput;
 export class EventDidcommConnectionsGetAll extends BaseEvent<
   Array<ConnectionRecord>
 > {
@@ -12,10 +15,19 @@ export class EventDidcommConnectionsGetAll extends BaseEvent<
   }
 
   public static fromEvent(e: EventDidcommConnectionsGetAll) {
-    return new EventDidcommConnectionsGetAll(e.data, e.id, e.type, e.timestamp);
+    return new EventDidcommConnectionsGetAll(
+      e.data,
+      e.tenantId,
+      e.id,
+      e.type,
+      e.timestamp,
+    );
   }
 }
 
+export type EventDidcommConnectionsGetByIdInput = BaseEventInput<{
+  id: string;
+}>;
 export class EventDidcommConnectionsGetById extends BaseEvent<ConnectionRecord | null> {
   public static token = 'didcomm.connections.getById';
 
@@ -28,6 +40,7 @@ export class EventDidcommConnectionsGetById extends BaseEvent<ConnectionRecord |
   public static fromEvent(e: EventDidcommConnectionsGetById) {
     return new EventDidcommConnectionsGetById(
       e.data,
+      e.tenantId,
       e.id,
       e.type,
       e.timestamp,
@@ -35,6 +48,7 @@ export class EventDidcommConnectionsGetById extends BaseEvent<ConnectionRecord |
   }
 }
 
+export type EventDidcommConnectionsCreateWithSelfInput = BaseEventInput;
 export class EventDidcommConnectionsCreateWithSelf extends BaseEvent<ConnectionRecord> {
   public static token = 'didcomm.connections.createWithSelf';
 
@@ -45,6 +59,7 @@ export class EventDidcommConnectionsCreateWithSelf extends BaseEvent<ConnectionR
   public static fromEvent(e: EventDidcommConnectionsCreateWithSelf) {
     return new EventDidcommConnectionsCreateWithSelf(
       e.data,
+      e.tenantId,
       e.id,
       e.type,
       e.timestamp,
@@ -52,6 +67,9 @@ export class EventDidcommConnectionsCreateWithSelf extends BaseEvent<ConnectionR
   }
 }
 
+export type EventDidcommConnectionsBlockInput = BaseEventInput<{
+  idOrDid: string;
+}>;
 export class EventDidcommConnectionsBlock extends BaseEvent<ConnectionRecord | null> {
   public static token = 'didcomm.connections.block';
 
@@ -62,6 +80,12 @@ export class EventDidcommConnectionsBlock extends BaseEvent<ConnectionRecord | n
   }
 
   public static fromEvent(e: EventDidcommConnectionsBlock) {
-    return new EventDidcommConnectionsBlock(e.data, e.id, e.type, e.timestamp);
+    return new EventDidcommConnectionsBlock(
+      e.data,
+      e.tenantId,
+      e.id,
+      e.type,
+      e.timestamp,
+    );
   }
 }

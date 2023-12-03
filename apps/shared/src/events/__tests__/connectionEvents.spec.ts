@@ -17,7 +17,7 @@ describe('Connection Events', () => {
   });
 
   it('should create a new connections get all event', () => {
-    const event = new EventDidcommConnectionsGetAll([]);
+    const event = new EventDidcommConnectionsGetAll([], 'tenantId');
 
     expect(typeof event.id).toStrictEqual('string');
     expect(event.type).toStrictEqual('EventDidcommConnectionsGetAll');
@@ -26,7 +26,7 @@ describe('Connection Events', () => {
   });
 
   it('should create a new connections get by id event', () => {
-    const event = new EventDidcommConnectionsGetById(null);
+    const event = new EventDidcommConnectionsGetById(null, 'tenantId');
 
     expect(typeof event.id).toStrictEqual('string');
     expect(event.type).toStrictEqual('EventDidcommConnectionsGetById');
@@ -40,6 +40,7 @@ describe('Connection Events', () => {
         role: DidExchangeRole.Requester,
         state: DidExchangeState.Completed,
       }),
+      'tenantId',
     );
 
     expect(typeof event.id).toStrictEqual('string');
@@ -57,6 +58,7 @@ describe('Connection Events', () => {
         role: DidExchangeRole.Requester,
         state: DidExchangeState.Completed,
       }),
+      'tenantId',
     );
 
     expect(typeof event.id).toStrictEqual('string');

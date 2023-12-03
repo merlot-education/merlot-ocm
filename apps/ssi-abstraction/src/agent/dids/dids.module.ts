@@ -6,7 +6,7 @@ import { DidsController } from './dids.controller.js';
 import { DidsService } from './dids.service.js';
 
 @Module({
-  imports: [AgentModule],
+  imports: [AgentModule ],
   providers: [DidsService],
   controllers: [DidsController],
 })

@@ -30,6 +30,7 @@ import {
   IndyVdrSovDidResolver,
 } from '@aries-framework/indy-vdr';
 import { agentDependencies, HttpInboundTransport } from '@aries-framework/node';
+import { TenantsModule } from '@aries-framework/tenants';
 import { anoncreds } from '@hyperledger/anoncreds-nodejs';
 import { ariesAskar } from '@hyperledger/aries-askar-nodejs';
 import { indyVdr } from '@hyperledger/indy-vdr-nodejs';
@@ -113,10 +114,16 @@ export class AgentService implements OnApplicationShutdown {
           new JwkDidResolver(),
           new WebDidResolver(),
         ],
-        registrars: [new PeerDidRegistrar(), new KeyDidRegistrar(), new JwkDidRegistrar()],
+        registrars: [
+          new PeerDidRegistrar(),
+          new KeyDidRegistrar(),
+          new JwkDidRegistrar(),
+        ],
       }),
 
       askar: new AskarModule({ ariesAskar }),
+
+      tenants: new TenantsModule(),
     };
   }
 
@@ -176,27 +183,6 @@ export class AgentService implements OnApplicationShutdown {
         ],
       });
     }
-  }
-
-  public async getPublicDid() {
-    const dids = await this.agent.dids.getCreatedDids({ method: 'indy' });
-    if (dids.length === 0) {
-      throw new Error('No registered public DIDs');
-    }
-
-    if (dids.length > 1) {
-      throw new Error('Multiple public DIDs found');
-    }
-
-    const didRecord = dids[0];
-
-    if (!didRecord.didDocument) {
-      throw new Error(
-        'A public DID was found, but did not include a DID Document',
-      );
-    }
-
-    return didRecord.didDocument;
   }
 
   public async onModuleInit() {
