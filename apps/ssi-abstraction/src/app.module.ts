@@ -6,6 +6,7 @@ import { HealthController } from '@ocm/shared';
 
 import { AgentModule } from './agent/agent.module.js';
 import { ConnectionsModule } from './agent/connections/connections.module.js';
+import { SchemasModule } from './agent/schemas/schemas.module.js';
 import { TenantsModule } from './agent/tenants/tenants.module.js';
 import { config } from './config/config.js';
 import { validationSchema } from './config/validation.js';
@@ -21,6 +22,7 @@ import { validationSchema } from './config/validation.js';
     AgentModule,
     ConnectionsModule,
     DidsModule,
+    SchemasModule,
     TenantsModule,
   ],
   controllers: [HealthController],

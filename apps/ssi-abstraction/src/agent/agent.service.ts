@@ -16,11 +16,9 @@ import {
   JwkDidResolver,
   KeyDidRegistrar,
   KeyDidResolver,
-  KeyType,
   LogLevel,
   PeerDidRegistrar,
   PeerDidResolver,
-  TypedArrayEncoder,
   WebDidResolver,
 } from '@aries-framework/core';
 import {
@@ -40,7 +38,6 @@ import { logger } from '@ocm/shared';
 
 import { LEDGERS } from '../config/ledger.js';
 
-import { registerPublicDids } from './ledger/register.js';
 import { AgentLogger } from './logger.js';
 
 export type AppAgent = Agent<AgentService['modules']>;
@@ -127,7 +124,7 @@ export class AgentService implements OnApplicationShutdown {
     };
   }
 
-  public get ledgers() {
+  private get ledgers() {
     const ledgerIds = this.configService.get('agent.ledgerIds');
 
     if (!ledgerIds || ledgerIds.length < 1 || ledgerIds[0] === '') {
@@ -153,41 +150,8 @@ export class AgentService implements OnApplicationShutdown {
     });
   }
 
-  private async registerPublicDid() {
-    const { publicDidSeed, ledgerIds } = this.configService.get('agent');
-
-    if (!publicDidSeed) {
-      logger.info('No public did seed provided, skipping registration');
-      return;
-    }
-
-    if (!ledgerIds || ledgerIds.length < 1 || ledgerIds[0] === '') {
-      return;
-    }
-
-    const registeredPublicDidResponses = await registerPublicDids({
-      alias: this.config.label,
-      ledgerIds,
-      seed: publicDidSeed,
-    });
-
-    for (const publicDidResponse of registeredPublicDidResponses) {
-      await this.agent.dids.import({
-        overwrite: true,
-        did: publicDidResponse.did,
-        privateKeys: [
-          {
-            keyType: KeyType.Ed25519,
-            privateKey: TypedArrayEncoder.fromString(publicDidSeed),
-          },
-        ],
-      });
-    }
-  }
-
   public async onModuleInit() {
     await this.agent.initialize();
-    await this.registerPublicDid();
     logger.info('Agent initialized');
   }
 

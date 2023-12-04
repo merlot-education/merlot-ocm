@@ -1,18 +1,23 @@
-import type {
-  EventDidsPublicDidInput,
-  EventDidsResolveInput,
-} from '@ocm/shared';
+import type { EventDidsResolveInput } from '@ocm/shared';
 
+import { KeyType, TypedArrayEncoder } from '@aries-framework/core';
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
+import { registerPublicDids } from '../ledger/register.js';
 import { WithTenantService } from '../withTenantService.js';
 
 @Injectable()
 export class DidsService {
-  public withTenantService: WithTenantService;
+  private withTenantService: WithTenantService;
+  private configService: ConfigService;
 
-  public constructor(withTenantService: WithTenantService) {
+  public constructor(
+    withTenantService: WithTenantService,
+    configService: ConfigService,
+  ) {
     this.withTenantService = withTenantService;
+    this.configService = configService;
   }
 
   public async resolve({ did, tenantId }: EventDidsResolveInput) {
@@ -34,26 +39,35 @@ export class DidsService {
     });
   }
 
-  public async getPublicDid({ tenantId }: EventDidsPublicDidInput) {
-    return this.withTenantService.invoke(tenantId, async (t) => {
-      const dids = await t.dids.getCreatedDids({ method: 'indy' });
-      if (dids.length === 0) {
-        throw new Error('No registered public DIDs');
-      }
+  public async registerDidIndyFromSeed({
+    tenantId,
+    seed,
+  }: {
+    tenantId: string;
+    seed: string;
+  }): Promise<Array<string>> {
+    const ledgerIds = this.configService.get('agent.ledgerIds');
 
-      if (dids.length > 1) {
-        throw new Error('Multiple public DIDs found');
-      }
-
-      const didRecord = dids[0];
-
-      if (!didRecord.didDocument) {
-        throw new Error(
-          'A public DID was found, but did not include a DID Document',
-        );
-      }
-
-      return didRecord.didDocument;
+    const registeredPublicDidResponses = await registerPublicDids({
+      ledgerIds,
+      seed,
     });
+
+    for (const publicDidResponse of registeredPublicDidResponses) {
+      await this.withTenantService.invoke(tenantId, (t) =>
+        t.dids.import({
+          overwrite: true,
+          did: publicDidResponse.did,
+          privateKeys: [
+            {
+              keyType: KeyType.Ed25519,
+              privateKey: TypedArrayEncoder.fromString(seed),
+            },
+          ],
+        }),
+      );
+    }
+
+    return registeredPublicDidResponses.map((r) => r.did);
   }
 }

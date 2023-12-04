@@ -6,14 +6,12 @@ import axios from 'axios';
 import { LEDGERS } from '../../config/ledger.js';
 
 type RegisterPublicDidOptions = {
-  alias: string;
   ledgerIds: Array<LedgerIds>;
   seed: string;
 };
 
 type LedgerRegistrationBody = {
   role?: 'ENDORSER';
-  alias?: string;
   seed: string;
 };
 
@@ -25,7 +23,6 @@ type RegisterPublicDidResponse = {
 
 export const registerPublicDids = async ({
   ledgerIds,
-  alias,
   seed,
 }: RegisterPublicDidOptions): Promise<Array<RegisterPublicDidResponse>> => {
   const responses: Array<RegisterPublicDidResponse> = [];
@@ -36,7 +33,6 @@ export const registerPublicDids = async ({
 
       const body: LedgerRegistrationBody = {
         role: 'ENDORSER',
-        alias,
         seed,
       };
 

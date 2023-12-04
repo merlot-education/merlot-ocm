@@ -1,8 +1,8 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import {
-  EventDidsPublicDid,
-  EventDidsPublicDidInput,
+  EventDidsRegisterIndyFromSeed,
+  EventDidsRegisterIndyFromSeedInput,
   EventDidsResolve,
   EventDidsResolveInput,
 } from '@ocm/shared';
@@ -13,10 +13,10 @@ import { DidsService } from './dids.service.js';
 export class DidsController {
   public constructor(private didsService: DidsService) {}
 
-  @MessagePattern(EventDidsPublicDid.token)
-  public async publicDid(options: EventDidsPublicDidInput) {
-    return new EventDidsPublicDid(
-      await this.didsService.getPublicDid(options),
+  @MessagePattern(EventDidsRegisterIndyFromSeed.token)
+  public async registerFromSeed(options: EventDidsRegisterIndyFromSeedInput) {
+    return new EventDidsRegisterIndyFromSeed(
+      await this.didsService.registerDidIndyFromSeed(options),
       options.tenantId,
     );
   }

@@ -34,4 +34,20 @@ describe('DidsController', () => {
       expect(event.data).toStrictEqual(result);
     });
   });
+
+  describe('register indy did from seed', () => {
+    it('should register an indy did from seed', async () => {
+      const result = ['did:indy:bcovrin:test:mock'];
+      jest
+        .spyOn(didsService, 'registerDidIndyFromSeed')
+        .mockResolvedValue(result);
+
+      const event = await didsController.registerFromSeed({
+        seed: 'random-secure-seed',
+        tenantId: 'some-id',
+      });
+
+      expect(event.data).toStrictEqual(result);
+    });
+  });
 });

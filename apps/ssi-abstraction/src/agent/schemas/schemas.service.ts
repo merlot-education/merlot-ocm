@@ -58,7 +58,7 @@ export class SchemasService {
           },
         });
 
-      if (schemaState.state !== 'finished') {
+      if (schemaState.state !== 'finished' && schemaState.state !== 'action') {
         throw new Error(
           `Error registering schema: ${
             schemaState.state === 'failed' ? schemaState.reason : 'Not Finished'

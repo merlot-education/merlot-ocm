@@ -5,7 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { validationSchema } from '../validation.js';
 
-const mockConfig = (port: number = 3001): AppConfig => ({
+const mockConfig = (port: number = 3001, withLedger = false): AppConfig => ({
   agentHost: '',
   port: 3000,
   jwtSecret: '',
@@ -16,19 +16,19 @@ const mockConfig = (port: number = 3001): AppConfig => ({
     name: 'my-test-agent',
     walletId: utils.uuid(),
     walletKey: 'some-key',
-    ledgerIds: [],
+    ledgerIds: withLedger ? ['BCOVRIN_TEST'] : [],
     host: 'http://localhost',
     inboundPort: port,
     path: '',
-    publicDidSeed: '',
+    publicDidSeed: withLedger ? '12312367897123300000000000000000' : '',
     autoAcceptConnection: true,
     autoAcceptCredential: AutoAcceptCredential.ContentApproved,
   },
 });
 
-export const mockConfigModule = (port: number = 3000) =>
+export const mockConfigModule = (port: number = 3000, withLedger = false) =>
   ConfigModule.forRoot({
-    load: [() => mockConfig(port)],
+    load: [() => mockConfig(port, withLedger)],
     validationSchema,
   });
 
