@@ -7,7 +7,7 @@ import { AgentModule } from '../../agent.module.js';
 import { SchemasController } from '../schemas.controller.js';
 import { SchemasService } from '../schemas.service.js';
 
-describe('ConnectionsController', () => {
+describe('SchemassController', () => {
   let schemasController: SchemasController;
   let schemasService: SchemasService;
 

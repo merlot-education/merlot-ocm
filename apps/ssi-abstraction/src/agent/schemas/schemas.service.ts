@@ -42,7 +42,9 @@ export class SchemasService {
     version,
     issuerDid,
     attributeNames,
-  }: EventAnonCredsSchemasRegisterInput): Promise<AnonCredsSchema> {
+  }: EventAnonCredsSchemasRegisterInput): Promise<
+    AnonCredsSchema & { schemaId: string }
+  > {
     return this.withTenantService.invoke(tenantId, async (t) => {
       const { schemaState } =
         await t.modules.anoncreds.registerSchema<IndyVdrRegisterSchemaOptions>({
@@ -53,7 +55,7 @@ export class SchemasService {
             attrNames: attributeNames,
           },
           options: {
-            endorserMode: 'external',
+            endorserMode: 'internal',
             endorserDid: issuerDid,
           },
         });
@@ -66,7 +68,7 @@ export class SchemasService {
         );
       }
 
-      return schemaState.schema;
+      return { schemaId: schemaState.schemaId, ...schemaState.schema };
     });
   }
 }
