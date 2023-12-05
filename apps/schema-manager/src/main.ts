@@ -1,3 +1,4 @@
+/* c8 ignore start */
 import type { MicroserviceOptions } from '@nestjs/microservices';
 
 import { VersioningType } from '@nestjs/common';
@@ -6,9 +7,9 @@ import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-import AppModule from './app.module.js';
+import { Application } from './application.js';
 
-const app = await NestFactory.create(AppModule);
+const app = await NestFactory.create(Application);
 const configService = app.get(ConfigService);
 app.enableCors();
 
@@ -36,3 +37,4 @@ SwaggerModule.setup('/swagger', app, document);
 await app.startAllMicroservices();
 
 await app.listen(configService.get('PORT') || 3000);
+/* c8 ignore stop */
