@@ -15,15 +15,29 @@ services:
       - nats
       - ssi
 
-  attestation-manager:
+  credential-manager:
     build:
       context: ..
       args:
-        - SERVICE=attestation-manager
+        - SERVICE=credential-manager
     init: true
     ports:
-      - '3005:3005'
-    env_file: ./env/attestation-manager.env
+      - '3011:3011'
+    env_file: ./env/credential-manager.env
+    depends_on:
+      - db
+      - nats
+      - ssi
+
+  schema-manager:
+    build:
+      context: ..
+      args:
+        - SERVICE=schema-manager
+    init: true
+    ports:
+      - '3013:3013'
+    env_file: ./env/schema-manager.env
     depends_on:
       - db
       - nats
