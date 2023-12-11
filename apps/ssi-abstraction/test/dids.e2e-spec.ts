@@ -1,36 +1,20 @@
 import type { INestApplication } from '@nestjs/common';
 import type { ClientProxy } from '@nestjs/microservices';
 import type {
+  EventDidsRegisterIndyFromSeedInput,
   EventDidsResolveInput,
-  EventDidsPublicDidInput,
 } from '@ocm/shared';
 
-import { DidDocument } from '@aries-framework/core';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
-import { EventDidsResolve, EventDidsPublicDid } from '@ocm/shared';
+import { EventDidsRegisterIndyFromSeed, EventDidsResolve } from '@ocm/shared';
 import { firstValueFrom } from 'rxjs';
 
 import { AgentModule } from '../src/agent/agent.module.js';
 import { DidsModule } from '../src/agent/dids/dids.module.js';
-import { DidsService } from '../src/agent/dids/dids.service.js';
 import { TenantsModule } from '../src/agent/tenants/tenants.module.js';
 import { TenantsService } from '../src/agent/tenants/tenants.service.js';
 import { mockConfigModule } from '../src/config/__tests__/mockConfig.js';
-
-const mockDidDocument = {
-  context: ['https://w3id.org/did/v1'],
-  id: 'did:indy:bcovrin:test:7KuDTpQh3GJ7Gp6kErpWvM',
-  verificationMethod: [
-    {
-      id: 'did:indy:bcovrin:test:7KuDTpQh3GJ7Gp6kErpWvM#verkey',
-      type: 'Ed25519VerificationKey2018',
-      controller: 'did:indy:bcovrin:test:7KuDTpQh3GJ7Gp6kErpWvM',
-      publicKeyBase58: '4SySYXQUtuK26zfC7RpQpWYMThfbXphUf8LWyXXmxyTX',
-    },
-  ],
-  authentication: ['did:indy:bcovrin:test:7KuDTpQh3GJ7Gp6kErpWvM#verkey'],
-};
 
 describe('Dids', () => {
   const TOKEN = 'DIDS_CLIENT_SERVICE';
@@ -39,12 +23,9 @@ describe('Dids', () => {
   let tenantId: string;
 
   beforeAll(async () => {
-    jest
-      .spyOn(DidsService.prototype, 'getPublicDid')
-      .mockResolvedValue(new DidDocument(mockDidDocument));
     const moduleRef = await Test.createTestingModule({
       imports: [
-        mockConfigModule(3005),
+        mockConfigModule(3005, true),
         AgentModule,
         DidsModule,
         TenantsModule,
@@ -72,16 +53,21 @@ describe('Dids', () => {
     client.close();
   });
 
-  it(EventDidsPublicDid.token, async () => {
-    const response$ = client.send<EventDidsPublicDid, EventDidsPublicDidInput>(
-      EventDidsPublicDid.token,
-      { tenantId },
-    );
+  it(EventDidsRegisterIndyFromSeed.token, async () => {
+    const response$ = client.send<
+      EventDidsRegisterIndyFromSeed,
+      EventDidsRegisterIndyFromSeedInput
+    >(EventDidsRegisterIndyFromSeed.token, {
+      seed: '12312367897123300000000000000000',
+      tenantId,
+    });
 
     const response = await firstValueFrom(response$);
-    const eventInstance = EventDidsPublicDid.fromEvent(response);
+    const eventInstance = EventDidsRegisterIndyFromSeed.fromEvent(response);
 
-    expect(eventInstance.instance).toMatchObject(mockDidDocument);
+    expect(eventInstance.instance).toMatchObject(
+      expect.arrayContaining(['did:indy:bcovrin:test:9MMeff63VnCpogD2FWfKnJ']),
+    );
   });
 
   it(EventDidsResolve.token, async () => {
