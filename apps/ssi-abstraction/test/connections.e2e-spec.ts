@@ -8,6 +8,7 @@ import {
   EventDidcommConnectionsGetById,
   EventDidcommConnectionsGetAll,
   EventDidcommConnectionsCreateWithSelf,
+  EventDidcommConnectionsBlock,
 } from '@ocm/shared';
 import { firstValueFrom } from 'rxjs';
 
@@ -82,5 +83,17 @@ describe('Connections', () => {
       MetadataTokens.GAIA_X_CONNECTION_METADATA_KEY,
     );
     expect(metadata).toMatchObject({ trusted: true });
+  });
+
+  it(EventDidcommConnectionsBlock.token, async () => {
+    const response$: Observable<EventDidcommConnectionsBlock> = client.send(
+      EventDidcommConnectionsBlock.token,
+      { idOrDid: 'some-id' },
+    );
+
+    const response = await firstValueFrom(response$);
+    const eventInstance = EventDidcommConnectionsBlock.fromEvent(response);
+
+    expect(eventInstance.instance).toBeNull();
   });
 });

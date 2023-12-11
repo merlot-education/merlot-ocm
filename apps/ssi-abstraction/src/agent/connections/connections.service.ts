@@ -9,6 +9,7 @@ import {
   ConnectionRepository,
   DidExchangeState,
 } from '@aries-framework/core';
+import { isDid } from '@aries-framework/core/build/utils/did.js';
 import { Injectable } from '@nestjs/common';
 
 import { MetadataTokens } from '../../common/constants.js';
@@ -28,6 +29,37 @@ export class ConnectionsService {
 
   public async getById(id: string): Promise<ConnectionRecord | null> {
     return await this.agent.connections.findById(id);
+  }
+
+  public async blockByIdOrDid(
+    idOrDid: string,
+  ): Promise<ConnectionRecord | null> {
+    if (isDid(idOrDid)) {
+      const records = await this.agent.connections.findAllByQuery({
+        theirDid: idOrDid,
+      });
+
+      if (records.length === 0) {
+        return null;
+      }
+
+      if (records.length > 1) {
+        throw new Error(
+          'Found multiple records with the same DID. This should not be possible',
+        );
+      }
+
+      await this.agent.connections.deleteById(records[0].id);
+
+      return records[0];
+    }
+
+    const record = await this.agent.connections.findById(idOrDid);
+    if (!record) return null;
+
+    await this.agent.connections.deleteById(record.id);
+
+    return record;
   }
 
   public async createConnectionWithSelf(): Promise<ConnectionRecord> {

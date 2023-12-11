@@ -4,6 +4,7 @@ import {
   EventDidcommConnectionsGetById,
   EventDidcommConnectionsGetAll,
   EventDidcommConnectionsCreateWithSelf,
+  EventDidcommConnectionsBlock,
 } from '@ocm/shared';
 
 import { ConnectionsService } from './connections.service.js';
@@ -34,6 +35,17 @@ export class ConnectionsController {
   public async createConnectionWithSelf(): Promise<EventDidcommConnectionsCreateWithSelf> {
     return new EventDidcommConnectionsCreateWithSelf(
       await this.connectionsService.createConnectionWithSelf(),
+    );
+  }
+
+  @MessagePattern(EventDidcommConnectionsBlock.token)
+  public async blockConnection({
+    idOrDid,
+  }: {
+    idOrDid: string;
+  }): Promise<EventDidcommConnectionsBlock> {
+    return new EventDidcommConnectionsBlock(
+      await this.connectionsService.blockByIdOrDid(idOrDid),
     );
   }
 }
