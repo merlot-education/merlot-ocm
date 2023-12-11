@@ -1,22 +1,6 @@
-import {
-  ConnectionRecord,
-  DidDocument,
-  JsonTransformer,
-} from '@aries-framework/core';
+import { ConnectionRecord, JsonTransformer } from '@aries-framework/core';
 
 import { BaseEvent } from './baseEvents.js';
-
-export class EventInfoPublicDid extends BaseEvent<DidDocument> {
-  public static token = 'didcomm.info.publicDid';
-
-  public get instance() {
-    return JsonTransformer.fromJSON(this.data, DidDocument);
-  }
-
-  public static fromEvent(e: EventInfoPublicDid) {
-    return new EventInfoPublicDid(e.data, e.id, e.type, e.timestamp);
-  }
-}
 
 export class EventDidcommConnectionsGetAll extends BaseEvent<
   Array<ConnectionRecord>

@@ -12,6 +12,8 @@ import {
   CredentialsModule,
   DidsModule,
   HttpOutboundTransport,
+  JwkDidRegistrar,
+  JwkDidResolver,
   KeyDidRegistrar,
   KeyDidResolver,
   KeyType,
@@ -19,6 +21,7 @@ import {
   PeerDidRegistrar,
   PeerDidResolver,
   TypedArrayEncoder,
+  WebDidResolver,
 } from '@aries-framework/core';
 import {
   IndyVdrAnonCredsRegistry,
@@ -107,8 +110,10 @@ export class AgentService implements OnApplicationShutdown {
           new IndyVdrSovDidResolver(),
           new PeerDidResolver(),
           new KeyDidResolver(),
+          new JwkDidResolver(),
+          new WebDidResolver(),
         ],
-        registrars: [new PeerDidRegistrar(), new KeyDidRegistrar()],
+        registrars: [new PeerDidRegistrar(), new KeyDidRegistrar(), new JwkDidRegistrar()],
       }),
 
       askar: new AskarModule({ ariesAskar }),
