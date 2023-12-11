@@ -31,10 +31,9 @@ export default {
       : ['text-summary', 'html'],
   coveragePathIgnorePatterns: [
     '<rootDir>/node_modules/',
-    '<rootDir>/test/',
     '<rootDir>/coverage/',
     '<rootDir>/dist/',
-    '<rootDir>/**/test',
+    '__tests__',
     '@types',
     '.dto.(t|j)s',
     '.enum.ts',
