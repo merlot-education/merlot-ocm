@@ -5,6 +5,10 @@ import {
   EventDidcommConnectionsGetAll,
   EventDidcommConnectionsCreateWithSelf,
   EventDidcommConnectionsBlock,
+  EventDidcommConnectionsGetAllInput,
+  EventDidcommConnectionsGetByIdInput,
+  EventDidcommConnectionsCreateWithSelfInput,
+  EventDidcommConnectionsBlockInput,
 } from '@ocm/shared';
 
 import { ConnectionsService } from './connections.service.js';
@@ -14,38 +18,42 @@ export class ConnectionsController {
   public constructor(private connectionsService: ConnectionsService) {}
 
   @MessagePattern(EventDidcommConnectionsGetAll.token)
-  public async getAll(): Promise<EventDidcommConnectionsGetAll> {
+  public async getAll(
+    options: EventDidcommConnectionsGetAllInput,
+  ): Promise<EventDidcommConnectionsGetAll> {
     return new EventDidcommConnectionsGetAll(
-      await this.connectionsService.getAll(),
+      await this.connectionsService.getAll(options),
+      options.tenantId,
     );
   }
 
   @MessagePattern(EventDidcommConnectionsGetById.token)
-  public async getById({
-    id,
-  }: {
-    id: string;
-  }): Promise<EventDidcommConnectionsGetById> {
+  public async getById(
+    options: EventDidcommConnectionsGetByIdInput,
+  ): Promise<EventDidcommConnectionsGetById> {
     return new EventDidcommConnectionsGetById(
-      await this.connectionsService.getById(id),
+      await this.connectionsService.getById(options),
+      options.tenantId,
     );
   }
 
   @MessagePattern(EventDidcommConnectionsCreateWithSelf.token)
-  public async createConnectionWithSelf(): Promise<EventDidcommConnectionsCreateWithSelf> {
+  public async createConnectionWithSelf(
+    options: EventDidcommConnectionsCreateWithSelfInput,
+  ): Promise<EventDidcommConnectionsCreateWithSelf> {
     return new EventDidcommConnectionsCreateWithSelf(
-      await this.connectionsService.createConnectionWithSelf(),
+      await this.connectionsService.createConnectionWithSelf(options),
+      options.tenantId,
     );
   }
 
   @MessagePattern(EventDidcommConnectionsBlock.token)
-  public async blockConnection({
-    idOrDid,
-  }: {
-    idOrDid: string;
-  }): Promise<EventDidcommConnectionsBlock> {
+  public async blockConnection(
+    options: EventDidcommConnectionsBlockInput,
+  ): Promise<EventDidcommConnectionsBlock> {
     return new EventDidcommConnectionsBlock(
-      await this.connectionsService.blockByIdOrDid(idOrDid),
+      await this.connectionsService.blockByIdOrDid(options),
+      options.tenantId,
     );
   }
 }

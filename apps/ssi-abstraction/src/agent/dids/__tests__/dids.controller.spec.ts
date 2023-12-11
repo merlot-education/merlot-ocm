@@ -28,6 +28,7 @@ describe('DidsController', () => {
 
       const event = await didsController.resolve({
         did: 'did:key:foo',
+        tenantId: 'some-id',
       });
 
       expect(event.data).toStrictEqual(result);

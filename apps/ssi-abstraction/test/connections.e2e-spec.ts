@@ -1,6 +1,11 @@
 import type { INestApplication } from '@nestjs/common';
 import type { ClientProxy } from '@nestjs/microservices';
-import type { Observable } from 'rxjs';
+import type {
+  EventDidcommConnectionsGetAllInput,
+  EventDidcommConnectionsCreateWithSelfInput,
+  EventDidcommConnectionsGetByIdInput,
+  EventDidcommConnectionsBlockInput,
+} from '@ocm/shared';
 
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
@@ -14,6 +19,8 @@ import { firstValueFrom } from 'rxjs';
 
 import { AgentModule } from '../src/agent/agent.module.js';
 import { ConnectionsModule } from '../src/agent/connections/connections.module.js';
+import { TenantsModule } from '../src/agent/tenants/tenants.module.js';
+import { TenantsService } from '../src/agent/tenants/tenants.service.js';
 import { MetadataTokens } from '../src/common/constants.js';
 import { mockConfigModule } from '../src/config/__tests__/mockConfig.js';
 
@@ -21,6 +28,7 @@ describe('Connections', () => {
   const TOKEN = 'CONNECTIONS_CLIENT_SERVICE';
   let app: INestApplication;
   let client: ClientProxy;
+  let tenantId: string;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -28,6 +36,7 @@ describe('Connections', () => {
         mockConfigModule(3004),
         AgentModule,
         ConnectionsModule,
+        TenantsModule,
         ClientsModule.register([{ name: TOKEN, transport: Transport.NATS }]),
       ],
     }).compile();
@@ -41,6 +50,10 @@ describe('Connections', () => {
 
     client = app.get(TOKEN);
     await client.connect();
+
+    const ts = app.get(TenantsService);
+    const { id } = await ts.create(TOKEN);
+    tenantId = id;
   });
 
   afterAll(async () => {
@@ -49,10 +62,10 @@ describe('Connections', () => {
   });
 
   it(EventDidcommConnectionsGetAll.token, async () => {
-    const response$: Observable<EventDidcommConnectionsGetAll> = client.send(
-      EventDidcommConnectionsGetAll.token,
-      {},
-    );
+    const response$ = client.send<
+      EventDidcommConnectionsGetAll,
+      EventDidcommConnectionsGetAllInput
+    >(EventDidcommConnectionsGetAll.token, { tenantId });
     const response = await firstValueFrom(response$);
     const eventInstance = EventDidcommConnectionsGetAll.fromEvent(response);
 
@@ -60,10 +73,13 @@ describe('Connections', () => {
   });
 
   it(EventDidcommConnectionsGetById.token, async () => {
-    const response$: Observable<EventDidcommConnectionsGetById> = client.send(
-      EventDidcommConnectionsGetById.token,
-      { id: 'some-id' },
-    );
+    const response$ = client.send<
+      EventDidcommConnectionsGetById,
+      EventDidcommConnectionsGetByIdInput
+    >(EventDidcommConnectionsGetById.token, {
+      id: 'some-id',
+      tenantId,
+    });
     const response = await firstValueFrom(response$);
     const eventInstance = EventDidcommConnectionsGetById.fromEvent(response);
 
@@ -71,8 +87,12 @@ describe('Connections', () => {
   });
 
   it(EventDidcommConnectionsCreateWithSelf.token, async () => {
-    const response$: Observable<EventDidcommConnectionsCreateWithSelf> =
-      client.send(EventDidcommConnectionsCreateWithSelf.token, {});
+    const response$ = client.send<
+      EventDidcommConnectionsCreateWithSelf,
+      EventDidcommConnectionsCreateWithSelfInput
+    >(EventDidcommConnectionsCreateWithSelf.token, {
+      tenantId,
+    });
 
     const response = await firstValueFrom(response$);
     const eventInstance =
@@ -86,10 +106,13 @@ describe('Connections', () => {
   });
 
   it(EventDidcommConnectionsBlock.token, async () => {
-    const response$: Observable<EventDidcommConnectionsBlock> = client.send(
-      EventDidcommConnectionsBlock.token,
-      { idOrDid: 'some-id' },
-    );
+    const response$ = client.send<
+      EventDidcommConnectionsBlock,
+      EventDidcommConnectionsBlockInput
+    >(EventDidcommConnectionsBlock.token, {
+      idOrDid: 'some-id',
+      tenantId,
+    });
 
     const response = await firstValueFrom(response$);
     const eventInstance = EventDidcommConnectionsBlock.fromEvent(response);
