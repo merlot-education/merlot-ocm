@@ -6,7 +6,7 @@ import { AgentService } from '../agent.service.js';
 
 @Injectable()
 export class TenantsService {
-  public agent: AppAgent;
+  private agent: AppAgent;
 
   public constructor(agentService: AgentService) {
     this.agent = agentService.agent;

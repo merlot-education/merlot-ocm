@@ -12,11 +12,7 @@ import { WithTenantService } from '../withTenantService.js';
 
 @Injectable()
 export class SchemasService {
-  public withTenantService: WithTenantService;
-
-  public constructor(withTenantService: WithTenantService) {
-    this.withTenantService = withTenantService;
-  }
+  public constructor(private withTenantService: WithTenantService) {}
 
   public async getAll({
     tenantId,

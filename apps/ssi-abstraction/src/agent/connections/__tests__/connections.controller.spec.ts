@@ -30,11 +30,11 @@ describe('ConnectionsController', () => {
       const result: Array<ConnectionRecord> = [];
       jest.spyOn(connectionsService, 'getAll').mockResolvedValue(result);
 
-      const connectionsEvent = await connectionsController.getAll({
+      const event = await connectionsController.getAll({
         tenantId: 'some-id',
       });
 
-      expect(connectionsEvent.data).toStrictEqual(result);
+      expect(event.data).toStrictEqual(result);
     });
   });
 
@@ -43,12 +43,12 @@ describe('ConnectionsController', () => {
       const result: ConnectionRecord | null = null;
       jest.spyOn(connectionsService, 'getById').mockResolvedValue(result);
 
-      const connectionsEvent = await connectionsController.getById({
+      const event = await connectionsController.getById({
         id: 'id',
         tenantId: 'some-id',
       });
 
-      expect(connectionsEvent.data).toStrictEqual(result);
+      expect(event.data).toStrictEqual(result);
     });
   });
 
@@ -63,12 +63,11 @@ describe('ConnectionsController', () => {
         .spyOn(connectionsService, 'createConnectionWithSelf')
         .mockResolvedValue(result);
 
-      const connectionsEvent =
-        await connectionsController.createConnectionWithSelf({
-          tenantId: 'some-id',
-        });
+      const event = await connectionsController.createConnectionWithSelf({
+        tenantId: 'some-id',
+      });
 
-      expect(connectionsEvent.data).toStrictEqual(result);
+      expect(event.data).toStrictEqual(result);
     });
   });
 });

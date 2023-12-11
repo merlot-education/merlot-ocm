@@ -24,15 +24,13 @@ import { WithTenantService } from '../withTenantService.js';
 
 @Injectable()
 export class ConnectionsService {
-  public agent: AppAgent;
-  public withTenantService: WithTenantService;
+  private agent: AppAgent;
 
   public constructor(
     agentService: AgentService,
-    withTenantService: WithTenantService,
+    private withTenantService: WithTenantService,
   ) {
     this.agent = agentService.agent;
-    this.withTenantService = withTenantService;
   }
 
   public async getAll({
@@ -104,6 +102,7 @@ export class ConnectionsService {
               MetadataTokens.GAIA_X_CONNECTION_METADATA_KEY,
               {
                 trusted: true,
+                withSelf: true,
               },
             );
 
