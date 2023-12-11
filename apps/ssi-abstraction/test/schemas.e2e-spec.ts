@@ -92,7 +92,7 @@ describe('Schemas', () => {
   });
 
   it(EventAnonCredsSchemasRegister.token, async () => {
-    const version = new Date().getTime().toString();
+    const version = `1.${new Date().getTime()}`;
     const attributeNames = ['names', 'age'];
     const name = 'my-schema';
     const response$ = client.send<
