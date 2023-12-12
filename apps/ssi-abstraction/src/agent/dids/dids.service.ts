@@ -9,16 +9,10 @@ import { WithTenantService } from '../withTenantService.js';
 
 @Injectable()
 export class DidsService {
-  private withTenantService: WithTenantService;
-  private configService: ConfigService;
-
   public constructor(
-    withTenantService: WithTenantService,
-    configService: ConfigService,
-  ) {
-    this.withTenantService = withTenantService;
-    this.configService = configService;
-  }
+    private withTenantService: WithTenantService,
+    private configService: ConfigService,
+  ) {}
 
   public async resolve({ did, tenantId }: EventDidsResolveInput) {
     return this.withTenantService.invoke(tenantId, async (t) => {

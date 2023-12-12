@@ -3,7 +3,11 @@ import type { InitConfig } from '@aries-framework/core';
 import type { IndyVdrPoolConfig } from '@aries-framework/indy-vdr';
 import type { OnApplicationShutdown } from '@nestjs/common';
 
-import { AnonCredsModule } from '@aries-framework/anoncreds';
+import {
+  AnonCredsCredentialFormatService,
+  AnonCredsModule,
+  LegacyIndyCredentialFormatService,
+} from '@aries-framework/anoncreds';
 import { AnonCredsRsModule } from '@aries-framework/anoncreds-rs';
 import { AskarModule } from '@aries-framework/askar';
 import {
@@ -19,6 +23,7 @@ import {
   LogLevel,
   PeerDidRegistrar,
   PeerDidResolver,
+  V2CredentialProtocol,
   WebDidResolver,
 } from '@aries-framework/core';
 import {
@@ -94,6 +99,14 @@ export class AgentService implements OnApplicationShutdown {
       }),
       credentials: new CredentialsModule({
         autoAcceptCredentials: autoAcceptCredential,
+        credentialProtocols: [
+          new V2CredentialProtocol({
+            credentialFormats: [
+              new AnonCredsCredentialFormatService(),
+              new LegacyIndyCredentialFormatService(),
+            ],
+          }),
+        ],
       }),
 
       anoncredsRs: new AnonCredsRsModule({ anoncreds }),
