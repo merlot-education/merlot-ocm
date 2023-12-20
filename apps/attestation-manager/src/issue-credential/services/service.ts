@@ -65,7 +65,6 @@ export default class AttestationService {
     if (!isTrustedConnectionRequired) {
       logger.info(`trusted connection not required`);
       logger.info(`connectionId ${credentialRequest.connectionId}`);
-      logger.info(`credentialRequest ${credentialRequest}`);
       const connection = await this.getConnectionByID(
         credentialRequest.connectionId,
       );
@@ -73,10 +72,11 @@ export default class AttestationService {
       logger.info(`connection ${JSON.stringify(connection)}`);
 
       if (connection?.status !== AttestationService.connectionStatus.TRUSTED) {
+         logger.info(`not trusted`);
         return null;
       }
     }
-
+    logger.info(`agentUrl ${this.configService.get('agent.AGENT_URL')}`);
     const agentUrl = this.configService.get('agent.AGENT_URL');
     const credentialRequestObj = { ...credentialRequest };
 
@@ -84,7 +84,11 @@ export default class AttestationService {
       credentialRequestObj.credentialDefinitionId,
     );
 
+    logger.info(`credDef ${JSON.stringify(credDef)}`);
+
     const expirationDate = Utils.calculateExpiry(credDef.expiryHours);
+
+    logger.info(`expirationDate ${expirationDate}`);
 
     if (expirationDate) {
       credentialRequestObj.attributes.push({
