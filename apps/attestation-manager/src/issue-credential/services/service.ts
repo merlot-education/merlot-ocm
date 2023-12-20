@@ -60,8 +60,12 @@ export default class AttestationService {
     credentialRequest: OfferCredentialDto,
     isTrustedConnectionRequired = false,
   ) {
+    logger.info(`createOfferCredential entered`);
     // TODO is it a correct conditions here? Should not be just isTrustedConnectionRequired?
     if (!isTrustedConnectionRequired) {
+      logger.info(`trusted connection not required`);
+      logger.info(`connectionId ${credentialRequest.connectionId}`);
+      logger.info(`credentialRequest ${credentialRequest}`);
       const connection = await this.getConnectionByID(
         credentialRequest.connectionId,
       );
