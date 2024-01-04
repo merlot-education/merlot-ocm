@@ -70,6 +70,15 @@ spec:
             value: {{ .Values.ssiAbstraction.agent.wallet.key  | quote }}
           - name: AGENT_WALLET_ID
             value: {{ .Values.ssiAbstraction.agent.wallet.id  | quote }}
+          {{- if .Values.secretEnv }}
+          {{- range $key, $value := .Values.secretEnv }}
+          - name: {{ $key }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ $value.name }}
+                key: {{ $value.key }}
+          {{- end }}
+          {{- end }}
 {{- if .Values.extraVars }}
 {{ toYaml .Values.extraVars | indent 8 }}
 {{- end }}

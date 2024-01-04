@@ -56,7 +56,15 @@ spec:
             value: {{ .Values.connectionManager.database.db }}
           - name: AGENT_URL
             value: "{{ .Values.connectionManager.agent.protocol }}://{{ .Values.connectionManager.agent.host }}:{{ .Values.connectionManager.agent.port }}"
-
+          {{- if .Values.secretEnv }}
+          {{- range $key, $value := .Values.secretEnv }}
+          - name: {{ $key }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ $value.name }}
+                key: {{ $value.key }}
+          {{- end }}
+          {{- end }}
 {{- if .Values.extraVars }}
 {{ toYaml .Values.extraVars | indent 8 }}
 {{- end }}

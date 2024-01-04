@@ -83,7 +83,7 @@ fsGroup: {{ .Values.security.runAsGid | default 0 }}
 PostgreSQL Connection  string URI
 */}}
 {{- define "app.postgresql.connectionstring" -}}
-postgresql://{{ .Values.connectionManager.database.user }}:{{ .Values.connectionManager.database.password }}@{{ .Values.connectionManager.database.host }}:{{ .Values.connectionManager.database.port }}/{{ .Release.Namespace }}_{{ include "app.name" . | replace "-" "_" }}?schema={{ .Values.connectionManager.database.schema }}
+postgresql://{{ .Values.connectionManager.database.user }}:{{ .Values.connectionManager.database.password }}@{{ .Values.connectionManager.database.host }}:{{ .Values.connectionManager.database.port }}/{{ .Values.attestationManager.database.db }}?schema={{ .Values.connectionManager.database.schema }}
 {{- end -}}
 
 {{/*

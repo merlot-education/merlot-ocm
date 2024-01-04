@@ -52,7 +52,15 @@ spec:
             value: "{{ .Values.proofManager.agent.protocol }}://{{ .Values.proofManager.agent.host }}:{{ .Values.proofManager.agent.port }}"
           - name: ACCEPT_PRESENTATION_CONFIG
             value: {{ .Values.proofManager.acceptPresentationConfig }}
-
+          {{- if .Values.secretEnv }}
+          {{- range $key, $value := .Values.secretEnv }}
+          - name: {{ $key }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ $value.name }}
+                key: {{ $value.key }}
+          {{- end }}
+          {{- end }}
 {{- if .Values.extraVars }}
 {{ toYaml .Values.extraVars | indent 8 }}
 {{- end }}
