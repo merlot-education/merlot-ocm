@@ -62,7 +62,7 @@ spec:
           {{- end }}
           {{- end }}
 {{- if .Values.extraVars }}
-{{ toYaml .Values.extraVars | indent 8 }}
+{{ toYaml .Values.extraVars | indent 10 }}
 {{- end }}
         ports:
         {{- if .Values.metrics.enabled }}
