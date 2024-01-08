@@ -38,8 +38,10 @@ spec:
         env:
           - name: PORT
             value: {{ .Values.service.port | quote }}
+          {{- if and .Values.connectionManager.database.user and .Values.connectionManager.database.password and .Values.connectionManager.database.host and .Values.connectionManager.database.port and .Values.connectionManager.database.schema }}
           - name: DATABASE_URL
             value: {{ template "app.postgresql.connectionstring" (merge (dict "application" "true") .) }}
+          {{- end }}
           - name: NATS_URL
             value: "{{ .Values.proofManager.nats.protocol }}://{{ .Values.proofManager.nats.url }}:{{ .Values.proofManager.nats.port }}"
           - name: ECSURL

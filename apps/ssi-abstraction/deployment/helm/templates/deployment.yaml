@@ -40,8 +40,10 @@ spec:
             value: {{ .Values.service.port | quote }}
           - name: AFJ_EXT_PORT
             value: {{ .Values.ssiAbstraction.afjExtPort | quote }}
+          {{- if and .Values.ssiAbstraction.database.user and .Values.ssiAbstraction.database.password and .Values.ssiAbstraction.database.host and .Values.ssiAbstraction.database.port and .Values.ssiAbstraction.database.schema }}
           - name: DATABASE_URL
             value: {{ template "app.postgresql.connectionstring" (merge (dict "application" "true") .) }}
+          {{- end }}
           - name: NATS_URL
             value: "{{ .Values.ssiAbstraction.nats.protocol }}://{{ .Values.ssiAbstraction.nats.url }}:{{ .Values.ssiAbstraction.nats.port }}"
           - name: ECSURL

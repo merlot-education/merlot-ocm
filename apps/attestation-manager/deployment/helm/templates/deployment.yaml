@@ -38,7 +38,7 @@ spec:
         env:
           - name: PORT
             value: {{ .Values.service.port | quote }}
-          {{- if and .Values.attestationManager.database.user and .Values.attestationManager.database.password and .Values.attestationManager.database.host and .Values.attestationManager.database.port and .Values.attestationManager.database.schema  }}
+          {{- if and .Values.attestationManager.database.user and .Values.attestationManager.database.password and .Values.attestationManager.database.host and .Values.attestationManager.database.port and .Values.attestationManager.database.schema }}
           - name: DATABASE_URL
             value: {{ template "app.postgresql.connectionstring" (merge (dict "application" "true") .) }}
           {{- end }}

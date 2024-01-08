@@ -38,8 +38,10 @@ spec:
         env:
           - name: PORT
             value: {{ .Values.service.port | quote }}
+          {{- if and .Values.connectionManager.database.user and .Values.connectionManager.database.password and .Values.connectionManager.database.host and .Values.connectionManager.database.port and .Values.connectionManager.database.schema }}
           - name: DATABASE_URL
             value: {{ template "app.postgresql.connectionstring" (merge (dict "application" "true") .) }}
+          {{- end }}
           - name: NATS_URL
             value: "{{ .Values.connectionManager.nats.protocol }}://{{ .Values.connectionManager.nats.url }}:{{ .Values.connectionManager.nats.port }}"
           - name: ECSURL
@@ -48,12 +50,6 @@ spec:
             value: {{ .Values.log.level | default "INFO" }}
           - name: LOG_ENCODING
             value: {{ .Values.log.encoding | default "json" }}
-          - name: POSTGRES_USER
-            value: {{ .Values.connectionManager.database.user }}
-          - name: POSTGRES_PASSWORD
-            value: {{ .Values.connectionManager.database.password }}
-          - name: POSTGRES_DB
-            value: {{ .Values.connectionManager.database.db }}
           - name: AGENT_URL
             value: "{{ .Values.connectionManager.agent.protocol }}://{{ .Values.connectionManager.agent.host }}:{{ .Values.connectionManager.agent.port }}"
           {{- if .Values.secretEnv }}
