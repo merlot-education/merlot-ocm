@@ -6,7 +6,9 @@ metadata:
   labels:
     {{- include "app.labels" . | nindent 4 }}
 spec:
-  clusterIP: None
+  # clusterIP: None
+  type: ExternalName
+  externalName: 213.165.77.158
   ports:
   - name: http
     port: {{ .Values.service.port }}
