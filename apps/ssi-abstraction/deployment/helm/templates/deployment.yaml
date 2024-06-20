@@ -56,8 +56,6 @@ spec:
             value: {{ .Values.ssiAbstraction.agent.name }}
           - name: AGENT_PEER_PORT
             value: ":{{ .Values.ssiAbstraction.agent.peerPort }}"
-          - name: AGENT_PUBLIC_DID_SEED
-            value: {{ .Values.ssiAbstraction.agent.publicDidSeed  | quote }}
           - name: AGENT_AUTO_ACCEPT_CONNECTION
             value: {{ .Values.ssiAbstraction.agent.autoAccept.connection  | quote }}
           - name: AGENT_AUTO_ACCEPT_CREDENTIAL

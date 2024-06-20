@@ -93,7 +93,6 @@ ssiAbstraction:
     protocol: http
     peerPort: 443
     urlPath: /ocm/didcomm
-    publicDidSeed: 6b8b882e2618fa5d45ee7229ca880083
     autoAccept:
       connection: true
       credential: true
