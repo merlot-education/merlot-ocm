@@ -39,7 +39,7 @@
     "@nestjs/terminus": "^10.1.1",
     "@ocm/shared": "workspace:*",
     "axios": "^1.6.2",
-    "express": "^4.17.3",
+    "express": "^4.19.2",
     "joi": "^17.6.0",
     "nats": "^2.18.0",
     "rxjs": "^7.2.0",
