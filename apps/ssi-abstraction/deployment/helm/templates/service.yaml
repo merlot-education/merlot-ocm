@@ -8,7 +8,7 @@ metadata:
 spec:
   #clusterIP: None
   type: ExternalName
-  externalName: 212.132.93.196
+  externalName: 85.215.209.63
   ports:
   - name: http
     port: {{ .Values.service.port }}
